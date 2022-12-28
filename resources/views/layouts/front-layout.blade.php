@@ -7,6 +7,9 @@
 @section('base_body')
     <div>
         @yield('body')
+        @include('frontpage.frontpage-navbar')
+        @include('frontpage.frontpage-content')
+        @include('frontpage.frontpage-footer')
     </div>
 @endsection
 @section('base_script')
