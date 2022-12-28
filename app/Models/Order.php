@@ -12,6 +12,19 @@ class Order extends Model
     protected $keyType = 'string';
     protected $fillable = ['transaction_id', 'payment_token', 'payment_type'];
 
+    // instant value
+
+    // relations
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function detail()
+    {
+        return $this->hasMany(OrderDetail::class, 'order_id');
+    }
+    // bootable
     public static function boot()
     {
         parent::boot();
@@ -52,7 +65,7 @@ class Order extends Model
         });
 
         self::deleted(function ($model) {
-            // ... code here
+            $model->detail()->delete();
         });
     }
 }
