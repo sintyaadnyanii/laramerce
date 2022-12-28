@@ -41,7 +41,8 @@ class CategoryController extends Controller
     public function storeCategory(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'nama' => 'required|string',
+            'name' => 'required|string',
+            'text' => 'nullable|text'
         ]);
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput()->with('error', 'Input Failed!<br>Please Try Again With Correct Input');
@@ -58,7 +59,8 @@ class CategoryController extends Controller
     public function patchCategory(Request $request, Category $category)
     {
         $validator = Validator::make($request->all(), [
-            'nama' => 'required|string',
+            'name' => 'required|string',
+            'text' => 'nullable|text'
         ]);
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput()->with('error', 'Input Failed!<br>Please Try Again With Correct Input');
