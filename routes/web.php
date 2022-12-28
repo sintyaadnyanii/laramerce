@@ -31,7 +31,7 @@ Route::controller(ViewTemplateController::class)->group(function () {
 });
 
 Route::controller(CategoryController::class)->group(function () {
-    Route::get('/dashboard/category', 'allCategory')->name('manage_category.all');
+    Route::get('/dashboard/categories', 'allCategory')->name('manage_category.all');
     Route::get('/dashboard/category/create', 'createCategory')->name('manage_category.create');
     Route::post('/dashboard/category/create', 'storeCategory')->name('manage_category.store');
     Route::get('/dashboard/category/{category:id}', 'detailCategory')->name('manage_category.detail');
@@ -44,6 +44,12 @@ Route::controller(OrderController::class)->group(function () {
 });
 Route::controller(ProductController::class)->group(function () {
     Route::get('/dashboard/products', 'allProduct')->name('manage_product.all');
+    Route::get('/dashboard/product/create', 'createProduct')->name('manage_product.create');
+    Route::post('/dashboard/product/create', 'storeProduct')->name('manage_product.store');
+    Route::get('/dashboard/product/{product}', 'detailProduct')->name('manage_product.detail');
+    Route::get('/dashboard/product/{product}/update', 'updateProduct')->name('manage_product.update');
+    Route::patch('/dashboard/product/{product}', 'patchProduct')->name('manage_product.patch');
+    Route::delete('/dashboard/product/{product}', 'deleteProduct')->name('manage_product.delete');
 });
 Route::controller(UserController::class)->group(function () {
     Route::get('/dashboard/users', 'allUser')->name('manage_user.all');
