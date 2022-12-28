@@ -31,7 +31,7 @@ Route::controller(ViewTemplateController::class)->group(function () {
 });
 
 Route::controller(CategoryController::class)->group(function () {
-    Route::get('/dashboard/categoriy', 'allCategory')->name('manage_category.all');
+    Route::get('/dashboard/category', 'allCategory')->name('manage_category.all');
     Route::get('/dashboard/category/create', 'createCategory')->name('manage_category.create');
     Route::post('/dashboard/category/create', 'storeCategory')->name('manage_category.store');
     Route::get('/dashboard/category/{category:id}', 'detailCategory')->name('manage_category.detail');
