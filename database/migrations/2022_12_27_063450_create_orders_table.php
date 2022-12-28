@@ -14,7 +14,15 @@ return new class extends Migration
     public function up()
     {
         Schema::create('orders', function (Blueprint $table) {
-            $table->id();
+            $table->string('id')->primary();
+            $table->integer('user_id');
+            $table->string('name');
+            $table->string('phone');
+            $table->string('email');
+            $table->integer('gross_amount');
+            $table->integer('transaction_id');
+            $table->string('payment_token');
+            $table->string('payment_type');
             $table->timestamps();
         });
     }
