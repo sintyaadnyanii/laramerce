@@ -1321,6 +1321,10 @@ input:checked + .toggle-bg {
   width: 14rem;
 }
 
+.w-24 {
+  width: 6rem;
+}
+
 .w-40 {
   width: 10rem;
 }
@@ -1335,10 +1339,6 @@ input:checked + .toggle-bg {
 
 .w-16 {
   width: 4rem;
-}
-
-.w-24 {
-  width: 6rem;
 }
 
 .w-64 {
@@ -1432,6 +1432,10 @@ input:checked + .toggle-bg {
   grid-template-columns: repeat(12, minmax(0, 1fr));
 }
 
+.grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .grid-cols-4 {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
@@ -1478,6 +1482,10 @@ input:checked + .toggle-bg {
 
 .gap-6 {
   gap: 1.5rem;
+}
+
+.gap-2 {
+  gap: 0.5rem;
 }
 
 .space-x-2 > :not([hidden]) ~ :not([hidden]) {
@@ -1648,12 +1656,12 @@ input:checked + .toggle-bg {
   padding: 0.5rem;
 }
 
-.p-0 {
-  padding: 0px;
-}
-
 .p-5 {
   padding: 1.25rem;
+}
+
+.p-0 {
+  padding: 0px;
 }
 
 .p-4 {
@@ -2170,6 +2178,10 @@ input:checked + .toggle-bg {
     display: flex;
   }
 
+  .sm\:grid {
+    display: grid;
+  }
+
   .sm\:hidden {
     display: none;
   }
@@ -2363,6 +2375,10 @@ input:checked + .toggle-bg {
 }
 
 @media (min-width: 1024px) {
+  .lg\:col-span-6 {
+    grid-column: span 6 / span 6;
+  }
+
   .lg\:overflow-visible {
     overflow: visible;
   }
