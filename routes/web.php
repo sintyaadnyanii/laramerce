@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    // return view('dashboard.admin.main-dashboard');
+    return view('layouts.front-layout', ['title' => 'Homepage | Urban Adventure']);
 });
 
 Route::controller(ViewTemplateController::class)->group(function () {
