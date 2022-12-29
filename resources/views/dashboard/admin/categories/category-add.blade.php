@@ -30,7 +30,7 @@
                 </div>
                 <div class="text-right mt-5">
                     <a class="btn btn-outline-secondary w-24 mr-1" href="{{ route('manage_category.all') }}">Cancel</a>
-                    <button type="submit" class="btn btn-primary shadow-md w-24 mr-1 text-primary">Save</button>
+                    <button type="submit" class="btn btn-primary shadow-md w-24 mr-1">Save</button>
                 </div>
             </div>
         </form>

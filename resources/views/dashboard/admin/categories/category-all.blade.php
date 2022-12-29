@@ -122,7 +122,7 @@
                             @csrf
                             @method('delete')
                             <input type="hidden" value="" id="delete_route_input">
-                            <button type="submit" class="btn btn-danger w-24 text-danger">Delete</button>
+                            <button type="submit" class="btn btn-danger w-24">Delete</button>
                         </form>
                     </div>
                 </div>
