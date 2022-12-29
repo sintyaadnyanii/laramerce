@@ -28,7 +28,7 @@ class CategoryController extends Controller
             'title' => 'Category Detail | Urban Adventure',
             'category' => $category
         ];
-        return view('dashboard.admin.categories.category-detail');
+        return view('dashboard.admin.categories.category-detail', $data);
     }
     public function updateCategory(Category $category)
     {
@@ -36,7 +36,7 @@ class CategoryController extends Controller
             'title' => 'Category Update | Urban Adventure',
             'category' => $category
         ];
-        return view('dasboard.admin.categories.category-update');
+        return view('dasboard.admin.categories.category-update', $data);
     }
     public function storeCategory(Request $request)
     {
