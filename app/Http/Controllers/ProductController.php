@@ -21,4 +21,13 @@ class ProductController extends Controller
         ];
         return view('dashboard.admin.products.add-product', $data);
     }
+
+    public function detailProduct(Product $product)
+    {
+        $data = [
+            'title' => 'Product Detail | Urban Adventure',
+            'product' => $product
+        ];
+        return view('dashboard.admin.product.detail-product');
+    }
 }

@@ -12,7 +12,6 @@
         <div class="intro-y col-span-12 lg:col-span-12">
             <!-- BEGIN: Form Layout -->
             <form action="" method="POST">
-                @csrf
                 <div class="intro-y box p-5">
                     <div>
                         <label for="name" class="form-label">Name Product</label>
