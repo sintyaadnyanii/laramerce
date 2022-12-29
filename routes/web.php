@@ -27,7 +27,7 @@ Route::get('/', function () {
 Route::controller(ViewTemplateController::class)->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard.admin.main-dashboard', ['title' => 'Dashboard | Urban Adventure']);
-    });
+    })->name('dashboard');
 });
 
 Route::controller(CategoryController::class)->group(function () {
@@ -41,6 +41,7 @@ Route::controller(CategoryController::class)->group(function () {
 });
 Route::controller(OrderController::class)->group(function () {
     Route::get('/dashboard/orders', 'allOrder')->name('manage_order.all');
+    Route::get('/dashboard/order/create', 'Order')->name('manage_order.create');
 });
 Route::controller(ProductController::class)->group(function () {
     Route::get('/dashboard/products', 'allProduct')->name('manage_product.all');
