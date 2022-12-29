@@ -37,7 +37,7 @@ class CategoryController extends Controller
             'title' => 'Category Update | Urban Adventure',
             'category' => $category
         ];
-        return view('dasboard.admin.categories.category-update', $data);
+        return view('dashboard.admin.categories.category-edit', $data);
     }
     public function storeCategory(Request $request)
     {
