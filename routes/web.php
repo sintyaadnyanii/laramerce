@@ -27,7 +27,7 @@ Route::get('/', function () {
 Route::controller(ViewTemplateController::class)->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard.admin.main-dashboard', ['title' => 'Dashboard | Urban Adventure']);
-    });
+    })->name('dashboard');
 });
 
 Route::controller(CategoryController::class)->group(function () {
