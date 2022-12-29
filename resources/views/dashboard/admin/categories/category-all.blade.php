@@ -37,31 +37,33 @@
             <table class="table table-report -mt-2">
                 <thead>
                     <tr>
-                        <th class="whitespace-nowrap">No.</th>
-                        <th class="whitespace-nowrap">NAME</th>
+                        <th class="text-center whitespace-nowrap">No.</th>
+                        <th class="text-center whitespace-nowrap">NAME</th>
                         <th class="text-center whitespace-nowrap">DESCRIPTION</th>
                         <th class="text-center whitespace-nowrap">ACTIONS</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="intro-x">
-                        <td class="w-40">
-                            <div class="flex">
-                                1
-                            </div>
+                    @forelse ($categories as $index=>$item)
+                     <tr class="intro-x">
+                        <td class="text-center w-40"> {{ $loop->iteration }} </td>
+                        <td class="text-center">{{ $item->name }}
                         </td>
-                        <td>
-                            <a href="" class="font-medium whitespace-nowrap">Nikon Z6</a> 
-                            <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">Photography</div>
-                        </td>
-                        <td class="text-center">Lorem Ipsum</td>
+                        <td class="text-center">{{ $item->description }}</td>
                         <td class="table-report__action w-56">
                             <div class="flex justify-center items-center">
-                                <a class="flex items-center mr-3" href="javascript:;"> <i data-lucide="check-square" class="w-4 h-4 mr-1"></i> Edit </a>
-                                <a class="flex items-center text-danger" href="javascript:;" data-tw-toggle="modal" data-tw-target="#delete-confirmation-modal"> <i data-lucide="trash-2" class="w-4 h-4 mr-1"></i> Delete </a>
+                                <a class="flex items-center mr-3" href="{{ route('manage_category.update',['category'=>$item]) }}"> <i data-lucide="check-square" class="w-4 h-4 mr-1"></i> Edit </a>
+                                <a class="flex items-center text-danger" href="javascript:;" data-tw-toggle="modal" data-tw-target="#delete-confirmation-modal" onclick="deleteModalHandler({{$index}})"> <i data-lucide="trash-2" class="w-4 h-4 mr-1"></i> Delete </a>
+                                <input type="hidden" id="delete_route_{{$index}}" value="{{ route('manage_category.delete',['category'=>$item]) }}">
                             </div>
                         </td>
+                    </tr>   
+                    @empty
+                    <tr>
+                        <td class="text-center text-muted" colspan="5">No Data</td>
                     </tr>
+                    @endforelse
+                    
                     
                 </tbody>
             </table>
@@ -113,12 +115,20 @@
                             This process cannot be undone.
                         </div>
                     </div>
-                    <div class="px-5 pb-8 text-center">
+                    <div class="px-5 pb-8 flex justify-center items-center">
                         <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-24 mr-1">Cancel</button>
-                        <button type="button" class="btn btn-danger w-24">Delete</button>
+                        <form id="deleteItem" method="post">
+                            @csrf
+                            @method('delete')
+                            <input type="hidden" value="" id="delete_route_input">
+                            <button type="submit" class="btn btn-danger w-24 text-danger">Delete</button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+@endsection
+@section('script')
+   <script src="{{ asset('dist/js/view/manage-category/category.js') }}"></script> 
 @endsection
