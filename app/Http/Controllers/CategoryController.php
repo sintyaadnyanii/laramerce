@@ -11,9 +11,10 @@ class CategoryController extends Controller
     public function allCategory()
     {
         $data = [
-            'title' => 'Categories | Urban Adventure'
+            'title' => 'Categories | Urban Adventure',
+            'categories' => Category::latest()->get()
         ];
-        return view('dashboard.admin.categories.all-category', $data);
+        return view('dashboard.admin.categories.category-all', $data);
     }
     public function createCategory()
     {
@@ -42,14 +43,15 @@ class CategoryController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string',
-            'text' => 'nullable|text'
+            'description' => 'nullable|string'
         ]);
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput()->with('error', 'Input Failed!<br>Please Try Again With Correct Input');
         }
         $validated = $validator->validated();
         $created_category = Category::create([
-            'name' => $validated['name']
+            'name' => $validated['name'],
+            'description' => $validated['description'],
         ]);
         if ($created_category) {
             return redirect()->route('manage_category.all')->with('success', 'New Category Successfully Added');
@@ -60,7 +62,7 @@ class CategoryController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string',
-            'text' => 'nullable|text'
+            'description' => 'nullable|string'
         ]);
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput()->with('error', 'Input Failed!<br>Please Try Again With Correct Input');
@@ -68,7 +70,8 @@ class CategoryController extends Controller
         $validated = $validator->validated();
         $category->touch();
         $updated_category = $category->update([
-            'name' => $validated['name']
+            'name' => $validated['name'],
+            'description' => $validated['description']
         ]);
         if ($updated_category) {
             return redirect()->route('manage_category.all')->with('success', 'The Category Successfully Updated');
