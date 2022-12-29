@@ -26,7 +26,7 @@
                     @error('description')
                         <small class="text-xs text-red-500 ml-1">{{'*'.$message }}</small>
                     @enderror
-                    <textarea id="description" name="description" class="form-control w-full" placeholder="Input Category Description">{{ old('description')??''}}</textarea>
+                    <textarea id="description" name="description" placeholder="Input Category Description">{{ old('description')??''}}</textarea>
                 </div>
                 <div class="text-right mt-5">
                     <a class="btn btn-outline-secondary w-24 mr-1" href="{{ route('manage_category.all') }}">Cancel</a>

@@ -16,6 +16,14 @@
     <script src="{{ asset('dist/js/app.js') }}"></script>
     <script src="https://unpkg.com/flowbite@1.5.5/dist/flowbite.js"></script>
     @yield('base_script')
+    <script src="https://cdn.tiny.cloud/1/1cwcv7fb2ka7wchr47abco6ychaqqw5fpjdp5ssh1ea863qp/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+    tinymce.init({
+        selector: 'textarea',
+        plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
+        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+    });
+    </script>
 </body>
 
 </html>
