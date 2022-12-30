@@ -15,6 +15,8 @@
 
     <script src="{{ asset('dist/js/app.js') }}"></script>
     <script src="https://unpkg.com/flowbite@1.5.5/dist/flowbite.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     @yield('base_script')
     <script src="https://cdn.tiny.cloud/1/1cwcv7fb2ka7wchr47abco6ychaqqw5fpjdp5ssh1ea863qp/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
