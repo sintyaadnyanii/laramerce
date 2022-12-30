@@ -35,7 +35,8 @@
                     </div>
                     <div>
                         <label for="dscription" class="form-label mt-2">Stoct Product</label>
-                        <textarea id="dscription" class="form-control w-full" placeholder="Input stoct description"></textarea>
+                        <textarea id="dscription" class="form-control w-full"
+                            placeholder="Input stoct description"></textarea>
                     </div>
                     <div class="text-right mt-5">
                         <button type="button" class="btn btn-outline-secondary w-24 mr-1">Cancel</button>
