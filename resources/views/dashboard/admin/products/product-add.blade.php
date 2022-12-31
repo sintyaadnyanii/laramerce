@@ -138,15 +138,18 @@
                         <input type="number" name="stock" id="stock" class="form-control w-full" placeholder="Input Product Stock"></input>
                     </div>
                     <div class="upload__box">
-                      <div class="upload__btn-box">
-                        <label class="upload__btn btn btn-primary">
-                            <p>Choose An Image</p>
-                            <input type="file" name="images[]" multiple data-max_length="10" class="upload__inputfile">
-                        </label>
-                      </div>  
-                      <div class="upload__img-wrap"></div>
+                            @error('images[]')
+                                <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
+                            @enderror
+                            <div class="upload__btn-box">
+                                <label class="upload__btn btn btn-primary">
+                                    <p>Choose An Image</p>
+                                    <input type="file" name="images[]" multiple data-max_length="20"
+                                        class="upload__inputfile">
+                                </label>
+                            </div>
+                            <div class="upload__img-wrap"></div>
                     </div>
-                   </div>
                     <div class="text-right mt-5">
                         <a href="{{ route('manage_product.all') }}" class="btn btn-outline-secondary w-24 mr-1">Cancel</a>
                         <button type="submit" class="btn btn-primary shadow-md w-24 mr-1">Save</button>
