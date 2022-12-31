@@ -54,8 +54,11 @@ Route::controller(ProductController::class)->group(function () {
 });
 Route::controller(UserController::class)->group(function () {
     Route::get('/dashboard/users', 'allUser')->name('manage_user.all');
-    Route::get('/dashboard/user/create', 'createUser')->name('manage_user.create');
-    Route::post('/dashboard/user/create', 'storeUser')->name('manage_user.store');
+    Route::get('/login', 'login')->name('login');
+    Route::post('/login', 'attemptLogin')->name('attempt_login');
+    Route::get('/register', 'register')->name('register');
+    Route::post('/register', 'attemptRegister')->name('attempt_register');
+    Route::get('/logout', 'logout')->name('logout');
     Route::get('/dashboard/user/{user}', 'detailUser')->name('manage_user.detail');
     Route::get('/dashboard/user/{user}/update', 'updateUser')->name('manage_user.update');
     Route::patch('/dashboard/user/{user}', 'patchUser')->name('manage_user.patch');
