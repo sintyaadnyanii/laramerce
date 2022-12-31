@@ -1,29 +1,27 @@
 @extends('layouts.dashboard-layout')
 @section('dashboard-content')
 <h2 class="intro-y text-lg font-medium mt-10">
-    All User
+    [USER NAME]
 </h2>
-<div class="grid grid-cols-12 gap-6 mt-5">
+
+<p class="intro-y text-justify font-medium mt-5">
+    [USER DESCRIPTION]
+    [Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    In egestas turpis id erat bibendum, et sodales velit cursus.
+    Nullam bibendum accumsan lorem, eu maximus dui hendrerit eget.
+    Duis a augue ut lacus lacinia vehicula. Quisque sit amet eros ac odio sollicitudin pellentesque
+    sollicitudin a eros. Sed vitae bibendum eros,
+    ut fringilla nibh. Curabitur pulvinar ac ante cursus volutpat.
+    Suspendisse ut magna mollis, malesuada lorem in, tincidunt nisi.
+    Integer euismod pellentesque erat. Aenean non ultrices sem.]
+</p>
+
+<h2 class="intro-y text-lg font-medium mt-14">
+    Users
+</h2>
+
+<div class="grid grid-cols-12 gap-6">
     <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
-        <a href="#" class="btn btn-primary shadow-md mr-2">Add New User</a>
-        <div class="dropdown">
-            <button class="dropdown-toggle btn px-2 box" aria-expanded="false" data-tw-toggle="dropdown">
-                <span class="w-5 h-5 flex items-center justify-center"> <i class="w-4 h-4" data-lucide="plus"></i> </span>
-            </button>
-            <div class="dropdown-menu w-40">
-                <ul class="dropdown-content">
-                    <li>
-                        <a href="" class="dropdown-item"> <i data-lucide="printer" class="w-4 h-4 mr-2"></i> Print </a>
-                    </li>
-                    <li>
-                        <a href="" class="dropdown-item"> <i data-lucide="file-text" class="w-4 h-4 mr-2"></i> Export to Excel </a>
-                    </li>
-                    <li>
-                        <a href="" class="dropdown-item"> <i data-lucide="file-text" class="w-4 h-4 mr-2"></i> Export to PDF </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
         <div class="hidden md:block mx-auto text-slate-500">Showing 1 to 10 of 150 entries</div>
         <div class="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
             <div class="w-56 relative text-slate-500">
@@ -53,10 +51,11 @@
                         </div>
                     </td>
                     <td>
-                        <a href="" class="font-medium whitespace-nowrap">John Doe</a>
+                        <a href="" class="font-medium whitespace-nowrap">Nikon Z6</a>
+                        <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">Photography</div>
                     </td>
                     <td class="text-center">Lorem Ipsum</td>
-                    <td class="text-center">Lorem Ipsum@mail.com</td>
+                    <td class="text-center">Lorem Ipsum</td>
                     <td class="text-center">Lorem Ipsum</td>
                     <td class="table-report__action w-56">
                         <div class="flex justify-center items-center">

@@ -54,6 +54,12 @@ Route::controller(ProductController::class)->group(function () {
 });
 Route::controller(UserController::class)->group(function () {
     Route::get('/dashboard/users', 'allUser')->name('manage_user.all');
+    Route::get('/dashboard/user/create', 'createUser')->name('manage_user.create');
+    Route::post('/dashboard/user/create', 'storeUser')->name('manage_user.store');
+    Route::get('/dashboard/user/{user}', 'detailUser')->name('manage_user.detail');
+    Route::get('/dashboard/user/{user}/update', 'updateUser')->name('manage_user.update');
+    Route::patch('/dashboard/user/{user}', 'patchUser')->name('manage_user.patch');
+    Route::delete('/dashboard/user/{user}', 'deleteUser')->name('manage_user.delete');
 });
 Route::controller(CartController::class)->group(function () {
     Route::get('/dashboard/carts', 'allCart')->name('manage_cart.all');
