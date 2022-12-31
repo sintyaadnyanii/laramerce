@@ -62,19 +62,19 @@
                     <td class="text-center">{{$item->stock}}</td>
                     <td class="table-report__action w-56">
                         <div class="flex justify-center items-center">
-                           <a class="flex items-center mr-3" href="{{ route('manage_product.detail',['product'=>$item]) }}"> <i data-lucide="eye" class="w-4 h-4 mr-1"></i> Detail </a>
-                           <a class="flex items-center mr-3" href="{{route('manage_product.update',['product'=>$item])}}"> <i data-lucide="check-square" class="w-4 h-4 mr-1"></i> Edit </a>
-                           <a class="flex items-center text-danger" href="javascript:;" data-tw-toggle="modal" data-tw-target="#delete-confirmation-modal" onclick="deleteModalHandler({{$index}})"> <i data-lucide="trash-2" class="w-4 h-4 mr-1"></i> Delete </a>
-                                <input type="hidden" id="delete_route_{{$index}}" value="{{ route('manage_product.delete',['product'=>$item]) }}">
+                            <a class="flex items-center mr-3" href="{{ route('manage_product.detail',['product'=>$item]) }}"> <i data-lucide="eye" class="w-4 h-4 mr-1"></i> Detail </a>
+                            <a class="flex items-center mr-3" href="{{route('manage_product.update',['product'=>$item])}}"> <i data-lucide="check-square" class="w-4 h-4 mr-1"></i> Edit </a>
+                            <a class="flex items-center text-danger" href="javascript:;" data-tw-toggle="modal" data-tw-target="#delete-confirmation-modal" onclick="deleteModalHandler({{$index}})"> <i data-lucide="trash-2" class="w-4 h-4 mr-1"></i> Delete </a>
+                            <input type="hidden" id="delete_route_{{$index}}" value="{{ route('manage_product.delete',['product'=>$item]) }}">
                         </div>
                     </td>
-                </tr>  
+                </tr>
                 @empty
-                   <tr>
-                        <td class="text-center text-muted" colspan="8">No Data</td>
-                    </tr> 
+                <tr>
+                    <td class="text-center text-muted" colspan="8">No Data</td>
+                </tr>
                 @endforelse
-                
+
             </tbody>
         </table>
     </div>
@@ -128,10 +128,10 @@
                 <div class="px-5 pb-8 flex justify-center items-center">
                     <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-24 mr-1">Cancel</button>
                     <form id="deleteItem" method="post">
-                            @csrf
-                            @method('delete')
-                            <input type="hidden" value="" id="delete_route_input">
-                            <button type="submit" class="btn btn-danger w-24">Delete</button>
+                        @csrf
+                        @method('delete')
+                        <input type="hidden" value="" id="delete_route_input">
+                        <button type="submit" class="btn btn-danger w-24">Delete</button>
                     </form>
                 </div>
             </div>
@@ -140,5 +140,5 @@
 </div>
 @endsection
 @section('script')
-   <script src="{{ asset('dist/js/view/manage-product/product.js') }}"></script> 
+<script src="{{ asset('dist/js/view/manage-product/product.js') }}"></script>
 @endsection
