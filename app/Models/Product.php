@@ -23,8 +23,15 @@ class Product extends Model
             // ... code here
         });
 
-        self::created(function ($model) {
-            // ... code here
+        self::created(function ($product) {
+            foreach (request()->file('images') ?? [] as $key => $image) {
+                $uploaded = Image::uploadImage($image);
+                $product->images()->create([
+                    'thumb' => 'thumbnails/' . $uploaded['thumb']->basename,
+                    'src' => 'images/' . $uploaded['src']->basename,
+                    'alt' => Image::getAlt($image)
+                ]);
+            }
         });
 
         self::updating(function ($model) {
