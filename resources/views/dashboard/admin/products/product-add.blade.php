@@ -95,7 +95,7 @@
                                 <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
                             @enderror
                             <input id="name" name="name" type="text" class="form-control w-full"
-                                placeholder="Input product name">
+                                placeholder="Input product name" value="{{ old('name') }}">
                         </div>
                         <div class="mt-3">
                             <label for="category_id" class="form-label mt-2">Category</label>
@@ -106,7 +106,7 @@
                                 class="tom-select w-full">
                                 <option value="0">None</option>
                                 @foreach ($categories as $item)
-                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                    <option value="{{ $item->id }}" {{ old('category_id')==$item->id?'selected':null }}>{{ $item->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -116,7 +116,7 @@
                                 <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
                             @enderror
                             <input id="code" name="code" type="text" class="form-control w-full"
-                                placeholder="Input Product Code">
+                                placeholder="Input Product Code" value="{{old('code')}}" >
                         </div>
                         <div class="mt-3">
                             <label for="condition" class="form-label mt-2">Condition</label>
@@ -125,24 +125,24 @@
                             @enderror
                             <select name="condition" id="condition" data-placeholder="Select Product Condition"
                                 class="tom-select w-full">
-                                <option value="new">New</option>
-                                <option value="second">Second</option>
+                                <option value="new" {{ old('condition')=='new'?'selected':null }}>New</option>
+                                <option value="second" {{ old('condition')=='second'?'selected':null }}>Second</option>
                             </select>
                         </div>
                         <div class="mt-3">
                             <label for="weight" class="form-label mt-2">Weight</label>
                             <input id="weight" name="weight" type="text" class="form-control w-full"
-                                placeholder="Input Product Weight (kg)">
+                                placeholder="Input Product Weight (gram) ex: 250" value="{{ old('weight') }}">
                         </div>
                         <div class="mt-3">
                             <label for="price" class="form-label mt-2">Price</label>
                             <input id="price" name="price" type="text" class="form-control w-full"
-                                placeholder="Input Product Price (Rp)">
+                                placeholder="Input Product Price (Rp)" value="{{ old('price') }}">
                         </div>
                         <div class="mt-3">
                             <label for="stock" class="form-label mt-2">Stock</label>
                             <input type="number" name="stock" id="stock" class="form-control w-full"
-                                placeholder="Input Product Stock">
+                                placeholder="Input Product Stock" value="{{ old('stock') }}">
                         </div>
                         <div class="upload__box">
                             @error('images[]')

@@ -81,7 +81,7 @@ class ProductController extends Controller
             'code' => 'required|numeric',
             'category_id' => 'required|integer',
             'condition' => ['required', Rule::in('new', 'second')],
-            'weight' => 'required|decimal:2',
+            'weight' => 'required|numeric',
             'price' => 'required|integer',
             'stock' => 'required|integer',
         ]);
@@ -94,7 +94,7 @@ class ProductController extends Controller
             'code' => $validated['code'],
             'category_id' => $validated['category_id'] == 0 ? NULL : $validated['category_id'],
             'condition' => $validated['condition'],
-            'weight' => $validated['weight'],
+            'weight' => $validated['weight'] / 1000,
             'price' => $validated['price'],
             'stock' => $validated['stock'],
         ]);
