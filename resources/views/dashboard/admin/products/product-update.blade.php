@@ -20,7 +20,7 @@
                         @error('name')
                         <small class="text-xs text-red-500 ml-1">{{'*'.$message }}</small>
                         @enderror
-                        <input id="name" name="name" type="text" class="form-control w-full" placeholder="Input product name" value="{{old('name')??$product->name}}">
+                        <input id="name" name="name" type="text" class="form-control w-full border border-gray-300 rounded-lg" placeholder="Input product name" value="{{old('name')??$product->name}}">
                     </div>
                     <div class="mt-3">
                         <label for="category_id" class="form-label mt-2">Category</label>
@@ -39,7 +39,7 @@
                         @error('code')
                         <small class="text-xs text-red-500 ml-1">{{'*'.$message }}</small>
                         @enderror
-                        <input id="code" name="code" type="text" class="form-control w-full" placeholder="Input Product Code" value="{{old('code')??$product->code}}">
+                        <input id="code" name="code" type="text" class="form-control w-full border border-gray-300 rounded-lg" placeholder="Input Product Code" value="{{old('code')??$product->code}}">
                     </div>
                     <div class="mt-3">
                         <label for="condition" class="form-label mt-2">Condition</label>
@@ -53,19 +53,19 @@
                     </div>
                     <div class="mt-3">
                         <label for="weight" class="form-label mt-2">Weight</label>
-                        <input id="weight" name="weight" type="text" class="form-control w-full" placeholder="Input Product Weight (kg)" value="{{old('weight')??$product->weight}}">
+                        <input id="weight" name="weight" type="text" class="form-control w-full border border-gray-300 rounded-lg" placeholder="Input Product Weight (kg)" value="{{old('weight')??$product->weight}}">
                     </div>
                     <div class="mt-3">
                         <label for="price" class="form-label mt-2">Price</label>
-                        <input id="price" name="price" type="text" class="form-control w-full" placeholder="Input Product Price (Rp)" value="{{old('price')??$product->price}}">
+                        <input id="price" name="price" type="text" class="form-control w-full border border-gray-300 rounded-lg" placeholder="Input Product Price (Rp)" value="{{old('price')??$product->price}}">
                     </div>
                     <div class="mt-3">
                         <label for="stock" class="form-label mt-2">Stock</label>
-                        <input type="number" name="stock" id="stock" class="form-control w-full" placeholder="Input Product Stock" value="{{ old('stock')??$product->stock }}"></input>
+                        <input type="number" name="stock" id="stock" class="form-control w-full border border-gray-300 rounded-lg" placeholder="Input Product Stock" value="{{ old('stock')??$product->stock }}"></input>
                     </div>
                     <div class="text-right mt-5">
                         <a href="{{ route('manage_product.all') }}" class="btn btn-outline-secondary w-24 mr-1">Cancel</a>
-                        <button type="submit" class="btn btn-primary shadow-md w-24 mr-1">Save</button>
+                        <input type="submit" value="Save" class="btn btn-outline-primary shadow-md w-24 mr-1">
                     </div>
                 </div>
             </form>
