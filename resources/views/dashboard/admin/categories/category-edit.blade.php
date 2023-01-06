@@ -20,7 +20,7 @@
                     @error('name')
                         <small class="text-xs text-red-500 ml-1">{{'*'.$message }}</small>
                     @enderror
-                    <input type="text" name="name" id="category_name" class="form-control w-full" placeholder="Input Category Name" value="{{ $category->name ?? old('name') }}">
+                    <input type="text" name="name" id="category_name" class="form-control w-full border border-gray-300 rounded-lg" placeholder="Input Category Name" value="{{ $category->name ?? old('name') }}">
                 </div>
                 <div class="mt-3">
                     <label for="description" class="form-label">Description</label>
@@ -31,7 +31,7 @@
                 </div>
                 <div class="text-right mt-5">
                     <a class="btn btn-outline-secondary w-24 mr-1" href="{{ route('manage_category.all') }}">Cancel</a>
-                    <button type="submit" class="btn btn-primary shadow-md w-24 mr-1 text-primary">Save</button>
+                    <input type="submit" value="Save" class="btn btn-outline-primary shadow-md w-24 mr-1">
                 </div>
             </div>
         </form>
