@@ -94,24 +94,24 @@
                         @error('name')
                         <small class="text-xs text-red-500 ml-1">{{'*'.$message }}</small>
                         @enderror
-                        <input id="name" name="name" type="text" class="form-control w-full" placeholder="Input Name">
+                        <input id="name" name="name" type="text" class="form-control w-full border border-gray-300 rounded-lg" placeholder="Input Name">
                     </div>
                     <div class="mt-3">
                         <label for="phone" class="form-label mt-2">Phone</label>
-                        <input id="phone" name="phone" type="text" class="form-control w-full" placeholder="Input Phone">
+                        <input id="phone" name="phone" type="text" class="form-control w-full border border-gray-300 rounded-lg" placeholder="Input Phone">
                     </div>
                     <div class="mt-3">
                         <label for="email" class="form-label mt-2">Email</label>
-                        <input id="email" name="email" type="text" class="form-control w-full" placeholder="Input Email">
+                        <input id="email" name="email" type="text" class="form-control w-full border border-gray-300 rounded-lg" placeholder="Input Email">
                     </div>
                     <div class="mt-3">
                         <label for="address" class="form-label mt-2">Address</label>
-                        <input id="address" name="address" type="text" class="form-control w-full" placeholder="Input Address">
+                        <input id="address" name="address" type="text" class="form-control w-full border border-gray-300 rounded-lg" placeholder="Input Address">
                     </div>
                 </div>
                 <div class="text-right mt-5">
                     <a href="{{ route('manage_user.all') }}" class="btn btn-outline-secondary w-24 mr-1">Cancel</a>
-                    <button type="submit" class="btn btn-primary shadow-md w-24 mr-1">Save</button>
+                    <input type="submit" value="Save" class="btn btn-outline-primary shadow-md w-24 mr-1">
                 </div>
         </div>
         </form>
