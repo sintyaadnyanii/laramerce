@@ -2,6 +2,8 @@ jQuery(document).ready(function () {
     ImgUpload();
 });
 
+console.log("hai");
+
 function ImgUpload() {
     var imgWrap = "";
     var imgArray = [];
@@ -70,10 +72,7 @@ function ImgUpload() {
     });
 }
 
-
-
 function deleteModalHandler(index) {
     $("#deleteItem").attr("action", $("#delete_route_" + index).val());
     $("#delete_route_input").val($("#delete_route_" + index).val());
 }
-
