@@ -2,8 +2,6 @@ jQuery(document).ready(function () {
     ImgUpload();
 });
 
-console.log("hai");
-
 function ImgUpload() {
     var imgWrap = "";
     var imgArray = [];
