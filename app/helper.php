@@ -30,3 +30,10 @@ if (!function_exists('ch_currency')) {
         return (session()->get('appcurrency') == 'idr' ? 'Idr ' : '$ ') . number_format(session()->get('appcurrency') == 'idr' ? $idr : $usd, 0, ".", ",");
     }
 }
+
+if (!function_exists('asset')) {
+    function asset($path)
+    {
+        return env('APP_URL') . $path;
+    }
+}
