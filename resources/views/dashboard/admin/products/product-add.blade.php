@@ -111,12 +111,12 @@
                             </select>
                         </div>
                         <div class="mt-3">
-                            <label for="code" class="form-label mt-2">Code</label>
-                            @error('code')
+                            <label for="product_code" class="form-label mt-2">Product Code</label>
+                            @error('product_code')
                                 <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
                             @enderror
-                            <input id="code" name="code" type="text" class="form-control w-full"
-                                placeholder="Input Product Code" value="{{old('code')}}" >
+                            <input id="product_code" name="product_code" type="text" class="form-control w-full"
+                                placeholder="Input Product Code" value="{{old('product_code')}}" >
                         </div>
                         <div class="mt-3">
                             <label for="condition" class="form-label mt-2">Condition</label>
