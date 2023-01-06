@@ -42,8 +42,27 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    // instant value
+
+    // relation
     public function whislists()
     {
         return $this->hasMany(Whislist::class, 'user_id');
+    }
+
+    public function cart()
+    {
+        return $this->hasMany(Cart::class, 'user_id');
+    }
+
+    // boot
+    public static function boot()
+    {
+        parent::boot();
+
+        self::creating(function ($model) {
+            // ... code here
+            $model->level = 'user';
+        });
     }
 }
