@@ -94,7 +94,7 @@
                             @error('name')
                                 <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
                             @enderror
-                            <input id="name" name="name" type="text" class="form-control w-full border border-gray-300 rounded-lg"
+                            <input id="name" name="name" type="text" class="form-control w-full border border-gray-300 rounded-md"
                                 placeholder="Input product name" value="{{ old('name') }}">
                         </div>
                         <div class="mt-3">
@@ -116,7 +116,7 @@
                                 <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
                             @enderror
 
-                            <input id="product_code" name="product_code" type="text" class="form-control w-full"
+                            <input id="product_code" name="product_code" type="text" class="form-control w-full border border-gray-300 rounded-md"
                                 placeholder="Input Product Code" value="{{old('product_code')}}" >
                         </div>
                         <div class="mt-3">
@@ -132,17 +132,17 @@
                         </div>
                         <div class="mt-3">
                             <label for="weight" class="form-label mt-2">Weight</label>
-                            <input id="weight" name="weight" type="text" class="form-control w-full border border-gray-300 rounded-lg"
+                            <input id="weight" name="weight" type="text" class="form-control w-full border border-gray-300 rounded-md"
                                 placeholder="Input Product Weight (gram) ex: 250" value="{{ old('weight') }}">
                         </div>
                         <div class="mt-3">
                             <label for="price" class="form-label mt-2">Price</label>
-                            <input id="price" name="price" type="text" class="form-control w-full border border-gray-300 rounded-lg"
+                            <input id="price" name="price" type="text" class="form-control w-full border border-gray-300 rounded-md"
                                 placeholder="Input Product Price (Rp)" value="{{ old('price') }}">
                         </div>
                         <div class="mt-3">
                             <label for="stock" class="form-label mt-2">Stock</label>
-                            <input type="number" name="stock" id="stock" class="form-control w-full border border-gray-300 rounded-lg"
+                            <input type="number" name="stock" id="stock" class="form-control w-full border border-gray-300 rounded-md"
                                 placeholder="Input Product Stock" value="{{ old('stock') }}">
                         </div>
                         <div class="upload__box">
