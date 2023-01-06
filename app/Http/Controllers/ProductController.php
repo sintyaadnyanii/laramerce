@@ -34,7 +34,7 @@ class ProductController extends Controller
             'title' => 'Product Detail | Urban Adventure',
             'product' => $product
         ];
-        return view('dashboard.admin.product.product-detail');
+        return view('dashboard.admin.products.product-detail', $data);
     }
     public function updateProduct(Product $product)
     {
@@ -49,10 +49,10 @@ class ProductController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string',
-            'code' => 'required|numeric',
+            'product_code' => 'required|numeric',
             'category_id' => 'required|integer',
             'condition' => ['required', Rule::in('new', 'second')],
-            'weight' => 'required|decimal:2',
+            'weight' => 'required|numeric',
             'price' => 'required|integer',
             'stock' => 'required|integer',
         ]);
@@ -62,10 +62,10 @@ class ProductController extends Controller
         $validated = $validator->validated();
         $created_product = Product::create([
             'name' => $validated['name'],
-            'code' => $validated['code'],
+            'product_code' => $validated['product_code'],
             'category_id' => $validated['category_id'] == 0 ? NULL : $validated['category_id'],
             'condition' => $validated['condition'],
-            'weight' => $validated['weight'],
+            'weight' => $validated['weight'] / 1000,
             'price' => $validated['price'],
             'stock' => $validated['stock'],
         ]);
@@ -78,7 +78,7 @@ class ProductController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string',
-            'code' => 'required|numeric',
+            'product_code' => 'required|numeric',
             'category_id' => 'required|integer',
             'condition' => ['required', Rule::in('new', 'second')],
             'weight' => 'required|numeric',
@@ -89,9 +89,10 @@ class ProductController extends Controller
             return redirect()->back()->withErrors($validator)->withInput()->with('error', 'Input Failed!<br>Please Try Again With Correct Input');
         }
         $validated = $validator->validated();
+        $product->touch();
         $updated_product = $product->update([
             'name' => $validated['name'],
-            'code' => $validated['code'],
+            'product_code' => $validated['product_code'],
             'category_id' => $validated['category_id'] == 0 ? NULL : $validated['category_id'],
             'condition' => $validated['condition'],
             'weight' => $validated['weight'] / 1000,

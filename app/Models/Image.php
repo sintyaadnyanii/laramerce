@@ -11,6 +11,8 @@ use Intervention\Image\Facades\Image as InterventionImg;
 class Image extends Model
 {
     use HasFactory;
+    protected $table = 'images';
+    protected $fillable = ['src', 'thumb', 'alt'];
 
     public static function uploadImage($img_response, $rezize = true)
     {

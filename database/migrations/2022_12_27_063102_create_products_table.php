@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('code')->unique();
+            $table->string('product_code')->unique();
             $table->integer('category_id')->nullable();
             $table->enum('condition', ['new', 'second']);
             $table->float('weight', 8, 2, true);

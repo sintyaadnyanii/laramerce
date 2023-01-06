@@ -9,9 +9,9 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
-    protected $primaryKey = 'code';
+    protected $primaryKey = 'product_code';
     protected $keyType = 'string';
-    protected $fillable = ['name', 'code', 'category_id', 'condition', 'price', 'weight', 'stock'];
+    protected $fillable = ['name', 'product_code', 'category_id', 'condition', 'price', 'weight', 'stock'];
 
     // instant value
     public static function popular()
@@ -34,13 +34,18 @@ class Product extends Model
         return $this->hasMany(Whislist::class, 'product_code');
     }
 
+    public function images()
+    {
+        return $this->morphMany(Image::class, 'imageable');
+    }
+
     // boot
     public static function boot()
     {
         parent::boot();
 
-        self::creating(function ($model) {
-            // ... code here
+        self::creating(function ($product) {
+            $product->id = request()->product_code;
         });
 
         self::created(function ($product) {
@@ -54,16 +59,33 @@ class Product extends Model
             }
         });
 
-        self::updating(function ($model) {
-            // ... code here
+        self::updating(function ($product) {
+            $img_array = explode(',', request()->deleted_images);
+            array_pop($img_array);
+
+            foreach ($img_array as $key => $image_id) {
+                $will_deleted_image = Image::find($image_id);
+                $will_deleted_image->delete();
+            }
+
+            foreach (request()->file('images') ?? [] as $key => $image) {
+                $uploaded = Image::uploadImage($image);
+                $product->images()->create([
+                    'thumb' => 'thumbnails/' . $uploaded['thumb']->basename,
+                    'src' => 'images/' . $uploaded['src']->basename,
+                    'alt' => Image::getAlt($image),
+                ]);
+            }
         });
 
         self::updated(function ($model) {
             // ... code here
         });
 
-        self::deleting(function ($model) {
-            // ... code here
+        self::deleting(function ($product) {
+            foreach ($product->images as $key => $image) {
+                $image->delete();
+            }
         });
 
         self::deleted(function ($model) {
