@@ -7,6 +7,7 @@ use App\Http\Controllers\OrderDetailController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ViewTemplateController;
+use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,6 +23,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('layouts.front-layout', ['title' => 'Homepage | Urban Adventure']);
+});
+Route::get('/test', function () {
+    return Product::popular();
 });
 
 Route::controller(ViewTemplateController::class)->group(function () {

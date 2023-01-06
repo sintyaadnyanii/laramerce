@@ -2,19 +2,39 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
     use HasFactory;
+    protected $primaryKey = 'code';
+    protected $keyType = 'string';
     protected $fillable = ['name', 'code', 'category_id', 'condition', 'price', 'weight', 'stock'];
+
+    // instant value
+    public static function popular()
+    {
+        return Product::all()->map(function ($item) {
+            if ($item->loved->count()) {
+                return $item;
+            }
+        });
+    }
 
     //relations
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id');
     }
+
+    public function loved()
+    {
+        return $this->hasMany(Whislist::class, 'product_code');
+    }
+
+    // boot
     public static function boot()
     {
         parent::boot();
