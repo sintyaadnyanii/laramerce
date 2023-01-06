@@ -6,7 +6,8 @@
     <div class="side-nav__devider my-6"></div>
     <ul>
         <li>
-            <a href="javascript:;.html" class="side-menu side-menu--active">
+            <a href="{{ route('dashboard') }}"
+                class="side-menu {{ Request::is('dashboard') ? 'side-menu--active' : '' }}">
                 <div class="side-menu__icon"><i data-lucide="home"></i></div>
                 <div class="side-menu__title">
                     Dashboard
@@ -14,16 +15,14 @@
             </a>
         </li>
         <li>
-            <a href="javascript:;" class="side-menu">
+            <a href="{{ route('manage_category.all') }}"
+                class="side-menu {{ Request::is('dashboard/categories') ? 'side-menu--active' : '' }}">
                 <div class="side-menu__icon"><i data-lucide="box"></i></div>
                 <div class="side-menu__title">
-                    Menu Option
-                    <div class="side-menu__sub-icon">
-                        <i data-lucide="chevron-down"></i>
-                    </div>
+                    Categories
                 </div>
             </a>
-            <ul class="">
+            {{-- <ul class="">
                 <li>
                     <a href="{{ route('manage_category.all') }}" class="side-menu">
                         <div class="side-menu__icon">
@@ -80,7 +79,59 @@
                         <div class="side-menu__title">Wishlists</div>
                     </a>
                 </li>
-            </ul>
+            </ul> --}}
+        </li>
+        <li>
+            <a href="{{ route('manage_order.all') }}"
+                class="side-menu {{ Request::is('dashboard/orders') ? 'side-menu--active' : '' }}">
+                <div class="side-menu__icon"><i data-lucide="box"></i></div>
+                <div class="side-menu__title">
+                    Orders
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="{{ route('manage_product.all') }}"
+                class="side-menu {{ Request::is('dashboard/products') ? 'side-menu--active' : '' }}">
+                <div class="side-menu__icon"><i data-lucide="box"></i></div>
+                <div class="side-menu__title">
+                    Products
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="{{ route('manage_user.all') }}"
+                class="side-menu {{ Request::is('dashboard/users') ? 'side-menu--active' : '' }}">
+                <div class="side-menu__icon"><i data-lucide="box"></i></div>
+                <div class="side-menu__title">
+                    Users
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="{{ route('manage_cart.all') }}"
+                class="side-menu {{ Request::is('dashboard/carts') ? 'side-menu--active' : '' }}">
+                <div class="side-menu__icon"><i data-lucide="box"></i></div>
+                <div class="side-menu__title">
+                    Carts
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="" class="side-menu">
+                <div class="side-menu__icon"><i data-lucide="box"></i></div>
+                <div class="side-menu__title">
+                    Orders
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="" class="side-menu">
+                <div class="side-menu__icon"><i data-lucide="box"></i></div>
+                <div class="side-menu__title">
+                    Wishlists
+                </div>
+            </a>
         </li>
     </ul>
 </nav>

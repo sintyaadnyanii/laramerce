@@ -1,29 +1,44 @@
 @extends('layouts.dashboard-layout')
 @section('dashboard-content')
     <h2 class="intro-y text-lg font-medium mt-10">
-        All Order
+        <!-- {{$order->name}} -->
+        [ORDER NAME]
     </h2>
-    <div class="grid grid-cols-12 gap-6 mt-5">
+
+    <p class="intro-y text-justify font-medium mt-5">
+        [NAME] | [USER ID]
+    </p>
+
+    <p class="intro-y text-justify font-medium mt-5">
+        [PHONE]
+    </p>
+
+    <p class="intro-y text-justify font-medium mt-5">
+        [EMAIL]
+    </p>
+
+    <p class="intro-y text-justify font-medium mt-5">
+        [GROSS AMOUNT]
+    </p>
+
+    <p class="intro-y text-justify font-medium mt-5">
+        [TRANSACTION ID]
+    </p>
+
+    <p class="intro-y text-justify font-medium mt-5">
+        [PAYMENT TOKEN]
+    </p>
+
+    <p class="intro-y text-justify font-medium mt-5">
+        [PAYMENT TYPE]
+    </p>
+
+    <h2 class="intro-y text-lg font-medium mt-14">
+        ORDER LIST
+    </h2>
+
+    <div class="grid grid-cols-12 gap-6">
         <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
-            <a href="#" class="btn btn-primary shadow-md mr-2">Add New Order</a>
-            <div class="dropdown">
-                <button class="dropdown-toggle btn px-2 box" aria-expanded="false" data-tw-toggle="dropdown">
-                    <span class="w-5 h-5 flex items-center justify-center"> <i class="w-4 h-4" data-lucide="plus"></i> </span>
-                </button>
-                <div class="dropdown-menu w-40">
-                    <ul class="dropdown-content">
-                        <li>
-                            <a href="" class="dropdown-item"> <i data-lucide="printer" class="w-4 h-4 mr-2"></i> Print </a>
-                        </li>
-                        <li>
-                            <a href="" class="dropdown-item"> <i data-lucide="file-text" class="w-4 h-4 mr-2"></i> Export to Excel </a>
-                        </li>
-                        <li>
-                            <a href="" class="dropdown-item"> <i data-lucide="file-text" class="w-4 h-4 mr-2"></i> Export to PDF </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
             <div class="hidden md:block mx-auto text-slate-500">Showing 1 to 10 of 150 entries</div>
             <div class="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
                 <div class="w-56 relative text-slate-500">
@@ -33,18 +48,14 @@
             </div>
         </div>
         <!-- BEGIN: Data List -->
-        <div class="intro-y col-span-12 overflow-x-auto">
+        <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
             <table class="table table-report -mt-2">
                 <thead>
                     <tr>
                         <th class="whitespace-nowrap">No.</th>
-                        <th class="whitespace-nowrap">NAME</th>
-                        <th class="whitespace-nowrap">PHONE</th>
-                        <th class="text-center whitespace-nowrap">EMAIL</th>
-                        <th class="whitespace-nowrap">GROSS AMOUNT</th>
-                        <th class="whitespace-nowrap">TRANSACTION ID</th>
-                        <th class="whitespace-nowrap">PAYMENT TOKEN</th>
-                        <th class="whitespace-nowrap">PAYMENT TYPE</th>
+                        <th class="whitespace-nowrap">PRODUCT NAME</th>
+                        <th class="text-center whitespace-nowrap">CODE</th>
+                        <th class="text-center whitespace-nowrap">CONDITION</th>
                         <th class="text-center whitespace-nowrap">ACTIONS</th>
                     </tr>
                 </thead>
@@ -56,12 +67,9 @@
                             </div>
                         </td>
                         <td>
-                            <a href="" class="font-medium whitespace-nowrap">Lipsum</a> 
+                            <a href="" class="font-medium whitespace-nowrap">Nikon Z6</a> 
+                            <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">Photography</div>
                         </td>
-                        <td class="text-center">Lorem Ipsum</td>
-                        <td class="text-center">Lorem Ipsum@mail.com</td>
-                        <td class="text-center">Lorem Ipsum</td>
-                        <td class="text-center">Lorem Ipsum</td>
                         <td class="text-center">Lorem Ipsum</td>
                         <td class="text-center">Lorem Ipsum</td>
                         <td class="table-report__action w-56">

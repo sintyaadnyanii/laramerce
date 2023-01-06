@@ -27,7 +27,7 @@ Route::get('/', function () {
 Route::controller(ViewTemplateController::class)->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard.admin.main-dashboard', ['title' => 'Dashboard | Urban Adventure']);
-    });
+    })->name('dashboard');
 });
 
 Route::controller(CategoryController::class)->group(function () {
@@ -41,6 +41,7 @@ Route::controller(CategoryController::class)->group(function () {
 });
 Route::controller(OrderController::class)->group(function () {
     Route::get('/dashboard/orders', 'allOrder')->name('manage_order.all');
+    Route::get('/dashboard/order/create', 'createOrder')->name('manage_order.create');
 });
 Route::controller(ProductController::class)->group(function () {
     Route::get('/dashboard/products', 'allProduct')->name('manage_product.all');
@@ -53,6 +54,15 @@ Route::controller(ProductController::class)->group(function () {
 });
 Route::controller(UserController::class)->group(function () {
     Route::get('/dashboard/users', 'allUser')->name('manage_user.all');
+    Route::get('/login', 'login')->name('login');
+    Route::post('/login', 'attemptLogin')->name('attempt_login');
+    Route::get('/register', 'register')->name('register');
+    Route::post('/register', 'attemptRegister')->name('attempt_register');
+    Route::get('/logout', 'logout')->name('logout');
+    Route::get('/dashboard/user/{user}', 'detailUser')->name('manage_user.detail');
+    Route::get('/dashboard/user/{user}/update', 'updateUser')->name('manage_user.update');
+    Route::patch('/dashboard/user/{user}', 'patchUser')->name('manage_user.patch');
+    Route::delete('/dashboard/user/{user}', 'deleteUser')->name('manage_user.delete');
 });
 Route::controller(CartController::class)->group(function () {
     Route::get('/dashboard/carts', 'allCart')->name('manage_cart.all');
