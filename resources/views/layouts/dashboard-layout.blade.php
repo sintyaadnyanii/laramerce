@@ -8,7 +8,7 @@
     <div>
         @yield('body')
         <div class="py-5 md:py-0 bg-black/[0.15] dark:bg-transparent">
-            <div class="flex mt-[4.7rem] md:mt-0 overflow-hidden">
+            <div class="flex  overflow-hidden">
                 <!-- BEGIN: Mobile Menu -->
                 @include('fragments.dashboard-mobile-fragment')
                 <!-- END: Mobile Menu -->
@@ -16,7 +16,7 @@
                 @include('fragments.dashboard-sidemenu-fragment')
                 <!-- END: Side Menu -->
                 <!-- BEGIN: Content -->
-                <div class="content">
+                <div class="content mt-[4.7rem] md:mt-0">
                     <!-- BEGIN: Top Bar -->
                     @include('fragments.dashboard-topbar-fragment')
                     <!-- END: Top Bar -->
