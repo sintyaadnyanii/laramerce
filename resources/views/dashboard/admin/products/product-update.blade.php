@@ -129,14 +129,23 @@
                     </div>
                     <div class="mt-3">
                         <label for="weight" class="form-label mt-2">Weight</label>
+                        @error('weight')
+                                <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
+                        @enderror
                         <input id="weight" name="weight" type="text" class="form-control w-full" placeholder="Input Product Weight (gram) ex: 250" value="{{old('weight')??$product->weight*1000}}">
                     </div>
                     <div class="mt-3">
                         <label for="price" class="form-label mt-2">Price</label>
+                        @error('price')
+                                <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
+                        @enderror
                         <input id="price" name="price" type="text" class="form-control" placeholder="Input Product Price (Rp)" value="{{old('price')??$product->price}}">
                     </div>
                     <div class="mt-3">
                         <label for="stock" class="form-label mt-2">Stock</label>
+                        @error('stock')
+                                <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
+                        @enderror
                         <input type="number" name="stock" id="stock" class="form-control" placeholder="Input Product Stock" value="{{ old('stock')??$product->stock }}"></input>
                     </div>
                     <div class="upload__box">
