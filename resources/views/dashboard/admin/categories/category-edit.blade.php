@@ -20,7 +20,7 @@
                     @error('name')
                         <small class="text-xs text-red-500 ml-1">{{'*'.$message }}</small>
                     @enderror
-                    <input type="text" name="name" id="category_name" class="form-control w-full border border-gray-300 rounded-lg" placeholder="Input Category Name" value="{{ $category->name ?? old('name') }}">
+                    <input type="text" name="name" id="category_name" class="form-control" placeholder="Input Category Name" value="{{ $category->name ?? old('name') }}">
                 </div>
                 <div class="mt-3">
                     <label for="description" class="form-label">Description</label>
