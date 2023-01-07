@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -49,6 +54,8 @@ class UserController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|min:8|max:50',
             'email' => 'required|email:dns',
+            'phone' => 'required|numeric',
+            'address' => 'required|string',
             'password' => 'required|string',
             'password_confirm' => 'required|same:password'
         ]);
@@ -59,6 +66,8 @@ class UserController extends Controller
         $user_is_created = User::create([
             'name' => $validated['name'],
             'email' => $validated['email'],
+            'phone' => $validated['phone'],
+            'address' => $validated['address'],
             'password' => Hash::make($validated['password']),
         ]);
         if ($user_is_created) {
