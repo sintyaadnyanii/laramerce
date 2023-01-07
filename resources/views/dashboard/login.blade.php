@@ -31,8 +31,18 @@
                             </h2>
                             <div class="intro-x mt-2 text-slate-400 xl:hidden text-center">A few more clicks to sign in to your account. Manage all your e-commerce accounts in one place</div>
                             <div class="intro-x mt-8">
-                                <input type="text" class="intro-x login__input form-control mt-4 py-3 px-4" placeholder="Email">
-                                <input type="password" class="intro-x login__input form-control mt-4 py-3 px-4" placeholder="Password">
+                                <div class="mt-4">
+                                   <input type="email" name="email" class="intro-x form-control py-3 px-4" placeholder="Email">
+                                   @error('email')
+                                        <small class="text-xs text-red-500 ml-1 mt-1">{{'*'.$message }}</small>
+                                   @enderror
+                                </div>
+                                <div class="mt-4">
+                                    <input type="password" name="password" class="intro-x form-control py-3 px-4" placeholder="Password">
+                                    @error('password')
+                                        <small class="text-xs text-red-500 ml-1 mt-1">{{'*'.$message }}</small>
+                                    @enderror
+                                </div>
                             </div>
                             <div class="intro-x flex text-slate-600 dark:text-slate-500 text-xs sm:text-sm mt-4">
                                 <div class="flex items-center mr-auto">
