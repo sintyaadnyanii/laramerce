@@ -17,6 +17,7 @@ class UserController extends Controller
         $data = [
             'title' => 'Users | Urban Adventure'
         ];
+
         return view('dashboard.admin.users.all-user', $data);
     }
 
