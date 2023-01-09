@@ -5,6 +5,9 @@
 .btn-primary {
     @apply bg-emerald-900 text-white;
 }
+.btn-danger {
+    @apply bg-red-700 text-white;
+}
 
 .form-control {
     @apply w-full border-gray-300 rounded drop-shadow-sm;

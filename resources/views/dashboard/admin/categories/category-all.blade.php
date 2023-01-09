@@ -37,7 +37,7 @@
             <table class="table table-report -mt-2">
                 <thead>
                     <tr>
-                        <th class="text-center whitespace-nowrap">No.</th>
+                        <th class="text-center whitespace-nowrap">NO.</th>
                         <th class="text-center whitespace-nowrap">NAME</th>
                         <th class="text-center whitespace-nowrap">DESCRIPTION</th>
                         <th class="text-center whitespace-nowrap">ACTIONS</th>
@@ -46,7 +46,7 @@
                 <tbody>
                     @forelse ($categories as $index=>$item)
                      <tr class="intro-x">
-                        <td class="text-center w-40"> {{ $loop->iteration }} </td>
+                        <td class="text-center w-20"> {{ $loop->iteration }} </td>
                         <td class="text-center">{{ $item->name }}
                         </td>
                         <td class="text-center">{!! $item->description !!}</td>

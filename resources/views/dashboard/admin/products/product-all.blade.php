@@ -50,7 +50,7 @@
             <tbody>
                 @forelse ($products as $index=>$item)
                 <tr class="intro-x">
-                    <td class="text-center w-40">{{ $loop->iteration }}</td>
+                    <td class="text-center w-20">{{ $loop->iteration }}</td>
                     <td class="text-center">
                         <a href="#" class="font-medium whitespace-nowrap">{{$item->name}}</a>
                         <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">{{($item->category->name)??'None'}}</div>
