@@ -57,7 +57,7 @@ Route::controller(ProductController::class)->group(function () {
     Route::delete('/dashboard/product/{product}', 'deleteProduct')->name('manage_product.delete');
 });
 Route::controller(UserController::class)->group(function () {
-    Route::get('/dashboard/users', 'allUser')->name('manage_user.all');
+    Route::get('/dashboard/users', 'allUser')->name('manage_user.all')->middleware('can:isAdmin');
     Route::get('/login', 'login')->name('login');
     Route::post('/login', 'attemptLogin')->name('attempt_login');
     Route::get('/register', 'register')->name('register');
