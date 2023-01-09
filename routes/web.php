@@ -66,5 +66,5 @@ Route::controller(UserController::class)->group(function () {
     Route::delete('/dashboard/user/{user}', 'deleteUser')->name('manage_user.delete')->middleware('can:isAdmin');
 });
 Route::controller(CartController::class)->group(function () {
-    Route::get('/dashboard/carts', 'allCart')->name('manage_cart.all');
+    Route::get('/dashboard/carts', 'allCart')->name('manage_cart.all')->middleware('can:isUser');
 });
