@@ -15,10 +15,10 @@ class UserController extends Controller
     public function allUser()
     {
         $data = [
-            'title' => 'Users | Urban Adventure'
+            'title' => 'Users | Urban Adventure',
+            'users' => User::where('level', 'user')->latest()->get()
         ];
-
-        return view('dashboard.admin.users.all-user', $data);
+        return view('dashboard.admin.users.user-all', $data);
     }
 
     public function login()
@@ -88,5 +88,12 @@ class UserController extends Controller
         session()->invalidate();
         Auth::logout();
         return redirect()->route('login')->with('success', 'You Has Been Logged Out!')->withCookie(Cookie::forget('eksklusif_specials_token'));
+    }
+    public function deleteUser(User $user)
+    {
+        if ($user->delete()) {
+            return redirect()->route('manage_user.all')->with('success', 'User @' . $user->name . ' Successfully Deleted');
+        }
+        return redirect()->back()->with('error', 'Error Occured, Please Try Again!');
     }
 }
