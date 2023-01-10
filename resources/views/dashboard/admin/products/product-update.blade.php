@@ -1,78 +1,78 @@
 @extends('layouts.dashboard-layout')
 @section('head')
-    <style>
-        .upload__box {
-            margin-top: 9px
-        }
+<style>
+    .upload__box {
+        margin-top: 9px
+    }
 
-        .upload__inputfile {
-            width: .1px;
-            height: .1px;
-            opacity: 0;
-            overflow: hidden;
-            position: absolute;
-            z-index: -1;
-        }
+    .upload__inputfile {
+        width: .1px;
+        height: .1px;
+        opacity: 0;
+        overflow: hidden;
+        position: absolute;
+        z-index: -1;
+    }
 
-        .upload__btn {
-            display: inline-block;
-            font-weight: 600;
-            color: #fff;
-            text-align: center;
-            min-width: 116px;
-            padding: 5px;
-            transition: all .3s ease;
-            cursor: pointer;
-            border: 2px solid;
-            border-radius: 10px;
-            line-height: 26px;
-            font-size: 14px;
-        }
+    .upload__btn {
+        display: inline-block;
+        font-weight: 600;
+        color: #fff;
+        text-align: center;
+        min-width: 116px;
+        padding: 5px;
+        transition: all .3s ease;
+        cursor: pointer;
+        border: 2px solid;
+        border-radius: 10px;
+        line-height: 26px;
+        font-size: 14px;
+    }
 
-        .upload__btn-box {
-            margin-bottom: 10px;
-        }
+    .upload__btn-box {
+        margin-bottom: 10px;
+    }
 
-        .upload__img-wrap {
-            display: flex;
-            flex-wrap: wrap;
-            margin: 0 -10px;
-        }
+    .upload__img-wrap {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 -10px;
+    }
 
-        .upload__img-box {
-            width: 200px;
-            padding: 0 10px;
-            margin-bottom: 12px;
-        }
+    .upload__img-box {
+        width: 200px;
+        padding: 0 10px;
+        margin-bottom: 12px;
+    }
 
-        .upload__img-close {
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            background-color: rgba(0, 0, 0, 0.5);
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            text-align: center;
-            line-height: 24px;
-            z-index: 1;
-            cursor: pointer;
-        }
+    .upload__img-close {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background-color: rgba(0, 0, 0, 0.5);
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        text-align: center;
+        line-height: 24px;
+        z-index: 1;
+        cursor: pointer;
+    }
 
-        .upload__img-close:after {
-            content: '\2716';
-            font-size: 14px;
-            color: white;
-        }
+    .upload__img-close:after {
+        content: '\2716';
+        font-size: 14px;
+        color: white;
+    }
 
-        .img-bg {
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: cover;
-            position: relative;
-            padding-bottom: 100%;
-        }
-    </style>
+    .img-bg {
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        position: relative;
+        padding-bottom: 100%;
+    }
+</style>
 @endsection
 @section('dashboard-content')
 <!-- BEGIN: Content -->
@@ -106,8 +106,8 @@
                         <select name="category_id" id="category_id" data-placeholder="Choose Product Category" class="tom-select w-full">
                             <option value="0">None</option>
                             @foreach ($categories as $item)
-                            <option value="{{$item->id}}" {{ $product->category_id==$item->id?'selected':null }} >{{$item->name}}</option>                                  
-                            @endforeach                           
+                            <option value="{{$item->id}}" {{ $product->category_id==$item->id?'selected':null }}>{{$item->name}}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="mt-3">
@@ -130,21 +130,21 @@
                     <div class="mt-3">
                         <label for="weight" class="form-label mt-2">Weight</label>
                         @error('weight')
-                                <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
+                        <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
                         @enderror
                         <input id="weight" name="weight" type="text" class="form-control w-full" placeholder="Input Product Weight (gram) ex: 250" value="{{old('weight')??$product->weight*1000}}">
                     </div>
                     <div class="mt-3">
                         <label for="price" class="form-label mt-2">Price</label>
                         @error('price')
-                                <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
+                        <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
                         @enderror
                         <input id="price" name="price" type="text" class="form-control" placeholder="Input Product Price (Rp)" value="{{old('price')??$product->price}}">
                     </div>
                     <div class="mt-3">
                         <label for="stock" class="form-label mt-2">Stock</label>
                         @error('stock')
-                                <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
+                        <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
                         @enderror
                         <input type="number" name="stock" id="stock" class="form-control" placeholder="Input Product Stock" value="{{ old('stock')??$product->stock }}"></input>
                     </div>
@@ -155,16 +155,15 @@
                         <div class="upload__btn-box">
                             <label class="upload__btn btn btn-primary">
                                 <p>Choose An Image</p>
-                                <input type="file" name="images[]" multiple data-max_length="10"class="upload__inputfile">
+                                <input type="file" name="images[]" multiple data-max_length="10" class="upload__inputfile">
                             </label>
                         </div>
                         <div class="upload__img-wrap">
                             @foreach ($product->images as $item => $image)
                             <div class='upload__img-box'>
-                            <div style='background-image: url({{ asset('storage/' . $image->src) }})'data-number='{{ $item }}' data-id="{{ $image->id }}"
-                                data-file='{{ 'storage/' . $image->src }}' class='img-bg'>
-                            <div class='upload__img-close'></div>
-                            </div>
+                                <div style='background-image: url({{ asset('storage/' . $image->src) }})' data-number='{{ $item }}' data-id="{{ $image->id }}" data-file='{{ 'storage/' . $image->src }}' class='img-bg'>
+                                    <div class='upload__img-close'></div>
+                                </div>
                             </div>
                             @endforeach
                         </div>
@@ -182,5 +181,5 @@
 <!-- END: Content -->
 @endsection
 @section('script')
-    <script src="{{ asset('dist/js/view/manage-product/product.js') }}"></script>
+<script src="{{ asset('dist/js/view/manage-product/product.js') }}"></script>
 @endsection
