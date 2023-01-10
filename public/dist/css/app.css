@@ -1254,6 +1254,10 @@ input:checked + .toggle-bg {
   margin-bottom: 0.25rem;
 }
 
+.box-content {
+  box-sizing: content-box;
+}
+
 .block {
   display: block;
 }
@@ -1322,6 +1326,14 @@ input:checked + .toggle-bg {
   height: 2.25rem;
 }
 
+.h-40 {
+  height: 10rem;
+}
+
+.h-32 {
+  height: 8rem;
+}
+
 .min-h-screen {
   min-height: 100vh;
 }
@@ -1388,6 +1400,10 @@ input:checked + .toggle-bg {
 
 .w-64 {
   width: 16rem;
+}
+
+.w-32 {
+  width: 8rem;
 }
 
 .max-w-6xl {
@@ -1630,8 +1646,16 @@ input:checked + .toggle-bg {
   border-width: 0px;
 }
 
+.border-4 {
+  border-width: 4px;
+}
+
 .border-t {
   border-top-width: 1px;
+}
+
+.border-t-2 {
+  border-top-width: 2px;
 }
 
 .border-gray-700 {
@@ -1675,6 +1699,11 @@ input:checked + .toggle-bg {
 .border-gray-100 {
   --tw-border-opacity: 1;
   border-color: rgb(243 244 246 / var(--tw-border-opacity));
+}
+
+.border-fuchsia-600 {
+  --tw-border-opacity: 1;
+  border-color: rgb(192 38 211 / var(--tw-border-opacity));
 }
 
 .bg-gray-800 {
@@ -1727,6 +1756,16 @@ input:checked + .toggle-bg {
 .object-cover {
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+.object-none {
+  -o-object-fit: none;
+     object-fit: none;
+}
+
+.object-right {
+  -o-object-position: right;
+     object-position: right;
 }
 
 .p-6 {
@@ -2514,6 +2553,10 @@ input:checked + .toggle-bg {
 
   .md\:w-48 {
     width: 12rem;
+  }
+
+  .md\:w-40 {
+    width: 10rem;
   }
 
   .md\:max-w-5xl {
