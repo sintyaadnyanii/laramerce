@@ -1390,6 +1390,18 @@ input:checked + .toggle-bg {
   width: 16rem;
 }
 
+.w-\[500px\] {
+  width: 500px;
+}
+
+.w-\[300px\] {
+  width: 300px;
+}
+
+.w-\[200px\] {
+  width: 200px;
+}
+
 .max-w-6xl {
   max-width: 72rem;
 }
@@ -2119,6 +2131,13 @@ input:checked + .toggle-bg {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
+.btn-danger {
+  --tw-bg-opacity: 1;
+  background-color: rgb(200 30 30 / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
 .form-control {
   width: 100%;
   border-radius: 0.25rem;
@@ -2514,6 +2533,10 @@ input:checked + .toggle-bg {
 
   .md\:w-48 {
     width: 12rem;
+  }
+
+  .md\:w-full {
+    width: 100%;
   }
 
   .md\:max-w-5xl {
