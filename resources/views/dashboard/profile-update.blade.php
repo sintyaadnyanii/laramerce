@@ -80,14 +80,15 @@
         <!-- END: Top Bar -->
         <div class="intro-y flex items-center mt-8">
             <h2 class="text-lg font-medium mr-auto">
-                Add New User
+                Update My Profile
             </h2>
         </div>
         <div class="grid grid-cols-12 gap-6 mt-5">
             <div class="intro-y col-span-12 lg:col-span-12">
                 <!-- BEGIN: Form Layout -->
-                <form action="{{ route('manage_user.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('profile.patch',['user'=>auth()->user()]) }}" method="POST" enctype="multipart/form-data">
                     @csrf
+                    @method('PATCH')
                     <div class="intro-y box p-5">
                         <div>
                             <label for="name" class="form-label">Full Name</label>
@@ -100,41 +101,35 @@
 
                         <div class="mt-3">
                             <label for="email" class="form-label mt-2">Email</label>
+                            @error('email')
+                                <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
+                            @enderror
                             <input id="email" name="email" type="email" class="form-control w-full border border-gray-300 rounded-lg"
                                 placeholder="Email" value="{{old('email')??$user->email}}" >
                         </div>
 
                         <div class="mt-3">
                             <label for="phone" class="form-label mt-2">Phone Number</label>
+                            @error('phone')
+                                <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
+                            @enderror
                             <input id="phone" name="phone" type="text" class="form-control w-full border border-gray-300 rounded-lg"
                                 placeholder="Phone Number (+62xxxxxxxxx)" value="{{old('phone')??$user->phone}}">
                         </div>
 
                         <div class="mt-3">
                             <label for="address" class="form-label mt-2">Address</label>
+                            @error('address')
+                                <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
+                            @enderror
                             <input id="address" name="address" type="text" class="form-control w-full border border-gray-300 rounded-lg"
                                 placeholder="Address" value="{{old('address')??$user->address}}">
                         </div>
 
-                        <div class="mt-4">
-                            <label for="password" class="form-label mt-2">Password</label>
-                            <input type="password" name="password" class="form-control w-full border border-gray-300 rounded-lg" placeholder="Password">
-                            @error('password')
-                                <small class="text-xs text-red-500 ml-1 mt-1">{{'*'.$message }}</small>
-                            @enderror
-                        </div>
-                        <div class="mt-4">
-                            <label for="password_confirm" class="form-label mt-2">Password Confirmation</label>
-                            <input type="password" name="password_confirm" class="form-control w-full border border-gray-300 rounded-lg" placeholder="Password Confirmation">
-                            @error('password_confirm')
-                                <small class="text-xs text-red-500 ml-1 mt-1">{{'*'.$message }}</small>
-                            @enderror
-                        </div>
-
-                        <div class="text-right mt-5">
-                            <a href="{{ route('manage_product.all') }}"
+                        <div class="text-right mt-10">
+                            <a href="{{ route('profile.detail',['user'=>auth()->user()]) }}"
                                 class="btn btn-outline-secondary w-24 mr-1">Cancel</a>
-                                <input type="submit" value="Save" class="btn btn-outline-primary shadow-md w-24 mr-1">
+                            <button type="submit" class="btn btn-primary shadow-md w-24">Save</button>
                         </div>
                     </div>
                 </form>

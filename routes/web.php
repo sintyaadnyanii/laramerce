@@ -51,10 +51,10 @@ Route::controller(ProductController::class)->group(function () {
     Route::get('/dashboard/products', 'allProduct')->name('manage_product.all')->middleware('can:isAdmin');
     Route::get('/dashboard/product/create', 'createProduct')->name('manage_product.create')->middleware('can:isAdmin');
     Route::post('/dashboard/product/create', 'storeProduct')->name('manage_product.store')->middleware('can:isAdmin');
-    Route::get('/dashboard/product/{product}', 'detailProduct')->name('manage_product.detail')->middleware('can:isAdmin');
-    Route::get('/dashboard/product/{product}/update', 'updateProduct')->name('manage_product.update')->middleware('can:isAdmin');
-    Route::patch('/dashboard/product/{product}', 'patchProduct')->name('manage_product.patch')->middleware('can:isAdmin');
-    Route::delete('/dashboard/product/{product}', 'deleteProduct')->name('manage_product.delete')->middleware('can:isAdmin');
+    Route::get('/dashboard/product/{product:product_code}', 'detailProduct')->name('manage_product.detail')->middleware('can:isAdmin');
+    Route::get('/dashboard/product/{product:product_code}/update', 'updateProduct')->name('manage_product.update')->middleware('can:isAdmin');
+    Route::patch('/dashboard/product/{product:product_code}', 'patchProduct')->name('manage_product.patch')->middleware('can:isAdmin');
+    Route::delete('/dashboard/product/{product:product_code}', 'deleteProduct')->name('manage_product.delete')->middleware('can:isAdmin');
 });
 Route::controller(UserController::class)->group(function () {
     Route::get('/dashboard/users', 'allUser')->name('manage_user.all')->middleware('can:isAdmin');
@@ -63,7 +63,10 @@ Route::controller(UserController::class)->group(function () {
     Route::get('/register', 'register')->name('register');
     Route::post('/register', 'attemptRegister')->name('attempt_register');
     Route::get('/logout', 'logout')->name('logout');
-    Route::delete('/dashboard/user/{user}', 'deleteUser')->name('manage_user.delete')->middleware('can:isAdmin');
+    Route::get('/dashboard/profile/detail/{user:email}', 'detailProfile')->name('profile.detail')->middleware('auth');
+    Route::get('/dashboard/profile/update/{user:email}', 'updateProfile')->name('profile.update')->middleware('auth');
+    Route::patch('/dashboard/profile/{user:email}', 'patchProfile')->name('profile.patch')->middleware('auth');
+    Route::delete('/dashboard/user/{user:email}', 'deleteUser')->name('manage_user.delete')->middleware('can:isAdmin');
 });
 Route::controller(CartController::class)->group(function () {
     Route::get('/dashboard/carts', 'allCart')->name('manage_cart.all')->middleware('can:isUser');
