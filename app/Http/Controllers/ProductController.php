@@ -14,7 +14,7 @@ class ProductController extends Controller
     {
         $data = [
             'title' => 'Products | Urban Adventure',
-            'products' => Product::latest()->get()
+            'products' => Product::latest()->get(),
         ];
         return view('dashboard.admin.products.product-all', $data);
     }
@@ -49,7 +49,7 @@ class ProductController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string',
-            'product_code' => 'required|numeric',
+            'product_code' => 'required|numeric|unique:products,product_code',
             'category_id' => 'required|integer',
             'condition' => ['required', Rule::in('new', 'second')],
             'weight' => 'required|numeric',
@@ -76,9 +76,24 @@ class ProductController extends Controller
     }
     public function patchProduct(Product $product, Request $request)
     {
+        if ($request->product_code != $product->product_code) {
+            if (Product::where('product_code', $product->product_code)->whereNot('id', $product->id)->count()) {
+                return redirect()->back()->withInput()->with('error', 'This product has been registered, please input another product');
+            } else {
+                $code_validator = Validator::make($request->all(), [
+                    'product_code' => 'required|numeric|unique:products,product_code',
+                ]);
+
+                if ($code_validator->fails()) {
+                    return redirect()->back()->withErrors($code_validator)->withInput()->with('error', 'OPPS! <br> An Error Occurred During Updating!');
+                }
+
+                $validated_code = $code_validator->validate();
+                $product->update(['product_code' => $validated_code['product_code']]);
+            }
+        }
         $validator = Validator::make($request->all(), [
             'name' => 'required|string',
-            'product_code' => 'required|numeric',
             'category_id' => 'required|integer',
             'condition' => ['required', Rule::in('new', 'second')],
             'weight' => 'required|numeric',
@@ -92,7 +107,6 @@ class ProductController extends Controller
         $product->touch();
         $updated_product = $product->update([
             'name' => $validated['name'],
-            'product_code' => $validated['product_code'],
             'category_id' => $validated['category_id'] == 0 ? NULL : $validated['category_id'],
             'condition' => $validated['condition'],
             'weight' => $validated['weight'] / 1000,

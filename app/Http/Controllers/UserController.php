@@ -15,10 +15,10 @@ class UserController extends Controller
     public function allUser()
     {
         $data = [
-            'title' => 'Users | Urban Adventure'
+            'title' => 'Users | Urban Adventure',
+            'users' => User::where('level', 'user')->latest()->get()
         ];
-
-        return view('dashboard.admin.users.all-user', $data);
+        return view('dashboard.admin.users.user-all', $data);
     }
 
     public function login()
@@ -61,7 +61,7 @@ class UserController extends Controller
             'password_confirm' => 'required|same:password'
         ]);
         if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput()->with('error', 'OPPS! <br> Terjadi Kesalahan Pada Saat Regristrasi!');
+            return redirect()->back()->withErrors($validator)->withInput()->with('error', 'OPPS! <br> An Error Occurred During Registration!');
         }
         $validated = $validator->validate();
         $user_is_created = User::create([
@@ -88,5 +88,67 @@ class UserController extends Controller
         session()->invalidate();
         Auth::logout();
         return redirect()->route('login')->with('success', 'You Has Been Logged Out!')->withCookie(Cookie::forget('eksklusif_specials_token'));
+    }
+    public function detailProfile(User $user)
+    {
+        $data = [
+            'title' => 'Update Profile | Urban Adventure',
+            'user' => $user->where('id', auth()->user()->id)->first()
+        ];
+        return view('dashboard.profile-detail', $data);
+    }
+    public function updateProfile(User $user)
+    {
+        $data = [
+            'title' => 'Update Profile | Urban Adventure',
+            'user' => $user->where('id', auth()->user()->id)->first()
+        ];
+        return view('dashboard.profile-update', $data);
+    }
+
+    public function patchProfile(Request $request, User $user)
+    {
+        if ($request->email != $user->email) {
+            if (User::where('email', $user->email)->whereNot('id', $user->id)->count()) {
+                return redirect()->back()->withInput()->with('error', 'This Email Has Been Used, Please Input Another Email');
+            } else {
+                $email_validator = Validator::make($request->all(), [
+                    'email' => 'required|unique:users,email|email:dns',
+                ]);
+
+                if ($email_validator->fails()) {
+                    return redirect()->back()->withErrors($email_validator)->withInput()->with('error', 'OPPS! <br> An Error Occurred During Updating!');
+                }
+
+                $validated_email = $email_validator->validate();
+                $user->update(['email' => $validated_email['email']]);
+            }
+        }
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|min:8|max:50',
+            'phone' => 'required|numeric',
+            'address' => 'required|string'
+        ]);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput()->with('error', 'OPPS! <br> An Error Occurred During Updating!');
+        }
+        $validated = $validator->validate();
+        $updated_profile = $user->update([
+            'name' => $validated['name'],
+            'phone' => $validated['phone'],
+            'address' => $validated['address']
+        ]);
+        if ($updated_profile) {
+            return redirect()->route('profile.update', ['user' => auth()->user()])->with('success', 'Your Account Successfully Updated');
+        }
+        redirect()->route('login')->with('error', 'Update Proccess Failed! <br> Please Try Again Later!');
+    }
+    public function deleteUser(User $user)
+    {
+        if ($user->delete()) {
+            return redirect()->route('manage_user.all')->with('success', 'User @' . $user->name . ' Successfully Deleted');
+        }
+        return redirect()->back()->with('error', 'Error Occured, Please Try Again!');
     }
 }
