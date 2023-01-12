@@ -19,18 +19,11 @@
                         <div id="controls-carousel" class="relative" data-carousel="static">
                             <!-- Carousel wrapper -->
                             <div class="relative h-20 overflow-hidden rounded-lg md:h-20 mt-10">
-                                <!-- Item 1 -->
-                                <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                                    <img src="" class="absolute block w-full" alt="...">
-                                </div>
-                                <!-- Item 2 -->
-                                <div class="hidden duration-700 ease-in-out" data-carousel-item="active">
-                                    <img src="" class="absolute block w-full" alt="...">
-                                </div>
-                                <!-- Item 3 -->
-                                <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                                    <img src="" class="absolute block w-full" alt="...">
-                                </div>
+                                @foreach ($product->images as $item)
+                                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                                        <img src="{{asset('storage/' . $item->src)}}" class="absolute block w-full" alt="...">
+                                    </div>
+                                @endforeach
                             </div>
                             <!-- Slider controls -->
                             <button type="button" class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
@@ -105,5 +98,5 @@
 <!-- END: Content -->
 @endsection
 @section('script')
-<script src=""></script>
+<script src="{{ asset('dist/js/view/manage-product/product.js') }}"></script>
 @endsection
