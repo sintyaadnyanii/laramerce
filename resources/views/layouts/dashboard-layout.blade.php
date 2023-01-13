@@ -1,7 +1,6 @@
 @extends('layouts.base-layout')
 
 @section('base_head')
-    @extends('layouts.head_dashboard')
 @endsection
 @section('base_body')
     <div>
