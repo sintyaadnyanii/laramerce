@@ -1,10 +1,10 @@
 <?php
 
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\OrderController;
-use App\Http\Controllers\OrderDetailController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ViewTemplateController;
@@ -74,6 +74,15 @@ Route::controller(UserController::class)->group(function () {
     Route::get('/dashboard/profile/update/{user:email}', 'updateProfile')->name('profile.update')->middleware('auth');
     Route::patch('/dashboard/profile/{user:email}', 'patchProfile')->name('profile.patch')->middleware('auth');
     Route::delete('/dashboard/user/{user:email}', 'deleteUser')->name('manage_user.delete')->middleware('can:isAdmin');
+});
+Route::controller(BrandController::class)->group(function () {
+    Route::get('/dashboard/brand', 'allBrand')->name('manage_brand.all')->middleware(['can:isAdmin', 'auth']);
+    Route::get('/dashboard/brand/create', 'createBrand')->name('manage_brand.create')->middleware(['can:isAdmin', 'auth']);
+    Route::post('/dashboard/brand/create', 'storebrand')->name('manage_brand.store')->middleware(['can:isAdmin', 'auth']);
+    Route::get('/dashboard/brand/{brand:brand_code}', 'detailBrand')->name('manage_brand.detail')->middleware(['can:isAdmin', 'auth']);
+    Route::get('/dashboard/brand/{brand:brand_code}/update', 'updateBrand')->name('manage_brand.update')->middleware(['can:isAdmin', 'auth']);
+    Route::patch('/dashboard/brand/{brand:brand_code}/update', 'patchBrand')->name('manage_brand.patch')->middleware(['can:isAdmin', 'auth']);
+    Route::delete('/dashboard/brand/{brand:brand_code}/delete', 'deleteBrand')->name('manage_brand.delete')->middleware(['can:isAdmin', 'auth']);
 });
 Route::controller(CartController::class)->group(function () {
     Route::get('/dashboard/carts', 'allCart')->name('manage_cart.all')->middleware('can:isUser');

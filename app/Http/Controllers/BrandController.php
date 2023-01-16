@@ -42,7 +42,7 @@ class BrandController extends Controller
             'brand' => $brand,
             'products' => $brand->products
         ];
-        return view('dashboard.admin.brand.brand-update', $data);
+        return view('dashboard.admin.brand.brand-edit', $data);
     }
 
     public function storeBrand(Request $request)
@@ -59,7 +59,7 @@ class BrandController extends Controller
 
         $brand_created = Brand::create($validator->validate());
         if ($brand_created) {
-            return redirect()->route('brand.all')->with('success', 'New brand successfully created');
+            return redirect()->route('manage_brand.all')->with('success', 'New brand successfully created');
         }
         return redirect()->back()->with('error', 'Something Error! <br> Try Again!');
     }
@@ -96,7 +96,7 @@ class BrandController extends Controller
             'description' => $request->description,
         ]);
         if ($brand_updated) {
-            return redirect()->route('brand.all')->with('success', 'New brand successfully updated');
+            return redirect()->route('manage_brand.all')->with('success', 'New brand successfully updated');
         }
         return redirect()->back()->with('error', 'Something Error! <br> Try Again!');
     }
@@ -104,7 +104,7 @@ class BrandController extends Controller
     public function deleteBrand(Brand $brand)
     {
         if ($brand->delete()) {
-            return redirect()->route('brand.all')->with('success', $brand->name . "successfully deleted");
+            return redirect()->route('manage_brand.all')->with('success', $brand->name . "successfully deleted");
         }
         return redirect()->back()->with('error', $brand->name . "delete failed");
     }
