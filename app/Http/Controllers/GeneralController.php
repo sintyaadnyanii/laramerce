@@ -60,7 +60,7 @@ class GeneralController extends Controller
         $data = [
             'title' => 'Detail Order | Urban Adventure'
         ];
-        return view('frontpage.order.order-detail', $data);
+        return view('frontpage.order.order-history', $data);
     }
     public function my_account()
     {
