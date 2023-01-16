@@ -58,11 +58,12 @@
 
                     </div>
                     <div class="p-8">
-                        <div class="uppercase tracking-wide text-sm text-black font-semibold mb-2">Nama :{{ $product->name }}</div>
-                        <div class="uppercase tracking-wide text-sm text-black font-semibold mb-2">Price :{{ $product->price }}</div>
-                        <div class="uppercase tracking-wide text-sm text-black font-semibold mb-2">Code :{{ $product->product_code}}</div>
-                        <div class="uppercase tracking-wide text-sm text-black font-semibold mb-2">Condition :{{ $product->condition }}</div>
-                        <div class="uppercase tracking-wide text-sm text-black font-semibold mb-2">Weight :{{ $product->weight }}</div>
+                        <div class="uppercase tracking-wide text-sm text-black font-semibold mb-2">Brnad : {{$item->brand->name)??'None'}}</div>
+                        <div class="uppercase tracking-wide text-sm text-black font-semibold mb-2">Name : {{ $product->name }}</div>
+                        <div class="uppercase tracking-wide text-sm text-black font-semibold mb-2">Price : {{ $product->price }}</div>
+                        <div class="uppercase tracking-wide text-sm text-black font-semibold mb-2">Code : {{ $product->product_code}}</div>
+                        <div class="uppercase tracking-wide text-sm text-black font-semibold mb-2">Condition : {{ $product->condition }}</div>
+                        <div class="uppercase tracking-wide text-sm text-black font-semibold mb-2">Weight : {{ $product->weight }}</div>
 
                         <div class="uppercase tracking-wide text-sm text-black font-semibold">Stock :{{ $product->stock }}</div>
 
