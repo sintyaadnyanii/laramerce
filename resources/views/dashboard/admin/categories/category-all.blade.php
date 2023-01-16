@@ -40,6 +40,7 @@
                         <th class="text-center whitespace-nowrap">NO.</th>
                         <th class="text-center whitespace-nowrap">NAME</th>
                         <th class="text-center whitespace-nowrap">DESCRIPTION</th>
+                        <th class="text-center whitespace-nowrap">PRODUCT QTY</th>
                         <th class="text-center whitespace-nowrap">ACTIONS</th>
                     </tr>
                 </thead>
@@ -47,9 +48,9 @@
                     @forelse ($categories as $index=>$item)
                      <tr class="intro-x">
                         <td class="text-center w-20"> {{ $loop->iteration }} </td>
-                        <td class="text-center">{{ $item->name }}
-                        </td>
-                        <td class="text-center">{!! $item->description !!}</td>
+                        <td class="text-center w-44">{{ $item->name }}</td>
+                        <td class="text-center">{{ Str::words(html_entity_decode(strip_tags($item->description)), 30, '...') }}</td>
+                        <td class="text-center">{{ $item->products->count() }}</td>
                         <td class="table-report__action w-56">
                             <div class="flex justify-center items-center">
                                 <a class="flex items-center mr-3" href="{{ route('manage_category.detail',['category'=>$item]) }}"> <i data-lucide="eye" class="w-4 h-4 mr-1"></i> Detail </a>

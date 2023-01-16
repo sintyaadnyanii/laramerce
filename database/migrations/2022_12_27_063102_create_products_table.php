@@ -22,6 +22,7 @@ return new class extends Migration
             $table->float('weight', 8, 2, true);
             $table->integer('price', false, true);
             $table->integer('stock', false, true)->default(0);
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }
