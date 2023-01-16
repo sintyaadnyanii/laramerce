@@ -111,6 +111,18 @@
                         </select>
                     </div>
                     <div class="mt-3">
+                        <label for="brand_id" class="form-label mt-2">Brand</label>
+                        @error('brand_id')
+                        <small class="text-xs text-red-500 ml-1">{{'*'.$message }}</small>
+                        @enderror
+                        <select name="brand_id" id="brand_id" data-placeholder="Choose Product Brand" class="tom-select w-full">
+                            <option value="0">None</option>
+                            @foreach ($categories as $item)
+                            <option value="{{$item->id}}" {{ $product->brand_id==$item->id?'selected':null }}>{{$item->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="mt-3">
                         <label for="product_code" class="form-label mt-2">Product Code</label>
                         @error('product_code')
                         <small class="text-xs text-red-500 ml-1">{{'*'.$message }}</small>
