@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderDetailController;
 use App\Http\Controllers\ProductController;
@@ -22,8 +23,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('layouts.front-layout', ['title' => 'Homepage | Urban Adventure']);
+    return view('frontpage.main.main', ['title' => 'Homepage | Urban Adventure']);
 });
+
+Route::controller(GeneralController::class)->group(function () {
+    Route::get('/', 'main')->name('main');
+    Route::get('/cart', 'cart')->name('cart');
+});
+
 Route::get('/test', function () {
     return Product::popular();
 });

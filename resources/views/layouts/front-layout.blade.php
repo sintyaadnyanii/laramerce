@@ -19,7 +19,7 @@
     </script>
 
     <!-- Libs CSS
-                                                    ============================================ -->
+                                                                                                    ============================================ -->
     <link rel="stylesheet" href="{{ asset('/css/bootstrap/css/bootstrap.min.css') }}">
     <link href="{{ asset('/css/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
     <link href="{{ asset('/js/datetimepicker/bootstrap-datetimepicker.min.css') }}" rel="stylesheet">
@@ -29,7 +29,7 @@
     <link href="{{ asset('/js/minicolors/miniColors.css') }}" rel="stylesheet">
 
     <!-- Theme CSS
-                                                    ============================================ -->
+                                                                                                    ============================================ -->
     <link href="{{ asset('/css/themecss/so_searchpro.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/themecss/so_megamenu.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/themecss/so-categories.css') }}" rel="stylesheet">
@@ -43,7 +43,7 @@
     <link href="{{ asset('/css/responsive.css') }}" rel="stylesheet">
 
     <!-- Google web fonts
-                                            ============================================ -->
+                                                                                            ============================================ -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,500,600,700" rel='stylesheet' type='text/css'>
     <style>
@@ -81,19 +81,12 @@
     @yield('head')
 @endsection
 @section('base_body')
-    <div class="common-home res layout-1">
-        <div id="wrapper" class="wrapper-fluid banners-effect-7">
-            @yield('body')
-            @include('frontpage.frontpage-navbar')
-            @include('frontpage.frontpage-content')
-            @include('frontpage.frontpage-footer')
-        </div>
-    </div>
+    @yield('body')
 @endsection
 @section('base_script')
     @yield('script')
     <!-- Include Libs & Plugins
-                ============================================ -->
+                                                                ============================================ -->
     <script src="{{ asset('/js/jquery-2.2.4.min.js') }}"></script>
     <script src="{{ asset('/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('/js/owl-carousel/owl.carousel.js') }}"></script>
@@ -107,8 +100,7 @@
     <script src="{{ asset('/js/modernizr/modernizr-2.6.2.min.js') }}"></script>
     <script src="{{ asset('/js/minicolors/jquery.miniColors.min.js') }}"></script>
 
-    <!-- Theme files
-                ============================================ -->
+    <!-- Theme files -->
 
     <script src="{{ asset('/js/themejs/application.js') }}"></script>
 

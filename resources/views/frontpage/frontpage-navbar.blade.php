@@ -279,6 +279,7 @@
         </div>
     </div>
     <!-- //Header center -->
+    <!-- Header Bottom -->
     <div class="header-bottom hidden-compact">
         <div class="container">
             <div class="header-bottom-inner">
@@ -1128,7 +1129,8 @@
                                                         </tbody>
                                                     </table>
                                                     <p class="text-center total-carts"> <a class="btn view-cart"
-                                                            href="cart.html"><i class="fa fa-shopping-cart"></i>View
+                                                            href="{{ route('cart') }}"><i
+                                                                class="fa fa-shopping-cart"></i>View
                                                             Cart</a>&nbsp;&nbsp;&nbsp; <a
                                                             class="btn btn-mega checkout-cart" href="checkout.html"><i
                                                                 class="fa fa-share"></i>Checkout</a>
