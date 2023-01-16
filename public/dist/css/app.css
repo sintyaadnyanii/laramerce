@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*
 ! tailwindcss v3.2.4 | MIT License | https://tailwindcss.com
 */
@@ -2773,3 +2774,5 @@ input:checked + .toggle-bg {
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 }
+=======
+>>>>>>> bb582a3ffadc14ee3e4e520ae27db047775c42c9

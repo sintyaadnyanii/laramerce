@@ -13,6 +13,7 @@
             <div class="intro-y box p-5">
                 <div class="md:flex">
                     <div class="md:flex-shrink-0 w-[200px]">
+
                         <img class="h-48 w-48 object-cover md:h-48 md:w-48 rounded-lg" src="{{ asset($product->images->count() ? 'storage/' . $product->images->first()->src : 'dist/images/default.jpg') }}" alt="">
 
                         <div id="controls-carousel" class="relative" data-carousel="static">
@@ -54,6 +55,7 @@
                             <button class="btn info">Bagikan</button>
                         </div>
 
+
                     </div>
                     <div class="p-8">
                         <div class="uppercase tracking-wide text-sm text-black font-semibold mb-2">Nama :{{ $product->name }}</div>
@@ -61,7 +63,9 @@
                         <div class="uppercase tracking-wide text-sm text-black font-semibold mb-2">Code :{{ $product->product_code}}</div>
                         <div class="uppercase tracking-wide text-sm text-black font-semibold mb-2">Condition :{{ $product->condition }}</div>
                         <div class="uppercase tracking-wide text-sm text-black font-semibold mb-2">Weight :{{ $product->weight }}</div>
+
                         <div class="uppercase tracking-wide text-sm text-black font-semibold">Stock :{{ $product->stock }}</div>
+
 
                         <button class="btn mr-5 mt-20 bg-white-500 md:bg-white-500"><i class=""></i> Chat</button>
                         <button class="btn mr-5 mt-20 bg-white-500 md:bg-white-500"><i class=""></i> Masukkan Keranjang</button>

@@ -16,7 +16,7 @@
                 @method('patch')
                 <div class="intro-y box p-5">
                     <div>
-                        <label for="name" class="form-label">Branch Name</label>
+                        <label for="name" class="form-label">Branch Nama</label>
                         @error('name')
                         <small class="text-xs text-red-500 ml-1">{{'*'.$message }}</small>
                         @enderror
