@@ -117,7 +117,7 @@
                                                             <div class="product-item-container">
                                                                 <div class="left-block">
                                                                     <div class="product-image-container second_img">
-                                                                        <a href="product.html" target="_self"
+                                                                        <a href="{{ route('product-detail') }}" target="_self"
                                                                             title="Pastrami bacon">
                                                                             <img src="image/catalog/demo/product/300/1.jpg"
                                                                                 class="img-1 img-responsive"
@@ -178,7 +178,7 @@
                                                             <div class="product-item-container">
                                                                 <div class="left-block">
                                                                     <div class="product-image-container second_img">
-                                                                        <a href="product.html" target="_self"
+                                                                        <a href="{{ route('product-detail') }}" target="_self"
                                                                             title="Pastrami bacon">
                                                                             <img src="image/catalog/demo/product/300/2.jpg"
                                                                                 class="img-1 img-responsive"
@@ -241,7 +241,7 @@
                                                             <div class="product-item-container">
                                                                 <div class="left-block">
                                                                     <div class="product-image-container second_img">
-                                                                        <a href="product.html" target="_self"
+                                                                        <a href="{{ route('product-detail') }}" target="_self"
                                                                             title="Pastrami bacon">
                                                                             <img src="image/catalog/demo/product/300/3.jpg"
                                                                                 class="img-1 img-responsive"
@@ -303,7 +303,7 @@
                                                             <div class="product-item-container">
                                                                 <div class="left-block">
                                                                     <div class="product-image-container second_img">
-                                                                        <a href="product.html" target="_self"
+                                                                        <a href="{{ route('product-detail') }}" target="_self"
                                                                             title="Pastrami bacon">
                                                                             <img src="image/catalog/demo/product/300/4.jpg"
                                                                                 class="img-1 img-responsive"
@@ -365,7 +365,7 @@
                                                             <div class="product-item-container">
                                                                 <div class="left-block">
                                                                     <div class="product-image-container second_img">
-                                                                        <a href="product.html" target="_self"
+                                                                        <a href="{{ route('product-detail') }}" target="_self"
                                                                             title="Pastrami bacon">
                                                                             <img src="image/catalog/demo/product/300/5.jpg"
                                                                                 class="img-1 img-responsive"
@@ -427,7 +427,7 @@
                                                             <div class="product-item-container">
                                                                 <div class="left-block">
                                                                     <div class="product-image-container second_img">
-                                                                        <a href="product.html" target="_self"
+                                                                        <a href="{{ route('product-detail') }}" target="_self"
                                                                             title="Pastrami bacon">
                                                                             <img src="image/catalog/demo/product/300/6.jpg"
                                                                                 class="img-1 img-responsive"
@@ -489,7 +489,7 @@
                                                             <div class="product-item-container">
                                                                 <div class="left-block">
                                                                     <div class="product-image-container second_img">
-                                                                        <a href="product.html" target="_self"
+                                                                        <a href="{{ route('product-detail') }}" target="_self"
                                                                             title="Pastrami bacon">
                                                                             <img src="image/catalog/demo/product/300/7.jpg"
                                                                                 class="img-1 img-responsive"
@@ -551,7 +551,7 @@
                                                             <div class="product-item-container">
                                                                 <div class="left-block">
                                                                     <div class="product-image-container second_img">
-                                                                        <a href="product.html" target="_self"
+                                                                        <a href="{{ route('product-detail') }}" target="_self"
                                                                             title="Fession molliti">
                                                                             <img src="image/catalog/demo/product/300/3.jpg"
                                                                                 class="img-1 img-responsive"
@@ -1307,7 +1307,7 @@
                                                                         <div class="product-item-container">
                                                                             <div class="left-block left-b">
                                                                                 <div class="product-image-container">
-                                                                                    <a href="product.html" target="_self"
+                                                                                    <a href="{{ route('product-detail') }}" target="_self"
                                                                                         title="Cupim should">
                                                                                         <img src="image/catalog/demo/product/300/fashion/1.jpg"
                                                                                             class="img-responsive"
@@ -1326,7 +1326,7 @@
                                                                             <div class="right-block right-b">
 
                                                                                 <div class="caption">
-                                                                                    <h4><a href="product.html"
+                                                                                    <h4><a href="{{ route('product-detail') }}"
                                                                                             title="Cupim should "
                                                                                             target="_self">Cupim should
                                                                                         </a></h4>
@@ -1367,7 +1367,7 @@
                                                                             <div class="left-block left-b">
 
                                                                                 <div class="product-image-container">
-                                                                                    <a href="product.html" target="_self"
+                                                                                    <a href="{{ route('product-detail') }}" target="_self"
                                                                                         title="Drutick lanaeger">
                                                                                         <img src="image/catalog/demo/product/300/fashion/7.jpg"
                                                                                             class="img-1 img-responsive"
@@ -1385,7 +1385,7 @@
                                                                             </div>
                                                                             <div class="right-block right-b">
                                                                                 <div class="caption">
-                                                                                    <h4><a href="product.html"
+                                                                                    <h4><a href="{{ route('product-detail') }}"
                                                                                             title="Drutick lanaeger"
                                                                                             target="_self">Drutick
                                                                                             lanaeger</a></h4>
@@ -1426,7 +1426,7 @@
                                                                         <div class="product-item-container">
                                                                             <div class="left-block left-b">
                                                                                 <div class="product-image-container">
-                                                                                    <a href="product.html"
+                                                                                    <a href="{{ route('product-detail') }}"
                                                                                         target="_self"
                                                                                         title="Drutick lanaeger">
                                                                                         <img src="image/catalog/demo/product/300/fashion/2.jpg"
@@ -1446,7 +1446,7 @@
                                                                             <div class="right-block right-b">
 
                                                                                 <div class="caption">
-                                                                                    <h4><a href="product.html"
+                                                                                    <h4><a href="{{ route('product-detail') }}"
                                                                                             title="Ercitation incididunt"
                                                                                             target="_self">Ercitat
                                                                                             incidi</a></h4>
@@ -1485,7 +1485,7 @@
                                                                         <div class="product-item-container">
                                                                             <div class="left-block left-b">
                                                                                 <div class="product-image-container">
-                                                                                    <a href="product.html"
+                                                                                    <a href="{{ route('product-detail') }}"
                                                                                         target="_self"
                                                                                         title="Fatback picanha">
                                                                                         <img src="image/catalog/demo/product/300/fashion/8.jpg"
@@ -1506,7 +1506,7 @@
                                                                             </div>
                                                                             <div class="right-block right-b">
                                                                                 <div class="caption">
-                                                                                    <h4><a href="product.html"
+                                                                                    <h4><a href="{{ route('product-detail') }}"
                                                                                             title="Fatback picanha"
                                                                                             target="_self">Fatback
                                                                                             picanha</a></h4>
@@ -1568,7 +1568,7 @@
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="product-image-container">
-                                                                                    <a href="product.html"
+                                                                                    <a href="{{ route('product-detail') }}"
                                                                                         target="_self"
                                                                                         title="Chicken swinesha">
                                                                                         <img src="image/catalog/demo/product/300/fashion/5-2.jpg"
@@ -1624,7 +1624,7 @@
 
                                                                                 </ul>
                                                                                 <div class="caption">
-                                                                                    <h4><a href="product.html"
+                                                                                    <h4><a href="{{ route('product-detail') }}"
                                                                                             title="Bicola sausagop"
                                                                                             target="_self">Bicola
                                                                                             sausagop</a></h4>
@@ -1666,7 +1666,7 @@
                                                                         <div class="product-item-container">
                                                                             <div class="left-block left-b">
                                                                                 <div class="product-image-container">
-                                                                                    <a href="product.html"
+                                                                                    <a href="{{ route('product-detail') }}"
                                                                                         target="_self"
                                                                                         title="Doenpuis consuat ">
                                                                                         <img src="image/catalog/demo/product/300/fashion/11.jpg"
@@ -1691,7 +1691,7 @@
                                                                             <div class="right-block right-b">
 
                                                                                 <div class="caption">
-                                                                                    <h4><a href="product.html"
+                                                                                    <h4><a href="{{ route('product-detail') }}"
                                                                                             title="Doenpuis consuat "
                                                                                             target="_self">Doenpuis
                                                                                             consuat </a></h4>
@@ -1735,7 +1735,7 @@
                                                                         <div class="product-item-container">
                                                                             <div class="left-block left-b">
                                                                                 <div class="product-image-container">
-                                                                                    <a href="product.html"
+                                                                                    <a href="{{ route('product-detail') }}"
                                                                                         target="_self"
                                                                                         title="Jalapeno dolore">
                                                                                         <img src="image/catalog/demo/product/300/fashion/3.jpg"
@@ -1757,7 +1757,7 @@
                                                                             <div class="right-block right-b">
 
                                                                                 <div class="caption">
-                                                                                    <h4><a href="product.html"
+                                                                                    <h4><a href="{{ route('product-detail') }}"
                                                                                             title="Jalapeno dolore"
                                                                                             target="_self">Jalapeno
                                                                                             dolore</a></h4>
@@ -1796,7 +1796,7 @@
                                                                             <div class="left-block left-b">
 
                                                                                 <div class="product-image-container">
-                                                                                    <a href="product.html"
+                                                                                    <a href="{{ route('product-detail') }}"
                                                                                         target="_self"
                                                                                         title="Pariatur porking">
                                                                                         <img src="image/catalog/demo/product/300/fashion/9.jpg"
@@ -1815,7 +1815,7 @@
                                                                             <div class="right-block right-b">
 
                                                                                 <div class="caption">
-                                                                                    <h4><a href="product.html"
+                                                                                    <h4><a href="{{ route('product-detail') }}"
                                                                                             title="Pariatur porking"
                                                                                             target="_self">Pariatur
                                                                                             porking</a></h4>
@@ -1857,7 +1857,7 @@
                                                                             <div class="left-block left-b">
 
                                                                                 <div class="product-image-container">
-                                                                                    <a href="product.html"
+                                                                                    <a href="{{ route('product-detail') }}"
                                                                                         target="_self"
                                                                                         title="Ullamco occaeca">
                                                                                         <img src="image/catalog/demo/product/300/fashion/4.jpg"
@@ -1882,7 +1882,7 @@
                                                                             <div class="right-block right-b">
 
                                                                                 <div class="caption">
-                                                                                    <h4><a href="product.html"
+                                                                                    <h4><a href="{{ route('product-detail') }}"
                                                                                             title="Ullamco occaeca"
                                                                                             target="_self">Ullamco
                                                                                             occaeca</a></h4>
@@ -1925,7 +1925,7 @@
                                                                         <div class="product-item-container">
                                                                             <div class="left-block left-b">
                                                                                 <div class="product-image-container">
-                                                                                    <a href="product.html"
+                                                                                    <a href="{{ route('product-detail') }}"
                                                                                         target="_self"
                                                                                         title="Doenpuis consuat">
                                                                                         <img src="image/catalog/demo/product/300/fashion/10.jpg"
@@ -1949,7 +1949,7 @@
                                                                             <div class="right-block right-b">
 
                                                                                 <div class="caption">
-                                                                                    <h4><a href="product.html"
+                                                                                    <h4><a href="{{ route('product-detail') }}"
                                                                                             title="Doenpuis consuat"
                                                                                             target="_self">Doenpuis
                                                                                             consuat</a></h4>
@@ -1993,7 +1993,7 @@
                                                                         <div class="product-item-container">
                                                                             <div class="left-block left-b">
                                                                                 <div class="product-image-container">
-                                                                                    <a href="product.html"
+                                                                                    <a href="{{ route('product-detail') }}"
                                                                                         target="_self"
                                                                                         title="dolore Jalapeno">
                                                                                         <img src="image/catalog/demo/product/300/fashion/6.jpg"
@@ -2012,7 +2012,7 @@
                                                                             <div class="right-block right-b">
 
                                                                                 <div class="caption">
-                                                                                    <h4><a href="product.html"
+                                                                                    <h4><a href="{{ route('product-detail') }}"
                                                                                             title="Dolore Jalapeno"
                                                                                             target="_self">Dolore
                                                                                             Jalapeno</a></h4>
@@ -2051,7 +2051,7 @@
                                                                         <div class="product-item-container">
                                                                             <div class="left-block left-b">
                                                                                 <div class="product-image-container">
-                                                                                    <a href="product.html"
+                                                                                    <a href="{{ route('product-detail') }}"
                                                                                         target="_self"
                                                                                         title="Mapicola incididuv">
                                                                                         <img src="image/catalog/demo/product/300/fashion/12.jpg"
@@ -2073,7 +2073,7 @@
                                                                             <div class="right-block right-b">
 
                                                                                 <div class="caption">
-                                                                                    <h4><a href="product.html"
+                                                                                    <h4><a href="{{ route('product-detail') }}"
                                                                                             title="Mapicola incididuv"
                                                                                             target="_self">Mapicola
                                                                                             incididuv</a></h4>
@@ -2203,7 +2203,7 @@
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="product-image-container">
-                                                                                    <a href="product.html"
+                                                                                    <a href="{{ route('product-detail') }}"
                                                                                         target="_self"
                                                                                         title="Chicken swinesha">
                                                                                         <img src="image/catalog/demo/product/electronic/600x600/1.jpg"
@@ -2235,7 +2235,7 @@
                                                                             </div>
                                                                             <div class="right-block right-b">
                                                                                 <div class="caption">
-                                                                                    <h4><a href="product.html"
+                                                                                    <h4><a href="{{ route('product-detail') }}"
                                                                                             title="Bicola sausagop"
                                                                                             target="_self">Bicola
                                                                                             sausagop</a></h4>
@@ -2276,7 +2276,7 @@
                                                                         <div class="product-item-container">
                                                                             <div class="left-block left-b">
                                                                                 <div class="product-image-container">
-                                                                                    <a href="product.html"
+                                                                                    <a href="{{ route('product-detail') }}"
                                                                                         target="_self"
                                                                                         title="Doenpuis consuat ">
                                                                                         <img src="image/catalog/demo/product/electronic/600x600/21.jpg"
@@ -2301,7 +2301,7 @@
                                                                             <div class="right-block right-b">
 
                                                                                 <div class="caption">
-                                                                                    <h4><a href="product.html"
+                                                                                    <h4><a href="{{ route('product-detail') }}"
                                                                                             title="Doenpuis consuat "
                                                                                             target="_self">Doenpuis
                                                                                             consuat </a></h4>
@@ -2362,7 +2362,7 @@
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="product-image-container">
-                                                                                    <a href="product.html"
+                                                                                    <a href="{{ route('product-detail') }}"
                                                                                         target="_self"
                                                                                         title="Cupim should">
                                                                                         <img src="image/catalog/demo/product/electronic/600x600/9.jpg"
@@ -2404,7 +2404,7 @@
                                                                                     </li>
                                                                                 </ul>
                                                                                 <div class="caption">
-                                                                                    <h4><a href="product.html"
+                                                                                    <h4><a href="{{ route('product-detail') }}"
                                                                                             title="Cupim should "
                                                                                             target="_self">Cupim should
                                                                                         </a></h4>
@@ -2445,7 +2445,7 @@
                                                                             <div class="left-block left-b">
 
                                                                                 <div class="product-image-container">
-                                                                                    <a href="product.html"
+                                                                                    <a href="{{ route('product-detail') }}"
                                                                                         target="_self"
                                                                                         title="Drutick lanaeger">
                                                                                         <img src="image/catalog/demo/product/electronic/600x600/3.jpg"
@@ -2464,7 +2464,7 @@
                                                                             </div>
                                                                             <div class="right-block right-b">
                                                                                 <div class="caption">
-                                                                                    <h4><a href="product.html"
+                                                                                    <h4><a href="{{ route('product-detail') }}"
                                                                                             title="Drutick lanaeger"
                                                                                             target="_self">Drutick
                                                                                             lanaeger</a></h4>
@@ -2505,7 +2505,7 @@
                                                                         <div class="product-item-container">
                                                                             <div class="left-block left-b">
                                                                                 <div class="product-image-container">
-                                                                                    <a href="product.html"
+                                                                                    <a href="{{ route('product-detail') }}"
                                                                                         target="_self"
                                                                                         title="Drutick lanaeger">
                                                                                         <img src="image/catalog/demo/product/electronic/600x600/4.jpg"
@@ -2525,7 +2525,7 @@
                                                                             <div class="right-block right-b">
 
                                                                                 <div class="caption">
-                                                                                    <h4><a href="product.html"
+                                                                                    <h4><a href="{{ route('product-detail') }}"
                                                                                             title="Ercitation incididunt"
                                                                                             target="_self">Ercitat
                                                                                             incidi</a></h4>
@@ -2564,7 +2564,7 @@
                                                                         <div class="product-item-container">
                                                                             <div class="left-block left-b">
                                                                                 <div class="product-image-container">
-                                                                                    <a href="product.html"
+                                                                                    <a href="{{ route('product-detail') }}"
                                                                                         target="_self"
                                                                                         title="Fatback picanha">
                                                                                         <img src="image/catalog/demo/product/electronic/600x600/5.jpg"
@@ -2585,7 +2585,7 @@
                                                                             </div>
                                                                             <div class="right-block right-b">
                                                                                 <div class="caption">
-                                                                                    <h4><a href="product.html"
+                                                                                    <h4><a href="{{ route('product-detail') }}"
                                                                                             title="Fatback picanha"
                                                                                             target="_self">Fatback
                                                                                             picanha</a></h4>
@@ -2626,7 +2626,7 @@
                                                                         <div class="product-item-container">
                                                                             <div class="left-block left-b">
                                                                                 <div class="product-image-container">
-                                                                                    <a href="product.html"
+                                                                                    <a href="{{ route('product-detail') }}"
                                                                                         target="_self"
                                                                                         title="Jalapeno dolore">
                                                                                         <img src="image/catalog/demo/product/electronic/600x600/6.jpg"
@@ -2648,7 +2648,7 @@
                                                                             <div class="right-block right-b">
 
                                                                                 <div class="caption">
-                                                                                    <h4><a href="product.html"
+                                                                                    <h4><a href="{{ route('product-detail') }}"
                                                                                             title="Jalapeno dolore"
                                                                                             target="_self">Jalapeno
                                                                                             dolore</a></h4>
@@ -2700,7 +2700,7 @@
 
                                                                                 </div>
                                                                                 <div class="product-image-container">
-                                                                                    <a href="product.html"
+                                                                                    <a href="{{ route('product-detail') }}"
                                                                                         target="_self"
                                                                                         title="Pariatur porking">
                                                                                         <img src="image/catalog/demo/product/electronic/600x600/12.jpg"
@@ -2719,7 +2719,7 @@
                                                                             <div class="right-block right-b">
 
                                                                                 <div class="caption">
-                                                                                    <h4><a href="product.html"
+                                                                                    <h4><a href="{{ route('product-detail') }}"
                                                                                             title="Pariatur porking"
                                                                                             target="_self">Pariatur
                                                                                             porking</a></h4>
@@ -2761,7 +2761,7 @@
                                                                             <div class="left-block left-b">
 
                                                                                 <div class="product-image-container">
-                                                                                    <a href="product.html"
+                                                                                    <a href="{{ route('product-detail') }}"
                                                                                         target="_self"
                                                                                         title="Ullamco occaeca">
                                                                                         <img src="image/catalog/demo/product/electronic/600x600/11.jpg"
@@ -2786,7 +2786,7 @@
                                                                             <div class="right-block right-b">
 
                                                                                 <div class="caption">
-                                                                                    <h4><a href="product.html"
+                                                                                    <h4><a href="{{ route('product-detail') }}"
                                                                                             title="Ullamco occaeca"
                                                                                             target="_self">Ullamco
                                                                                             occaeca</a></h4>
@@ -2829,7 +2829,7 @@
                                                                         <div class="product-item-container">
                                                                             <div class="left-block left-b">
                                                                                 <div class="product-image-container">
-                                                                                    <a href="product.html"
+                                                                                    <a href="{{ route('product-detail') }}"
                                                                                         target="_self"
                                                                                         title="Doenpuis consuat">
                                                                                         <img src="image/catalog/demo/product/electronic/600x600/18.jpg"
@@ -2854,7 +2854,7 @@
                                                                             <div class="right-block right-b">
 
                                                                                 <div class="caption">
-                                                                                    <h4><a href="product.html"
+                                                                                    <h4><a href="{{ route('product-detail') }}"
                                                                                             title="Doenpuis consuat"
                                                                                             target="_self">Doenpuis
                                                                                             consuat</a></h4>
@@ -2916,7 +2916,7 @@
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="product-image-container">
-                                                                                    <a href="product.html"
+                                                                                    <a href="{{ route('product-detail') }}"
                                                                                         target="_self"
                                                                                         title="dolore Jalapeno">
                                                                                         <img src="image/catalog/demo/product/electronic/600x600/7.jpg"
@@ -2935,7 +2935,7 @@
                                                                             <div class="right-block right-b">
 
                                                                                 <div class="caption">
-                                                                                    <h4><a href="product.html"
+                                                                                    <h4><a href="{{ route('product-detail') }}"
                                                                                             title="Dolore Jalapeno"
                                                                                             target="_self">Dolore
                                                                                             Jalapeno</a></h4>
@@ -2974,7 +2974,7 @@
                                                                         <div class="product-item-container">
                                                                             <div class="left-block left-b">
                                                                                 <div class="product-image-container">
-                                                                                    <a href="product.html"
+                                                                                    <a href="{{ route('product-detail') }}"
                                                                                         target="_self"
                                                                                         title="Mapicola incididuv">
                                                                                         <img src="image/catalog/demo/product/electronic/600x600/8.jpg"
@@ -2996,7 +2996,7 @@
                                                                             <div class="right-block right-b">
 
                                                                                 <div class="caption">
-                                                                                    <h4><a href="product.html"
+                                                                                    <h4><a href="{{ route('product-detail') }}"
                                                                                             title="Mapicola incididuv"
                                                                                             target="_self">Mapicola
                                                                                             incididuv</a></h4>
@@ -3105,7 +3105,7 @@
                                                                             <div class="left-block left-b">
 
                                                                                 <div class="product-image-container">
-                                                                                    <a href="product.html"
+                                                                                    <a href="{{ route('product-detail') }}"
                                                                                         target="_self"
                                                                                         title="Ullamco occaeca">
                                                                                         <img src="image/catalog/demo/product/300/sport/1.jpg"
@@ -3130,7 +3130,7 @@
                                                                             <div class="right-block right-b">
 
                                                                                 <div class="caption">
-                                                                                    <h4><a href="product.html"
+                                                                                    <h4><a href="{{ route('product-detail') }}"
                                                                                             title="Ullamco occaeca"
                                                                                             target="_self">Ullamco
                                                                                             occaeca</a></h4>
@@ -3173,7 +3173,7 @@
                                                                         <div class="product-item-container">
                                                                             <div class="left-block left-b">
                                                                                 <div class="product-image-container">
-                                                                                    <a href="product.html"
+                                                                                    <a href="{{ route('product-detail') }}"
                                                                                         target="_self"
                                                                                         title="Doenpuis consuat">
                                                                                         <img src="image/catalog/demo/product/300/sport/7.jpg"
@@ -3198,7 +3198,7 @@
                                                                             <div class="right-block right-b">
 
                                                                                 <div class="caption">
-                                                                                    <h4><a href="product.html"
+                                                                                    <h4><a href="{{ route('product-detail') }}"
                                                                                             title="Doenpuis consuat"
                                                                                             target="_self">Doenpuis
                                                                                             consuat</a></h4>
@@ -3243,7 +3243,7 @@
                                                                         <div class="product-item-container">
                                                                             <div class="left-block left-b">
                                                                                 <div class="product-image-container">
-                                                                                    <a href="product.html"
+                                                                                    <a href="{{ route('product-detail') }}"
                                                                                         target="_self"
                                                                                         title="Drutick lanaeger">
                                                                                         <img src="image/catalog/demo/product/300/sport/2.jpg"
@@ -3263,7 +3263,7 @@
                                                                             <div class="right-block right-b">
 
                                                                                 <div class="caption">
-                                                                                    <h4><a href="product.html"
+                                                                                    <h4><a href="{{ route('product-detail') }}"
                                                                                             title="Ercitation incididunt"
                                                                                             target="_self">Ercitat
                                                                                             incidi</a></h4>
@@ -3302,7 +3302,7 @@
                                                                         <div class="product-item-container">
                                                                             <div class="left-block left-b">
                                                                                 <div class="product-image-container">
-                                                                                    <a href="product.html"
+                                                                                    <a href="{{ route('product-detail') }}"
                                                                                         target="_self"
                                                                                         title="Fatback picanha">
                                                                                         <img src="image/catalog/demo/product/300/sport/8.jpg"
@@ -3323,7 +3323,7 @@
                                                                             </div>
                                                                             <div class="right-block right-b">
                                                                                 <div class="caption">
-                                                                                    <h4><a href="product.html"
+                                                                                    <h4><a href="{{ route('product-detail') }}"
                                                                                             title="Fatback picanha"
                                                                                             target="_self">Fatback
                                                                                             picanha</a></h4>
@@ -3364,7 +3364,7 @@
                                                                             <div class="left-block left-b">
 
                                                                                 <div class="product-image-container">
-                                                                                    <a href="product.html"
+                                                                                    <a href="{{ route('product-detail') }}"
                                                                                         target="_self"
                                                                                         title="Cupim should">
                                                                                         <img src="image/catalog/demo/product/300/sport/3.jpg"
@@ -3384,7 +3384,7 @@
                                                                             <div class="right-block right-b">
 
                                                                                 <div class="caption">
-                                                                                    <h4><a href="product.html"
+                                                                                    <h4><a href="{{ route('product-detail') }}"
                                                                                             title="Cupim should "
                                                                                             target="_self">Cupim should
                                                                                         </a></h4>
@@ -3425,7 +3425,7 @@
                                                                             <div class="left-block left-b">
 
                                                                                 <div class="product-image-container">
-                                                                                    <a href="product.html"
+                                                                                    <a href="{{ route('product-detail') }}"
                                                                                         target="_self"
                                                                                         title="Drutick lanaeger">
                                                                                         <img src="image/catalog/demo/product/300/sport/9.jpg"
@@ -3444,7 +3444,7 @@
                                                                             </div>
                                                                             <div class="right-block right-b">
                                                                                 <div class="caption">
-                                                                                    <h4><a href="product.html"
+                                                                                    <h4><a href="{{ route('product-detail') }}"
                                                                                             title="Drutick lanaeger"
                                                                                             target="_self">Drutick
                                                                                             lanaeger</a></h4>
@@ -3484,7 +3484,7 @@
                                                                         <div class="product-item-container">
                                                                             <div class="left-block left-b">
                                                                                 <div class="product-image-container">
-                                                                                    <a href="product.html"
+                                                                                    <a href="{{ route('product-detail') }}"
                                                                                         target="_self"
                                                                                         title="Jalapeno dolore">
                                                                                         <img src="image/catalog/demo/product/300/sport/4.jpg"
@@ -3506,7 +3506,7 @@
                                                                             <div class="right-block right-b">
 
                                                                                 <div class="caption">
-                                                                                    <h4><a href="product.html"
+                                                                                    <h4><a href="{{ route('product-detail') }}"
                                                                                             title="Jalapeno dolore"
                                                                                             target="_self">Jalapeno
                                                                                             dolore</a></h4>
@@ -3545,7 +3545,7 @@
                                                                             <div class="left-block left-b">
 
                                                                                 <div class="product-image-container">
-                                                                                    <a href="product.html"
+                                                                                    <a href="{{ route('product-detail') }}"
                                                                                         target="_self"
                                                                                         title="Pariatur porking">
                                                                                         <img src="image/catalog/demo/product/300/sport/10.jpg"
@@ -3564,7 +3564,7 @@
                                                                             <div class="right-block right-b">
 
                                                                                 <div class="caption">
-                                                                                    <h4><a href="product.html"
+                                                                                    <h4><a href="{{ route('product-detail') }}"
                                                                                             title="Pariatur porking"
                                                                                             target="_self">Pariatur
                                                                                             porking</a></h4>
@@ -3607,7 +3607,7 @@
                                                                             <div class="left-block left-b">
 
                                                                                 <div class="product-image-container">
-                                                                                    <a href="product.html"
+                                                                                    <a href="{{ route('product-detail') }}"
                                                                                         target="_self"
                                                                                         title="Chicken swinesha">
                                                                                         <img src="image/catalog/demo/product/300/sport/5.jpg"
@@ -3639,7 +3639,7 @@
                                                                             </div>
                                                                             <div class="right-block right-b">
                                                                                 <div class="caption">
-                                                                                    <h4><a href="product.html"
+                                                                                    <h4><a href="{{ route('product-detail') }}"
                                                                                             title="Bicola sausagop"
                                                                                             target="_self">Bicola
                                                                                             sausagop</a></h4>
@@ -3680,7 +3680,7 @@
                                                                         <div class="product-item-container">
                                                                             <div class="left-block left-b">
                                                                                 <div class="product-image-container">
-                                                                                    <a href="product.html"
+                                                                                    <a href="{{ route('product-detail') }}"
                                                                                         target="_self"
                                                                                         title="Doenpuis consuat ">
                                                                                         <img src="image/catalog/demo/product/300/sport/11.jpg"
@@ -3705,7 +3705,7 @@
                                                                             <div class="right-block right-b">
 
                                                                                 <div class="caption">
-                                                                                    <h4><a href="product.html"
+                                                                                    <h4><a href="{{ route('product-detail') }}"
                                                                                             title="Doenpuis consuat "
                                                                                             target="_self">Doenpuis
                                                                                             consuat </a></h4>
@@ -3750,7 +3750,7 @@
                                                                             <div class="left-block left-b">
 
                                                                                 <div class="product-image-container">
-                                                                                    <a href="product.html"
+                                                                                    <a href="{{ route('product-detail') }}"
                                                                                         target="_self"
                                                                                         title="dolore Jalapeno">
                                                                                         <img src="image/catalog/demo/product/300/sport/6.jpg"
@@ -3769,7 +3769,7 @@
                                                                             <div class="right-block right-b">
 
                                                                                 <div class="caption">
-                                                                                    <h4><a href="product.html"
+                                                                                    <h4><a href="{{ route('product-detail') }}"
                                                                                             title="Dolore Jalapeno"
                                                                                             target="_self">Dolore
                                                                                             Jalapeno</a></h4>
@@ -3808,7 +3808,7 @@
                                                                         <div class="product-item-container">
                                                                             <div class="left-block left-b">
                                                                                 <div class="product-image-container">
-                                                                                    <a href="product.html"
+                                                                                    <a href="{{ route('product-detail') }}"
                                                                                         target="_self"
                                                                                         title="Mapicola incididuv">
                                                                                         <img src="image/catalog/demo/product/300/sport/12.jpg"
@@ -3830,7 +3830,7 @@
                                                                             <div class="right-block right-b">
 
                                                                                 <div class="caption">
-                                                                                    <h4><a href="product.html"
+                                                                                    <h4><a href="{{ route('product-detail') }}"
                                                                                             title="Mapicola incididuv"
                                                                                             target="_self">Mapicola
                                                                                             incididuv</a></h4>
@@ -3908,7 +3908,7 @@
                                                 <div class="media">
                                                     <div class="item">
                                                         <div class="content-img">
-                                                            <a href="blog-detail.html" target="_self">
+                                                            <a href="{{ route('blog-detail') }}" target="_self">
                                                                 <img src="image/catalog/blog/370x256/3.jpg"
                                                                     alt="Kire tuma feugiat" />
                                                             </a>
@@ -3920,7 +3920,7 @@
                                                         <div class="content-detail">
                                                             <div class="media-content">
                                                                 <h4 class="media-heading font-ct head-item">
-                                                                    <a href="blog-detail.html" title="Kire tuma feugiat"
+                                                                    <a href="{{ route('blog-detail') }}" title="Kire tuma feugiat"
                                                                         target="_self">Kire tuma feugiat ipsum dolor</a>
                                                                 </h4>
                                                                 <div class="media-subcontent">
@@ -3933,7 +3933,7 @@
                                                                         View</span>
                                                                 </div>
                                                                 <div class="readmore">
-                                                                    <a href="blog-detail.html" target="_self">Read
+                                                                    <a href="{{ route('blog-detail') }}" target="_self">Read
                                                                         more</a>
                                                                 </div>
                                                             </div>
@@ -3943,7 +3943,7 @@
                                                 <div class="media">
                                                     <div class="item">
                                                         <div class="content-img">
-                                                            <a href="blog-detail.html" target="_self">
+                                                            <a href="{{ route('blog-detail') }}" target="_self">
                                                                 <img src="image/catalog/blog/370x256/4.jpg"
                                                                     alt="Kire tuma demons vel eum iriure" />
                                                             </a>
@@ -3955,7 +3955,7 @@
                                                         <div class="content-detail">
                                                             <div class="media-content">
                                                                 <h4 class="media-heading font-ct head-item">
-                                                                    <a href="blog-detail.html"
+                                                                    <a href="{{ route('blog-detail') }}"
                                                                         title="Kire tuma demons vel eum iriure"
                                                                         target="_self">Kire tuma demons vel eum iriure</a>
                                                                 </h4>
@@ -3969,7 +3969,7 @@
                                                                         View</span>
                                                                 </div>
                                                                 <div class="readmore">
-                                                                    <a href="blog-detail.html" target="_self">Read
+                                                                    <a href="{{ route('blog-detail') }}" target="_self">Read
                                                                         more</a>
                                                                 </div>
                                                             </div>
@@ -3979,7 +3979,7 @@
                                                 <div class="media">
                                                     <div class="item">
                                                         <div class="content-img">
-                                                            <a href="blog-detail.html" target="_self">
+                                                            <a href="{{ route('blog-detail') }}" target="_self">
                                                                 <img src="image/catalog/blog/370x256/5.jpg"
                                                                     alt="minim veniam  justo duo dolores" />
                                                             </a>
@@ -3991,7 +3991,7 @@
                                                         <div class="content-detail">
                                                             <div class="media-content">
                                                                 <h4 class="media-heading font-ct head-item">
-                                                                    <a href="blog-detail.html"
+                                                                    <a href="{{ route('blog-detail') }}"
                                                                         title="Minim veniam  justo duo dolores"
                                                                         target="_self">Lorem ipsum dolor sit amet</a>
                                                                 </h4>
@@ -4005,7 +4005,7 @@
                                                                         View</span>
                                                                 </div>
                                                                 <div class="readmore">
-                                                                    <a href="blog-detail.html" target="_self">Read
+                                                                    <a href="{{ route('blog-detail') }}" target="_self">Read
                                                                         more</a>
                                                                 </div>
                                                             </div>
@@ -4016,7 +4016,7 @@
                                                 <div class="media">
                                                     <div class="item">
                                                         <div class="content-img">
-                                                            <a href="blog-detail.html" target="_self">
+                                                            <a href="{{ route('blog-detail') }}" target="_self">
                                                                 <img src="image/catalog/blog/370x256/6.jpg"
                                                                     alt="Duis autem vel eum tempor inviduntt" />
                                                             </a>
@@ -4028,7 +4028,7 @@
                                                         <div class="content-detail">
                                                             <div class="media-content">
                                                                 <h4 class="media-heading font-ct head-item">
-                                                                    <a href="blog-detail.html"
+                                                                    <a href="{{ route('blog-detail') }}"
                                                                         title="Duis autem vel eum tempor invidunt"
                                                                         target="_self">Duis autem vel eum tempor
                                                                         invidunt</a>
@@ -4043,7 +4043,7 @@
                                                                         View</span>
                                                                 </div>
                                                                 <div class="readmore">
-                                                                    <a href="blog-detail.html" target="_self">Read
+                                                                    <a href="{{ route('blog-detail') }}" target="_self">Read
                                                                         more</a>
                                                                 </div>
                                                             </div>
