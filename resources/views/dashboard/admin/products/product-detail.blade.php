@@ -10,10 +10,9 @@
     </div>
     <div class="grid grid-cols-12 gap-6 mt-5">
         <div class="intro-y col-span-12 lg:col-span-12">
-            <div class="intro-y box p-5">
-                <div class="md:flex">
-                    <div class="md:flex-shrink-0 md:basis-60 justify-center">
-                                              
+            <div class="intro-y box p-8">
+                <div class="md:flex md:flex-row gap-5">
+                    <div class="md:flex-shrink-0 basis-4/12 justify-center">              
                         <img class="featured-img" src="{{  asset($product->images->count() ? 'storage/' . $product->images->first()->src : 'dist/images/default.jpg') }}" alt="">
                         <div class="thumb-slide-wrapper mt-5 p-1">
                             <i id="arrow-left" class="arrow" data-lucide="chevron-left"></i>
@@ -25,34 +24,54 @@
                             </div>
 
                             <i id="arrow-right" class="arrow" data-lucide="chevron-right"></i>
+                        </div>  
+                    </div>
+                    <div class="md:flex-shrink-0 basis-5/12">
+                        <div class="flex flex-row gap-2">
+                            <label for="code" class="basis-1/3 capitalize tracking-wide text-sm text-black font-semibold mb-2">Product Code</label>
+                            <p class="basis-2/3 text-sm mb-2">: {{ $product->product_code }}</p>
                         </div>
-                            
-
+                        <div class="flex flex-row flex-none gap-2">
+                            <label for="name" class="basis-1/3 capitalize tracking-wide text-sm text-black font-semibold mb-2">Name</label>
+                            <p class="basis-2/3 text-sm mb-2">: {{ $product->name }}</p>
+                        </div>
+                        <div class="flex flex-row flex-none gap-2">
+                            <label for="category" class="basis-1/3 capitalize tracking-wide text-sm text-black font-semibold mb-2">Category</label>
+                            <p class="basis-2/3 text-sm mb-2">: {{ $product->category->name }}</p>
+                        </div>
+                        <div class="flex flex-row flex-none gap-2">
+                            <label for="brand" class="basis-1/3 capitalize tracking-wide text-sm text-black font-semibold mb-2">Brand</label>
+                            <p class="basis-2/3 text-sm mb-2">: {{ $product->brand->name }}</p>
+                        </div>
+                        <div class="flex flex-row flex-none gap-2">
+                            <label for="condition" class="basis-1/3 capitalize tracking-wide text-sm text-black font-semibold mb-2">Condition</label>
+                            <p class="basis-2/3 text-sm mb-2">: {{ $product->condition }}</p>
+                        </div>
+                        <div class="flex flex-row flex-none gap-2">
+                            <label for="weight" class="basis-1/3 capitalize tracking-wide text-sm text-black font-semibold mb-2">weight</label>
+                            <p class="basis-2/3 text-sm mb-2">: {{ $product->weight }}</p>
+                        </div>
+                        <div class="flex flex-row flex-none gap-2">
+                            <label for="price" class="basis-1/3 capitalize tracking-wide text-sm text-black font-semibold mb-2">Price</label>
+                            <p class="basis-2/3 text-sm mb-2">: Rp. {{number_format($product->price,0,",",".")}}</p>
+                        </div>
                     </div>
-                    <div class="md:flex-shrink-0 md:basis-52 px-8 py-3">
-                        <div class="uppercase tracking-wide text-sm text-black font-semibold mb-2">Nama :{{ $product->name }}</div>
-                        <div class="uppercase tracking-wide text-sm text-black font-semibold mb-2">Price :{{ $product->price }}</div>
-                        <div class="uppercase tracking-wide text-sm text-black font-semibold mb-2">Code :{{ $product->product_code}}</div>
-                        <div class="uppercase tracking-wide text-sm text-black font-semibold mb-2">Condition :{{ $product->condition }}</div>
-                        <div class="uppercase tracking-wide text-sm text-black font-semibold mb-2">Weight :{{ $product->weight }}</div>
-                        <div class="uppercase tracking-wide text-sm text-black font-semibold">Stock :{{ $product->stock }}</div>
-
-                    </div>
-                    <div class="md:flex">
-                        <div class="box-content h-70 w-64 p-4 border-2 rounded">
-                            <p class="text-sm text-black font-semibold">Product Sales</p>
+                    <div class="md:flex basis-3/12">
+                        <div class="box-content w-full h-fit p-4 border-2 rounded">
+                            <p class="text-black font-semibold text-center">Product Sales</p>
                             <div class="border-solid border-black-600 mt-10">
                                 <label for="wishlist_num" class="font-semibold">Number of Product Wishlist</label>
-                                <input type="number" id="wishlist_num" class="form-control w-1/2" disabled>
+                                <input type="text" id="wishlist_num" class="form-control w-1/2" value="{{ $product->loved->count() }}"disabled>
                             </div>
                             <div class="">
-                                <label for="orderlist_num" class="font-semibold">Number of Orders</label>
+                                <label for="order_num" class="font-semibold">Number of Orders</label>
+                                <input type="text" id="order_num" class="form-control w-1/2" value="{{ $product->sold() }}"disabled>  
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="text-sm text-black mt-5 ml-2">
-                    <p class="uppercase tracking-wide text-sm text-black font-semibold">Deskripsi</p>
+                    <p class="capitalize tracking-wide text-sm text-black font-semibold">Description</p>
                     <p>{!! $product->description !!}</p>
             </div>
         </div>
