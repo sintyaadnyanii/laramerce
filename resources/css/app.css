@@ -15,18 +15,18 @@
 
 /* Product Detail Images */
 .featured-img {
-    @apply h-[240px] w-[240px] object-cover rounded-lg cursor-pointer border-black border border-solid;
+    @apply h-[280px] w-[280px] object-cover rounded-lg cursor-pointer border-black border border-solid;
 }
 
 .thumbnail-product {
-    @apply h-12 w-12 flex-none object-cover rounded-lg cursor-pointer opacity-60 m-1 border-black border border-solid hover:opacity-100;
+    @apply h-14 w-14 flex-none object-cover rounded-lg cursor-pointer opacity-60 m-1 border-black border border-solid hover:opacity-100;
 }
 
 .thumb-slide-wrapper {
-    @apply w-[200px] flex items-center;
+    @apply w-[280px] flex items-center;
 }
 .thumb-slider {
-    @apply w-[200px] flex flex-row flex-nowrap overflow-x-hidden justify-center;
+    @apply w-[280px] flex flex-row flex-nowrap overflow-x-hidden justify-center;
 }
 .active_thumb {
     @apply opacity-100;
