@@ -74,3 +74,27 @@ function deleteModalHandler(index) {
     $("#deleteItem").attr("action", $("#delete_route_" + index).val());
     $("#delete_route_input").val($("#delete_route_" + index).val());
 }
+
+//detail images
+let thumbnails=document.getElementsByClassName('thumbnail-product');
+let activeImages=document.getElementsByClassName('active_thumb');
+for(var i=0;i<thumbnails.length;i++){
+    thumbnails[i].addEventListener('mouseover',function(){
+        // console.log(activeImages)
+        if(activeImages.length>0){
+            activeImages[0].classList.remove('active_Pthumb');
+        }
+        this.classList.add('active_thumb');
+        document.getElementsByClassName('featured-img')[0].src=this.src;       
+    });
+}
+
+let btnLeft=document.getElementById('arrow-left');
+let btnRight=document.getElementById('arrow-right');
+
+btnLeft.addEventListener('click',function(){
+    document.getElementById('slider_thumbnail').scrollLeft-=180;
+});
+btnRight.addEventListener('click',function(){
+    document.getElementById('slider_thumbnail').scrollLeft+=180;
+});
