@@ -36,6 +36,19 @@
                             </select>
                         </div>
                         <div class="mt-3">
+                            <label for="brand_id" class="form-label mt-2">Brand</label>
+                            @error('brand_id')
+                                <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
+                            @enderror
+                            <select name="brand_id" id="brand_id" data-placeholder="Choose Product Brand"
+                                class="tom-select w-full">
+                                <option value="0">None</option>
+                                @foreach ($brands as $item)
+                                    <option value="{{ $item->id }}" {{ old('brand_id')==$item->id?'selected':null }}>{{ $item->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="mt-3">
                             <label for="product_code" class="form-label mt-2">Product Code</label>
                             @error('product_code')
                                 <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
@@ -78,6 +91,13 @@
                             @enderror
                             <input type="number" name="stock" id="stock" class="form-control"
                                 placeholder="Input Product Stock" value="{{ old('stock') }}">
+                        </div>
+                        <div class="mt-3">
+                            <label for="description" class="form-label">Description</label>
+                            @error('description')
+                                <small class="text-xs text-red-500 ml-1">{{'*'.$message }}</small>
+                            @enderror
+                            <textarea id="description" name="description" placeholder="Input Product Description">{{ old('description')??''}}</textarea>
                         </div>
                         <div class="upload__box mt-3">
                             @error('images[]')
