@@ -39,7 +39,7 @@ class ProductController extends Controller
     public function updateProduct(Product $product)
     {
         $data = [
-            'title' => 'Add New Products | Urban Adventure',
+            'title' => 'Update Products | Urban Adventure',
             'product' => $product,
             'categories' => Category::latest()->get()
         ];

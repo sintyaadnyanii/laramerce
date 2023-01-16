@@ -39,6 +39,7 @@
                 <tr>
                     <th class="text-center whitespace-nowrap">No.</th>
                     <th class="text-center whitespace-nowrap">NAME</th>
+                    <th class="text-center whitespace-nowrap">BRAND</th>
                     <th class="text-center whitespace-nowrap">CODE</th>
                     <th class="text-center whitespace-nowrap">CONDITION</th>
                     <th class="text-center whitespace-nowrap">WEIGHT</th>
@@ -55,6 +56,7 @@
                         <a href="#" class="font-medium whitespace-nowrap">{{$item->name}}</a>
                         <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">{{($item->category->name)??'None'}}</div>
                     </td>
+                    <td class="text-center">{{$item->brand->name)??'None'}}</td>
                     <td class="text-center">{{$item->product_code}}</td>
                     <td class="text-center">{{$item->condition}}</td>
                     <td class="text-center">{{$item->weight}} kg</td>
