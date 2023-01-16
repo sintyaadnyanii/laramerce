@@ -1,11 +1,11 @@
 @extends('layouts.dashboard-layout')
 @section('dashboard-content')
 <h2 class="intro-y text-lg font-medium mt-10">
-    All Branch
+    All Brand
 </h2>
 <div class="grid grid-cols-12 gap-6 mt-5">
     <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
-        <a href="{{ route('manage_branch.create') }}" class="btn btn-primary shadow-md mr-2">Add New Branch</a>
+        <a href="{{ route('manage_brand.create') }}" class="btn btn-primary shadow-md mr-2">Add New Brand</a>
         <div class="dropdown">
             <button class="dropdown-toggle btn px-2 box" aria-expanded="false" data-tw-toggle="dropdown">
                 <span class="w-5 h-5 flex items-center justify-center"> <i class="w-4 h-4" data-lucide="plus"></i> </span>
@@ -52,10 +52,10 @@
                     <td class="text-center">{!! $item->description !!}</td>
                     <td class="table-report__action w-56">
                         <div class="flex justify-center items-center">
-                            <a class="flex items-center mr-3" href="{{ route('manage_branch.detail',['branch'=>$item]) }}"> <i data-lucide="eye" class="w-4 h-4 mr-1"></i> Detail </a>
-                            <a class="flex items-center mr-3" href="{{ route('manage_branch.update',['branch'=>$item]) }}"> <i data-lucide="check-square" class="w-4 h-4 mr-1"></i> Edit </a>
+                            <a class="flex items-center mr-3" href="{{ route('manage_brand.detail',['brand'=>$item]) }}"> <i data-lucide="eye" class="w-4 h-4 mr-1"></i> Detail </a>
+                            <a class="flex items-center mr-3" href="{{ route('manage_brand.update',['brand'=>$item]) }}"> <i data-lucide="check-square" class="w-4 h-4 mr-1"></i> Edit </a>
                             <a class="flex items-center text-danger" href="javascript:;" data-tw-toggle="modal" data-tw-target="#delete-confirmation-modal" onclick="deleteModalHandler({{$index}})"> <i data-lucide="trash-2" class="w-4 h-4 mr-1"></i> Delete </a>
-                            <input type="hidden" id="delete_route_{{$index}}" value="{{ route('manage_branch.delete',['branch'=>$item]) }}">
+                            <input type="hidden" id="delete_route_{{$index}}" value="{{ route('manage_brand.delete',['brand'=>$item]) }}">
                         </div>
                     </td>
                 </tr>
@@ -131,5 +131,5 @@
 </div>
 @endsection
 @section('script')
-<script src="{{ asset('dist/js/view/manage-branch/branch.js') }}"></script>
+<script src="{{ asset('dist/js/view/manage-brand/brand.js') }}"></script>
 @endsection
