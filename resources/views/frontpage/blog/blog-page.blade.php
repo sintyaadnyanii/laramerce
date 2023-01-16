@@ -1,3 +1,5 @@
+@extends('layouts.front-layout')
+@section('body')
 <!-- Main Container  -->
 <div class="main-container container">
     <ul class="breadcrumb">
@@ -511,3 +513,4 @@
     <!--Middle Part End-->
 </div>
 <!-- //Main Container -->
+@endsection
