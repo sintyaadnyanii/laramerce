@@ -18,11 +18,11 @@
                     <ul class="top-link list-inline">
                         <li class="log login"><a class="link-lg" href="login.html">Login </a></li>
                         <li class="account" id="my_account">
-                            <a href="my-account.html" title="My Account " class="btn-xs dropdown-toggle"
+                            <a href="{{ route('my-account') }}" title="My Account " class="btn-xs dropdown-toggle"
                                 data-toggle="dropdown"> <span class="hidden-xs">My Account </span> <span
                                     class="fa fa-angle-down"></span></a>
                             <ul class="dropdown-menu ">
-                                <li><a href="my-account.html">My Account </a></li>
+                                <li><a href="{{ route('my-account') }}">My Account </a></li>
                                 <li><a href="order-history.html">Order History </a></li>
                                 <li><a href="horder-history.html">Transactions </a></li>
                                 <li><a href="order-information.html">Order Information </a></li>
