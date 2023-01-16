@@ -55,6 +55,7 @@ class ProductController extends Controller
             'weight' => 'required|numeric',
             'price' => 'required|integer',
             'stock' => 'required|integer',
+            'description' => 'nullable|string',
         ]);
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput()->with('error', 'Input Failed!<br>Please Try Again With Correct Input');
@@ -68,6 +69,7 @@ class ProductController extends Controller
             'weight' => $validated['weight'] / 1000,
             'price' => $validated['price'],
             'stock' => $validated['stock'],
+            'description' => $validated['description'],
         ]);
         if ($created_product) {
             return redirect()->route('manage_product.all')->with('success', 'New Category Successfully Added');
@@ -99,6 +101,7 @@ class ProductController extends Controller
             'weight' => 'required|numeric',
             'price' => 'required|integer',
             'stock' => 'required|integer',
+            'description' => 'nullable|string',
         ]);
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput()->with('error', 'Input Failed!<br>Please Try Again With Correct Input');
@@ -112,6 +115,7 @@ class ProductController extends Controller
             'weight' => $validated['weight'] / 1000,
             'price' => $validated['price'],
             'stock' => $validated['stock'],
+            'description' => $validated['description'],
         ]);
         if ($updated_product) {
             return redirect()->route('manage_product.all')->with('success', 'New Category Successfully Added');
