@@ -59,6 +59,7 @@ function ImgUpload() {
             let deleted_images = $("#deleted_images").val();
             deleted_images += $(this).parent().data("id") + ",";
             $("#deleted_images").val(deleted_images);
+            console.log($("#deleted_images").val());
         }
         for (var i = 0; i < imgArray.length; i++) {
             if (imgArray[i].name === file) {
@@ -76,13 +77,14 @@ function deleteModalHandler(index) {
 }
 
 //detail images
+function productImages(){
 let thumbnails=document.getElementsByClassName('thumbnail-product');
 let activeImages=document.getElementsByClassName('active_thumb');
 for(var i=0;i<thumbnails.length;i++){
     thumbnails[i].addEventListener('mouseover',function(){
         // console.log(activeImages)
         if(activeImages.length>0){
-            activeImages[0].classList.remove('active_Pthumb');
+            activeImages[0].classList.remove('active_thumb');
         }
         this.classList.add('active_thumb');
         document.getElementsByClassName('featured-img')[0].src=this.src;       
@@ -98,3 +100,4 @@ btnLeft.addEventListener('click',function(){
 btnRight.addEventListener('click',function(){
     document.getElementById('slider_thumbnail').scrollLeft+=180;
 });
+}

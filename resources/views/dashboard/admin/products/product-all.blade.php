@@ -56,7 +56,7 @@
                         <a href="#" class="font-medium whitespace-nowrap">{{$item->name}}</a>
                         <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">{{($item->category->name)??'None'}}</div>
                     </td>
-                    <td class="text-center">{{$item->brand->name)??'None'}}</td>
+                    <td class="text-center">{{($item->brand->name)??'None'}}</td>
                     <td class="text-center">{{$item->product_code}}</td>
                     <td class="text-center">{{$item->condition}}</td>
                     <td class="text-center">{{$item->weight}} kg</td>
@@ -73,7 +73,7 @@
                 </tr>
                 @empty
                 <tr>
-                    <td class="text-center text-muted" colspan="8">No Data</td>
+                    <td class="text-center text-muted" colspan="9">No Data</td>
                 </tr>
                 @endforelse
 

@@ -11,7 +11,7 @@ class Product extends Model
     use HasFactory;
     protected $primaryKey = 'product_code';
     protected $keyType = 'string';
-    protected $fillable = ['name', 'product_code', 'category_id', 'condition', 'price', 'weight', 'stock', 'description'];
+    protected $fillable = ['name', 'product_code', 'category_id', 'condition', 'price', 'weight', 'stock'];
 
     // instant value
     public static function popular()
@@ -27,6 +27,11 @@ class Product extends Model
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id');
+    }
+
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class, 'brand_id');
     }
 
     public function loved()
@@ -63,9 +68,13 @@ class Product extends Model
             $img_array = explode(',', request()->deleted_images);
             array_pop($img_array);
 
+            // dd($img_array);
+            // dd(Image::whereIn('id', $img_array)->get());
             foreach ($img_array as $key => $image_id) {
                 $will_deleted_image = Image::find($image_id);
-                $will_deleted_image->delete();
+                if (!is_null($will_deleted_image)) {
+                    $will_deleted_image->delete();
+                }
             }
 
             foreach (request()->file('images') ?? [] as $key => $image) {
