@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -23,7 +24,8 @@ class ProductController extends Controller
     {
         $data = [
             'title' => 'Add New Products | Urban Adventure',
-            'categories' => Category::latest()->get()
+            'categories' => Category::latest()->get(),
+            'brands' => Brand::latest()->get()
         ];
         return view('dashboard.admin.products.product-add', $data);
     }
@@ -41,7 +43,8 @@ class ProductController extends Controller
         $data = [
             'title' => 'Update Products | Urban Adventure',
             'product' => $product,
-            'categories' => Category::latest()->get()
+            'categories' => Category::latest()->get(),
+            'brands' => Brand::latest()->get()
         ];
         return view('dashboard.admin.products.product-update', $data);
     }
@@ -51,11 +54,12 @@ class ProductController extends Controller
             'name' => 'required|string',
             'product_code' => 'required|numeric|unique:products,product_code',
             'category_id' => 'required|integer',
+            'brand_id' => 'required|integer',
             'condition' => ['required', Rule::in('new', 'second')],
             'weight' => 'required|numeric',
             'price' => 'required|integer',
             'stock' => 'required|integer',
-            // 'description' => 'nullable|string',
+            'description' => 'nullable|string',
         ]);
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput()->with('error', 'Input Failed!<br>Please Try Again With Correct Input');
@@ -65,11 +69,12 @@ class ProductController extends Controller
             'name' => $validated['name'],
             'product_code' => $validated['product_code'],
             'category_id' => $validated['category_id'] == 0 ? NULL : $validated['category_id'],
+            'brand_id' => $validated['brand_id'] == 0 ? NULL : $validated['brand_id'],
             'condition' => $validated['condition'],
             'weight' => $validated['weight'] / 1000,
             'price' => $validated['price'],
             'stock' => $validated['stock'],
-            // 'description' => $validated['description'],
+            'description' => $validated['description'],
         ]);
         if ($created_product) {
             return redirect()->route('manage_product.all')->with('success', 'New Category Successfully Added');
@@ -97,11 +102,12 @@ class ProductController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|string',
             'category_id' => 'required|integer',
+            'brand_id' => 'required|integer',
             'condition' => ['required', Rule::in('new', 'second')],
             'weight' => 'required|numeric',
             'price' => 'required|integer',
             'stock' => 'required|integer',
-            // 'description' => 'nullable|string',
+            'description' => 'nullable|string',
         ]);
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput()->with('error', 'Input Failed!<br>Please Try Again With Correct Input');
@@ -111,6 +117,7 @@ class ProductController extends Controller
         $updated_product = $product->update([
             'name' => $validated['name'],
             'category_id' => $validated['category_id'] == 0 ? NULL : $validated['category_id'],
+            'brand_id' => $validated['brand_id'] == 0 ? NULL : $validated['brand_id'],
             'condition' => $validated['condition'],
             'weight' => $validated['weight'] / 1000,
             'price' => $validated['price'],
