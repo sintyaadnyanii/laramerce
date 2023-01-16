@@ -85,7 +85,12 @@ class Image extends Model
         });
 
         self::deleted(function ($image) {
-            Storage::delete([$image->src, $image->thumb]);
+            if (Storage::disk('public')->exists($image->src)) {
+                Storage::delete($image->src);
+            }
+            if (Storage::disk('public')->exists($image->thumb)) {
+                Storage::delete($image->thumb);
+            }
         });
     }
 }
