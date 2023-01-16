@@ -62,4 +62,9 @@
 @endsection
 @section('script')
 <script src="{{ asset('dist/js/view/manage-product/product.js') }}"></script>
+<script>
+    jQuery(document).ready(function () {
+    productImages();
+});
+</script>
 @endsection

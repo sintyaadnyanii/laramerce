@@ -1,79 +1,4 @@
 @extends('layouts.dashboard-layout')
-@section('head')
-    <style>
-        .upload__box {
-            margin-top: 9px
-        }
-
-        .upload__inputfile {
-            width: .1px;
-            height: .1px;
-            opacity: 0;
-            overflow: hidden;
-            position: absolute;
-            z-index: -1;
-        }
-
-        .upload__btn {
-            display: inline-block;
-            font-weight: 600;
-            color: #fff;
-            text-align: center;
-            min-width: 116px;
-            padding: 5px;
-            transition: all .3s ease;
-            cursor: pointer;
-            border: 2px solid;
-            border-radius: 10px;
-            line-height: 26px;
-            font-size: 14px;
-        }
-
-        .upload__btn-box {
-            margin-bottom: 10px;
-        }
-
-        .upload__img-wrap {
-            display: flex;
-            flex-wrap: wrap;
-            margin: 0 -10px;
-        }
-
-        .upload__img-box {
-            width: 200px;
-            padding: 0 10px;
-            margin-bottom: 12px;
-        }
-
-        .upload__img-close {
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            background-color: rgba(0, 0, 0, 0.5);
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            text-align: center;
-            line-height: 24px;
-            z-index: 1;
-            cursor: pointer;
-        }
-
-        .upload__img-close:after {
-            content: '\2716';
-            font-size: 14px;
-            color: white;
-        }
-
-        .img-bg {
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: cover;
-            position: relative;
-            padding-bottom: 100%;
-        }
-    </style>
-@endsection
 @section('dashboard-content')
     <!-- BEGIN: Content -->
     <div class="content">
@@ -94,7 +19,7 @@
                             @error('name')
                                 <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
                             @enderror
-                            <input id="name" name="name" type="text" class="form-control w-full border border-gray-300 rounded-lg"
+                            <input id="name" name="name" type="text" class="form-control"
                                 placeholder="Input product name" value="{{ old('name') }}">
                         </div>
                         <div class="mt-3">
@@ -111,25 +36,13 @@
                             </select>
                         </div>
                         <div class="mt-3">
-                            <label for="brand_id" class="form-label mt-2">Brand</label>
-                            @error('brand_id')
+                            <label for="product_code" class="form-label mt-2">Product Code</label>
+                            @error('product_code')
                                 <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
                             @enderror
-                            <select name="brand_id" id="brand_id" data-placeholder="Choose Product Brand"
-                                class="tom-select w-full">
-                                <option value="0">None</option>
-                                @foreach ($categories as $item)
-                                    <option value="{{ $item->id }}" {{ old('brand_id')==$item->id?'selected':null }}>{{ $item->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="mt-3">
-                            <label for="code" class="form-label mt-2">Code</label>
-                            @error('code')
-                                <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
-                            @enderror
-                            <input id="code" name="code" type="text" class="form-control w-full border border-gray-300 rounded-lg"
-                                placeholder="Input Product Code" value="{{old('code')}}" >
+
+                            <input id="product_code" name="product_code" type="text" class="form-control"
+                                placeholder="Input Product Code" value="{{old('product_code')}}" >
                         </div>
                         <div class="mt-3">
                             <label for="condition" class="form-label mt-2">Condition</label>
@@ -144,20 +57,29 @@
                         </div>
                         <div class="mt-3">
                             <label for="weight" class="form-label mt-2">Weight</label>
-                            <input id="weight" name="weight" type="text" class="form-control w-full border border-gray-300 rounded-lg"
+                            @error('weight')
+                                <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
+                            @enderror
+                            <input id="weight" name="weight" type="text" class="form-control"
                                 placeholder="Input Product Weight (gram) ex: 250" value="{{ old('weight') }}">
                         </div>
                         <div class="mt-3">
                             <label for="price" class="form-label mt-2">Price</label>
-                            <input id="price" name="price" type="text" class="form-control w-full border border-gray-300 rounded-lg"
+                            @error('price')
+                                <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
+                            @enderror
+                            <input id="price" name="price" type="text" class="form-control"
                                 placeholder="Input Product Price (Rp)" value="{{ old('price') }}">
                         </div>
                         <div class="mt-3">
                             <label for="stock" class="form-label mt-2">Stock</label>
-                            <input type="number" name="stock" id="stock" class="form-control w-full border border-gray-300 rounded-lg"
+                            @error('stock')
+                                <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
+                            @enderror
+                            <input type="number" name="stock" id="stock" class="form-control"
                                 placeholder="Input Product Stock" value="{{ old('stock') }}">
                         </div>
-                        <div class="upload__box">
+                        <div class="upload__box mt-3">
                             @error('images[]')
                                 <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
                             @enderror
@@ -173,7 +95,7 @@
                         <div class="text-right mt-5">
                             <a href="{{ route('manage_product.all') }}"
                                 class="btn btn-outline-secondary w-24 mr-1">Cancel</a>
-                                <input type="submit" value="Save" class="btn btn-outline-primary shadow-md w-24 mr-1">
+                            <input type="submit" value="Save" class="btn btn-primary w-24 mr-1">
                         </div>
                     </div>
                 </form>
