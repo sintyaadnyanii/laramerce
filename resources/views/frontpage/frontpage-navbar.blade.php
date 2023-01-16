@@ -23,10 +23,10 @@
                                     class="fa fa-angle-down"></span></a>
                             <ul class="dropdown-menu ">
                                 <li><a href="{{ route('my-account') }}">My Account </a></li>
-                                <li><a href="order-history.html">Order History </a></li>
-                                <li><a href="horder-history.html">Transactions </a></li>
-                                <li><a href="order-information.html">Order Information </a></li>
-                                <li class="checkout"><a href="checkout.html" class="btn-link"
+                                <li><a href="{{ route('order-history') }}">Order History </a></li>
+                                {{-- <li><a href="horder-history.html">Transactions </a></li> --}}
+                                <li><a href="{{ route('order-detail') }}">Order Information </a></li>
+                                <li class="checkout"><a href="{{ route('checkout') }}" class="btn-link"
                                         title="Checkout "><span>Checkout </span></a></li>
 
                             </ul>
@@ -50,7 +50,7 @@
             <div class="row">
                 <!-- Logo -->
                 <div class="navbar-logo col-md-2 col-sm-3 col-xs-10">
-                    <div class="logo"><a href="index.html"><img
+                    <div class="logo"><a href="{{ route('main') }}"><img
                                 src="http://127.0.0.1:8000/image/catalog/elab-logo.png" title="Your Store"
                                 alt="Your Store" /></a></div>
                 </div>
@@ -167,7 +167,8 @@
                                                     </li>
                                                     <li class="">
                                                         <p class="close-menu"></p>
-                                                        <a href="#" class="clearfix">
+                                                        <a href="https://www.tokopedia.com/elab" target="_blank"
+                                                            class="clearfix">
                                                             <strong>Shop With Us</strong>
                                                         </a>
                                                     </li>
@@ -1132,7 +1133,8 @@
                                                             href="{{ route('cart') }}"><i
                                                                 class="fa fa-shopping-cart"></i>View
                                                             Cart</a>&nbsp;&nbsp;&nbsp; <a
-                                                            class="btn btn-mega checkout-cart" href="checkout.html"><i
+                                                            class="btn btn-mega checkout-cart"
+                                                            href="{{ route('checkout') }}"><i
                                                                 class="fa fa-share"></i>Checkout</a>
                                                     </p>
                                                 </div>
@@ -1145,13 +1147,13 @@
                             <!--//cart-->
                             <div class="header_custom_link">
                                 <ul class="">
-                                    <li class="wishlist"><a href="wishlist.html" id="wishlist-total"
+                                    <li class="wishlist"><a href="{{ route('wishlist') }}" id="wishlist-total"
                                             class="top-link-wishlist" title="Wish List (0) "><i
                                                 class="fa fa-heart"></i></a>
                                     </li>
-                                    <li class="compare"><a href="compare.html" class="top-link-compare"
+                                    {{-- <li class="compare"><a href="compare.html" class="top-link-compare"
                                             title="Compare "><i class="fa fa-refresh"></i></a>
-                                    </li>
+                                    </li> --}}
                                 </ul>
                             </div>
                         </div>
