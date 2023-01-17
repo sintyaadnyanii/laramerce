@@ -260,7 +260,7 @@
                         target="_blank">OpenCartWorks.Com </a>
                 </div>
                 <div class="col-sm-12 payment">
-                    <img src="image/catalog/demo/payment/payment.png" alt="imgpayment">
+                    <img src="{{ asset('image/catalog/demo/payment/payment.png') }}" alt="imgpayment">
                 </div>
             </div>
         </div>
