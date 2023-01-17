@@ -29,7 +29,7 @@ Route::get('/', function () {
 Route::controller(GeneralController::class)->group(function () {
     Route::get('/', 'main')->name('main');
     Route::get('/cart', 'cart')->name('cart');
-    Route::get('/product-detail', 'product_detail')->name('product-detail');
+    Route::get('/product/{product:product_code}', 'product_detail')->name('product-detail');
     Route::get('/checkout', 'checkout')->name('checkout');
     Route::get('/blog-detail', 'blog_detail')->name('blog-detail');
     Route::get('/blog-page', 'blog')->name('blog');

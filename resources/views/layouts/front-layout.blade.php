@@ -12,14 +12,14 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
     <link rel="shortcut icon" type="image/png" href="{{ asset('image/catalog/favicon.jpg') }}" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
     </script>
-
     <!-- Libs CSS
-                                                                                                    ============================================ -->
+                                                                                                                                    ============================================ -->
     <link rel="stylesheet" href="{{ asset('/css/bootstrap/css/bootstrap.min.css') }}">
     <link href="{{ asset('/css/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
     <link href="{{ asset('/js/datetimepicker/bootstrap-datetimepicker.min.css') }}" rel="stylesheet">
@@ -29,7 +29,7 @@
     <link href="{{ asset('/js/minicolors/miniColors.css') }}" rel="stylesheet">
 
     <!-- Theme CSS
-                                                                                                    ============================================ -->
+                                                                                                                                    ============================================ -->
     <link href="{{ asset('/css/themecss/so_searchpro.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/themecss/so_megamenu.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/themecss/so-categories.css') }}" rel="stylesheet">
@@ -43,7 +43,7 @@
     <link href="{{ asset('/css/responsive.css') }}" rel="stylesheet">
 
     <!-- Google web fonts
-                                                                                            ============================================ -->
+                                                                                                                            ============================================ -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,500,600,700" rel='stylesheet' type='text/css'>
     <style>
@@ -85,8 +85,30 @@
 @endsection
 @section('base_script')
     @yield('script')
-    <!-- Include Libs & Plugins
-                                                                ============================================ -->
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            loop: true,
+            spaceBetween: 10,
+            slidesPerView: 2,
+            freeMode: true,
+            watchSlidesProgress: true,
+        });
+        var swiper2 = new Swiper(".mySwiper2", {
+            loop: true,
+            spaceBetween: 10,
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            thumbs: {
+                swiper: swiper,
+            },
+        });
+    </script>
+
+    <!-- Include Libs & Plugins -->
     <script src="{{ asset('/js/jquery-2.2.4.min.js') }}"></script>
     <script src="{{ asset('/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('/js/owl-carousel/owl.carousel.js') }}"></script>
