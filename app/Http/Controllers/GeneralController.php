@@ -3,13 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Brand;
+use App\Models\Category;
+use App\Models\Product;
 
 class GeneralController extends Controller
 {
-    public function main()
+    public function main(Product $product)
     {
         $data = [
-            'title' => 'Homepage | Urban Adventure'
+            'title' => 'Homepage | Urban Adventure',
+            'products' => $product,
         ];
         return view('frontpage.main.main', $data);
     }
@@ -20,10 +24,13 @@ class GeneralController extends Controller
         ];
         return view('frontpage.cart.cart', $data);
     }
-    public function product_detail()
+    public function product_detail(Product $product)
     {
         $data = [
-            'title' => 'Detail Product | Urban Adventure'
+            'title' => 'Detail Product | Urban Adventure',
+            'product' => $product,
+            'categories' => Category::first()->get(),
+            'brands' => Brand::first()->get()
         ];
         return view('frontpage.product.product-detail', $data);
     }
@@ -51,7 +58,7 @@ class GeneralController extends Controller
     public function order_detail()
     {
         $data = [
-            'title' => 'Detail Order | Urban Adventure'
+            'title' => 'Detail Order | Urban Adventure',
         ];
         return view('frontpage.order.order-detail', $data);
     }
