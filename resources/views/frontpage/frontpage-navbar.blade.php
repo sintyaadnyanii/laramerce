@@ -16,21 +16,23 @@
                 </div>
                 <div class="header-top-right collapsed-block col-lg-6 col-md-6 col-sm-7 col-xs-12">
                     <ul class="top-link list-inline">
-                        <li class="log login"><a class="link-lg" href="login.html">Login </a></li>
-                        <li class="account" id="my_account">
-                            <a href="{{ route('my-account') }}" title="My Account " class="btn-xs dropdown-toggle"
-                                data-toggle="dropdown"> <span class="hidden-xs">My Account </span> <span
-                                    class="fa fa-angle-down"></span></a>
-                            <ul class="dropdown-menu ">
-                                <li><a href="{{ route('my-account') }}">My Account </a></li>
-                                <li><a href="{{ route('order-history') }}">Order History </a></li>
-                                {{-- <li><a href="horder-history.html">Transactions </a></li> --}}
-                                <li><a href="{{ route('order-detail') }}">Order Information </a></li>
-                                <li class="checkout"><a href="{{ route('checkout') }}" class="btn-link"
-                                        title="Checkout "><span>Checkout </span></a></li>
+                        @if (auth()->user())
+                            <li class="log login"><a class="link-lg" href="{{ route('logout') }}">Logout </a></li>
+                            <li class="account" id="my_account">
+                                <a href="{{ route('my-account') }}" title="My Account " class="btn-xs dropdown-toggle"
+                                    data-toggle="dropdown"> <span class="hidden-xs">My Account </span> <span
+                                        class="fa fa-angle-down"></span></a>
+                                <ul class="dropdown-menu ">
+                                    <li><a href="{{ route('my-account') }}">My Account </a></li>
+                                    <li><a href="{{ route('order-history') }}">Order History </a></li>
+                                    <li class="checkout"><a href="{{ route('checkout') }}" class="btn-link"
+                                            title="Checkout "><span>Checkout </span></a></li>
 
-                            </ul>
-                        </li>
+                                </ul>
+                            </li>
+                        @else
+                            <li class="log login"><a class="link-lg" href="login.html">Login </a></li>
+                        @endif
 
 
 
@@ -1042,11 +1044,12 @@
                                                         My cart
                                                     </p>
 
-                                                    <span class="total-shopping-cart cart-total-full">
-                                                        <span class="items_cart">02</span><span
-                                                            class="items_cart2 hidden"> item(s)</span><span
-                                                            class="items_carts hidden"> - $162.00 </span>
-                                                    </span>
+                                                    @if (auth()->user())
+                                                        <span class="total-shopping-cart cart-total-full">
+                                                            <span
+                                                                class="items_cart">{{ auth()->user()->cart->count() }}</span>
+                                                        </span>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </a>
@@ -1055,54 +1058,51 @@
                                             <li>
                                                 <table class="table table-striped">
                                                     <tbody>
-                                                        <tr>
-                                                            <td class="text-center" style="width:70px">
-                                                                <a href="product.html">
-                                                                    <img src="image/catalog/demo/product/80/1.jpg"
-                                                                        style="width:70px" alt="Yutculpa ullamcon"
-                                                                        title="Yutculpa ullamco" class="preview">
-                                                                </a>
-                                                            </td>
-                                                            <td class="text-left"> <a class="cart_product_name"
-                                                                    href="product.html">Yutculpa ullamco</a>
-                                                            </td>
-                                                            <td class="text-center">x1</td>
-                                                            <td class="text-center">$80.00</td>
-                                                            <td class="text-right">
-                                                                <a href="product.html" class="fa fa-edit"></a>
-                                                            </td>
-                                                            <td class="text-right">
-                                                                <a onclick="cart.remove('2');"
-                                                                    class="fa fa-times fa-delete"></a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="text-center" style="width:70px">
-                                                                <a href="product.html">
-                                                                    <img src="image/catalog/demo/product/80/2.jpg"
-                                                                        style="width:70px" alt="Xancetta bresao"
-                                                                        title="Xancetta bresao" class="preview">
-                                                                </a>
-                                                            </td>
-                                                            <td class="text-left"> <a class="cart_product_name"
-                                                                    href="product.html">Xancetta bresao</a>
-                                                            </td>
-                                                            <td class="text-center">x1</td>
-                                                            <td class="text-center">$60.00</td>
-                                                            <td class="text-right">
-                                                                <a href="product.html" class="fa fa-edit"></a>
-                                                            </td>
-                                                            <td class="text-right">
-                                                                <a onclick="cart.remove('1');"
-                                                                    class="fa fa-times fa-delete"></a>
-                                                            </td>
-                                                        </tr>
+                                                        @if (auth()->user())
+                                                            @forelse (auth()->user()->cart as $item)
+                                                                <tr>
+                                                                    <td class="text-center" style="width:70px">
+                                                                        <a href="product.html">
+                                                                            <img src="{{ $item->product->images->count() ? 'storage/' . $item->product->images->first()->src : 'image/catalog/demo/product/80/1.jpg' }}"
+                                                                                style="width:70px"
+                                                                                alt="{{ $item->product->name }}"
+                                                                                title="{{ $item->product->name }}"
+                                                                                class="preview">
+                                                                        </a>
+                                                                    </td>
+                                                                    <td class="text-left"> <a
+                                                                            class="cart_product_name"
+                                                                            href="{{ route('product-detail', ['product' => $item->product]) }}">{{ $item->product->name }}</a>
+                                                                    </td>
+                                                                    <td class="text-center">{{ $item->amount }}</td>
+                                                                    <td class="text-center">
+                                                                        {{ number_format($item->product->price, 0, '.', ',') }}
+                                                                    </td>
+                                                                    <td class="text-right">
+                                                                        <a href="product.html" class="fa fa-edit"></a>
+                                                                    </td>
+                                                                    <td class="text-right">
+                                                                        <a onclick="cart.remove('2');"
+                                                                            class="fa fa-times fa-delete"></a>
+                                                                    </td>
+                                                                </tr>
+                                                            @empty
+                                                                <tr>
+                                                                    <td colspan="5">No Product Added</td>
+                                                                </tr>
+                                                            @endforelse
+                                                        @else
+                                                            <tr>
+                                                                <td colspan="5">You Must Login First</td>
+                                                            </tr>
+                                                        @endif
                                                     </tbody>
                                                 </table>
                                             </li>
-                                            <li>
-                                                <div>
-                                                    <table class="table table-bordered">
+                                            @if (auth()->user())
+                                                <li>
+                                                    <div>
+                                                        {{-- <table class="table table-bordered">
                                                         <tbody>
                                                             <tr>
                                                                 <td class="text-left">
@@ -1128,17 +1128,18 @@
                                                                 <td class="text-right">$162.00</td>
                                                             </tr>
                                                         </tbody>
-                                                    </table>
-                                                    <p class="text-center total-carts"> <a class="btn view-cart"
-                                                            href="{{ route('cart') }}"><i
-                                                                class="fa fa-shopping-cart"></i>View
-                                                            Cart</a>&nbsp;&nbsp;&nbsp; <a
-                                                            class="btn btn-mega checkout-cart"
-                                                            href="{{ route('checkout') }}"><i
-                                                                class="fa fa-share"></i>Checkout</a>
-                                                    </p>
-                                                </div>
-                                            </li>
+                                                    </table> --}}
+                                                        <p class="text-center total-carts"> <a class="btn view-cart"
+                                                                href="{{ route('cart') }}"><i
+                                                                    class="fa fa-shopping-cart"></i>View
+                                                                Cart</a>&nbsp;&nbsp;&nbsp; <a
+                                                                class="btn btn-mega checkout-cart"
+                                                                href="{{ route('checkout') }}"><i
+                                                                    class="fa fa-share"></i>Checkout</a>
+                                                        </p>
+                                                    </div>
+                                                </li>
+                                            @endif
                                         </ul>
                                     </div>
 
