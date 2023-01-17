@@ -22,6 +22,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/token', function () {
+    return csrf_token();
+});
 Route::get('/', function () {
     return view('frontpage.main.main', ['title' => 'Homepage | Urban Adventure']);
 });

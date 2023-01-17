@@ -325,7 +325,7 @@
                                                             <p class="close-menu"></p>
                                                             <a href="#" class="clearfix">
                                                                 <span>
-                                                                    <img src="image/catalog/menu/icons/icon-6.png"
+                                                                    <img src="{{ asset('image/catalog/menu/icons/icon-6.png') }}"
                                                                         alt="icon">
                                                                     <strong>Fashion</strong>
                                                                 </span>
@@ -541,7 +541,7 @@
                                                             <p class="close-menu"></p>
                                                             <a href="#" class="clearfix">
                                                                 <span>
-                                                                    <img src="image/catalog/menu/icons/icon-1.png"
+                                                                    <img src="{{ asset('image/catalog/menu/icons/icon-1.png') }}"
                                                                         alt="icon">
                                                                     <strong>Computer</strong>
                                                                 </span>
@@ -553,7 +553,7 @@
                                                             <p class="close-menu"></p>
                                                             <a href="#" class="clearfix">
                                                                 <span>
-                                                                    <img src="image/catalog/menu/icons/icon-2.png"
+                                                                    <img src="{{ asset('image/catalog/menu/icons/icon-2.png') }}"
                                                                         alt="icon">
                                                                     <strong>Flower & Gift</strong>
                                                                 </span>
@@ -632,7 +632,7 @@
                                                                         <div class="col-md-6">
                                                                             <div class="row banner">
                                                                                 <a href="#">
-                                                                                    <img src="image/catalog/menu/megabanner/vbanner1.jpg"
+                                                                                    <img src="{{ asset('image/catalog/menu/megabanner/vbanner1.jpg') }}"
                                                                                         alt="banner1">
                                                                                 </a>
                                                                             </div>
@@ -645,7 +645,7 @@
                                                             <p class="close-menu"></p>
                                                             <a href="#" class="clearfix">
                                                                 <span>
-                                                                    <img src="image/catalog/menu/icons/icon-3.png"
+                                                                    <img src="{{ asset('image/catalog/menu/icons/icon-3.png') }}"
                                                                         alt="icon">
                                                                     <strong>Smartphone</strong>
                                                                 </span>
@@ -826,7 +826,7 @@
                                                                                 <div class="col-md-12">
                                                                                     <div class="row banner">
                                                                                         <a href="#">
-                                                                                            <img src="image/catalog/menu/megabanner/menu_bg2.jpg"
+                                                                                            <img src="{{ asset('image/catalog/menu/megabanner/menu_bg2.jpg') }}"
                                                                                                 alt="banner1">
                                                                                         </a>
                                                                                     </div>
@@ -841,7 +841,7 @@
                                                             <p class="close-menu"></p>
                                                             <a href="#" class="clearfix">
                                                                 <span>
-                                                                    <img src="image/catalog/menu/icons/icon-4.png"
+                                                                    <img src="{{ asset('image/catalog/menu/icons/icon-4.png') }}"
                                                                         alt="icon">
                                                                     <strong>Health & Beauty</strong>
                                                                 </span>
@@ -920,7 +920,7 @@
                                                             <p class="close-menu"></p>
                                                             <a href="#" class="clearfix">
                                                                 <span>
-                                                                    <img src="image/catalog/menu/icons/icon-5.png"
+                                                                    <img src="{{ asset('image/catalog/menu/icons/icon-5.png') }}"
                                                                         alt="icon">
                                                                     <strong>Sport Clothing</strong>
                                                                 </span>
@@ -932,7 +932,7 @@
                                                             <p class="close-menu"></p>
                                                             <a href="#" class="clearfix">
                                                                 <span>
-                                                                    <img src="image/catalog/menu/icons/icon-7.png"
+                                                                    <img src="{{ asset('image/catalog/menu/icons/icon-7.png') }}"
                                                                         alt="icon">
                                                                     <strong>Watch & Jewelry</strong>
                                                                 </span>
@@ -944,7 +944,7 @@
                                                             <p class="close-menu"></p>
                                                             <a href="#" class="clearfix">
                                                                 <span>
-                                                                    <img src="image/catalog/menu/icons/icon-8.png"
+                                                                    <img src="{{ asset('image/catalog/menu/icons/icon-8.png') }}"
                                                                         alt="icon">
                                                                     <strong>Kitchen</strong>
                                                                 </span>
@@ -956,7 +956,7 @@
                                                             <p class="close-menu"></p>
                                                             <a href="#" class="clearfix">
                                                                 <span>
-                                                                    <img src="image/catalog/menu/icons/icon-9.png"
+                                                                    <img src="{{ asset('image/catalog/menu/icons/icon-9.png') }}"
                                                                         alt="icon">
                                                                     <strong>Accessories</strong>
                                                                 </span>
@@ -1046,8 +1046,8 @@
 
                                                     @if (auth()->user())
                                                         <span class="total-shopping-cart cart-total-full">
-                                                            <span
-                                                                class="items_cart">{{ auth()->user()->cart->count() }}</span>
+                                                            <span class="items_cart"
+                                                                id="cart-total-items">{{ auth()->user()->cart->count() }}</span>
                                                         </span>
                                                     @endif
                                                 </div>
@@ -1057,42 +1057,17 @@
                                         <ul class="dropdown-menu pull-right shoppingcart-box" role="menu">
                                             <li>
                                                 <table class="table table-striped">
-                                                    <tbody>
+                                                    <tbody id="cart-body-to-identify">
                                                         @if (auth()->user())
                                                             @forelse (auth()->user()->cart as $item)
-                                                                <tr>
-                                                                    <td class="text-center" style="width:70px">
-                                                                        <a href="product.html">
-                                                                            <img src="{{ $item->product->images->count() ? 'storage/' . $item->product->images->first()->src : 'image/catalog/demo/product/80/1.jpg' }}"
-                                                                                style="width:70px"
-                                                                                alt="{{ $item->product->name }}"
-                                                                                title="{{ $item->product->name }}"
-                                                                                class="preview">
-                                                                        </a>
-                                                                    </td>
-                                                                    <td class="text-left"> <a
-                                                                            class="cart_product_name"
-                                                                            href="{{ route('product-detail', ['product' => $item->product]) }}">{{ $item->product->name }}</a>
-                                                                    </td>
-                                                                    <td class="text-center">{{ $item->amount }}</td>
-                                                                    <td class="text-center">
-                                                                        {{ number_format($item->product->price, 0, '.', ',') }}
-                                                                    </td>
-                                                                    <td class="text-right">
-                                                                        <a href="product.html" class="fa fa-edit"></a>
-                                                                    </td>
-                                                                    <td class="text-right">
-                                                                        <a onclick="cart.remove('2');"
-                                                                            class="fa fa-times fa-delete"></a>
-                                                                    </td>
-                                                                </tr>
+                                                                @include('partials.cart-item')
                                                             @empty
-                                                                <tr>
+                                                                <tr id="cart-no-product">
                                                                     <td colspan="5">No Product Added</td>
                                                                 </tr>
                                                             @endforelse
                                                         @else
-                                                            <tr>
+                                                            <tr id>
                                                                 <td colspan="5">You Must Login First</td>
                                                             </tr>
                                                         @endif

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\ApiOngkirController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -23,4 +24,9 @@ Route::controller(ApiOngkirController::class)->group(function () {
     Route::get('/province', 'getProvince');
     Route::get('/city', 'getCity');
     Route::post('/cost', 'getCost');
+});
+
+Route::controller(AjaxController::class)->group(function () {
+    Route::get('/get-product/{product_code}', 'getProductData');
+    Route::post('/add-to-cart', 'addToCart');
 });

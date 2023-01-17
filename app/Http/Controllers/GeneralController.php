@@ -29,6 +29,7 @@ class GeneralController extends Controller
         $data = [
             'title' => 'Detail Product | Urban Adventure',
             'product' => $product,
+            'products' => Product::latest()->get()->random(Product::all()->count() > 6 ? 6 : Product::all()->count()),
             'categories' => Category::first()->get(),
             'brands' => Brand::first()->get()
         ];

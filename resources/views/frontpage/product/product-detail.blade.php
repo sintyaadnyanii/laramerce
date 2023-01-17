@@ -21,7 +21,7 @@
                             <div class="modcontent">
                                 <div class="box-category">
                                     <ul id="cat_accordion" class="list-group">
-                                        <li class="hadchild"><a href="category.html" class="cutom-parent">Smartphone &
+                                        {{-- <li class="hadchild"><a href="category.html" class="cutom-parent">Smartphone &
                                                 Tablets</a> <span class="button-view  fa fa-plus-square-o"></span>
                                             <ul style="display: block;">
                                                 <li><a href="category.html">Men's Watches</a></li>
@@ -29,57 +29,13 @@
                                                 <li><a href="category.html">Kids' Watches</a></li>
                                                 <li><a href="category.html">Accessories</a></li>
                                             </ul>
-                                        </li>
-                                        <li class="hadchild"><a class="cutom-parent" href="category.html">Electronics</a>
-                                            <span class="button-view  fa fa-plus-square-o"></span>
-                                            <ul style="display: none;">
-                                                <li><a href="category.html">Cycling</a></li>
-                                                <li><a href="category.html">Running</a></li>
-                                                <li><a href="category.html">Swimming</a></li>
-                                                <li><a href="category.html">Football</a></li>
-                                                <li><a href="category.html">Golf</a></li>
-                                                <li><a href="category.html">Windsurfing</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="hadchild"><a href="category.html" class="cutom-parent">Shoes</a> <span
-                                                class="button-view  fa fa-plus-square-o"></span>
-                                            <ul style="display: none;">
-                                                <li><a href="category.html">Sub Categories</a></li>
-                                                <li><a href="category.html">Sub Categories</a></li>
-                                                <li><a href="category.html">Sub Categories</a></li>
-                                                <li><a href="category.html">Sub Categories</a></li>
-                                                <li><a href="category.html">Sub Categories</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="hadchild"><a href="category.html" class="cutom-parent">Watches</a> <span
-                                                class="button-view  fa fa-plus-square-o"></span>
-                                            <ul style="display: none;">
-                                                <li><a href="category.html">Men's Watches</a></li>
-                                                <li><a href="category.html">Women's Watches</a></li>
-                                                <li><a href="category.html">Kids' Watches</a></li>
-                                                <li><a href="category.html">Accessories</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="hadchild"><a href="category.html" class="cutom-parent">Jewellery</a>
-                                            <span class="button-view  fa fa-plus-square-o"></span>
-                                            <ul style="display: none;">
-                                                <li><a href="category.html">Sub Categories</a></li>
-                                                <li><a href="category.html">Sub Categories</a></li>
-                                                <li><a href="category.html">Sub Categories</a></li>
-                                                <li><a href="category.html">Sub Categories</a></li>
-                                                <li><a href="category.html">Sub Categories</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class=""><a href="category.html" class="cutom-parent">Health &amp;
-                                                Beauty</a> <span class="dcjq-icon"></span></li>
-                                        <li class=""><a href="category.html" class="cutom-parent">Kids &amp;
-                                                Babies</a> <span class="dcjq-icon"></span></li>
-                                        <li class=""><a href="category.html" class="cutom-parent">Sports</a> <span
-                                                class="dcjq-icon"></span></li>
-                                        <li class=""><a href="category.html" class="cutom-parent">Home &amp;
-                                                Garden</a><span class="dcjq-icon"></span></li>
-                                        <li class=""><a href="category.html" class="cutom-parent">Wines &amp;
-                                                Spirits</a> <span class="dcjq-icon"></span></li>
+                                        </li> --}}
+                                        @foreach ($categories as $category)
+                                            <li class=""><a href="#"
+                                                    class="cutom-parent">{{ $category->name }}</a> <span
+                                                    class="dcjq-icon"></span></li>
+                                        @endforeach
+
                                     </ul>
                                 </div>
 
@@ -95,165 +51,46 @@
                                     <!-- Begin extraslider-inner -->
                                     <div class=" extraslider-inner">
                                         <div class="item ">
-                                            <div class="product-layout item-inner style1 ">
-                                                <div class="item-image">
-                                                    <div class="item-img-info">
-                                                        <a href="#" target="_self" title="Mandouille short ">
-                                                            <img src="image/catalog/demo/product/80/8.jpg"
-                                                                alt="Mandouille short">
-                                                        </a>
-                                                    </div>
+                                            @foreach ($products as $item)
+                                                <div class="product-layout item-inner style1 ">
+                                                    <div class="item-image">
+                                                        <div class="item-img-info">
+                                                            <a href="{{ route('product-detail', ['product' => $item]) }}"
+                                                                target="_self" title="Mandouille short ">
+                                                                <img src="{{ asset($item->images->count() ? 'storage/' . $item->images->first()->src : 'image/catalog/demo/product/80/8.jpg') }}"
+                                                                    alt="{{ $item->name }}">
+                                                            </a>
+                                                        </div>
 
+                                                    </div>
+                                                    <div class="item-info">
+                                                        <div class="item-title">
+                                                            <a href="#" target="_self"
+                                                                title="Mandouille short">{{ Str::words($item->name, 3, '...') }}
+                                                            </a>
+                                                        </div>
+                                                        <div class="rating">
+                                                            <span class="fa fa-stack"><i
+                                                                    class="fa fa-star fa-stack-2x"></i></span>
+                                                            <span class="fa fa-stack"><i
+                                                                    class="fa fa-star fa-stack-2x"></i></span>
+                                                            <span class="fa fa-stack"><i
+                                                                    class="fa fa-star fa-stack-2x"></i></span>
+                                                            <span class="fa fa-stack"><i
+                                                                    class="fa fa-star fa-stack-2x"></i></span>
+                                                            <span class="fa fa-stack"><i
+                                                                    class="fa fa-star fa-stack-2x"></i></span>
+                                                        </div>
+                                                        <div class="content_price price">
+                                                            <span
+                                                                class="product-price">{{ number_format($item->price, 0, '.', ',') }}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <!-- End item-info -->
+                                                    <!-- End item-wrap-inner -->
                                                 </div>
-                                                <div class="item-info">
-                                                    <div class="item-title">
-                                                        <a href="#" target="_self"
-                                                            title="Mandouille short">Mandouille short </a>
-                                                    </div>
-                                                    <div class="rating">
-                                                        <span class="fa fa-stack"><i
-                                                                class="fa fa-star fa-stack-2x"></i></span>
-                                                        <span class="fa fa-stack"><i
-                                                                class="fa fa-star fa-stack-2x"></i></span>
-                                                        <span class="fa fa-stack"><i
-                                                                class="fa fa-star fa-stack-2x"></i></span>
-                                                        <span class="fa fa-stack"><i
-                                                                class="fa fa-star fa-stack-2x"></i></span>
-                                                        <span class="fa fa-stack"><i
-                                                                class="fa fa-star fa-stack-2x"></i></span>
-                                                    </div>
-                                                    <div class="content_price price">
-                                                        <span class="price-new product-price">$55.00 </span>&nbsp;&nbsp;
-
-                                                        <span class="price-old">$76.00 </span>&nbsp;
-
-                                                    </div>
-                                                </div>
-                                                <!-- End item-info -->
-                                                <!-- End item-wrap-inner -->
-                                            </div>
-                                            <!-- End item-wrap -->
-                                            <div class="product-layout item-inner style1 ">
-                                                <div class="item-image">
-                                                    <div class="item-img-info">
-                                                        <a href="#" target="_self" title="Xancetta bresao ">
-                                                            <img src="image/catalog/demo/product/80/7.jpg"
-                                                                alt="Xancetta bresao">
-                                                        </a>
-                                                    </div>
-
-                                                </div>
-                                                <div class="item-info">
-                                                    <div class="item-title">
-                                                        <a href="#" target="_self" title="Xancetta bresao">
-                                                            Xancetta bresao
-                                                        </a>
-                                                    </div>
-                                                    <div class="rating">
-                                                        <span class="fa fa-stack"><i
-                                                                class="fa fa-star fa-stack-2x"></i></span>
-                                                        <span class="fa fa-stack"><i
-                                                                class="fa fa-star fa-stack-2x"></i></span>
-                                                        <span class="fa fa-stack"><i
-                                                                class="fa fa-star fa-stack-2x"></i></span>
-                                                        <span class="fa fa-stack"><i
-                                                                class="fa fa-star fa-stack-2x"></i></span>
-                                                        <span class="fa fa-stack"><i
-                                                                class="fa fa-star fa-stack-2x"></i></span>
-                                                    </div>
-                                                    <div class="content_price price">
-                                                        <span class="price-new product-price">$80.00 </span>&nbsp;&nbsp;
-
-                                                        <span class="price-old">$89.00 </span>&nbsp;
-
-
-
-                                                    </div>
-                                                </div>
-                                                <!-- End item-info -->
-                                                <!-- End item-wrap-inner -->
-                                            </div>
-                                            <!-- End item-wrap -->
-                                            <div class="product-layout item-inner style1 ">
-                                                <div class="item-image">
-                                                    <div class="item-img-info">
-                                                        <a href="#" target="_self" title="Sausage cowbee ">
-                                                            <img src="image/catalog/demo/product/80/6.jpg"
-                                                                alt="Sausage cowbee">
-                                                        </a>
-                                                    </div>
-
-                                                </div>
-                                                <div class="item-info">
-                                                    <div class="item-title">
-                                                        <a href="#" target="_self" title="Sausage cowbee">
-                                                            Sausage cowbee
-                                                        </a>
-                                                    </div>
-                                                    <div class="rating">
-                                                        <span class="fa fa-stack"><i
-                                                                class="fa fa-star fa-stack-2x"></i></span>
-                                                        <span class="fa fa-stack"><i
-                                                                class="fa fa-star fa-stack-2x"></i></span>
-                                                        <span class="fa fa-stack"><i
-                                                                class="fa fa-star fa-stack-2x"></i></span>
-                                                        <span class="fa fa-stack"><i
-                                                                class="fa fa-star fa-stack-2x"></i></span>
-                                                        <span class="fa fa-stack"><i
-                                                                class="fa fa-star fa-stack-2x"></i></span>
-                                                    </div>
-
-                                                    <div class="content_price price">
-                                                        <span class="price product-price">
-                                                            $66.00
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <!-- End item-info -->
-                                                <!-- End item-wrap-inner -->
-                                            </div>
-                                            <!-- End item-wrap -->
-                                            <div class="product-layout item-inner style1 ">
-                                                <div class="item-image">
-                                                    <div class="item-img-info">
-                                                        <a href="#" target="_self" title="Chicken swinesha ">
-                                                            <img src="image/catalog/demo/product/80/5.jpg"
-                                                                alt="Chicken swinesha">
-                                                        </a>
-                                                    </div>
-
-                                                </div>
-                                                <div class="item-info">
-                                                    <div class="item-title">
-                                                        <a href="#" target="_self" title="Chicken swinesha">
-                                                            Chicken swinesha
-                                                        </a>
-                                                    </div>
-                                                    <div class="rating">
-                                                        <span class="fa fa-stack"><i
-                                                                class="fa fa-star fa-stack-2x"></i></span>
-                                                        <span class="fa fa-stack"><i
-                                                                class="fa fa-star fa-stack-2x"></i></span>
-                                                        <span class="fa fa-stack"><i
-                                                                class="fa fa-star fa-stack-2x"></i></span>
-                                                        <span class="fa fa-stack"><i
-                                                                class="fa fa-star fa-stack-2x"></i></span>
-                                                        <span class="fa fa-stack"><i
-                                                                class="fa fa-star fa-stack-2x"></i></span>
-                                                    </div>
-                                                    <div class="content_price price">
-                                                        <span class="price-new product-price">$45.00 </span>&nbsp;&nbsp;
-
-                                                        <span class="price-old">$56.00 </span>&nbsp;
-
-
-
-                                                    </div>
-                                                </div>
-                                                <!-- End item-info -->
-                                                <!-- End item-wrap-inner -->
-                                            </div>
-                                            <!-- End item-wrap -->
+                                            @endforeach
                                         </div>
 
                                     </div>
@@ -265,7 +102,8 @@
                             <div class="banner-sidebar banners">
                                 <div>
                                     <a title="Banner Image" href="#">
-                                        <img src="image/catalog/banners/banner-sidebar.jpg" alt="Banner Image">
+                                        <img src="{{ asset('image/catalog/banners/banner-sidebar.jpg') }}"
+                                            alt="Banner Image">
                                     </a>
                                 </div>
                             </div>
@@ -378,8 +216,10 @@
                                                     <div class="input-group d-flex quantity-control" unselectable="on"
                                                         style="-webkit-user-select: none; width: 10%;">
                                                         <input class="form-control" style="padding: 0 8px;"
-                                                            type="text" name="quantity" value="1">
-                                                        <input type="hidden" name="product_id" value="50">
+                                                            type="text" name="quantity" value="1"
+                                                            id="product_amount_to_order">
+                                                        <input type="hidden" name="product_id"
+                                                            value="{{ $product->product_code }}">
                                                         <span class="input-group-addon product_quantity_down">−</span>
                                                         <span class="input-group-addon product_quantity_up">+</span>
                                                     </div>
@@ -388,7 +228,8 @@
                                                     <input type="button" data-toggle="tooltip" title=""
                                                         value="Add to Cart" data-loading-text="Loading..."
                                                         id="button-cart" class="btn btn-mega btn-lg"
-                                                        onclick="cart.add('42', '1');" data-original-title="Add to Cart">
+                                                        onclick="cart.add('{{ $product->product_code }}', '{{ auth()->user()->id }}');"
+                                                        data-original-title="Add to Cart">
                                                 </div>
                                                 <div class="add-to-links wish_comp">
                                                     <ul class="blank list-inline">
@@ -399,24 +240,17 @@
                                                                     class="fa fa-heart"></i>
                                                             </a>
                                                         </li>
-                                                        <li class="compare">
-                                                            <a class="icon" data-toggle="tooltip" title=""
-                                                                onclick="compare.add('50');"
-                                                                data-original-title="Compare this Product"><i
-                                                                    class="fa fa-exchange"></i>
-                                                            </a>
-                                                        </li>
                                                     </ul>
                                                 </div>
 
                                             </div>
-                                            <div class="form-group social_share_detail clearfix">
+                                            {{-- <div class="form-group social_share_detail clearfix">
                                                 <label class="">SHARE THIS:</label>
                                                 <ul>
                                                     <div class="addthis_inline_share_toolbox"></div>
                                                     <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-529be2200cc72db5"></script>
                                                 </ul>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                         <!-- end box info product -->
 
