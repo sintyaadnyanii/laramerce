@@ -54,7 +54,16 @@ var cart = {
             },
             success: (result) => {
                 $("#cart-no-product").remove();
-                $("#cart-body-to-identify").append(result.view);
+                for (let index = 0; index < this.items.length; index++) {
+                    const element = this.items[index];
+                    if (element.dataset.product_code == product_code) {
+                        element.childNodes[5].innerHTML = $(
+                            "#product_amount_to_order"
+                        ).val();
+                    } else {
+                        $("#cart-body-to-identify").append(result.view);
+                    }
+                }
                 $("#cart-total-items").html(
                     $("#cart-body-to-identify").children().length
                 );
