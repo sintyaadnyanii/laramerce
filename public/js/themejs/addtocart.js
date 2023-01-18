@@ -6,8 +6,6 @@
 	All rights reserved.
 
 / -------------------------------------------------------------------------------- */
-// LIKE A ENV
-const BASE_URL = "localhost:8000/";
 
 // Cart add remove functions
 var cart = {
@@ -16,18 +14,14 @@ var cart = {
         if (user_id == 0) {
             addProductNotice(
                 "Login First to Add Product to Cart",
-                `<img src="${
-                    BASE_URL + "storage/" + product.images[0].src
-                }" alt="">`,
+                `<img src="image/brand.jpg" alt="brand">`,
                 `<h3>You Can't Add To Cart</h3>`,
                 "success"
             );
         } else {
             addProductNotice(
                 "Product added to Cart",
-                `<img src="${
-                    BASE_URL + "storage/" + product.images[0].src
-                }" alt="">`,
+                `<img src="image/brand.jpg" alt="brand" alt="">`,
                 `<h3><a href="#">${product.name}</a> added to <a href="#">shopping cart</a>!</h3>`,
                 "success"
             );
@@ -76,18 +70,14 @@ var wishlist = {
         if (user_id == 0) {
             addProductNotice(
                 "Login First to Add Product to WishList",
-                `<img src="${
-                    BASE_URL + "storage/" + product.images[0].src
-                }" alt="">`,
+                `<img src="image/brand.jpg" alt="brand" alt="">`,
                 `<h3>You Can't Add To WishList</h3>`,
                 "success"
             );
         } else {
             addProductNotice(
                 "Product added to WishList",
-                `<img src="${
-                    BASE_URL + "storage/" + product.images[0].src
-                }" alt="">`,
+                `image/brand.jpg" alt="brand" alt="">`,
                 `<h3><a href="#">${product.name}</a> added to <a href="#">shopping WishList</a>!</h3>`,
                 "success"
             );
@@ -124,8 +114,6 @@ function getProductData(product_code) {
         async: false,
     });
     return ajaxProduct.responseJSON;
-
-    // return BASE_URL + "api/get-product/" + product_code;
 }
 
 /* ---------------------------------------------------
