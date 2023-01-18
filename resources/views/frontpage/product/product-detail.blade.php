@@ -235,7 +235,7 @@
                                                     <ul class="blank list-inline">
                                                         <li class="wishlist">
                                                             <a class="icon" data-toggle="tooltip" title=""
-                                                                onclick="wishlist.add('50');"
+                                                                onclick="wishlist.add('{{ $product->product_code }}', {{ auth()->user() ? auth()->user()->id : 0 }});"
                                                                 data-original-title="Add to Wish List"><i
                                                                     class="fa fa-heart"></i>
                                                             </a>

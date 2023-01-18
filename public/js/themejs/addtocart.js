@@ -71,13 +71,27 @@ var cart = {
 };
 
 var wishlist = {
-    add: function (product_code) {
-        addProductNotice(
-            "Product added to Wishlist",
-            '<img src="image/demo/shop/product/e11.jpg" alt="">',
-            '<h3>You must <a href="#">login</a>  to save <a href="#">Apple Cinema 30"</a> to your <a href="#">wish list</a>!</h3>',
-            "success"
-        );
+    add: function (product_code, user_id) {
+        let product = getProductData(product_code);
+        if (user_id == 0) {
+            addProductNotice(
+                "Login First to Add Product to WishList",
+                `<img src="${
+                    BASE_URL + "storage/" + product.images[0].src
+                }" alt="">`,
+                `<h3>You Can't Add To WishList</h3>`,
+                "success"
+            );
+        } else {
+            addProductNotice(
+                "Product added to WishList",
+                `<img src="${
+                    BASE_URL + "storage/" + product.images[0].src
+                }" alt="">`,
+                `<h3><a href="#">${product.name}</a> added to <a href="#">shopping WishList</a>!</h3>`,
+                "success"
+            );
+        }
     },
 };
 var compare = {
