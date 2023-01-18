@@ -9,11 +9,12 @@ use App\Models\Product;
 
 class GeneralController extends Controller
 {
-    public function main(Product $product)
+    public function main()
     {
         $data = [
             'title' => 'Homepage | Urban Adventure',
-            'products' => $product,
+            'products' => Product::get(),
+            'brands' => Brand::with(['products'])->latest()->get()
         ];
         return view('frontpage.main.main', $data);
     }
@@ -31,7 +32,6 @@ class GeneralController extends Controller
             'product' => $product,
             'products' => Product::latest()->get()->random(Product::all()->count() > 6 ? 6 : Product::all()->count()),
             'categories' => Category::first()->get(),
-            'brands' => Brand::first()->get()
         ];
         return view('frontpage.product.product-detail', $data);
     }
