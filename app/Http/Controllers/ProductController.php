@@ -52,7 +52,7 @@ class ProductController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string',
-            'product_code' => 'required|numeric|unique:products,product_code',
+            'product_code' => 'required|string|unique:products,product_code',
             'category_id' => 'required|integer',
             'brand_id' => 'required|integer',
             'condition' => ['required', Rule::in('new', 'second')],
@@ -88,7 +88,7 @@ class ProductController extends Controller
                 return redirect()->back()->withInput()->with('error', 'This product has been registered, please input another product');
             } else {
                 $code_validator = Validator::make($request->all(), [
-                    'product_code' => 'required|numeric|unique:products,product_code',
+                    'product_code' => 'required|string|unique:products,product_code',
                 ]);
 
                 if ($code_validator->fails()) {
