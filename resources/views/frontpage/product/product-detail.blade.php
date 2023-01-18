@@ -210,7 +210,7 @@
                                             {!! Str::limit($product->description, 226) !!}
                                         </div>
                                         <div id="product">
-                                            <h4>Available Options</h4>
+                                            <h4>Available Option</h4>
                                             <div class="form-group box-info-product">
                                                 <div class="option quantity">
                                                     <div class="input-group d-flex quantity-control" unselectable="on"
@@ -229,7 +229,7 @@
                                                         value="Add to Cart" data-loading-text="Loading..."
                                                         id="button-cart" class="btn btn-mega btn-lg"
                                                         onclick="cart.add('{{ $product->product_code }}', '{{ auth()->user() ? auth()->user()->id : 0 }}');"
-                                                        data-original-title="Add too Cart">
+                                                        data-original-title="Add to Cart">
                                                 </div>
                                                 <div class="add-to-links wish_comp">
                                                     <ul class="blank list-inline">
