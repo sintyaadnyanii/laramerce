@@ -229,7 +229,7 @@
                                                         value="Add to Cart" data-loading-text="Loading..."
                                                         id="button-cart" class="btn btn-mega btn-lg"
                                                         onclick="cart.add('{{ $product->product_code }}', '{{ auth()->user() ? auth()->user()->id : 0 }}');"
-                                                        data-original-title="Add to Cart">
+                                                        data-original-title="Add too Cart">
                                                 </div>
                                                 <div class="add-to-links wish_comp">
                                                     <ul class="blank list-inline">
