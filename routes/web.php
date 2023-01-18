@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/token', function () {
-    return Product::all()->first()->images;
+    // return auth()->user()->wishl
 });
 Route::get('/', function () {
     return view('frontpage.main.main', ['title' => 'Homepage | Urban Adventure']);

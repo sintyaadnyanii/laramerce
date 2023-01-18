@@ -43,7 +43,7 @@ class User extends Authenticatable
     // instant value
 
     // relation
-    public function whislists()
+    public function wishlists()
     {
         return $this->hasMany(Whislist::class, 'user_id');
     }

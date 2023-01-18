@@ -80,7 +80,8 @@ class GeneralController extends Controller
     public function wishlist()
     {
         $data = [
-            'title' => 'Whislist | Urban Adventure'
+            'title' => 'Whislist | Urban Adventure',
+            'wishlist' => auth()->user()->wishlists
         ];
         return view('frontpage.wishlist.wishlist', $data);
     }
