@@ -228,7 +228,7 @@
                                                     <input type="button" data-toggle="tooltip" title=""
                                                         value="Add to Cart" data-loading-text="Loading..."
                                                         id="button-cart" class="btn btn-mega btn-lg"
-                                                        onclick="cart.add('{{ $product->product_code }}', '{{ auth()->user()->id }}');"
+                                                        onclick="cart.add('{{ $product->product_code }}', '{{ auth()->user() ? auth()->user()->id : 0 }}');"
                                                         data-original-title="Add to Cart">
                                                 </div>
                                                 <div class="add-to-links wish_comp">
