@@ -13,63 +13,59 @@ const BASE_URL = "localhost:8000/";
 var cart = {
     add: function (product_code, user_id) {
         let product = getProductData(product_code);
-        addProductNotice(
-            "Product added to Cart",
-            `<img src="${
-                BASE_URL + "storage/" + product.images[0].src
-            }" alt="">`,
-            `<h3><a href="#">${product.name}</a> added to <a href="#">shopping cart</a>!</h3>`,
-            "success"
-        );
-        // if (
-        //     this.items.find(
-        //         (element) => element.dataset.product_code == product_code
-        //     )
-        // ) {
-        //     console.log(
-        //         this.items.find(
-        //             (element) => element.dataset.product_code == product_code
-        //         )
-        //     );
-        // } else {
-        //     console.log("not same");
-        // }
+        if (user_id == 0) {
+            addProductNotice(
+                "Login First to Add Product to Cart",
+                `<img src="${
+                    BASE_URL + "storage/" + product.images[0].src
+                }" alt="">`,
+                `<h3>You Can't Add To Cart</h3>`,
+                "success"
+            );
+        } else {
+            addProductNotice(
+                "Product added to Cart",
+                `<img src="${
+                    BASE_URL + "storage/" + product.images[0].src
+                }" alt="">`,
+                `<h3><a href="#">${product.name}</a> added to <a href="#">shopping cart</a>!</h3>`,
+                "success"
+            );
 
-        for (let index = 0; index < this.items.length; index++) {
-            const element = this.items[index];
-            if (element.dataset.product_code == product_code) {
-                element.childNodes[5].innerHTML = $(
-                    "#product_amount_to_order"
-                ).val();
-            } else {
-            }
-        }
-        $.ajax({
-            url: "/api/add-to-cart",
-            type: "POST",
-            data: {
-                user_id: user_id,
-                product_id: product_code,
-                amount: $("#product_amount_to_order").val(),
-            },
-            success: (result) => {
-                $("#cart-no-product").remove();
-                for (let index = 0; index < this.items.length; index++) {
-                    const element = this.items[index];
-                    if (element.dataset.product_code == product_code) {
-                        element.childNodes[5].innerHTML = $(
-                            "#product_amount_to_order"
-                        ).val();
-                    } else {
-                        $("#cart-body-to-identify").append(result.view);
+            // for (let index = 0; index < this.items.length; index++) {
+            //     const element = this.items[index];
+            //     if (element.dataset.product_code == product_code) {
+            //         element.childNodes[5].innerHTML = $(
+            //             "#product_amount_to_order"
+            //         ).val();
+            //     }
+            // }
+            $.ajax({
+                url: "/api/add-to-cart",
+                type: "POST",
+                data: {
+                    user_id: user_id,
+                    product_id: product_code,
+                    amount: $("#product_amount_to_order").val(),
+                },
+                success: (result) => {
+                    $("#cart-no-product").remove();
+                    for (let index = 0; index < this.items.length; index++) {
+                        const element = this.items[index];
+                        if (element.dataset.product_code == product_code) {
+                            element.childNodes[5].innerHTML = $(
+                                "#product_amount_to_order"
+                            ).val();
+                        } else {
+                            $("#cart-body-to-identify").append(result.view);
+                        }
                     }
-                }
-                $("#cart-total-items").html(
-                    $("#cart-body-to-identify").children().length
-                );
-                // console.log(result);
-            },
-        });
+                    $("#cart-total-items").html(
+                        $("#cart-body-to-identify").children().length
+                    );
+                },
+            });
+        }
     },
     items: $("#cart-body-to-identify").children(),
 };
