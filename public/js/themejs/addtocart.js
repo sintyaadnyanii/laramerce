@@ -14,26 +14,17 @@ var cart = {
         if (user_id == 0) {
             addProductNotice(
                 "Login First to Add Product to Cart",
-                `<img src="image/brand.jpg" alt="brand">`,
+                `<img src="/image/brand.jpg" alt="brand">`,
                 `<h3>You Can't Add To Cart</h3>`,
                 "success"
             );
         } else {
             addProductNotice(
                 "Product added to Cart",
-                `<img src="image/brand.jpg" alt="brand" alt="">`,
+                `<img src="/image/brand.jpg" alt="brand" alt="">`,
                 `<h3><a href="#">${product.name}</a> added to <a href="#">shopping cart</a>!</h3>`,
                 "success"
             );
-
-            // for (let index = 0; index < this.items.length; index++) {
-            //     const element = this.items[index];
-            //     if (element.dataset.product_code == product_code) {
-            //         element.childNodes[5].innerHTML = $(
-            //             "#product_amount_to_order"
-            //         ).val();
-            //     }
-            // }
             $.ajax({
                 url: "/api/add-to-cart",
                 type: "POST",
@@ -44,16 +35,16 @@ var cart = {
                 },
                 success: (result) => {
                     $("#cart-no-product").remove();
-                    for (let index = 0; index < this.items.length; index++) {
-                        const element = this.items[index];
+                    for (let index = 0; index < this.items().length; index++) {
+                        const element = this.items()[index];
                         if (element.dataset.product_code == product_code) {
-                            element.childNodes[5].innerHTML = $(
-                                "#product_amount_to_order"
-                            ).val();
-                        } else {
-                            $("#cart-body-to-identify").append(result.view);
+                            element.remove();
+                            // element.childNodes[5].innerHTML = $(
+                            //     "#product_amount_to_order"
+                            // ).val();
                         }
                     }
+                    $("#cart-body-to-identify").append(result.view);
                     $("#cart-total-items").html(
                         $("#cart-body-to-identify").children().length
                     );
@@ -61,7 +52,30 @@ var cart = {
             });
         }
     },
-    items: $("#cart-body-to-identify").children(),
+    remove: (product_code, user_id) => {
+        $.ajax({
+            url: "/api/remove-product-cart",
+            type: "POST",
+            data: {
+                user_id: user_id,
+                product_id: product_code,
+            },
+            success: (result) => {
+                for (let index = 0; index < cart.items().length; index++) {
+                    const element = cart.items()[index];
+                    if (element.dataset.product_code == product_code) {
+                        element.remove();
+                    }
+                }
+                $("#cart-total-items").html(
+                    $("#cart-body-to-identify").children().length
+                );
+            },
+        });
+    },
+    items: () => {
+        return $("#cart-body-to-identify").children();
+    },
 };
 
 var wishlist = {
@@ -70,14 +84,14 @@ var wishlist = {
         if (user_id == 0) {
             addProductNotice(
                 "Login First to Add Product to WishList",
-                `<img src="image/brand.jpg" alt="brand" alt="">`,
+                `<img src="/image/brand.jpg" alt="brand" alt="">`,
                 `<h3>You Can't Add To WishList</h3>`,
                 "success"
             );
         } else {
             addProductNotice(
                 "Product added to WishList",
-                `image/brand.jpg" alt="brand" alt="">`,
+                `<img src="/image/brand.jpg" alt="brand" alt="">`,
                 `<h3><a href="#">${product.name}</a> added to <a href="#">shopping WishList</a>!</h3>`,
                 "success"
             );
@@ -100,7 +114,7 @@ var compare = {
     add: function (product_id) {
         addProductNotice(
             "Product added to compare",
-            '<img src="image/demo/shop/product/e11.jpg" alt="">',
+            '<img src="/image/demo/shop/product/e11.jpg" alt="">',
             '<h3>Success: You have added <a href="#">Apple Cinema 30"</a> to your <a href="#">product comparison</a>!</h3>',
             "success"
         );

@@ -29,4 +29,5 @@ Route::controller(ApiOngkirController::class)->group(function () {
 Route::controller(AjaxController::class)->group(function () {
     Route::get('/get-product/{product_code}', 'getProductData');
     Route::post('/add-to-cart', 'addToCart');
+    Route::post('/remove-product-cart', 'removeProductCart');
 });
