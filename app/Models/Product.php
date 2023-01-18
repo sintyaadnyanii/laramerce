@@ -73,7 +73,7 @@ class Product extends Model
 
         self::updating(function ($product) {
             // update product id on cart
-            Cart::where('product_id', $product->id)->update(['product_id', request()->product_code]);
+            Cart::where('product_id', $product->id)->get()->update(['product_id', request()->product_code]);
 
             $img_array = explode(',', request()->deleted_images);
             array_pop($img_array);
@@ -107,7 +107,7 @@ class Product extends Model
         });
 
         self::deleted(function ($model) {
-            Cart::where('product_id', $model->id)->delete();
+            Cart::where('product_id', $model->id)->get()->delete();
         });
     }
 }
