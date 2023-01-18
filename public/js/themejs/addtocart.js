@@ -91,6 +91,18 @@ var wishlist = {
                 `<h3><a href="#">${product.name}</a> added to <a href="#">shopping WishList</a>!</h3>`,
                 "success"
             );
+
+            $.ajax({
+                url: "/api/add-to-wishlist",
+                type: "POST",
+                data: {
+                    user_id: user_id,
+                    product_id: product_code,
+                },
+                success: (result) => {
+                    $("#wishlist-count").prop("title");
+                },
+            });
         }
     },
 };
