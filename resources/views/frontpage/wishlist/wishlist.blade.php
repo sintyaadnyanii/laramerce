@@ -28,42 +28,48 @@
                                     </tr>
                                 </thead>
                                 <tbody id="wishlist-body-to-identify">
-                                    @forelse ($wishlist ?: [] as $item)
-                                        <tr data-product_code="{{ $item->product_code }}">
-                                            <td class="text-center">
-                                                <a href="product.html"><img width="70px"
-                                                        src="{{ asset($item->product->images->count() ? 'storage/' . $item->product->images->first()->src : '/image/catalog/demo/product/80/2.jpg') }}"
-                                                        alt="Aspire Ultrabook Laptop" title="Aspire Ultrabook Laptop">
-                                                </a>
-                                            </td>
-                                            <td class="text-left"><a
-                                                    href="product.html">{{ Str::words($item->product->name, 6, '...') }}</a>
-                                            </td>
-                                            <td class="text-left">{{ $item->product->brand->name }}</td>
-                                            <td class="text-right">
-                                                {{ $item->product->stock > 0 ? 'In Stock' : 'Out Stock' }}</td>
-                                            <td class="text-right">
-                                                <div class="price">
-                                                    {{ ch_currency($item->product->price) }}</div>
+                                    @if (auth()->user())
+                                        @forelse ($wishlist as $item)
+                                            <tr data-product_code="{{ $item->product_code }}">
+                                                <td class="text-center">
+                                                    <a href="product.html"><img width="70px"
+                                                            src="{{ asset($item->product->images->count() ? 'storage/' . $item->product->images->first()->src : '/image/catalog/demo/product/80/2.jpg') }}"
+                                                            alt="Aspire Ultrabook Laptop" title="Aspire Ultrabook Laptop">
+                                                    </a>
+                                                </td>
+                                                <td class="text-left"><a
+                                                        href="product.html">{{ Str::words($item->product->name, 6, '...') }}</a>
+                                                </td>
+                                                <td class="text-left">{{ $item->product->brand->name }}</td>
+                                                <td class="text-right">
+                                                    {{ $item->product->stock > 0 ? 'In Stock' : 'Out Stock' }}</td>
+                                                <td class="text-right">
+                                                    <div class="price">
+                                                        {{ ch_currency($item->product->price) }}</div>
 
-                                            </td>
-                                            <td class="text-right">
-                                                <button class="btn btn-primary" title="" data-toggle="tooltip"
-                                                    onclick="cart.add('{{ $item->product_code }}', '{{ $item->user_id }}', '1');"
-                                                    type="button" data-original-title="Add to Cart"><i
-                                                        class="fa fa-shopping-cart"></i>
-                                                </button>
-                                                <button class="btn btn-danger" title="" data-toggle="tooltip"
-                                                    onclick="wishlist.remove('{{ $item->product_code }}', '{{ $item->user_id }}');"
-                                                    type="button" data-original-title="Remove"><i
-                                                        class="fa fa-times"></i></button>
-                                            </td>
-                                        </tr>
-                                    @empty
+                                                </td>
+                                                <td class="text-right">
+                                                    <button class="btn btn-primary" title="" data-toggle="tooltip"
+                                                        onclick="cart.add('{{ $item->product_code }}', '{{ $item->user_id }}', '1');"
+                                                        type="button" data-original-title="Add to Cart"><i
+                                                            class="fa fa-shopping-cart"></i>
+                                                    </button>
+                                                    <button class="btn btn-danger" title="" data-toggle="tooltip"
+                                                        onclick="wishlist.remove('{{ $item->product_code }}', '{{ $item->user_id }}');"
+                                                        type="button" data-original-title="Remove"><i
+                                                            class="fa fa-times"></i></button>
+                                                </td>
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td colspan="6" class="text-center">No Product Here</td>
+                                            </tr>
+                                        @endforelse
+                                    @else
                                         <tr>
-                                            <td colspan="6" class="text-center">No Product Here</td>
+                                            <td colspan="6" class="text-center">Login First To Open Wishlist</td>
                                         </tr>
-                                    @endforelse
+                                    @endif
                                 </tbody>
                             </table>
                         </div>
