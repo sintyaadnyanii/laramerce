@@ -1323,7 +1323,7 @@
                                                                                                     <button type="button"
                                                                                                         class="addToCart"
                                                                                                         title="Add to cart"
-                                                                                                        onclick="cart.add($brand->products[$ip+1]->product_code);">
+                                                                                                        onclick="cart.add('{{ $brand->products[$ip + 1]->product_code }}', '{{ auth()->user() ? auth()->user()->id : 0 }}', '1');">
                                                                                                         <i
                                                                                                             class="fa fa-shopping-basket"></i>
                                                                                                         <span>Add to
@@ -1333,14 +1333,8 @@
                                                                                                     <button type="button"
                                                                                                         class="wishlist btn-button"
                                                                                                         title="Add to Wish List"
-                                                                                                        onclick="wishlist.add('60');"><i
+                                                                                                        onclick="wishlist.add('{{ $brand->products[$ip + 1]->product_code }}', '{{ auth()->user() ? auth()->user()->id : 0 }}');"><i
                                                                                                             class="fa fa-heart"></i><span></span>
-                                                                                                    </button>
-                                                                                                    <button type="button"
-                                                                                                        class="compare btn-button"
-                                                                                                        title="Compare this Product "
-                                                                                                        onclick="compare.add('60');"><i
-                                                                                                            class="fa fa-refresh"></i><span></span>
                                                                                                     </button>
                                                                                                 </div>
                                                                                             </div>
@@ -1388,7 +1382,7 @@
                                                                                                     <button type="button"
                                                                                                         class="addToCart"
                                                                                                         title="Add to cart"
-                                                                                                        onclick="cart.add($brand->products[$ip-1]->product_code);">
+                                                                                                        onclick="cart.add('{{ $brand->products[$ip + 1]->product_code }}', '{{ auth()->user() ? auth()->user()->id : 0 }}', '1');">
                                                                                                         <i
                                                                                                             class="fa fa-shopping-basket"></i>
                                                                                                         <span>Add to
@@ -1398,14 +1392,8 @@
                                                                                                     <button type="button"
                                                                                                         class="wishlist btn-button"
                                                                                                         title="Add to Wish List"
-                                                                                                        onclick="wishlist.add('60');"><i
+                                                                                                        onclick="wishlist.add('{{ $brand->products[$ip + 1]->product_code }}', '{{ auth()->user() ? auth()->user()->id : 0 }}');"><i
                                                                                                             class="fa fa-heart"></i><span></span>
-                                                                                                    </button>
-                                                                                                    <button type="button"
-                                                                                                        class="compare btn-button"
-                                                                                                        title="Compare this Product "
-                                                                                                        onclick="compare.add('60');"><i
-                                                                                                            class="fa fa-refresh"></i><span></span>
                                                                                                     </button>
                                                                                                 </div>
                                                                                             </div>
