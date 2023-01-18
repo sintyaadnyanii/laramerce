@@ -31,7 +31,7 @@
                                 </ul>
                             </li>
                         @else
-                            <li class="log login"><a class="link-lg" href="login.html">Login </a></li>
+                            <li class="log login"><a class="link-lg" href="{{ route('login') }}">Login </a></li>
                         @endif
 
 
