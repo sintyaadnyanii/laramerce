@@ -81,7 +81,7 @@ class GeneralController extends Controller
     {
         $data = [
             'title' => 'Whislist | Urban Adventure',
-            'wishlist' => auth()->user()->wishlists
+            'wishlist' => auth()->user()->wishlists ?? []
         ];
         return view('frontpage.wishlist.wishlist', $data);
     }
