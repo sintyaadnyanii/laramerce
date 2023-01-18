@@ -1313,8 +1313,8 @@
                                                                                                 <div class="caption">
                                                                                                     <h4><a href="#"
                                                                                                             title="Cupim should "
+                                                                                                            {{-- target="_self">{{ $product->name }} --}}
                                                                                                             target="_self">{{ Str::words($product->name, 3, '...') }}
-                                                                                                            {{-- target="_self">{{ Str::words($product->name, 3, '...') }} --}}
                                                                                                         </a></h4>
                                                                                                     <div class="price">
                                                                                                         <span
@@ -1385,8 +1385,8 @@
                                                                                                 <div class="caption">
                                                                                                     <h4><a href="#"
                                                                                                             title="Drutick lanaeger"
-                                                                                                            {{-- target="_self">{{ Str::words($brand->products[$loop->iteration]->name, 3, '...') }}</a> --}}
                                                                                                             target="_self">{{ Str::words($brand->products[$loop->iteration]->name, 3, '...') }}</a>
+                                                                                                        {{-- target="_self">{{ $brand->products[$loop->iteration]->name }}</a> --}}
                                                                                                     </h4>
                                                                                                     <div class="price">
                                                                                                         <span
