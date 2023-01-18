@@ -13,6 +13,7 @@ class AjaxController extends Controller
     {
         return response()->json(Product::with(['images'])->where('product_code', $product_code)->first());
     }
+
     public function addToCart(Request $request)
     {
         $user_exists = User::where('id', $request->user_id)->exists();
@@ -32,5 +33,20 @@ class AjaxController extends Controller
             return response()->json(['product' => "no product found", 'cart' => "no cart added", 'code' => 201]);
         }
         return response()->json(['product' => "no product found", 'cart' => "no cart added", 'code' => 500]);
+    }
+
+    public function removeProductCart(Request $request)
+    {
+        $user_exists = User::where('id', $request->user_id)->exists();
+        $product_exists = Product::where('id', $request->product_id)->exists();
+        if ($user_exists && $product_exists) {
+            $cart_deleted = Cart::where('user_id', $request->user_id)->where('product_id', $request->product_id)->delete();
+
+            if ($cart_deleted) {
+                return response()->json(['code' => 200]);
+            }
+            return response()->json(['product' => "no product found", 'cart' => "no cart deleted", 'code' => 201]);
+        }
+        return response()->json(['product' => "no product found", 'cart' => "no cart deleted", 'code' => 500]);
     }
 }

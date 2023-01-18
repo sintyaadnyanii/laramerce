@@ -18,6 +18,6 @@
         <a href="product.html" class="fa fa-edit"></a>
     </td>
     <td class="text-right">
-        <a onclick="cart.remove('2');" class="fa fa-times fa-delete"></a>
+        <a onclick="cart.remove('{{ $item->product_id }}', '{{ $item->user_id }}')" class="fa fa-times fa-delete"></a>
     </td>
 </tr>
