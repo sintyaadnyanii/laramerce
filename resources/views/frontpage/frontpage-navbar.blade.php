@@ -1124,7 +1124,7 @@
                             <div class="header_custom_link">
                                 <ul class="">
                                     <li class="wishlist"><a href="{{ route('wishlist') }}" id="wishlist-total"
-                                            class="top-link-wishlist" title="Wish List (0) "><i
+                                            class="top-link-wishlist" id="wishlist-count" title="Wish List (0) "><i
                                                 class="fa fa-heart"></i></a>
                                     </li>
                                     {{-- <li class="compare"><a href="compare.html" class="top-link-compare"

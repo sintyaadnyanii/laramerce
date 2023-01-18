@@ -12,7 +12,7 @@ class Image extends Model
 {
     use HasFactory;
     protected $table = 'images';
-    protected $fillable = ['src', 'thumb', 'alt'];
+    protected $fillable = ['src', 'thumb', 'alt', 'imageable_id', 'imageable_type'];
 
     public static function uploadImage($img_response, $rezize = true)
     {

@@ -61,10 +61,12 @@ class Product extends Model
         self::created(function ($product) {
             foreach (request()->file('images') ?? [] as $key => $image) {
                 $uploaded = Image::uploadImage($image);
-                $product->images()->create([
+                Image::create([
                     'thumb' => 'thumbnails/' . $uploaded['thumb']->basename,
                     'src' => 'images/' . $uploaded['src']->basename,
-                    'alt' => Image::getAlt($image)
+                    'alt' => Image::getAlt($image),
+                    'imageable_id' => $product->id,
+                    'imageable_type' => "App\Models\Product"
                 ]);
             }
         });
