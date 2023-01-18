@@ -8,6 +8,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ViewTemplateController;
+use App\Models\Brand;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
@@ -23,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/token', function () {
-    return csrf_token();
+    return Brand::all()->first()->products;
 });
 Route::get('/', function () {
     return view('frontpage.main.main', ['title' => 'Homepage | Urban Adventure']);

@@ -93,7 +93,7 @@ class Product extends Model
         });
 
         self::updated(function ($model) {
-            // ... code here
+            Cart::where('product_id', 'id')->update(['product_id', $model->id]);
         });
 
         self::deleting(function ($product) {
@@ -103,7 +103,7 @@ class Product extends Model
         });
 
         self::deleted(function ($model) {
-            // ... code here
+            Cart::where('product_id', 'id')->delete();
         });
     }
 }

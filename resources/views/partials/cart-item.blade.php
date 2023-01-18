@@ -1,7 +1,7 @@
 <tr data-product_code="{{ $item->product_id }}">
     <td class="text-center" style="width:70px">
         <a href="product.html">
-            <img src="{{ asset($item->product->images->count() > 0 ? 'storage/' . $item->product->images->first()->src : 'image/catalog/demo/product/80/1.jpg') }}"
+            <img src="{{ asset($item->product->images->count() ? 'storage/' . $item->product->images->first()->src : 'image/catalog/demo/product/80/1.jpg') }}"
                 style="width:70px" alt="{{ $item->product->name }}" title="{{ $item->product->name }}" class="preview">
         </a>
     </td>

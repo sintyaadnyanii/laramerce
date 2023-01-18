@@ -62,5 +62,9 @@ class User extends Authenticatable
             // ... code here
             $model->level = 'user';
         });
+        self::deleted(function ($model) {
+            // ... code here
+            Cart::where('user_id', $model->id)->delete();
+        });
     }
 }
