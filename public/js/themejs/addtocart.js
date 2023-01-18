@@ -9,7 +9,7 @@
 
 // Cart add remove functions
 var cart = {
-    add: function (product_code, user_id) {
+    add: function (product_code, user_id, amount = false) {
         let product = getProductData(product_code);
         if (user_id == 0) {
             addProductNotice(
@@ -31,7 +31,10 @@ var cart = {
                 data: {
                     user_id: user_id,
                     product_id: product_code,
-                    amount: $("#product_amount_to_order").val(),
+                    amount:
+                        amount == false
+                            ? $("#product_amount_to_order").val()
+                            : 1,
                 },
                 success: (result) => {
                     $("#cart-no-product").remove();
@@ -108,6 +111,27 @@ var wishlist = {
                 },
             });
         }
+    },
+    remove: (product_code, user_id) => {
+        $.ajax({
+            url: "/api/remove-product-wishlist",
+            type: "POST",
+            data: {
+                user_id: user_id,
+                product_id: product_code,
+            },
+            success: (result) => {
+                for (let index = 0; index < wishlist.items().length; index++) {
+                    const element = wishlist.items()[index];
+                    if (element.dataset.product_code == product_code) {
+                        element.remove();
+                    }
+                }
+            },
+        });
+    },
+    items: () => {
+        return $("#wishlist-body-to-identify").children();
     },
 };
 var compare = {

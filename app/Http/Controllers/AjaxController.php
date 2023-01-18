@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\Product;
 use App\Models\User;
+use App\Models\Whislist;
 use Illuminate\Http\Request;
 
 class AjaxController extends Controller
@@ -48,5 +49,39 @@ class AjaxController extends Controller
             return response()->json(['product' => "no product found", 'cart' => "no cart deleted", 'code' => 201]);
         }
         return response()->json(['product' => "no product found", 'cart' => "no cart deleted", 'code' => 500]);
+    }
+
+    public function addToWishlist(Request $request)
+    {
+        $user_exists = User::where('id', $request->user_id)->exists();
+        $product_exists = Product::where('id', $request->product_id)->exists();
+        if ($user_exists && $product_exists) {
+            Whislist::where('user_id', $request->user_id)->where('product_code', $request->product_id)->delete();
+            $wish_added = Whislist::create([
+                'user_id' => $request->user_id,
+                'product_code' => $request->product_id,
+            ]);
+
+            if ($wish_added) {
+                return response()->json(['product' => $wish_added->product, 'wishlist' => $wish_added, 'code' => 200]);
+            }
+            return response()->json(['product' => "no product found", 'wishlist' => "no wishlist added", 'code' => 201]);
+        }
+        return response()->json(['product' => "no product found", 'wishlist' => "no wishlist added", 'code' => 500]);
+    }
+
+    public function removeProductWishlist(Request $request)
+    {
+        $user_exists = User::where('id', $request->user_id)->exists();
+        $product_exists = Product::where('id', $request->product_id)->exists();
+        if ($user_exists && $product_exists) {
+            $wish_deleted = Whislist::where('user_id', $request->user_id)->where('product_code', $request->product_id)->delete();
+
+            if ($wish_deleted) {
+                return response()->json(['code' => 200]);
+            }
+            return response()->json(['product' => "no product found", 'wish' => "no wish deleted", 'code' => 201]);
+        }
+        return response()->json(['product' => "no product found", 'wish' => "no wish deleted", 'code' => 500]);
     }
 }

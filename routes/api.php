@@ -30,4 +30,6 @@ Route::controller(AjaxController::class)->group(function () {
     Route::get('/get-product/{product_code}', 'getProductData');
     Route::post('/add-to-cart', 'addToCart');
     Route::post('/remove-product-cart', 'removeProductCart');
+    Route::post('/add-to-wishlist', 'addToWishlist');
+    Route::post('/remove-product-wishlist', 'removeProductWishlist');
 });
