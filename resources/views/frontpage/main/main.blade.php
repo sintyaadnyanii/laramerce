@@ -1236,14 +1236,14 @@
                                 </div>
                             </div>
                             @foreach ($brands->take(3) as $ib => $brand)
-                                <div class="block block_3">
+                                <div class="block block_{{ $ib + 1 }}">
                                     <!-- Listing tabs -->
                                     <div class="module custom-listingtab default-nav">
                                         <div class="box-title font-ct">
                                             <h2 class="modtitle">{{ $brand->name }}</h2>
                                         </div>
                                         <div class="modcontent">
-                                            <div id="so_listing_tabs_{{ $ib }}"
+                                            <div id="so_listing_tabs_{{ $ib + 1 }}"
                                                 class="so-listing-tabs first-load">
                                                 <div class="loadeding"></div>
                                                 <div class="ltabs-wrap">
@@ -1255,8 +1255,8 @@
                                                         <div class="ltabs-tabs-wrap">
                                                             <ul class="ltabs-tabs cf font-ct list-sub-cat">
                                                                 <li class="ltabs-tab tab-sel"
-                                                                    data-category-id="{{ $ib }}"
-                                                                    data-active-content=".items-category-{{ $ib }}">
+                                                                    data-category-id="{{ $ib + 1 }}"
+                                                                    data-active-content=".items-category-{{ $ib + 1 }}">
                                                                     <span class="ltabs-tab-label">Best sellers</span>
                                                                 </li>
                                                             </ul>
@@ -1275,157 +1275,144 @@
                                                         </div>
                                                         <div class="ltabs-items-container">
                                                             <!--Begin Items-->
-                                                            <div class="ltabs-items ltabs-items-selected items-category-{{ $ib }}"
-                                                                data-total="16">
+                                                            <div class="ltabs-items ltabs-items-selected items-category-{{ $ib + 1 }}"
+                                                                data-total="{{ $brand->products->count() >= 12 ? 12 : $brand->products->count() }}">
                                                                 <div class="ltabs-items-inner ltabs-slider">
-                                                                    @foreach ($brand->products->random(($brand->products->count() > 12 ? 12 : $brand->products->count() % 2 == 0) ? $brand->products->count() : $brand->products->count() - 1) as $ip => $product)
-                                                                        @if (isset($brand->products[$ip + 1]))
-                                                                            @if ($ip % 2 == 0)
-                                                                                <div class="ltabs-item">
-                                                                                    <div
-                                                                                        class="item-inner product-thumb transition product-layout">
-                                                                                        <div
-                                                                                            class="product-item-container">
-                                                                                            <div class="left-block left-b">
-                                                                                                <div class="product-image-container"
-                                                                                                    style="width: 190px; height: 190px; object-fit: cover;">
-                                                                                                    <a href="#"
-                                                                                                        target="_self"
-                                                                                                        title="Cupim should">
-                                                                                                        <img src="{{ asset($product->images->count() ? 'storage/' . $product->images->first()->src : 'dist/images/default.jpg') }}"
-                                                                                                            class="img-responsive"
-                                                                                                            style="width: 190px; height: 190px; object-fit: cover;"
-                                                                                                            alt="image">
-                                                                                                    </a>
-                                                                                                </div>
-
-                                                                                                <!--quickview-->
-                                                                                                <a class="iframe-link btn-button quickview quickview_handler visible-lg"
-                                                                                                    href="quickview.html"
-                                                                                                    title="Quick view"
-                                                                                                    data-fancybox-type="iframe"><i
-                                                                                                        class="fa fa-eye"></i><span></span></a>
-                                                                                                <!--end quickview-->
+                                                                    @foreach ($brand->products->random(($brand->products->count() >= 12 ? 12 : $brand->products->count() % 2 == 0) ? $brand->products->count() : $brand->products->count() - 1) as $ip => $product)
+                                                                        @if (($ip + 1) % 2 == 1)
+                                                                            <div class="ltabs-item">
+                                                                                <div
+                                                                                    class="item-inner product-thumb transition product-layout">
+                                                                                    <div class="product-item-container">
+                                                                                        <div class="left-block left-b">
+                                                                                            <div class="product-image-container"
+                                                                                                style="width: 194.8px; height: 194.8px; object-fit: cover;">
+                                                                                                <a href="#"
+                                                                                                    target="_self"
+                                                                                                    title="Cupim should">
+                                                                                                    <img src="{{ asset($brand->products[$ip]->images->count() ? 'storage/' . $brand->products[$ip]->images->first()->src : 'dist/images/default.jpg') }}"
+                                                                                                        class="img-responsive"
+                                                                                                        style="width: 194.8px; height: 194.8px; object-fit: cover;"
+                                                                                                        alt="image">
+                                                                                                </a>
                                                                                             </div>
-                                                                                            <div
-                                                                                                class="right-block right-b">
 
-                                                                                                <div class="caption">
-                                                                                                    <h4><a href="#"
-                                                                                                            title="Cupim should "
-                                                                                                            {{-- target="_self">{{ $product->name }} --}}
-                                                                                                            target="_self">{{ Str::words($product->name, 3, '...') }}
-                                                                                                        </a></h4>
-                                                                                                    <div class="price">
-                                                                                                        <span
-                                                                                                            class="price-new">{{ ch_currency($product->price) }}
-                                                                                                        </span>
-                                                                                                    </div>
-                                                                                                    <div
-                                                                                                        class="button-group so-quickview cartinfo--static">
-                                                                                                        <button
-                                                                                                            type="button"
-                                                                                                            class="addToCart"
-                                                                                                            title="Add to cart"
-                                                                                                            onclick="cart.add($product->product_code);">
-                                                                                                            <i
-                                                                                                                class="fa fa-shopping-basket"></i>
-                                                                                                            <span>Add to
-                                                                                                                cart
-                                                                                                            </span>
-                                                                                                        </button>
-                                                                                                        <button
-                                                                                                            type="button"
-                                                                                                            class="wishlist btn-button"
-                                                                                                            title="Add to Wish List"
-                                                                                                            onclick="wishlist.add('60');"><i
-                                                                                                                class="fa fa-heart"></i><span></span>
-                                                                                                        </button>
-                                                                                                        <button
-                                                                                                            type="button"
-                                                                                                            class="compare btn-button"
-                                                                                                            title="Compare this Product "
-                                                                                                            onclick="compare.add('60');"><i
-                                                                                                                class="fa fa-refresh"></i><span></span>
-                                                                                                        </button>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
+                                                                                            <!--quickview-->
+                                                                                            <a class="iframe-link btn-button quickview quickview_handler visible-lg"
+                                                                                                href="quickview.html"
+                                                                                                title="Quick view"
+                                                                                                data-fancybox-type="iframe"><i
+                                                                                                    class="fa fa-eye"></i><span></span></a>
+                                                                                            <!--end quickview-->
                                                                                         </div>
-                                                                                    </div>
+                                                                                        <div class="right-block right-b">
 
-                                                                                    <div
-                                                                                        class="item-inner product-thumb transition product-layout">
-                                                                                        <div
-                                                                                            class="product-item-container">
-                                                                                            <div class="left-block left-b">
-
-                                                                                                <div class="product-image-container"
-                                                                                                    style="width: 190px; height: 190px; object-fit: cover;">
-                                                                                                    <a href="#"
-                                                                                                        target="_self"
-                                                                                                        title="Drutick lanaeger">
-                                                                                                        <img src="{{ asset($brand->products[$loop->iteration]->images->count() ? 'storage/' . $brand->products[$loop->iteration]->images->first()->src : 'dist/images/default.jpg') }}"
-                                                                                                            class="img-responsive"
-                                                                                                            style="width: 190px; height: 190px; object-fit: cover;"
-                                                                                                            alt="image">
-                                                                                                    </a>
+                                                                                            <div class="caption">
+                                                                                                <h4><a href="#"
+                                                                                                        title="Cupim should "
+                                                                                                        {{-- target="_self">{{ $brand->products[$ip+1]->name }} --}}
+                                                                                                        target="_self">{{ Str::words($brand->products[$ip]->name, 3, '...') }}
+                                                                                                    </a></h4>
+                                                                                                <div class="price">
+                                                                                                    <span
+                                                                                                        class="price-new">{{ ch_currency($brand->products[$ip]->price) }}
+                                                                                                    </span>
                                                                                                 </div>
-
-                                                                                                <!--quickview-->
-                                                                                                <a class="iframe-link btn-button quickview quickview_handler visible-lg"
-                                                                                                    href="quickview.html"
-                                                                                                    title="Quick view"
-                                                                                                    data-fancybox-type="iframe"><i
-                                                                                                        class="fa fa-eye"></i><span></span></a>
-                                                                                                <!--end quickview-->
-                                                                                            </div>
-                                                                                            <div
-                                                                                                class="right-block right-b">
-                                                                                                <div class="caption">
-                                                                                                    <h4><a href="#"
-                                                                                                            title="Drutick lanaeger"
-                                                                                                            target="_self">{{ Str::words($brand->products[$loop->iteration]->name, 3, '...') }}</a>
-                                                                                                        {{-- target="_self">{{ $brand->products[$loop->iteration]->name }}</a> --}}
-                                                                                                    </h4>
-                                                                                                    <div class="price">
-                                                                                                        <span
-                                                                                                            class="price-new">{{ ch_currency($brand->products[$loop->iteration]->price) }}</span>
-                                                                                                    </div>
-                                                                                                    <div
-                                                                                                        class="button-group so-quickview cartinfo--static">
-                                                                                                        <button
-                                                                                                            type="button"
-                                                                                                            class="addToCart"
-                                                                                                            title="Add to cart"
-                                                                                                            onclick="cart.add($brand->products[$loop->iteration]->product_code);">
-                                                                                                            <i
-                                                                                                                class="fa fa-shopping-basket"></i>
-                                                                                                            <span>Add to
-                                                                                                                cart
-                                                                                                            </span>
-                                                                                                        </button>
-                                                                                                        <button
-                                                                                                            type="button"
-                                                                                                            class="wishlist btn-button"
-                                                                                                            title="Add to Wish List"
-                                                                                                            onclick="wishlist.add('60');"><i
-                                                                                                                class="fa fa-heart"></i><span></span>
-                                                                                                        </button>
-                                                                                                        <button
-                                                                                                            type="button"
-                                                                                                            class="compare btn-button"
-                                                                                                            title="Compare this Product "
-                                                                                                            onclick="compare.add('60');"><i
-                                                                                                                class="fa fa-refresh"></i><span></span>
-                                                                                                        </button>
-                                                                                                    </div>
+                                                                                                <div
+                                                                                                    class="button-group so-quickview cartinfo--static">
+                                                                                                    <button type="button"
+                                                                                                        class="addToCart"
+                                                                                                        title="Add to cart"
+                                                                                                        onclick="cart.add($brand->products[$ip+1]->product_code);">
+                                                                                                        <i
+                                                                                                            class="fa fa-shopping-basket"></i>
+                                                                                                        <span>Add to
+                                                                                                            cart
+                                                                                                        </span>
+                                                                                                    </button>
+                                                                                                    <button type="button"
+                                                                                                        class="wishlist btn-button"
+                                                                                                        title="Add to Wish List"
+                                                                                                        onclick="wishlist.add('60');"><i
+                                                                                                            class="fa fa-heart"></i><span></span>
+                                                                                                    </button>
+                                                                                                    <button type="button"
+                                                                                                        class="compare btn-button"
+                                                                                                        title="Compare this Product "
+                                                                                                        onclick="compare.add('60');"><i
+                                                                                                            class="fa fa-refresh"></i><span></span>
+                                                                                                    </button>
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
-                                                                            @endif
+
+                                                                                <div
+                                                                                    class="item-inner product-thumb transition product-layout">
+                                                                                    <div class="product-item-container">
+                                                                                        <div class="left-block left-b">
+
+                                                                                            <div class="product-image-container"
+                                                                                                style="width: 194.8px; height: 194.8px; object-fit: cover;">
+                                                                                                <a href="#"
+                                                                                                    target="_self"
+                                                                                                    title="Drutick lanaeger">
+                                                                                                    <img src="{{ asset($brand->products[$ip + 1]->images->count() ? 'storage/' . $brand->products[$ip + 1]->images->first()->src : 'dist/images/default.jpg') }}"
+                                                                                                        class="img-responsive"
+                                                                                                        style="width: 194.8px; height: 194.8px; object-fit: cover;"
+                                                                                                        alt="image">
+                                                                                                </a>
+                                                                                            </div>
+
+                                                                                            <!--quickview-->
+                                                                                            <a class="iframe-link btn-button quickview quickview_handler visible-lg"
+                                                                                                href="quickview.html"
+                                                                                                title="Quick view"
+                                                                                                data-fancybox-type="iframe"><i
+                                                                                                    class="fa fa-eye"></i><span></span></a>
+                                                                                            <!--end quickview-->
+                                                                                        </div>
+                                                                                        <div class="right-block right-b">
+                                                                                            <div class="caption">
+                                                                                                <h4><a href="#"
+                                                                                                        title="Drutick lanaeger"
+                                                                                                        target="_self">{{ Str::words($brand->products[$ip + 1]->name, 3, '...') }}</a>
+                                                                                                </h4>
+                                                                                                <div class="price">
+                                                                                                    <span
+                                                                                                        class="price-new">{{ ch_currency($brand->products[$ip + 1]->price) }}</span>
+                                                                                                </div>
+                                                                                                <div
+                                                                                                    class="button-group so-quickview cartinfo--static">
+                                                                                                    <button type="button"
+                                                                                                        class="addToCart"
+                                                                                                        title="Add to cart"
+                                                                                                        onclick="cart.add($brand->products[$ip-1]->product_code);">
+                                                                                                        <i
+                                                                                                            class="fa fa-shopping-basket"></i>
+                                                                                                        <span>Add to
+                                                                                                            cart
+                                                                                                        </span>
+                                                                                                    </button>
+                                                                                                    <button type="button"
+                                                                                                        class="wishlist btn-button"
+                                                                                                        title="Add to Wish List"
+                                                                                                        onclick="wishlist.add('60');"><i
+                                                                                                            class="fa fa-heart"></i><span></span>
+                                                                                                    </button>
+                                                                                                    <button type="button"
+                                                                                                        class="compare btn-button"
+                                                                                                        title="Compare this Product "
+                                                                                                        onclick="compare.add('60');"><i
+                                                                                                            class="fa fa-refresh"></i><span></span>
+                                                                                                    </button>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
                                                                         @endif
                                                                     @endforeach
                                                                 </div>
