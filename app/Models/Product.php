@@ -23,6 +23,12 @@ class Product extends Model
         });
     }
 
+    public function sold()
+    {
+        return OrderDetail::where('product_id', $this->id)->count();
+    }
+
+
     //relations
     public function category()
     {
@@ -43,7 +49,6 @@ class Product extends Model
     {
         return $this->morphMany(Image::class, 'imageable');
     }
-
     // boot
     public static function boot()
     {
