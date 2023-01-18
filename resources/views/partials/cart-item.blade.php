@@ -11,8 +11,7 @@
     <td class="text-center" id="item-{{ $item->product_id }}-quantity">
         {{ $item->amount }}</td>
     <td class="text-center">
-        Rp.
-        {{ number_format($item->product->price, 0, '.', ',') }}
+        {{ ch_currency($item->product->price) }}
     </td>
     <td class="text-right">
         <a href="product.html" class="fa fa-edit"></a>
