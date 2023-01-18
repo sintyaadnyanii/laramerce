@@ -1288,13 +1288,13 @@
                                                                                             class="product-item-container">
                                                                                             <div class="left-block left-b">
                                                                                                 <div class="product-image-container"
-                                                                                                    style="width: 194.8px; height: 194.8px; object-fit: cover;">
+                                                                                                    style="width: 190px; height: 190px; object-fit: cover;">
                                                                                                     <a href="#"
                                                                                                         target="_self"
                                                                                                         title="Cupim should">
                                                                                                         <img src="{{ asset($product->images->count() ? 'storage/' . $product->images->first()->src : 'dist/images/default.jpg') }}"
                                                                                                             class="img-responsive"
-                                                                                                            style="width: 194.8px; height: 194.8px; object-fit: cover;"
+                                                                                                            style="width: 190px; height: 190px; object-fit: cover;"
                                                                                                             alt="image">
                                                                                                     </a>
                                                                                                 </div>
@@ -1361,13 +1361,13 @@
                                                                                             <div class="left-block left-b">
 
                                                                                                 <div class="product-image-container"
-                                                                                                    style="width: 194.8px; height: 194.8px; object-fit: cover;">
+                                                                                                    style="width: 190px; height: 190px; object-fit: cover;">
                                                                                                     <a href="#"
                                                                                                         target="_self"
                                                                                                         title="Drutick lanaeger">
                                                                                                         <img src="{{ asset($brand->products[$loop->iteration]->images->count() ? 'storage/' . $brand->products[$loop->iteration]->images->first()->src : 'dist/images/default.jpg') }}"
                                                                                                             class="img-responsive"
-                                                                                                            style="width: 194.8px; height: 194.8px; object-fit: cover;"
+                                                                                                            style="width: 190px; height: 190px; object-fit: cover;"
                                                                                                             alt="image">
                                                                                                     </a>
                                                                                                 </div>
