@@ -1235,61 +1235,63 @@
                                     </div>
                                 </div>
                             </div>
-                            @foreach ($brands->take(3) as $item)
-                                <div class="block block_3">
-                                    <!-- Listing tabs -->
-                                    <div class="module custom-listingtab default-nav">
-                                        <div class="box-title font-ct">
-                                            <h2 class="modtitle">{{ $item->name }}</h2>
-                                        </div>
-                                        <div class="modcontent">
-                                            <div id="so_listing_tabs_1" class="so-listing-tabs first-load">
-                                                <div class="loadeding"></div>
-                                                <div class="ltabs-wrap">
-                                                    <div class="ltabs-tabs-container" data-delay="300"
-                                                        data-duration="600" data-effect="starwars" data-ajaxurl=""
-                                                        data-type_source="0" data-lg="5" data-md="4"
-                                                        data-sm="3" data-xxs="3" data-xs="1" data-margin="0">
-                                                        <!--Begin Tabs-->
-                                                        <div class="ltabs-tabs-wrap">
-                                                            <ul class="ltabs-tabs cf font-ct list-sub-cat">
-                                                                <li class="ltabs-tab tab-sel" data-category-id="11"
-                                                                    data-active-content=".items-category-11"> <span
-                                                                        class="ltabs-tab-label">Best sellers</span> </li>
-                                                            </ul>
-                                                        </div>
-                                                        <!-- End Tabs-->
+                            {{-- @foreach ($brands->take(3) as $item) --}}
+                            <div class="block block_3">
+                                <!-- Listing tabs -->
+                                <div class="module custom-listingtab default-nav">
+                                    <div class="box-title font-ct">
+                                        <h2 class="modtitle">{{ $item->name }}</h2>
+                                    </div>
+                                    <div class="modcontent">
+                                        <div id="so_listing_tabs_1" class="so-listing-tabs first-load">
+                                            <div class="loadeding"></div>
+                                            <div class="ltabs-wrap">
+                                                <div class="ltabs-tabs-container" data-delay="300" data-duration="600"
+                                                    data-effect="starwars" data-ajaxurl="" data-type_source="0"
+                                                    data-lg="5" data-md="4" data-sm="3" data-xxs="3"
+                                                    data-xs="1" data-margin="0">
+                                                    <!--Begin Tabs-->
+                                                    <div class="ltabs-tabs-wrap">
+                                                        <ul class="ltabs-tabs cf font-ct list-sub-cat">
+                                                            <li class="ltabs-tab tab-sel" data-category-id="11"
+                                                                data-active-content=".items-category-11"> <span
+                                                                    class="ltabs-tab-label">Best sellers</span> </li>
+                                                        </ul>
                                                     </div>
-                                                    <div class="wap-listing-tabs products-list grid">
-                                                        <div class="item-cat-image banners">
-                                                            <div>
-                                                                <a href="#" title="" target="_self">
-                                                                    <img class="categories-loadimage" title=""
-                                                                        alt=""
-                                                                        src="image/catalog/demo/banners/home1/6-196x540.jpg">
-                                                                </a>
-                                                            </div>
+                                                    <!-- End Tabs-->
+                                                </div>
+                                                <div class="wap-listing-tabs products-list grid">
+                                                    <div class="item-cat-image banners">
+                                                        <div>
+                                                            <a href="#" title="" target="_self">
+                                                                <img class="categories-loadimage" title=""
+                                                                    alt=""
+                                                                    src="image/catalog/demo/banners/home1/6-196x540.jpg">
+                                                            </a>
                                                         </div>
-                                                        <div class="ltabs-items-container">
-                                                            <!--Begin Items-->
-                                                            <div class="ltabs-items ltabs-items-selected items-category-11"
-                                                                data-total="16">
-                                                                <div class="ltabs-items-inner ltabs-slider">
-                                                                    @foreach ($item->products->random($item->products->count() > 12 ? 12 : $item->products->count()) as $product)
-                                                                        @if (isset($item->products[$loop->index + 1]))
+                                                    </div>
+                                                    <div class="ltabs-items-container">
+                                                        <!--Begin Items-->
+                                                        <div class="ltabs-items ltabs-items-selected items-category-11"
+                                                            data-total="16">
+                                                            <div class="ltabs-items-inner ltabs-slider">
+                                                                {{-- @foreach ($item->products->random($item->products->count() > 12 ? 12 : $item->products->count()) as $product) --}}
+                                                                @foreach ($products->random($products->count() > 12 ? 12 : $products->count()) as $item)
+                                                                    @if (isset($products[$loop->iteration]))
+                                                                        @if ($loop->index % 2 == 0)
                                                                             <div class="ltabs-item">
                                                                                 <div
                                                                                     class="item-inner product-thumb transition product-layout">
                                                                                     <div class="product-item-container">
                                                                                         <div class="left-block left-b">
-                                                                                            <div
-                                                                                                class="product-image-container">
+                                                                                            <div class="product-image-container"
+                                                                                                style="width: 194.8px; height: 194.8px; object-fit: cover;">
                                                                                                 <a href="#"
                                                                                                     target="_self"
                                                                                                     title="Cupim should">
-
-                                                                                                    <img src="{{ asset($product->images->count() ? 'storage/' . $product->images->first()->src : 'image/catalog/demo/product/300/fashion/1.jpg') }}"
+                                                                                                    <img src="{{ asset($item->images->count() ? 'storage/' . $item->images->first()->src : 'dist/images/default.jpg') }}"
                                                                                                         class="img-responsive"
+                                                                                                        style="width: 194.8px; height: 194.8px; object-fit: cover;"
                                                                                                         alt="image">
                                                                                                 </a>
                                                                                             </div>
@@ -1307,12 +1309,11 @@
                                                                                             <div class="caption">
                                                                                                 <h4><a href="#"
                                                                                                         title="Cupim should "
-                                                                                                        target="_self">{{ Str::words($product->name, 4, '...') }}
+                                                                                                        target="_self">{{ Str::words($item->name, 3, '...') }}
                                                                                                     </a></h4>
                                                                                                 <div class="price">
                                                                                                     <span
-                                                                                                        class="price-new">
-                                                                                                        {{ ch_currency($product->price) }}
+                                                                                                        class="price-new">{{ ch_currency($item->price) }}
                                                                                                     </span>
                                                                                                 </div>
                                                                                                 <div
@@ -1320,7 +1321,7 @@
                                                                                                     <button type="button"
                                                                                                         class="addToCart"
                                                                                                         title="Add to cart"
-                                                                                                        onclick="cart.add('{{ $product->product_code }} ');">
+                                                                                                        onclick="cart.add($item->product_code);">
                                                                                                         <i
                                                                                                             class="fa fa-shopping-basket"></i>
                                                                                                         <span>Add to cart
@@ -1332,7 +1333,12 @@
                                                                                                         onclick="wishlist.add('60');"><i
                                                                                                             class="fa fa-heart"></i><span></span>
                                                                                                     </button>
-
+                                                                                                    <button type="button"
+                                                                                                        class="compare btn-button"
+                                                                                                        title="Compare this Product "
+                                                                                                        onclick="compare.add('60');"><i
+                                                                                                            class="fa fa-refresh"></i><span></span>
+                                                                                                    </button>
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
@@ -1344,13 +1350,14 @@
                                                                                     <div class="product-item-container">
                                                                                         <div class="left-block left-b">
 
-                                                                                            <div
-                                                                                                class="product-image-container">
+                                                                                            <div class="product-image-container"
+                                                                                                style="width: 194.8px; height: 194.8px; object-fit: cover;">
                                                                                                 <a href="#"
                                                                                                     target="_self"
                                                                                                     title="Drutick lanaeger">
-                                                                                                    <img src="{{ asset($item->products[$loop->index + 1]->images->count() ? 'storage/' . $item->products[$loop->index + 1]->images->first()->src : 'image/catalog/demo/product/300/fashion/1.jpg') }}""
-                                                                                                        class="img-1 img-responsive"
+                                                                                                    <img src="{{ asset($products[$loop->iteration]->images->count() ? 'storage/' . $products[$loop->iteration]->images->first()->src : 'dist/images/default.jpg') }}"
+                                                                                                        class="img-responsive"
+                                                                                                        style="width: 194.8px; height: 194.8px; object-fit: cover;"
                                                                                                         alt="image">
                                                                                                 </a>
                                                                                             </div>
@@ -1367,17 +1374,17 @@
                                                                                             <div class="caption">
                                                                                                 <h4><a href="#"
                                                                                                         title="Drutick lanaeger"
-                                                                                                        target="_self">{{ Str::words($item->products[$loop->index + 1]->name, 4, '...') }}</a>
+                                                                                                        target="_self">{{ Str::words($products[$loop->iteration]->name, 3, '...') }}</a>
                                                                                                 </h4>
                                                                                                 <div class="price"> <span
-                                                                                                        class="price-new">{{ ch_currency($item->products[$loop->index + 1]->price) }}</span>
+                                                                                                        class="price-new">{{ ch_currency($products[$loop->iteration]->price) }}</span>
                                                                                                 </div>
                                                                                                 <div
                                                                                                     class="button-group so-quickview cartinfo--static">
                                                                                                     <button type="button"
                                                                                                         class="addToCart"
                                                                                                         title="Add to cart"
-                                                                                                        onclick="cart.add(' {{ $item->products[$loop->index + 1]->product_code }}');">
+                                                                                                        onclick="cart.add($products[$loop->iteration]->product_code);">
                                                                                                         <i
                                                                                                             class="fa fa-shopping-basket"></i>
                                                                                                         <span>Add to cart
@@ -1389,6 +1396,12 @@
                                                                                                         onclick="wishlist.add('60');"><i
                                                                                                             class="fa fa-heart"></i><span></span>
                                                                                                     </button>
+                                                                                                    <button type="button"
+                                                                                                        class="compare btn-button"
+                                                                                                        title="Compare this Product "
+                                                                                                        onclick="compare.add('60');"><i
+                                                                                                            class="fa fa-refresh"></i><span></span>
+                                                                                                    </button>
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
@@ -1396,717 +1409,31 @@
                                                                                 </div>
                                                                             </div>
                                                                         @endif
-                                                                    @endforeach
-                                                                    {{-- <div class="ltabs-item">
-                                                                        <div
-                                                                            class="item-inner product-thumb transition product-layout">
-                                                                            <div class="product-item-container">
-                                                                                <div class="left-block left-b">
-                                                                                    <div class="product-image-container">
-                                                                                        <a href="#" target="_self"
-                                                                                            title="Drutick lanaeger">
-                                                                                            <img src="image/catalog/demo/product/300/fashion/2.jpg"
-                                                                                                class="img-1 img-responsive"
-                                                                                                alt="image">
-                                                                                        </a>
-                                                                                    </div>
+                                                                    @endif
+                                                                @endforeach
 
-                                                                                    <!--quickview-->
-                                                                                    <a class="iframe-link btn-button quickview quickview_handler visible-lg"
-                                                                                        href="quickview.html"
-                                                                                        title="Quick view"
-                                                                                        data-fancybox-type="iframe"><i
-                                                                                            class="fa fa-eye"></i><span></span></a>
-                                                                                    <!--end quickview-->
-                                                                                </div>
-                                                                                <div class="right-block right-b">
 
-                                                                                    <div class="caption">
-                                                                                        <h4><a href="#"
-                                                                                                title="Ercitation incididunt"
-                                                                                                target="_self">Ercitat
-                                                                                                incidi</a></h4>
-                                                                                        <div class="price"> <span
-                                                                                                class="price-new">$180.00</span>
-                                                                                        </div>
-                                                                                        <div
-                                                                                            class="button-group so-quickview cartinfo--static">
-                                                                                            <button type="button"
-                                                                                                class="addToCart"
-                                                                                                title="Add to cart"
-                                                                                                onclick="cart.add('60 ');">
-                                                                                                <i
-                                                                                                    class="fa fa-shopping-basket"></i>
-                                                                                                <span>Add to cart </span>
-                                                                                            </button>
-                                                                                            <button type="button"
-                                                                                                class="wishlist btn-button"
-                                                                                                title="Add to Wish List"
-                                                                                                onclick="wishlist.add('60');"><i
-                                                                                                    class="fa fa-heart"></i><span></span>
-                                                                                            </button>
-                                                                                            <button type="button"
-                                                                                                class="compare btn-button"
-                                                                                                title="Compare this Product "
-                                                                                                onclick="compare.add('60');"><i
-                                                                                                    class="fa fa-refresh"></i><span></span>
-                                                                                            </button>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-
-                                                                        <div
-                                                                            class="item-inner product-thumb transition product-layout">
-                                                                            <div class="product-item-container">
-                                                                                <div class="left-block left-b">
-                                                                                    <div class="product-image-container">
-                                                                                        <a href="#" target="_self"
-                                                                                            title="Fatback picanha">
-                                                                                            <img src="image/catalog/demo/product/300/fashion/8.jpg"
-                                                                                                class="img-1 img-responsive"
-                                                                                                alt="image">
-                                                                                        </a>
-                                                                                    </div>
-                                                                                    <div class="box-label"> <span
-                                                                                            class="label-product label-sale">
-                                                                                            -13% </span></div>
-                                                                                    <!--quickview-->
-                                                                                    <a class="iframe-link btn-button quickview quickview_handler visible-lg"
-                                                                                        href="quickview.html"
-                                                                                        title="Quick view"
-                                                                                        data-fancybox-type="iframe"><i
-                                                                                            class="fa fa-eye"></i><span></span></a>
-                                                                                    <!--end quickview-->
-                                                                                </div>
-                                                                                <div class="right-block right-b">
-                                                                                    <div class="caption">
-                                                                                        <h4><a href="#"
-                                                                                                title="Fatback picanha"
-                                                                                                target="_self">Fatback
-                                                                                                picanha</a></h4>
-                                                                                        <div class="price"> <span
-                                                                                                class="price-new">$166.00</span>
-                                                                                            <span
-                                                                                                class="price-old">$186.00</span>
-                                                                                        </div>
-                                                                                        <div
-                                                                                            class="button-group so-quickview cartinfo--static">
-                                                                                            <button type="button"
-                                                                                                class="addToCart"
-                                                                                                title="Add to cart"
-                                                                                                onclick="cart.add('60 ');">
-                                                                                                <i
-                                                                                                    class="fa fa-shopping-basket"></i>
-                                                                                                <span>Add to cart </span>
-                                                                                            </button>
-                                                                                            <button type="button"
-                                                                                                class="wishlist btn-button"
-                                                                                                title="Add to Wish List"
-                                                                                                onclick="wishlist.add('60');"><i
-                                                                                                    class="fa fa-heart"></i><span></span>
-                                                                                            </button>
-                                                                                            <button type="button"
-                                                                                                class="compare btn-button"
-                                                                                                title="Compare this Product "
-                                                                                                onclick="compare.add('60');"><i
-                                                                                                    class="fa fa-refresh"></i><span></span>
-                                                                                            </button>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <!-- item listing tab -->
-                                                                    <div class="ltabs-item">
-                                                                        <div
-                                                                            class="item-inner product-thumb transition product-layout">
-                                                                            <div class="product-item-container">
-                                                                                <div class="left-block left-b">
-                                                                                    <div
-                                                                                        class="product-card__gallery product-card__left">
-                                                                                        <div class="item-img"
-                                                                                            data-src="image/catalog/demo/product/300/fashion/5-2.jpg">
-                                                                                            <img src="image/catalog/demo/product/80/fashion/5-2.jpg"
-                                                                                                alt="image">
-                                                                                        </div>
-                                                                                        <div class="item-img thumb-active"
-                                                                                            data-src="image/catalog/demo/product/300/fashion/5-3.jpg">
-                                                                                            <img src="image/catalog/demo/product/80/fashion/5-3.jpg"
-                                                                                                alt="image">
-                                                                                        </div>
-                                                                                        <div class="item-img"
-                                                                                            data-src="image/catalog/demo/product/300/fashion/5-4.jpg">
-                                                                                            <img src="image/catalog/demo/product/80/fashion/5-4.jpg"
-                                                                                                alt="image">
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="product-image-container">
-                                                                                        <a href="#" target="_self"
-                                                                                            title="Chicken swinesha">
-                                                                                            <img src="image/catalog/demo/product/300/fashion/5-2.jpg"
-                                                                                                class="img-1 img-responsive"
-                                                                                                alt="image">
-                                                                                        </a>
-                                                                                    </div>
-                                                                                    <div class="box-label"> <span
-                                                                                            class="label-product label-sale">
-                                                                                            -16% </span></div>
-                                                                                    <!--countdown box-->
-                                                                                    <div class="countdown_box hidden-xs">
-                                                                                        <div class="countdown_inner">
-                                                                                            <div class="item-timer">
-                                                                                                <div
-                                                                                                    class="defaultCountdown-30">
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <!--end countdown box-->
-                                                                                    <!--quickview-->
-                                                                                    <a class="iframe-link btn-button quickview quickview_handler visible-lg"
-                                                                                        href="quickview.html"
-                                                                                        title="Quick view"
-                                                                                        data-fancybox-type="iframe"><i
-                                                                                            class="fa fa-eye"></i><span></span></a>
-                                                                                    <!--end quickview-->
-                                                                                </div>
-                                                                                <div class="right-block right-b">
-                                                                                    <ul class="colorswatch">
-                                                                                        <li class="item-img"
-                                                                                            data-src="image/catalog/demo/product/300/fashion/5-3.jpg">
-                                                                                            <a href="javascript:void(0);"
-                                                                                                title="green"><img
-                                                                                                    src="image/demo/colors/green.jpg"
-                                                                                                    alt="image"></a>
-                                                                                        </li>
-                                                                                        <li class="item-img active"
-                                                                                            data-src="image/catalog/demo/product/300/fashion/5-2.jpg">
-                                                                                            <a href="javascript:void(0);"
-                                                                                                title="red"><img
-                                                                                                    src="image/demo/colors/red.jpg"
-                                                                                                    alt="image"></a>
-                                                                                        </li>
-                                                                                        <li class="item-img"
-                                                                                            data-src="image/catalog/demo/product/300/fashion/5-4.jpg">
-                                                                                            <a href="javascript:void(0);"
-                                                                                                title="gray"><img
-                                                                                                    src="image/demo/colors/gray.jpg"
-                                                                                                    alt="image"></a>
-                                                                                        </li>
-
-                                                                                    </ul>
-                                                                                    <div class="caption">
-                                                                                        <h4><a href="#"
-                                                                                                title="Bicola sausagop"
-                                                                                                target="_self">Bicola
-                                                                                                sausagop</a></h4>
-                                                                                        <div class="price"> <span
-                                                                                                class="price-new">$120.00</span>
-                                                                                            <span
-                                                                                                class="price-old">$160.00</span>
-                                                                                        </div>
-                                                                                        <div
-                                                                                            class="button-group so-quickview cartinfo--static">
-                                                                                            <button type="button"
-                                                                                                class="addToCart"
-                                                                                                title="Add to cart"
-                                                                                                onclick="cart.add('60 ');">
-                                                                                                <i
-                                                                                                    class="fa fa-shopping-basket"></i>
-                                                                                                <span>Add to cart </span>
-                                                                                            </button>
-                                                                                            <button type="button"
-                                                                                                class="wishlist btn-button"
-                                                                                                title="Add to Wish List"
-                                                                                                onclick="wishlist.add('60');"><i
-                                                                                                    class="fa fa-heart"></i><span></span>
-                                                                                            </button>
-                                                                                            <button type="button"
-                                                                                                class="compare btn-button"
-                                                                                                title="Compare this Product "
-                                                                                                onclick="compare.add('60');"><i
-                                                                                                    class="fa fa-refresh"></i><span></span>
-                                                                                            </button>
-                                                                                        </div>
-
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-
-                                                                        <div
-                                                                            class="item-inner product-thumb transition product-layout">
-                                                                            <div class="product-item-container">
-                                                                                <div class="left-block left-b">
-                                                                                    <div class="product-image-container">
-                                                                                        <a href="#" target="_self"
-                                                                                            title="Doenpuis consuat ">
-                                                                                            <img src="image/catalog/demo/product/300/fashion/11.jpg"
-                                                                                                class="img-1 img-responsive"
-                                                                                                alt="image">
-
-                                                                                        </a>
-                                                                                    </div>
-                                                                                    <div class="box-label"> <span
-                                                                                            class="label-product label-sale">
-                                                                                            -13% </span><span
-                                                                                            class="label-product label-new">
-                                                                                            New </span></div>
-                                                                                    <!--quickview-->
-                                                                                    <a class="iframe-link btn-button quickview quickview_handler visible-lg"
-                                                                                        href="quickview.html"
-                                                                                        title="Quick view"
-                                                                                        data-fancybox-type="iframe"><i
-                                                                                            class="fa fa-eye"></i><span></span></a>
-                                                                                    <!--end quickview-->
-                                                                                </div>
-                                                                                <div class="right-block right-b">
-
-                                                                                    <div class="caption">
-                                                                                        <h4><a href="#"
-                                                                                                title="Doenpuis consuat "
-                                                                                                target="_self">Doenpuis
-                                                                                                consuat </a></h4>
-                                                                                        <div class="price"> <span
-                                                                                                class="price-new">$66.00</span>
-                                                                                            <span
-                                                                                                class="price-old">$76.00</span>
-                                                                                        </div>
-                                                                                        <div
-                                                                                            class="button-group so-quickview cartinfo--static">
-                                                                                            <button type="button"
-                                                                                                class="addToCart"
-                                                                                                title="Add to cart"
-                                                                                                onclick="cart.add('60 ');">
-                                                                                                <i
-                                                                                                    class="fa fa-shopping-basket"></i>
-                                                                                                <span>Add to cart </span>
-                                                                                            </button>
-                                                                                            <button type="button"
-                                                                                                class="wishlist btn-button"
-                                                                                                title="Add to Wish List"
-                                                                                                onclick="wishlist.add('60');"><i
-                                                                                                    class="fa fa-heart"></i><span></span>
-                                                                                            </button>
-                                                                                            <button type="button"
-                                                                                                class="compare btn-button"
-                                                                                                title="Compare this Product "
-                                                                                                onclick="compare.add('60');"><i
-                                                                                                    class="fa fa-refresh"></i><span></span>
-                                                                                            </button>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div> --}}
-
-                                                                    <!-- end item listing tab -->
-                                                                    {{-- <div class="ltabs-item">
-                                                                        <div
-                                                                            class="item-inner product-thumb transition product-layout">
-                                                                            <div class="product-item-container">
-                                                                                <div class="left-block left-b">
-                                                                                    <div class="product-image-container">
-                                                                                        <a href="#" target="_self"
-                                                                                            title="Jalapeno dolore">
-                                                                                            <img src="image/catalog/demo/product/300/fashion/3.jpg"
-                                                                                                class="img-1 img-responsive"
-                                                                                                alt="image">
-                                                                                        </a>
-                                                                                    </div>
-                                                                                    <div class="box-label"><span
-                                                                                            class="label-product label-new">
-                                                                                            New </span></div>
-                                                                                    <!--quickview-->
-                                                                                    <a class="iframe-link btn-button quickview quickview_handler visible-lg"
-                                                                                        href="quickview.html"
-                                                                                        title="Quick view"
-                                                                                        data-fancybox-type="iframe"><i
-                                                                                            class="fa fa-eye"></i><span></span></a>
-                                                                                    <!--end quickview-->
-                                                                                </div>
-                                                                                <div class="right-block right-b">
-
-                                                                                    <div class="caption">
-                                                                                        <h4><a href="#"
-                                                                                                title="Jalapeno dolore"
-                                                                                                target="_self">Jalapeno
-                                                                                                dolore</a></h4>
-                                                                                        <div class="price"> <span
-                                                                                                class="price-new">$60.00</span>
-                                                                                        </div>
-                                                                                        <div
-                                                                                            class="button-group so-quickview cartinfo--static">
-                                                                                            <button type="button"
-                                                                                                class="addToCart"
-                                                                                                title="Add to cart"
-                                                                                                onclick="cart.add('60 ');">
-                                                                                                <i
-                                                                                                    class="fa fa-shopping-basket"></i>
-                                                                                                <span>Add to cart </span>
-                                                                                            </button>
-                                                                                            <button type="button"
-                                                                                                class="wishlist btn-button"
-                                                                                                title="Add to Wish List"
-                                                                                                onclick="wishlist.add('60');"><i
-                                                                                                    class="fa fa-heart"></i><span></span>
-                                                                                            </button>
-                                                                                            <button type="button"
-                                                                                                class="compare btn-button"
-                                                                                                title="Compare this Product "
-                                                                                                onclick="compare.add('60');"><i
-                                                                                                    class="fa fa-refresh"></i><span></span>
-                                                                                            </button>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div
-                                                                            class="item-inner product-thumb transition product-layout">
-                                                                            <div class="product-item-container">
-                                                                                <div class="left-block left-b">
-
-                                                                                    <div class="product-image-container">
-                                                                                        <a href="#" target="_self"
-                                                                                            title="Pariatur porking">
-                                                                                            <img src="image/catalog/demo/product/300/fashion/9.jpg"
-                                                                                                class="img-1 img-responsive"
-                                                                                                alt="image">
-                                                                                        </a>
-                                                                                    </div>
-                                                                                    <!--quickview-->
-                                                                                    <a class="iframe-link btn-button quickview quickview_handler visible-lg"
-                                                                                        href="quickview.html"
-                                                                                        title="Quick view"
-                                                                                        data-fancybox-type="iframe"><i
-                                                                                            class="fa fa-eye"></i><span></span></a>
-                                                                                    <!--end quickview-->
-                                                                                </div>
-                                                                                <div class="right-block right-b">
-
-                                                                                    <div class="caption">
-                                                                                        <h4><a href="#"
-                                                                                                title="Pariatur porking"
-                                                                                                target="_self">Pariatur
-                                                                                                porking</a></h4>
-                                                                                        <div class="price"> <span
-                                                                                                class="price-new">$78.00</span>
-                                                                                        </div>
-                                                                                        <div
-                                                                                            class="button-group so-quickview cartinfo--static">
-                                                                                            <button type="button"
-                                                                                                class="addToCart"
-                                                                                                title="Add to cart"
-                                                                                                onclick="cart.add('60 ');">
-                                                                                                <i
-                                                                                                    class="fa fa-shopping-basket"></i>
-                                                                                                <span>Add to cart </span>
-                                                                                            </button>
-                                                                                            <button type="button"
-                                                                                                class="wishlist btn-button"
-                                                                                                title="Add to Wish List"
-                                                                                                onclick="wishlist.add('60');"><i
-                                                                                                    class="fa fa-heart"></i><span></span>
-                                                                                            </button>
-                                                                                            <button type="button"
-                                                                                                class="compare btn-button"
-                                                                                                title="Compare this Product "
-                                                                                                onclick="compare.add('60');"><i
-                                                                                                    class="fa fa-refresh"></i><span></span>
-                                                                                            </button>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div> --}}
-
-                                                                    {{-- <div class="ltabs-item">
-                                                                        <div
-                                                                            class="item-inner product-thumb transition product-layout">
-                                                                            <div class="product-item-container">
-                                                                                <div class="left-block left-b">
-
-                                                                                    <div class="product-image-container">
-                                                                                        <a href="#" target="_self"
-                                                                                            title="Ullamco occaeca">
-                                                                                            <img src="image/catalog/demo/product/300/fashion/4.jpg"
-                                                                                                class="img-1 img-responsive"
-                                                                                                alt="image">
-                                                                                        </a>
-                                                                                    </div>
-                                                                                    <div
-                                                                                        class="label-stock label label-success ">
-                                                                                        Free Order</div>
-                                                                                    <div class="box-label"> <span
-                                                                                            class="label-product label-sale">
-                                                                                            -13% </span></div>
-                                                                                    <!--quickview-->
-                                                                                    <a class="iframe-link btn-button quickview quickview_handler visible-lg"
-                                                                                        href="quickview.html"
-                                                                                        title="Quick view"
-                                                                                        data-fancybox-type="iframe"><i
-                                                                                            class="fa fa-eye"></i><span></span></a>
-                                                                                    <!--end quickview-->
-                                                                                </div>
-                                                                                <div class="right-block right-b">
-
-                                                                                    <div class="caption">
-                                                                                        <h4><a href="#"
-                                                                                                title="Ullamco occaeca"
-                                                                                                target="_self">Ullamco
-                                                                                                occaeca</a></h4>
-
-                                                                                        <div class="price"> <span
-                                                                                                class="price-new">$66.00</span>
-                                                                                            <span
-                                                                                                class="price-old">$76.00</span>
-                                                                                        </div>
-
-                                                                                        <div
-                                                                                            class="button-group so-quickview cartinfo--static">
-                                                                                            <button type="button"
-                                                                                                class="addToCart"
-                                                                                                title="Add to cart"
-                                                                                                onclick="cart.add('60 ');">
-                                                                                                <i
-                                                                                                    class="fa fa-shopping-basket"></i>
-                                                                                                <span>Add to cart </span>
-                                                                                            </button>
-                                                                                            <button type="button"
-                                                                                                class="wishlist btn-button"
-                                                                                                title="Add to Wish List"
-                                                                                                onclick="wishlist.add('60');"><i
-                                                                                                    class="fa fa-heart"></i><span></span>
-                                                                                            </button>
-                                                                                            <button type="button"
-                                                                                                class="compare btn-button"
-                                                                                                title="Compare this Product "
-                                                                                                onclick="compare.add('60');"><i
-                                                                                                    class="fa fa-refresh"></i><span></span>
-                                                                                            </button>
-                                                                                        </div>
-
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div
-                                                                            class="item-inner product-thumb transition product-layout">
-                                                                            <div class="product-item-container">
-                                                                                <div class="left-block left-b">
-                                                                                    <div class="product-image-container">
-                                                                                        <a href="#" target="_self"
-                                                                                            title="Doenpuis consuat">
-                                                                                            <img src="image/catalog/demo/product/300/fashion/10.jpg"
-                                                                                                class="img-1 img-responsive"
-                                                                                                alt="image">
-                                                                                        </a>
-                                                                                    </div>
-                                                                                    <div class="box-label"> <span
-                                                                                            class="label-product label-sale">
-                                                                                            -9% </span><span
-                                                                                            class="label-product label-new">
-                                                                                            New </span></div>
-                                                                                    <!--quickview-->
-                                                                                    <a class="iframe-link btn-button quickview quickview_handler visible-lg"
-                                                                                        href="quickview.html"
-                                                                                        title="Quick view"
-                                                                                        data-fancybox-type="iframe"><i
-                                                                                            class="fa fa-eye"></i><span></span></a>
-                                                                                    <!--end quickview-->
-                                                                                </div>
-                                                                                <div class="right-block right-b">
-
-                                                                                    <div class="caption">
-                                                                                        <h4><a href="#"
-                                                                                                title="Doenpuis consuat"
-                                                                                                target="_self">Doenpuis
-                                                                                                consuat</a></h4>
-
-                                                                                        <div class="price"> <span
-                                                                                                class="price-new">$86.00</span>
-                                                                                            <span
-                                                                                                class="price-old">$96.00</span>
-                                                                                        </div>
-                                                                                        <div
-                                                                                            class="button-group so-quickview cartinfo--static">
-                                                                                            <button type="button"
-                                                                                                class="addToCart"
-                                                                                                title="Add to cart"
-                                                                                                onclick="cart.add('60 ');">
-                                                                                                <i
-                                                                                                    class="fa fa-shopping-basket"></i>
-                                                                                                <span>Add to cart </span>
-                                                                                            </button>
-                                                                                            <button type="button"
-                                                                                                class="wishlist btn-button"
-                                                                                                title="Add to Wish List"
-                                                                                                onclick="wishlist.add('60');"><i
-                                                                                                    class="fa fa-heart"></i><span></span>
-                                                                                            </button>
-                                                                                            <button type="button"
-                                                                                                class="compare btn-button"
-                                                                                                title="Compare this Product "
-                                                                                                onclick="compare.add('60');"><i
-                                                                                                    class="fa fa-refresh"></i><span></span>
-                                                                                            </button>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div> --}}
-
-                                                                    {{-- <div class="ltabs-item">
-                                                                        <div
-                                                                            class="item-inner product-thumb transition product-layout">
-                                                                            <div class="product-item-container">
-                                                                                <div class="left-block left-b">
-                                                                                    <div class="product-image-container">
-                                                                                        <a href="#" target="_self"
-                                                                                            title="dolore Jalapeno">
-                                                                                            <img src="image/catalog/demo/product/300/fashion/6.jpg"
-                                                                                                class="img-1 img-responsive"
-                                                                                                alt="image">
-                                                                                        </a>
-                                                                                    </div>
-                                                                                    <!--quickview-->
-                                                                                    <a class="iframe-link btn-button quickview quickview_handler visible-lg"
-                                                                                        href="quickview.html"
-                                                                                        title="Quick view"
-                                                                                        data-fancybox-type="iframe"><i
-                                                                                            class="fa fa-eye"></i><span></span></a>
-                                                                                    <!--end quickview-->
-                                                                                </div>
-                                                                                <div class="right-block right-b">
-
-                                                                                    <div class="caption">
-                                                                                        <h4><a href="#"
-                                                                                                title="Dolore Jalapeno"
-                                                                                                target="_self">Dolore
-                                                                                                Jalapeno</a></h4>
-                                                                                        <div class="price"> <span
-                                                                                                class="price-new">$98.00</span>
-                                                                                        </div>
-                                                                                        <div
-                                                                                            class="button-group so-quickview cartinfo--static">
-                                                                                            <button type="button"
-                                                                                                class="addToCart"
-                                                                                                title="Add to cart"
-                                                                                                onclick="cart.add('60 ');">
-                                                                                                <i
-                                                                                                    class="fa fa-shopping-basket"></i>
-                                                                                                <span>Add to cart </span>
-                                                                                            </button>
-                                                                                            <button type="button"
-                                                                                                class="wishlist btn-button"
-                                                                                                title="Add to Wish List"
-                                                                                                onclick="wishlist.add('60');"><i
-                                                                                                    class="fa fa-heart"></i><span></span>
-                                                                                            </button>
-                                                                                            <button type="button"
-                                                                                                class="compare btn-button"
-                                                                                                title="Compare this Product "
-                                                                                                onclick="compare.add('60');"><i
-                                                                                                    class="fa fa-refresh"></i><span></span>
-                                                                                            </button>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-
-                                                                        <div
-                                                                            class="item-inner product-thumb transition product-layout">
-                                                                            <div class="product-item-container">
-                                                                                <div class="left-block left-b">
-                                                                                    <div class="product-image-container">
-                                                                                        <a href="#" target="_self"
-                                                                                            title="Mapicola incididuv">
-                                                                                            <img src="image/catalog/demo/product/300/fashion/12.jpg"
-                                                                                                class="img-1 img-responsive"
-                                                                                                alt="image">
-                                                                                        </a>
-                                                                                    </div>
-                                                                                    <div class="box-label"><span
-                                                                                            class="label-product label-new">
-                                                                                            New </span></div>
-                                                                                    <!--quickview-->
-                                                                                    <a class="iframe-link btn-button quickview quickview_handler visible-lg"
-                                                                                        href="quickview.html"
-                                                                                        title="Quick view"
-                                                                                        data-fancybox-type="iframe"><i
-                                                                                            class="fa fa-eye"></i><span></span></a>
-                                                                                    <!--end quickview-->
-                                                                                </div>
-                                                                                <div class="right-block right-b">
-
-                                                                                    <div class="caption">
-                                                                                        <h4><a href="#"
-                                                                                                title="Mapicola incididuv"
-                                                                                                target="_self">Mapicola
-                                                                                                incididuv</a></h4>
-                                                                                        <div class="price"> <span
-                                                                                                class="price-new">$180.00</span>
-                                                                                        </div>
-                                                                                        <div
-                                                                                            class="button-group so-quickview cartinfo--static">
-                                                                                            <button type="button"
-                                                                                                class="addToCart"
-                                                                                                title="Add to cart"
-                                                                                                onclick="cart.add('60 ');">
-                                                                                                <i
-                                                                                                    class="fa fa-shopping-basket"></i>
-                                                                                                <span>Add to cart </span>
-                                                                                            </button>
-                                                                                            <button type="button"
-                                                                                                class="wishlist btn-button"
-                                                                                                title="Add to Wish List"
-                                                                                                onclick="wishlist.add('60');"><i
-                                                                                                    class="fa fa-heart"></i><span></span>
-                                                                                            </button>
-                                                                                            <button type="button"
-                                                                                                class="compare btn-button"
-                                                                                                title="Compare this Product "
-                                                                                                onclick="compare.add('60');"><i
-                                                                                                    class="fa fa-refresh"></i><span></span>
-                                                                                            </button>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div> --}}
-
-                                                                </div>
 
                                                             </div>
-                                                            <div class="ltabs-items items-category-12 grid"
-                                                                data-total="16">
-                                                                <div class="ltabs-loading"></div>
 
-                                                            </div>
-                                                            <div class="ltabs-items  items-category-13 grid"
-                                                                data-total="16">
-                                                                <div class="ltabs-loading"></div>
-                                                            </div>
-                                                            <!--End Items-->
                                                         </div>
+                                                        <div class="ltabs-items items-category-12 grid" data-total="16">
+                                                            <div class="ltabs-loading"></div>
+
+                                                        </div>
+                                                        <div class="ltabs-items  items-category-13 grid" data-total="16">
+                                                            <div class="ltabs-loading"></div>
+                                                        </div>
+                                                        <!--End Items-->
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- end Listing tabs -->
                                 </div>
-                            @endforeach
+                                <!-- end Listing tabs -->
+                            </div>
+                            {{-- @endforeach --}}
                             <div class="block block_6">
                                 <div class="banners">
                                     <div>
