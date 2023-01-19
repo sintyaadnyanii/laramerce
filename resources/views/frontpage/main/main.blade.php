@@ -96,585 +96,149 @@
                                             <h2 class="modtitle font-ct"><span>Today Deals</span></h2>
                                             <div class="modcontent">
                                                 <div class="slider slider-img slider-single">
-                                                    <div class="slick-slide" data-slick-index="1">
-                                                        <div class="product-item">
-                                                            <div class="product-item-container">
-                                                                <div class="left-block">
-                                                                    <div class="product-image-container second_img">
-                                                                        <a href="#" target="_self"
-                                                                            title="Pastrami bacon">
-                                                                            <img src="image/catalog/demo/product/300/1.jpg"
-                                                                                class="img-1 img-responsive"
-                                                                                alt="Pastrami bacon">
-                                                                        </a>
-                                                                    </div>
-                                                                    <div class="box-label">
-                                                                        <span class="label-product label-sale">-20%</span>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="right-block">
-                                                                    <div class="caption">
-                                                                        <h4><a href="#" target="_self"
-                                                                                title="Deserunt mollitia"
-                                                                                tabindex="0">Deserunt
-                                                                                mollitia</a></h4>
-                                                                        <div class="rating">
-                                                                            <span class="fa fa-stack"><i
-                                                                                    class="fa fa-star fa-stack-2x"></i><i
-                                                                                    class="fa fa-star-o fa-stack-2x"></i></span>
-                                                                            <span class="fa fa-stack"><i
-                                                                                    class="fa fa-star fa-stack-2x"></i><i
-                                                                                    class="fa fa-star-o fa-stack-2x"></i></span>
-                                                                            <span class="fa fa-stack"><i
-                                                                                    class="fa fa-star fa-stack-2x"></i><i
-                                                                                    class="fa fa-star-o fa-stack-2x"></i></span>
-                                                                            <span class="fa fa-stack"><i
-                                                                                    class="fa fa-star fa-stack-2x"></i><i
-                                                                                    class="fa fa-star-o fa-stack-2x"></i></span>
-                                                                            <span class="fa fa-stack"><i
-                                                                                    class="fa fa-star-o fa-stack-2x"></i></span>
+                                                    @forelse ($products->shuffle() as $item)
+                                                        <div class="slick-slide" data-slick-index="1">
+                                                            <div class="product-item">
+                                                                <div class="product-item-container">
+                                                                    <div class="left-block">
+                                                                        <div class="product-image-container second_img">
+                                                                            <a href="#" target="_self"
+                                                                                title="{{ $item->name }}">
+                                                                                <img src="{{ asset($item->images->count() ? 'storage/' . $item->images->first()->src : 'image/catalog/demo/product/80/8.jpg') }}"
+                                                                                    class="img-1 img-responsive"
+                                                                                    width="300" height="300"
+                                                                                    style="object-fit: cover; object-position: center;"
+                                                                                    alt="{{ $item->name }}">
+                                                                            </a>
                                                                         </div>
-                                                                        <p class="des_deal">
-                                                                            The 30-inch Apple Cinema HD Display delivers an
-                                                                            amazing 2560 x 1600 pixel resolution. Designed
-                                                                            specifically for the creative professional, this
-                                                                            dis..</p>
-                                                                        <p class="price font-ct">
-                                                                            <span class="price-new">$98.00</span>
-                                                                            <span class="price-old">$122.00</span>
-                                                                        </p>
-                                                                        <!--countdown box-->
-                                                                        <div class="item-time-w">
-                                                                            <div class="item-time">
-                                                                                <div class="item-timer">
-                                                                                    <div class="defaultCountdown-30"></div>
+                                                                        <div class="box-label">
+                                                                            <span
+                                                                                class="label-product label-sale">-20%</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="right-block">
+                                                                        <div class="caption">
+                                                                            <h4><a href="#" target="_self"
+                                                                                    title="Deserunt mollitia"
+                                                                                    tabindex="0">{{ $item->name }}</a>
+                                                                            </h4>
+                                                                            <div class="rating">
+                                                                                <span class="fa fa-stack"><i
+                                                                                        class="fa fa-star fa-stack-2x"></i><i
+                                                                                        class="fa fa-star-o fa-stack-2x"></i></span>
+                                                                                <span class="fa fa-stack"><i
+                                                                                        class="fa fa-star fa-stack-2x"></i><i
+                                                                                        class="fa fa-star-o fa-stack-2x"></i></span>
+                                                                                <span class="fa fa-stack"><i
+                                                                                        class="fa fa-star fa-stack-2x"></i><i
+                                                                                        class="fa fa-star-o fa-stack-2x"></i></span>
+                                                                                <span class="fa fa-stack"><i
+                                                                                        class="fa fa-star fa-stack-2x"></i><i
+                                                                                        class="fa fa-star-o fa-stack-2x"></i></span>
+                                                                                <span class="fa fa-stack"><i
+                                                                                        class="fa fa-star-o fa-stack-2x"></i></span>
+                                                                            </div>
+                                                                            <p class="des_deal">
+                                                                                {!! $item->description !!}</p>
+                                                                            <p class="price font-ct">
+                                                                                <span
+                                                                                    class="price-new">{{ ch_currency($item->price) }}</span>
+                                                                                {{-- <span class="price-old">$122.00</span> --}}
+                                                                            </p>
+                                                                            <!--countdown box-->
+                                                                            <div class="item-time-w">
+                                                                                <div class="item-time">
+                                                                                    <div class="item-timer">
+                                                                                        <div class="defaultCountdown-30">
+                                                                                        </div>
+                                                                                    </div>
                                                                                 </div>
                                                                             </div>
+                                                                            <!--end countdown box-->
                                                                         </div>
-                                                                        <!--end countdown box-->
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="slick-slide" data-slick-index="2">
-                                                        <div class="product-item">
-                                                            <div class="product-item-container">
-                                                                <div class="left-block">
-                                                                    <div class="product-image-container second_img">
-                                                                        <a href="#" target="_self"
-                                                                            title="Pastrami bacon">
-                                                                            <img src="image/catalog/demo/product/300/2.jpg"
-                                                                                class="img-1 img-responsive"
-                                                                                alt="Pastrami bacon">
+                                                    @empty
+                                                        <div class="slick-slide" data-slick-index="1">
+                                                            <div class="product-item">
+                                                                <div class="product-item-container">
+                                                                    <div class="left-block">
+                                                                        <div class="product-image-container second_img">
+                                                                            <a href="#" target="_self"
+                                                                                title="Pastrami bacon">
+                                                                                <img src="image/catalog/demo/product/300/1.jpg"
+                                                                                    class="img-1 img-responsive"
+                                                                                    alt="Pastrami bacon">
+                                                                            </a>
+                                                                        </div>
+                                                                        <div class="box-label">
+                                                                            <span
+                                                                                class="label-product label-sale">-20%</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="right-block">
+                                                                        <div class="caption">
+                                                                            <h4><a href="#" target="_self"
+                                                                                    title="Deserunt mollitia"
+                                                                                    tabindex="0">No Data</a></h4>
+                                                                            <div class="rating">
+                                                                                <span class="fa fa-stack"><i
+                                                                                        class="fa fa-star fa-stack-2x"></i><i
+                                                                                        class="fa fa-star-o fa-stack-2x"></i></span>
+                                                                                <span class="fa fa-stack"><i
+                                                                                        class="fa fa-star fa-stack-2x"></i><i
+                                                                                        class="fa fa-star-o fa-stack-2x"></i></span>
+                                                                                <span class="fa fa-stack"><i
+                                                                                        class="fa fa-star fa-stack-2x"></i><i
+                                                                                        class="fa fa-star-o fa-stack-2x"></i></span>
+                                                                                <span class="fa fa-stack"><i
+                                                                                        class="fa fa-star fa-stack-2x"></i><i
+                                                                                        class="fa fa-star-o fa-stack-2x"></i></span>
+                                                                                <span class="fa fa-stack"><i
+                                                                                        class="fa fa-star-o fa-stack-2x"></i></span>
+                                                                            </div>
+                                                                            <p class="des_deal">
+                                                                                No Data</p>
+                                                                            <p class="price font-ct">
+                                                                                <span class="price-new">$0</span>
+                                                                                {{-- <span class="price-old">$122.00</span> --}}
+                                                                            </p>
+                                                                            <!--countdown box-->
+                                                                            <div class="item-time-w">
+                                                                                <div class="item-time">
+                                                                                    <div class="item-timer">
+                                                                                        <div class="defaultCountdown-30">
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <!--end countdown box-->
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    @endforelse
 
-                                                                        </a>
-                                                                    </div>
-                                                                    <div class="box-label">
-                                                                        <span class="label-product label-sale">-18%</span>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="right-block">
-                                                                    <div class="caption">
-                                                                        <h4><a href="#" target="_self"
-                                                                                title="Deserunt mollitia"
-                                                                                tabindex="0">Cuid
-                                                                                densinteu</a></h4>
-                                                                        <div class="rating">
-                                                                            <span class="fa fa-stack"><i
-                                                                                    class="fa fa-star fa-stack-2x"></i><i
-                                                                                    class="fa fa-star-o fa-stack-2x"></i></span>
-                                                                            <span class="fa fa-stack"><i
-                                                                                    class="fa fa-star fa-stack-2x"></i><i
-                                                                                    class="fa fa-star-o fa-stack-2x"></i></span>
-                                                                            <span class="fa fa-stack"><i
-                                                                                    class="fa fa-star fa-stack-2x"></i><i
-                                                                                    class="fa fa-star-o fa-stack-2x"></i></span>
-                                                                            <span class="fa fa-stack"><i
-                                                                                    class="fa fa-star fa-stack-2x"></i><i
-                                                                                    class="fa fa-star-o fa-stack-2x"></i></span>
-                                                                            <span class="fa fa-stack"><i
-                                                                                    class="fa fa-star-o fa-stack-2x"></i></span>
-                                                                        </div>
-                                                                        <p class="des_deal">
-                                                                            The 30-inch Apple Cinema HD Display delivers an
-                                                                            amazing 2560 x 1600 pixel resolution. Designed
-                                                                            specifically for the creative professional, this
-                                                                            dis..</p>
-                                                                        <p class="price font-ct">
-                                                                            <span class="price-new">$198.00</span>
-                                                                            <span class="price-old">$222.00</span>
-                                                                        </p>
-                                                                        <!--countdown box-->
-                                                                        <div class="item-time-w">
-                                                                            <div class="item-time">
-                                                                                <div class="item-timer">
-                                                                                    <div class="defaultCountdown-30">
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <!--end countdown box-->
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="slick-slide" data-slick-index="3">
-                                                        <div class="product-item">
-                                                            <div class="product-item-container">
-                                                                <div class="left-block">
-                                                                    <div class="product-image-container second_img">
-                                                                        <a href="#" target="_self"
-                                                                            title="Pastrami bacon">
-                                                                            <img src="image/catalog/demo/product/300/3.jpg"
-                                                                                class="img-1 img-responsive"
-                                                                                alt="Pastrami bacon">
-                                                                        </a>
-                                                                    </div>
-                                                                    <div class="box-label">
-                                                                        <span class="label-product label-sale">-10%</span>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="right-block">
-                                                                    <div class="caption">
-                                                                        <h4><a href="#" target="_self"
-                                                                                title="Deserunt mollitia"
-                                                                                tabindex="0">Dail
-                                                                                mirentukan</a></h4>
-                                                                        <div class="rating">
-                                                                            <span class="fa fa-stack"><i
-                                                                                    class="fa fa-star fa-stack-2x"></i><i
-                                                                                    class="fa fa-star-o fa-stack-2x"></i></span>
-                                                                            <span class="fa fa-stack"><i
-                                                                                    class="fa fa-star fa-stack-2x"></i><i
-                                                                                    class="fa fa-star-o fa-stack-2x"></i></span>
-                                                                            <span class="fa fa-stack"><i
-                                                                                    class="fa fa-star fa-stack-2x"></i><i
-                                                                                    class="fa fa-star-o fa-stack-2x"></i></span>
-                                                                            <span class="fa fa-stack"><i
-                                                                                    class="fa fa-star fa-stack-2x"></i><i
-                                                                                    class="fa fa-star-o fa-stack-2x"></i></span>
-                                                                            <span class="fa fa-stack"><i
-                                                                                    class="fa fa-star-o fa-stack-2x"></i></span>
-                                                                        </div>
-                                                                        <p class="des_deal">
-                                                                            The 30-inch Apple Cinema HD Display delivers an
-                                                                            amazing 2560 x 1600 pixel resolution. Designed
-                                                                            specifically for the creative professional, this
-                                                                            dis..</p>
-                                                                        <p class="price font-ct">
-                                                                            <span class="price-new">$100.00</span>
-                                                                            <span class="price-old">$110.00</span>
-                                                                        </p>
-                                                                        <!--countdown box-->
-                                                                        <div class="item-time-w">
-                                                                            <div class="item-time">
-                                                                                <div class="item-timer">
-                                                                                    <div class="defaultCountdown-30">
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <!--end countdown box-->
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="slick-slide" data-slick-index="4">
-                                                        <div class="product-item">
-                                                            <div class="product-item-container">
-                                                                <div class="left-block">
-                                                                    <div class="product-image-container second_img">
-                                                                        <a href="#" target="_self"
-                                                                            title="Pastrami bacon">
-                                                                            <img src="image/catalog/demo/product/300/4.jpg"
-                                                                                class="img-1 img-responsive"
-                                                                                alt="Pastrami bacon">
-                                                                        </a>
-                                                                    </div>
-                                                                    <div class="box-label">
-                                                                        <span class="label-product label-sale">-15%</span>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="right-block">
-                                                                    <div class="caption">
-                                                                        <h4><a href="#" target="_self"
-                                                                                title="Deserunt mollitia"
-                                                                                tabindex="0">Salmon
-                                                                                Sokara</a></h4>
-                                                                        <div class="rating">
-                                                                            <span class="fa fa-stack"><i
-                                                                                    class="fa fa-star fa-stack-2x"></i><i
-                                                                                    class="fa fa-star-o fa-stack-2x"></i></span>
-                                                                            <span class="fa fa-stack"><i
-                                                                                    class="fa fa-star fa-stack-2x"></i><i
-                                                                                    class="fa fa-star-o fa-stack-2x"></i></span>
-                                                                            <span class="fa fa-stack"><i
-                                                                                    class="fa fa-star fa-stack-2x"></i><i
-                                                                                    class="fa fa-star-o fa-stack-2x"></i></span>
-                                                                            <span class="fa fa-stack"><i
-                                                                                    class="fa fa-star fa-stack-2x"></i><i
-                                                                                    class="fa fa-star-o fa-stack-2x"></i></span>
-                                                                            <span class="fa fa-stack"><i
-                                                                                    class="fa fa-star-o fa-stack-2x"></i></span>
-                                                                        </div>
-                                                                        <p class="des_deal">
-                                                                            The 30-inch Apple Cinema HD Display delivers an
-                                                                            amazing 2560 x 1600 pixel resolution. Designed
-                                                                            specifically for the creative professional, this
-                                                                            dis..</p>
-                                                                        <p class="price font-ct">
-                                                                            <span class="price-new">$160.00</span>
-                                                                            <span class="price-old">$190.00</span>
-                                                                        </p>
-                                                                        <!--countdown box-->
-                                                                        <div class="item-time-w">
-                                                                            <div class="item-time">
-                                                                                <div class="item-timer">
-                                                                                    <div class="defaultCountdown-30">
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <!--end countdown box-->
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="slick-slide" data-slick-index="5">
-                                                        <div class="product-item">
-                                                            <div class="product-item-container">
-                                                                <div class="left-block">
-                                                                    <div class="product-image-container second_img">
-                                                                        <a href="#" target="_self"
-                                                                            title="Pastrami bacon">
-                                                                            <img src="image/catalog/demo/product/300/5.jpg"
-                                                                                class="img-1 img-responsive"
-                                                                                alt="Pastrami bacon">
-                                                                        </a>
-                                                                    </div>
-                                                                    <div class="box-label">
-                                                                        <span class="label-product label-sale">-20%</span>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="right-block">
-                                                                    <div class="caption">
-                                                                        <h4><a href="#" target="_self"
-                                                                                title="Molliti Deserunt"
-                                                                                tabindex="0">Molliti
-                                                                                Deserunt</a></h4>
-                                                                        <div class="rating">
-                                                                            <span class="fa fa-stack"><i
-                                                                                    class="fa fa-star fa-stack-2x"></i><i
-                                                                                    class="fa fa-star-o fa-stack-2x"></i></span>
-                                                                            <span class="fa fa-stack"><i
-                                                                                    class="fa fa-star fa-stack-2x"></i><i
-                                                                                    class="fa fa-star-o fa-stack-2x"></i></span>
-                                                                            <span class="fa fa-stack"><i
-                                                                                    class="fa fa-star fa-stack-2x"></i><i
-                                                                                    class="fa fa-star-o fa-stack-2x"></i></span>
-                                                                            <span class="fa fa-stack"><i
-                                                                                    class="fa fa-star fa-stack-2x"></i><i
-                                                                                    class="fa fa-star-o fa-stack-2x"></i></span>
-                                                                            <span class="fa fa-stack"><i
-                                                                                    class="fa fa-star-o fa-stack-2x"></i></span>
-                                                                        </div>
-                                                                        <p class="des_deal">
-                                                                            There are many variations of passages of Lorem
-                                                                            Ipsum available, but the majority have suffered
-                                                                            alteration the creative professional, this dis..
-                                                                        </p>
-                                                                        <p class="price font-ct">
-                                                                            <span class="price-new">$98.00</span>
-                                                                            <span class="price-old">$122.00</span>
-                                                                        </p>
-                                                                        <!--countdown box-->
-                                                                        <div class="item-time-w">
-                                                                            <div class="item-time">
-                                                                                <div class="item-timer">
-                                                                                    <div class="defaultCountdown-30">
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <!--end countdown box-->
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="slick-slide" data-slick-index="6">
-                                                        <div class="product-item">
-                                                            <div class="product-item-container">
-                                                                <div class="left-block">
-                                                                    <div class="product-image-container second_img">
-                                                                        <a href="#" target="_self"
-                                                                            title="Pastrami bacon">
-                                                                            <img src="image/catalog/demo/product/300/6.jpg"
-                                                                                class="img-1 img-responsive"
-                                                                                alt="Pastrami bacon">
-                                                                        </a>
-                                                                    </div>
-                                                                    <div class="box-label">
-                                                                        <span class="label-product label-sale">-5%</span>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="right-block">
-                                                                    <div class="caption">
-                                                                        <h4><a href="#" target="_self"
-                                                                                title="Delivers Deserunt"
-                                                                                tabindex="0">Delivers
-                                                                                Deserunt</a></h4>
-                                                                        <div class="rating">
-                                                                            <span class="fa fa-stack"><i
-                                                                                    class="fa fa-star fa-stack-2x"></i><i
-                                                                                    class="fa fa-star-o fa-stack-2x"></i></span>
-                                                                            <span class="fa fa-stack"><i
-                                                                                    class="fa fa-star fa-stack-2x"></i><i
-                                                                                    class="fa fa-star-o fa-stack-2x"></i></span>
-                                                                            <span class="fa fa-stack"><i
-                                                                                    class="fa fa-star fa-stack-2x"></i><i
-                                                                                    class="fa fa-star-o fa-stack-2x"></i></span>
-                                                                            <span class="fa fa-stack"><i
-                                                                                    class="fa fa-star fa-stack-2x"></i><i
-                                                                                    class="fa fa-star-o fa-stack-2x"></i></span>
-                                                                            <span class="fa fa-stack"><i
-                                                                                    class="fa fa-star-o fa-stack-2x"></i></span>
-                                                                        </div>
-                                                                        <p class="des_deal">
-                                                                            The 30-inch Apple Cinema HD Display delivers an
-                                                                            amazing 2560 x 1600 pixel resolution. Designed
-                                                                            specifically for the creative professional, this
-                                                                            dis..</p>
-                                                                        <p class="price font-ct">
-                                                                            <span class="price-new">$200.00</span>
-                                                                            <span class="price-old">$210.00</span>
-                                                                        </p>
-                                                                        <!--countdown box-->
-                                                                        <div class="item-time-w">
-                                                                            <div class="item-time">
-                                                                                <div class="item-timer">
-                                                                                    <div class="defaultCountdown-30">
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <!--end countdown box-->
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="slick-slide" data-slick-index="7">
-                                                        <div class="product-item">
-                                                            <div class="product-item-container">
-                                                                <div class="left-block">
-                                                                    <div class="product-image-container second_img">
-                                                                        <a href="#" target="_self"
-                                                                            title="Pastrami bacon">
-                                                                            <img src="image/catalog/demo/product/300/7.jpg"
-                                                                                class="img-1 img-responsive"
-                                                                                alt="Pastrami bacon">
-                                                                        </a>
-                                                                    </div>
-                                                                    <div class="box-label">
-                                                                        <span class="label-product label-sale">-12%</span>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="right-block">
-                                                                    <div class="caption">
-                                                                        <h4><a href="#" target="_self"
-                                                                                title="Pastrami mollitia"
-                                                                                tabindex="0">Pastrami
-                                                                                mollitia</a></h4>
-                                                                        <div class="rating">
-                                                                            <span class="fa fa-stack"><i
-                                                                                    class="fa fa-star fa-stack-2x"></i><i
-                                                                                    class="fa fa-star-o fa-stack-2x"></i></span>
-                                                                            <span class="fa fa-stack"><i
-                                                                                    class="fa fa-star fa-stack-2x"></i><i
-                                                                                    class="fa fa-star-o fa-stack-2x"></i></span>
-                                                                            <span class="fa fa-stack"><i
-                                                                                    class="fa fa-star fa-stack-2x"></i><i
-                                                                                    class="fa fa-star-o fa-stack-2x"></i></span>
-                                                                            <span class="fa fa-stack"><i
-                                                                                    class="fa fa-star fa-stack-2x"></i><i
-                                                                                    class="fa fa-star-o fa-stack-2x"></i></span>
-                                                                            <span class="fa fa-stack"><i
-                                                                                    class="fa fa-star-o fa-stack-2x"></i></span>
-                                                                        </div>
-                                                                        <p class="des_deal">
-                                                                            There are many variations of passages of Lorem
-                                                                            Ipsum available, but the majority have suffered
-                                                                            alteration the creative professional, this dis..
-                                                                        </p>
-                                                                        <p class="price font-ct">
-                                                                            <span class="price-new">$118.00</span>
-                                                                            <span class="price-old">$142.00</span>
-                                                                        </p>
-                                                                        <!--countdown box-->
-                                                                        <div class="item-time-w">
-                                                                            <div class="item-time">
-                                                                                <div class="item-timer">
-                                                                                    <div class="defaultCountdown-30">
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <!--end countdown box-->
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="slick-slide" data-slick-index="8">
-                                                        <div class="product-item">
-                                                            <div class="product-item-container">
-                                                                <div class="left-block">
-                                                                    <div class="product-image-container second_img">
-                                                                        <a href="#" target="_self"
-                                                                            title="Fession molliti">
-                                                                            <img src="image/catalog/demo/product/300/3.jpg"
-                                                                                class="img-1 img-responsive"
-                                                                                alt="Fession molliti">
-                                                                        </a>
-                                                                    </div>
-                                                                    <div class="box-label">
-                                                                        <span class="label-product label-sale">-16%</span>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="right-block">
-                                                                    <div class="caption">
-                                                                        <h4><a href="#" target="_self"
-                                                                                title="Fession molliti"
-                                                                                tabindex="0">Fession
-                                                                                molliti</a></h4>
-                                                                        <div class="rating">
-                                                                            <span class="fa fa-stack"><i
-                                                                                    class="fa fa-star fa-stack-2x"></i><i
-                                                                                    class="fa fa-star-o fa-stack-2x"></i></span>
-                                                                            <span class="fa fa-stack"><i
-                                                                                    class="fa fa-star fa-stack-2x"></i><i
-                                                                                    class="fa fa-star-o fa-stack-2x"></i></span>
-                                                                            <span class="fa fa-stack"><i
-                                                                                    class="fa fa-star fa-stack-2x"></i><i
-                                                                                    class="fa fa-star-o fa-stack-2x"></i></span>
-                                                                            <span class="fa fa-stack"><i
-                                                                                    class="fa fa-star fa-stack-2x"></i><i
-                                                                                    class="fa fa-star-o fa-stack-2x"></i></span>
-                                                                            <span class="fa fa-stack"><i
-                                                                                    class="fa fa-star-o fa-stack-2x"></i></span>
-                                                                        </div>
-                                                                        <p class="des_deal">
-                                                                            The 30-inch Apple Cinema HD Display delivers an
-                                                                            amazing 2560 x 1600 pixel resolution. Designed
-                                                                            specifically for the creative professional, this
-                                                                            dis..</p>
-                                                                        <p class="price font-ct">
-                                                                            <span class="price-new">$98.00</span>
-                                                                            <span class="price-old">$122.00</span>
-                                                                        </p>
-                                                                        <!--countdown box-->
-                                                                        <div class="item-time-w">
-                                                                            <div class="item-time">
-                                                                                <div class="item-timer">
-                                                                                    <div class="defaultCountdown-30">
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <!--end countdown box-->
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
                                                 </div>
                                                 <div class="slider slider-item slider-nav">
-                                                    <div class="item-slick" data-slick-index="1">
-                                                        <div class="item-img">
-                                                            <img src="image/catalog/demo/product/80/1.jpg"
-                                                                class="img-1 img-responsive" alt="Pastrami bacon">
-                                                            <div class="box-label">
-                                                                <span class="label-product label-sale">-20%</span>
+                                                    @foreach ($products->shuffle() as $item)
+                                                        <div class="item-slick" data-slick-index="1">
+                                                            <div class="item-img">
+                                                                <img src="{{ asset($item->images->count() ? 'storage/' . $item->images->first()->src : 'image/catalog/demo/product/80/8.jpg') }}"
+                                                                    class="img-1 img-responsive" alt="{{ $item->name }}"
+                                                                    width="90" height="90"
+                                                                    style="object-fit: cover; object-position: center;">
+                                                                <div class="box-label">
+                                                                    <span class="label-product label-sale">-20%</span>
+                                                                </div>
                                                             </div>
+                                                            <span
+                                                                class="title">{{ Str::words($item->name, 2, '...') }}</span>
                                                         </div>
-                                                        <span class="title">Deserunt mollitia</span>
-                                                    </div>
-                                                    <div class="item-slick" data-slick-index="2">
-                                                        <div class="item-img">
-                                                            <img src="image/catalog/demo/product/80/2.jpg"
-                                                                class="img-1 img-responsive" alt="Pastrami bacon">
-                                                            <div class="box-label">
-                                                                <span class="label-product label-sale">-18%</span>
-                                                            </div>
-                                                        </div>
-                                                        <span class="title">Cuid densinteu</span>
-                                                    </div>
-                                                    <div class="item-slick" data-slick-index="3">
-                                                        <div class="item-img">
-                                                            <img src="image/catalog/demo/product/80/3.jpg"
-                                                                class="img-1 img-responsive" alt="Pastrami bacon">
-                                                            <div class="box-label">
-                                                                <span class="label-product label-sale">-10%</span>
-                                                            </div>
-                                                        </div>
-                                                        <span class="title">Dail mirentukan</span>
-                                                    </div>
-                                                    <div class="item-slick" data-slick-index="4">
-                                                        <div class="item-img">
-                                                            <img src="image/catalog/demo/product/80/4.jpg"
-                                                                class="img-1 img-responsive" alt="Pastrami bacon">
-                                                            <div class="box-label">
-                                                                <span class="label-product label-sale">-15%</span>
-                                                            </div>
-                                                        </div>
-                                                        <span class="title">Salmon Sokara</span>
-                                                    </div>
-                                                    <div class="item-slick" data-slick-index="5">
-                                                        <div class="item-img">
-                                                            <img src="image/catalog/demo/product/80/5.jpg"
-                                                                class="img-1 img-responsive" alt="Pastrami bacon">
-                                                            <div class="box-label">
-                                                                <span class="label-product label-sale">-20%</span>
-                                                            </div>
-                                                        </div>
-                                                        <span class="title">Molliti Deserunt</span>
-                                                    </div>
-                                                    <div class="item-slick" data-slick-index="6">
-                                                        <div class="item-img">
-                                                            <img src="image/catalog/demo/product/80/6.jpg"
-                                                                class="img-1 img-responsive" alt="Pastrami bacon">
-                                                            <div class="box-label">
-                                                                <span class="label-product label-sale">-5%</span>
-                                                            </div>
-                                                        </div>
-                                                        <span class="title">Delivers Deserunt</span>
-                                                    </div>
-                                                    <div class="item-slick" data-slick-index="7">
-                                                        <div class="item-img">
-                                                            <img src="image/catalog/demo/product/80/7.jpg"
-                                                                class="img-1 img-responsive" alt="Pastrami mollitia">
-                                                            <div class="box-label">
-                                                                <span class="label-product label-sale">-12%</span>
-                                                            </div>
-                                                        </div>
-                                                        <span class="title">Pastrami mollitia</span>
-                                                    </div>
-                                                    <div class="item-slick" data-slick-index="8">
-                                                        <div class="item-img">
-                                                            <img src="image/catalog/demo/product/80/8.jpg"
-                                                                class="img-1 img-responsive" alt="Fession molliti">
-                                                            <div class="box-label">
-                                                                <span class="label-product label-sale">-16%</span>
-                                                            </div>
-                                                        </div>
-                                                        <span class="title">Fession molliti</span>
-                                                    </div>
-
+                                                    @endforeach
                                                 </div>
                                             </div>
                                         </div>
@@ -694,268 +258,67 @@
                                                         data-items_column1="1" data-items_column2="1"
                                                         data-items_column3="1" data-items_column4="1" data-arrows="yes"
                                                         data-lazyload="yes" data-loop="no" data-buttonpage="top">
-                                                        <div class="item ">
-                                                            <div class="item-wrap style1">
-                                                                <div class="item-wrap-inner">
-                                                                    <div class="media-left">
-                                                                        <div class="item-image">
-                                                                            <div class="item-img-info">
-                                                                                <a href="#" target="_self"
-                                                                                    title="Mandouille short ">
-                                                                                    <img src="image/catalog/demo/product/80/10.jpg"
-                                                                                        alt="Mandouille short">
-                                                                                </a>
+                                                        @foreach ($products->take(2) as $item)
+                                                            <div class="item">
+                                                                @foreach ($products->random($products->count() > 5 ? 5 : $products->count()) as $ip => $product)
+                                                                    @if ($products[$loop->index + 1])
+                                                                        <div class="item-wrap style1">
+                                                                            <div class="item-wrap-inner">
+                                                                                <div class="media-left">
+                                                                                    <div class="item-image">
+                                                                                        <div class="item-img-info">
+                                                                                            <a href="#"
+                                                                                                target="_self"
+                                                                                                title="{{ $product->name }} ">
+                                                                                                <img src="{{ asset($product->images->count() ? 'storage/' . $product->images->first()->src : 'image/catalog/demo/product/80/8.jpg') }}"
+                                                                                                    alt="{{ $product->name }}"
+                                                                                                    width="100"
+                                                                                                    height="100"
+                                                                                                    style="object-fit: cover;">
+                                                                                            </a>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="media-body">
+                                                                                    <div class="item-info">
+                                                                                        <div class="item-title">
+                                                                                            <a href="#"
+                                                                                                target="_self"
+                                                                                                title="Mandouille short">{{ Str::words($product->name, 3, '...') }}</a>
+                                                                                        </div>
+                                                                                        <div class="rating">
+                                                                                            <span class="fa fa-stack"><i
+                                                                                                    class="fa fa-star fa-stack-2x"></i></span>
+                                                                                            <span class="fa fa-stack"><i
+                                                                                                    class="fa fa-star fa-stack-2x"></i></span>
+                                                                                            <span class="fa fa-stack"><i
+                                                                                                    class="fa fa-star fa-stack-2x"></i></span>
+                                                                                            <span class="fa fa-stack"><i
+                                                                                                    class="fa fa-star fa-stack-2x"></i></span>
+                                                                                            <span class="fa fa-stack"><i
+                                                                                                    class="fa fa-star-o fa-stack-2x"></i></span>
+                                                                                        </div>
+                                                                                        <div class="content_price price">
+                                                                                            <span
+                                                                                                class="price-new product-price">{{ ch_currency($product->price) }}
+                                                                                            </span>&nbsp;&nbsp;
+
+                                                                                            {{-- <span class="price-old">$76.00
+                                                                                            </span>&nbsp; --}}
+
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <!-- End item-info -->
+                                                                                <!-- End item-wrap-inner -->
                                                                             </div>
                                                                         </div>
-                                                                    </div>
-                                                                    <div class="media-body">
-                                                                        <div class="item-info">
-                                                                            <div class="item-title">
-                                                                                <a href="#" target="_self"
-                                                                                    title="Mandouille short">Mandouille
-                                                                                    short </a>
-                                                                            </div>
-                                                                            <div class="rating">
-                                                                                <span class="fa fa-stack"><i
-                                                                                        class="fa fa-star fa-stack-2x"></i></span>
-                                                                                <span class="fa fa-stack"><i
-                                                                                        class="fa fa-star fa-stack-2x"></i></span>
-                                                                                <span class="fa fa-stack"><i
-                                                                                        class="fa fa-star fa-stack-2x"></i></span>
-                                                                                <span class="fa fa-stack"><i
-                                                                                        class="fa fa-star fa-stack-2x"></i></span>
-                                                                                <span class="fa fa-stack"><i
-                                                                                        class="fa fa-star-o fa-stack-2x"></i></span>
-                                                                            </div>
-                                                                            <div class="content_price price">
-                                                                                <span
-                                                                                    class="price-new product-price">$55.00
-                                                                                </span>&nbsp;&nbsp;
-
-                                                                                <span class="price-old">$76.00
-                                                                                </span>&nbsp;
-
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <!-- End item-info -->
-                                                                    <!-- End item-wrap-inner -->
-                                                                </div>
+                                                                    @endif
+                                                                @endforeach
+                                                                <!-- End item-wrap -->
                                                             </div>
-                                                            <!-- End item-wrap -->
-                                                            <div class="item-wrap style1">
-                                                                <div class="item-wrap-inner">
-                                                                    <div class="media-left">
-                                                                        <div class="item-image">
-                                                                            <div class="item-img-info">
-                                                                                <a href="#" target="_self"
-                                                                                    title="Xancetta bresao ">
-                                                                                    <img src="image/catalog/demo/product/80/9.jpg"
-                                                                                        alt="Xancetta bresao">
-                                                                                </a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="media-body">
-                                                                        <div class="item-info">
-                                                                            <div class="item-title">
-                                                                                <a href="#" target="_self"
-                                                                                    title="Xancetta bresao">
-                                                                                    Xancetta bresao
-                                                                                </a>
-                                                                            </div>
-                                                                            <div class="rating">
-                                                                                <span class="fa fa-stack"><i
-                                                                                        class="fa fa-star fa-stack-2x"></i></span>
-                                                                                <span class="fa fa-stack"><i
-                                                                                        class="fa fa-star fa-stack-2x"></i></span>
-                                                                                <span class="fa fa-stack"><i
-                                                                                        class="fa fa-star fa-stack-2x"></i></span>
-                                                                                <span class="fa fa-stack"><i
-                                                                                        class="fa fa-star fa-stack-2x"></i></span>
-                                                                                <span class="fa fa-stack"><i
-                                                                                        class="fa fa-star fa-stack-2x"></i></span>
-                                                                            </div>
-                                                                            <div class="content_price price">
-                                                                                <span
-                                                                                    class="price-new product-price">$80.00
-                                                                                </span>&nbsp;&nbsp;
-
-                                                                                <span class="price-old">$89.00
-                                                                                </span>&nbsp;
-
-
-
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <!-- End item-info -->
-                                                                    <!-- End item-wrap-inner -->
-                                                                </div>
-                                                            </div>
-                                                            <!-- End item-wrap -->
-                                                            <div class="item-wrap style1">
-                                                                <div class="item-wrap-inner">
-                                                                    <div class="media-left">
-                                                                        <div class="item-image">
-                                                                            <div class="item-img-info">
-                                                                                <a href="#" target="_self"
-                                                                                    title="Sausage cowbee ">
-                                                                                    <img src="image/catalog/demo/product/80/8.jpg"
-                                                                                        alt="Sausage cowbee">
-                                                                                </a>
-                                                                            </div>
-
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="media-body">
-                                                                        <div class="item-info">
-                                                                            <div class="item-title">
-                                                                                <a href="#" target="_self"
-                                                                                    title="Sausage cowbee">
-                                                                                    Sausage cowbee
-                                                                                </a>
-                                                                            </div>
-                                                                            <div class="rating">
-                                                                                <span class="fa fa-stack"><i
-                                                                                        class="fa fa-star fa-stack-2x"></i></span>
-                                                                                <span class="fa fa-stack"><i
-                                                                                        class="fa fa-star fa-stack-2x"></i></span>
-                                                                                <span class="fa fa-stack"><i
-                                                                                        class="fa fa-star fa-stack-2x"></i></span>
-                                                                                <span class="fa fa-stack"><i
-                                                                                        class="fa fa-star fa-stack-2x"></i></span>
-                                                                                <span class="fa fa-stack"><i
-                                                                                        class="fa fa-star-o fa-stack-2x"></i></span>
-                                                                            </div>
-
-                                                                            <div class="content_price price">
-                                                                                <span class="price product-price">
-                                                                                    $66.00
-                                                                                </span>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <!-- End item-info -->
-                                                                    <!-- End item-wrap-inner -->
-                                                                </div>
-                                                            </div>
-                                                            <!-- End item-wrap -->
-                                                            <div class="item-wrap style1">
-                                                                <div class="item-wrap-inner">
-                                                                    <div class="media-left">
-                                                                        <div class="item-image">
-                                                                            <div class="item-img-info">
-                                                                                <a href="#" target="_self"
-                                                                                    title="Chicken swinesha ">
-                                                                                    <img src="image/catalog/demo/product/80/4.jpg"
-                                                                                        alt="Chicken swinesha">
-                                                                                </a>
-                                                                            </div>
-
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="media-body">
-                                                                        <div class="item-info">
-                                                                            <div class="item-title">
-                                                                                <a href="#" target="_self"
-                                                                                    title="Chicken swinesha">
-                                                                                    Chicken swinesha
-                                                                                </a>
-                                                                            </div>
-                                                                            <div class="rating">
-                                                                                <span class="fa fa-stack">
-                                                                                    <i class="fa fa-star fa-stack-2x"></i>
-                                                                                </span>
-                                                                                <span class="fa fa-stack">
-                                                                                    <i class="fa fa-star fa-stack-2x"></i>
-                                                                                </span>
-                                                                                <span class="fa fa-stack">
-                                                                                    <i class="fa fa-star fa-stack-2x"></i>
-                                                                                </span>
-                                                                                <span class="fa fa-stack">
-                                                                                    <i class="fa fa-star fa-stack-2x"></i>
-                                                                                </span>
-                                                                                <span class="fa fa-stack">
-                                                                                    <i class="fa fa-star fa-stack-2x"></i>
-                                                                                </span>
-                                                                            </div>
-                                                                            <div class="content_price price">
-                                                                                <span
-                                                                                    class="price-new product-price">$45.00
-                                                                                </span>&nbsp;&nbsp;
-
-                                                                                <span class="price-old">$56.00
-                                                                                </span>&nbsp;
-
-
-
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <!-- End item-info -->
-                                                                    <!-- End item-wrap-inner -->
-                                                                </div>
-                                                            </div>
-                                                            <div class="item-wrap style1">
-                                                                <div class="item-wrap-inner">
-                                                                    <div class="media-left">
-                                                                        <div class="item-image">
-                                                                            <div class="item-img-info">
-                                                                                <a href="#" target="_self"
-                                                                                    title="Chicken swinesha ">
-                                                                                    <img src="image/catalog/demo/product/80/7.jpg"
-                                                                                        alt="Chicken swinesha">
-                                                                                </a>
-                                                                            </div>
-
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="media-body">
-                                                                        <div class="item-info">
-                                                                            <div class="item-title">
-                                                                                <a href="#" target="_self"
-                                                                                    title="Swinesha Sokana">
-                                                                                    Swinesha Sokana
-                                                                                </a>
-                                                                            </div>
-                                                                            <div class="rating">
-                                                                                <span class="fa fa-stack">
-                                                                                    <i class="fa fa-star fa-stack-2x"></i>
-                                                                                </span>
-                                                                                <span class="fa fa-stack">
-                                                                                    <i class="fa fa-star fa-stack-2x"></i>
-                                                                                </span>
-                                                                                <span class="fa fa-stack">
-                                                                                    <i class="fa fa-star fa-stack-2x"></i>
-                                                                                </span>
-                                                                                <span class="fa fa-stack">
-                                                                                    <i class="fa fa-star fa-stack-2x"></i>
-                                                                                </span>
-                                                                                <span class="fa fa-stack">
-                                                                                    <i class="fa fa-star fa-stack-2x"></i>
-                                                                                </span>
-                                                                            </div>
-                                                                            <div class="content_price price">
-                                                                                <span
-                                                                                    class="price-new product-price">$45.00
-                                                                                </span>&nbsp;&nbsp;
-
-                                                                                <span class="price-old">$56.00
-                                                                                </span>&nbsp;
-
-
-
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <!-- End item-info -->
-                                                                    <!-- End item-wrap-inner -->
-                                                                </div>
-                                                            </div>
-                                                            <!-- End item-wrap -->
-                                                        </div>
-                                                        <div class="item ">
+                                                        @endforeach
+                                                        {{-- <div class="item ">
                                                             <div class="item-wrap style1">
                                                                 <div class="item-wrap-inner">
                                                                     <div class="media-left">
@@ -1210,7 +573,7 @@
                                                                     <!-- End item-wrap-inner -->
                                                                 </div>
                                                             </div>
-                                                        </div>
+                                                        </div> --}}
                                                     </div>
                                                     <!--End extraslider-inner -->
                                                 </div>
