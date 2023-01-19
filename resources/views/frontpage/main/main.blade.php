@@ -19,21 +19,14 @@
                                                     data-items_column3="1" data-items_column4="1" data-arrows="no"
                                                     data-pagination="yes" data-lazyload="yes" data-loop="no"
                                                     data-hoverpause="yes">
-                                                    <div class="yt-content-slide">
-                                                        <a title="slide1" href="#"><img
-                                                                src="image/catalog/demo/slideshow/home1/slide1.jpg"
-                                                                alt="slide img" class="responsive"></a>
-                                                    </div>
-                                                    <div class="yt-content-slide">
-                                                        <a title="slide2" href="#"><img
-                                                                src="image/catalog/demo/slideshow/home1/slide2.jpg"
-                                                                alt="slide img" class="responsive"></a>
-                                                    </div>
-                                                    <div class="yt-content-slide">
-                                                        <a title="slide3" href="#"><img
-                                                                src="image/catalog/demo/slideshow/home1/slide3.jpg"
-                                                                alt="slide img" class="responsive"></a>
-                                                    </div>
+                                                    @foreach ($products->shuffle()->take(3) as $item)
+                                                        <div class="yt-content-slide">
+                                                            <a title="{{ $item->name }}" href="#"><img
+                                                                    src="{{ asset($item->images->count() ? 'storage/' . $item->images->first()->src : 'image/catalog/demo/product/80/8.jpg') }}"
+                                                                    alt="{{ $item->name }}" class="responsive"
+                                                                    width="650" height="510"></a>
+                                                        </div>
+                                                    @endforeach
                                                 </div>
                                                 <div class="loadeding"></div>
                                             </div>
@@ -42,15 +35,12 @@
                                             <div class="module">
                                                 <div class="block-image-1">
                                                     <ul class="static-image">
-                                                        <li><a title="Static Image" href="#"><img
-                                                                    src="image/catalog/demo/banners/home1/1.jpg"
-                                                                    alt="Static Image"></a></li>
-                                                        <li><a title="Static Image" href="#"><img
-                                                                    src="image/catalog/demo/banners/home1/2.jpg"
-                                                                    alt="Static Image"></a></li>
-                                                        <li><a title="Static Image" href="#"><img
-                                                                    src="image/catalog/demo/banners/home1/3.jpg"
-                                                                    alt="Static Image"></a></li>
+                                                        @foreach ($products->shuffle()->take(3) as $item)
+                                                            <li><a title="{{ $item->name }}" href="#"><img
+                                                                        src="{{ asset($item->images->count() ? 'storage/' . $item->images->first()->src : 'image/catalog/demo/product/80/8.jpg') }}"
+                                                                        alt="{{ $item->name }}" width="250"
+                                                                        height="170"></a></li>
+                                                        @endforeach
                                                     </ul>
                                                 </div>
                                             </div>
@@ -97,8 +87,7 @@
                                             <div class="modcontent">
                                                 <div class="slider slider-img slider-single">
                                                     @forelse ($products as $item)
-                                                        <div class="slick-slide"
-                                                            data-slick-index="{{ $loop->iteration }}">
+                                                        <div class="slick-slide" data-slick-index="{{ $loop->iteration }}">
                                                             <div class="product-item">
                                                                 <div class="product-item-container">
                                                                     <div class="left-block">
@@ -140,7 +129,7 @@
                                                                                         class="fa fa-star-o fa-stack-2x"></i></span>
                                                                             </div>
                                                                             <p class="des_deal">
-                                                                                {!! $item->description !!}</p>
+                                                                                {!! Str::limit(html_entity_decode(strip_tags($item->description)), 100, '...') !!}</p>
                                                                             <p class="price font-ct">
                                                                                 <span
                                                                                     class="price-new">{{ ch_currency($item->price) }}</span>
@@ -226,7 +215,8 @@
                                                 </div>
                                                 <div class="slider slider-item slider-nav">
                                                     @foreach ($products as $item)
-                                                        <div class="item-slick" data-slick-index="{{ $loop->iteration }}">
+                                                        <div class="item-slick"
+                                                            data-slick-index="{{ $loop->iteration }}">
                                                             <div class="item-img">
                                                                 <img src="{{ asset($item->images->count() ? 'storage/' . $item->images->first()->src : 'image/catalog/demo/product/80/8.jpg') }}"
                                                                     class="img-1 img-responsive"

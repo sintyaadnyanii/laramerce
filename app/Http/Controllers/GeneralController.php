@@ -14,6 +14,7 @@ class GeneralController extends Controller
         $data = [
             'title' => 'Homepage | Urban Adventure',
             'products' => Product::get(),
+            'categories' => Category::first()->get(),
             'brands' => Brand::with(['products'])->latest()->get()
         ];
         return view('frontpage.main.main', $data);
