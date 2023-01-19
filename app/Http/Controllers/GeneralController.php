@@ -21,8 +21,14 @@ class GeneralController extends Controller
     public function cart()
     {
         $data = [
+            'isUser' => auth()->user(),
+            'cart' => auth()->user()->cart ?? [],
+            'weight' => 0,
             'title' => 'Cart | Urban Adventure'
         ];
+        foreach ($data['cart'] as $item) {
+            $data['weight'] += ($item->product->weight * 1000);
+        }
         return view('frontpage.cart.cart', $data);
     }
     public function product_detail(Product $product)
