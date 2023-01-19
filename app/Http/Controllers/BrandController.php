@@ -38,7 +38,7 @@ class BrandController extends Controller
     public function updateBrand(Brand $brand)
     {
         $data = [
-            'title' => 'Brand Detail | Urban Adventure',
+            'title' => 'Brand Update | Urban Adventure',
             'brand' => $brand,
             'products' => $brand->products
         ];
@@ -90,7 +90,7 @@ class BrandController extends Controller
         if ($validator->failed()) {
             return redirect()->back()->withErrors($validator)->withInput()->with('error', 'Input error!');
         }
-
+        $brand->touch();
         $brand_updated = $brand->update([
             'name' => $request->name,
             'description' => $request->description,
