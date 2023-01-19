@@ -96,8 +96,9 @@
                                             <h2 class="modtitle font-ct"><span>Today Deals</span></h2>
                                             <div class="modcontent">
                                                 <div class="slider slider-img slider-single">
-                                                    @forelse ($products->shuffle() as $item)
-                                                        <div class="slick-slide" data-slick-index="1">
+                                                    @forelse ($products as $item)
+                                                        <div class="slick-slide"
+                                                            data-slick-index="{{ $loop->iteration }}">
                                                             <div class="product-item">
                                                                 <div class="product-item-container">
                                                                     <div class="left-block">
@@ -106,8 +107,8 @@
                                                                                 title="{{ $item->name }}">
                                                                                 <img src="{{ asset($item->images->count() ? 'storage/' . $item->images->first()->src : 'image/catalog/demo/product/80/8.jpg') }}"
                                                                                     class="img-1 img-responsive"
-                                                                                    width="300" height="300"
-                                                                                    style="object-fit: cover; object-position: center;"
+                                                                                    width="400" height="400"
+                                                                                    style="width: 300px; height: 300px; object-fit: cover; object-position: center;"
                                                                                     alt="{{ $item->name }}">
                                                                             </a>
                                                                         </div>
@@ -224,13 +225,14 @@
 
                                                 </div>
                                                 <div class="slider slider-item slider-nav">
-                                                    @foreach ($products->shuffle() as $item)
-                                                        <div class="item-slick" data-slick-index="1">
+                                                    @foreach ($products as $item)
+                                                        <div class="item-slick" data-slick-index="{{ $loop->iteration }}">
                                                             <div class="item-img">
                                                                 <img src="{{ asset($item->images->count() ? 'storage/' . $item->images->first()->src : 'image/catalog/demo/product/80/8.jpg') }}"
-                                                                    class="img-1 img-responsive" alt="{{ $item->name }}"
-                                                                    width="90" height="90"
-                                                                    style="object-fit: cover; object-position: center;">
+                                                                    class="img-1 img-responsive"
+                                                                    alt="{{ $item->name }}" width="100"
+                                                                    height="100"
+                                                                    style="width: 90px; height: 90px; object-fit: cover; object-position: center;">
                                                                 <div class="box-label">
                                                                     <span class="label-product label-sale">-20%</span>
                                                                 </div>
@@ -272,9 +274,9 @@
                                                                                                 title="{{ $product->name }} ">
                                                                                                 <img src="{{ asset($product->images->count() ? 'storage/' . $product->images->first()->src : 'image/catalog/demo/product/80/8.jpg') }}"
                                                                                                     alt="{{ $product->name }}"
-                                                                                                    width="100"
-                                                                                                    height="100"
-                                                                                                    style="object-fit: cover;">
+                                                                                                    width="200"
+                                                                                                    height="200"
+                                                                                                    style="width: 100px; height: 100px; object-fit: cover;">
                                                                                             </a>
                                                                                         </div>
                                                                                     </div>
