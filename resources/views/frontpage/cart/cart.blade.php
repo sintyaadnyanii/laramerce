@@ -10,7 +10,11 @@
                     <li><a href="#">Shopping Cart</a></li>
                 </ul>
 
-                <div class="row">
+                <form class="row">
+                    {{-- hidden value --}}
+                    <input type="hidden" id="cart-total-weight" value="{{ $weight }}">
+                    {{-- hidden value --}}
+                    {{-- hidden value --}}
                     <!--Middle Part Start-->
                     <div id="content" class="col-sm-12">
                         <h2 class="title">Shopping Cart</h2>
@@ -20,61 +24,45 @@
                                     <tr>
                                         <td class="text-center">Image</td>
                                         <td class="text-left">Product Name</td>
-                                        <td class="text-left">Model</td>
+                                        <td class="text-left">Brand</td>
                                         <td class="text-left">Quantity</td>
                                         <td class="text-right">Unit Price</td>
                                         <td class="text-right">Total</td>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="text-center"><a href="product.html"><img width="70px"
-                                                    src="image/catalog/demo/product/funiture/8.jpg"
-                                                    alt="Aspire Ultrabook Laptop" title="Aspire Ultrabook Laptop"
-                                                    class="img-thumbnail" /></a></td>
-                                        <td class="text-left"><a href="product.html">Emasa rumas gacem</a><br />
-                                        </td>
-                                        <td class="text-left">Pt 001</td>
-                                        <td class="text-left" width="200px">
-                                            <div class="input-group btn-block quantity">
-                                                <input type="text" name="quantity" value="1" size="1"
-                                                    class="form-control" />
-                                                <span class="input-group-btn">
-                                                    <button type="submit" data-toggle="tooltip" title="Update"
-                                                        class="btn btn-primary"><i class="fa fa-clone"></i></button>
-                                                    <button type="button" data-toggle="tooltip" title="Remove"
-                                                        class="btn btn-danger" onClick=""><i
-                                                            class="fa fa-times-circle"></i></button>
-                                                </span>
-                                            </div>
-                                        </td>
-                                        <td class="text-right">$120.00</td>
-                                        <td class="text-right">$120.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center"><a href="product.html"><img width="70px"
-                                                    src="image/catalog/demo/product/funiture/10.jpg"
-                                                    alt="Xitefun Causal Wear Fancy Shoes"
-                                                    title="Xitefun Causal Wear Fancy Shoes" class="img-thumbnail" /></a>
-                                        </td>
-                                        <td class="text-left"><a href="product.html">Comas samer rumas</a></td>
-                                        <td class="text-left">Pt 002</td>
-                                        <td class="text-left" width="200px">
-                                            <div class="input-group btn-block quantity">
-                                                <input type="text" name="quantity" value="1" size="1"
-                                                    class="form-control" />
-                                                <span class="input-group-btn">
-                                                    <button type="submit" data-toggle="tooltip" title="Update"
-                                                        class="btn btn-primary"><i class="fa fa-clone"</i></button>
-                                                    <button type="button" data-toggle="tooltip" title="Remove"
-                                                        class="btn btn-danger" onClick=""><i
-                                                            class="fa fa-times-circle"></i></button>
-                                                </span>
-                                            </div>
-                                        </td>
-                                        <td class="text-right">$150.00</td>
-                                        <td class="text-right">$150.00</td>
-                                    </tr>
+                                <tbody id="cart-item-list">
+                                    @foreach ($cart as $product)
+                                        <tr data-sub_total="{{ $product->product->price * $product->amount }}">
+                                            <td class="text-center"><a
+                                                    href="{{ route('product-detail', ['product' => $product->product]) }}"><img
+                                                        width="70px" height="70px"
+                                                        src="{{ asset($product->product->images->count() ? 'storage/' . $product->product->images->first()->src : 'image/catalog/demo/product/funiture/8.jpg') }}"
+                                                        alt="{{ Str::limit($product->product->name, 10, '...') }}"
+                                                        title="{{ $product->product->name }}" class="img-thumbnail" /></a>
+                                            </td>
+                                            <td class="text-left"><a
+                                                    href="{{ route('product-detail', ['product' => $product->product]) }}">{{ $product->product->name }}</a><br />
+                                                <span>{{ $product->product->weight }}</span>
+                                            </td>
+                                            <td class="text-left">{{ $product->product->brand->name }}</td>
+                                            <td class="text-left" width="200px">
+                                                <div class="input-group btn-block quantity">
+                                                    <input type="text" name="quantity" value="1" size="1"
+                                                        max="{{ $product->product->stock }}" class="form-control" />
+                                                    <span class="input-group-btn">
+                                                        <button type="submit" data-toggle="tooltip" title="Update"
+                                                            class="btn btn-primary"><i class="fa fa-clone"></i></button>
+                                                        <button type="button" data-toggle="tooltip" title="Remove"
+                                                            class="btn btn-danger" onClick=""><i
+                                                                class="fa fa-times-circle"></i></button>
+                                                    </span>
+                                                </div>
+                                            </td>
+                                            <td class="text-right">{{ ch_currency($product->product->price) }}</td>
+                                            <td class="text-right">
+                                                {{ ch_currency($product->product->price * $product->amount) }}</td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -85,34 +73,9 @@
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <h4 class="panel-title">
-                                        <a href="#collapse-coupon" class="accordion-toggle" data-toggle="collapse"
-                                            data-parent="#accordion" aria-expanded="true">Use Coupon Code
-
-                                            <i class="fa fa-caret-down"></i>
-                                        </a>
-                                    </h4>
-                                </div>
-                                <div id="collapse-coupon" class="panel-collapse collapse in" aria-expanded="true">
-                                    <div class="panel-body">
-                                        <label class="col-sm-2 control-label" for="input-coupon">Enter your coupon
-                                            here</label>
-                                        <div class="input-group">
-                                            <input type="text" name="coupon" value=""
-                                                placeholder="Enter your coupon here" id="input-coupon"
-                                                class="form-control">
-                                            <span class="input-group-btn"><input type="button" value="Apply Coupon"
-                                                    id="button-coupon" data-loading-text="Loading..."
-                                                    class="btn btn-primary"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a href="#collapse-shipping" class="accordion-toggle collapsed"
-                                            data-toggle="collapse" data-parent="#accordion"
-                                            aria-expanded="false">Estimate Shipping &amp; Taxes
+                                        <a href="#collapse-shipping" class="accordion-toggle" data-toggle="collapse"
+                                            data-parent="#accordion" aria-expanded="false">Estimate
+                                            Shipping &amp; Taxes
 
                                             <i class="fa fa-caret-down"></i>
                                         </a>
@@ -124,47 +87,36 @@
                                         <p>Enter your destination to get a shipping estimate.</p>
                                         <div class="form-horizontal">
                                             <div class="form-group required">
-                                                <label class="col-sm-2 control-label" for="input-country">Country</label>
+                                                <label class="col-sm-2 control-label" for="input-province">Province</label>
                                                 <div class="col-sm-10">
-                                                    <select name="country_id" id="input-country" class="form-control">
+                                                    <select name="province_id" id="input-province" class="form-control"
+                                                        onchange="getCity(this.value)">
                                                         <option value=""> --- Please Select --- </option>
-                                                        <option value="244">Aaland Islands</option>
-                                                        <option value="1">Afghanistan</option>
-                                                        <option value="2">Albania</option>
-                                                        <option value="3">Algeria</option>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="form-group required">
-                                                <label class="col-sm-2 control-label" for="input-zone">Region /
-                                                    State</label>
+                                                <label class="col-sm-2 control-label" for="input-city">City</label>
                                                 <div class="col-sm-10">
-                                                    <select name="zone_id" id="input-zone" class="form-control">
+                                                    <select name="city_id" id="input-city" class="form-control">
                                                         <option value=""> --- Please Select --- </option>
-                                                        <option value="3513">Aberdeen</option>
-                                                        <option value="3514">Aberdeenshire</option>
-                                                        <option value="3515">Anglesey</option>
-                                                        <option value="3516">Angus</option>
-                                                        <option value="3517">Argyll and Bute</option>
-                                                        <option value="3518">Bedfordshire</option>
-                                                        <option value="3519">Berkshire</option>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="form-group required">
                                                 <label class="col-sm-2 control-label" for="input-postcode">Post
                                                     Code</label>
-                                                <div class="col-sm-10"><input type="text" name="postcode"
-                                                        value="" placeholder="Post Code" id="input-postcode"
-                                                        class="form-control"></div>
+                                                <div class="col-sm-10"><input type="text" name="postcode" value=""
+                                                        placeholder="Post Code" id="input-postcode" class="form-control">
+                                                </div>
                                             </div>
                                             <button type="button" id="button-quote" data-loading-text="Loading..."
-                                                class="btn btn-primary">Get Quotes</button>
+                                                class="btn btn-primary" onclick="getCost()">Get Quotes</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="panel panel-default">
+                            {{-- <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <h4 class="panel-title">
                                         <a href="#collapse-voucher" data-toggle="collapse" data-parent="#accordion"
@@ -189,7 +141,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
 
                         <div class="row">
@@ -200,31 +152,22 @@
                                             <td class="text-right">
                                                 <strong>Sub-Total:</strong>
                                             </td>
-                                            <td class="text-right">$168.71</td>
+                                            <td class="text-right" data-sub_total="0" id="summary-cart-subtotal">IDR 0
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td class="text-right">
-                                                <strong>Flat Shipping Rate:</strong>
+                                                <strong>Shipping Fee (JNE):</strong>
                                             </td>
-                                            <td class="text-right">$4.69</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-right">
-                                                <strong>Eco Tax (-2.00):</strong>
+                                            <td class="text-right" data-cart_shipping_fee="0" id="cart-shipping-fee">IDR
+                                                0
                                             </td>
-                                            <td class="text-right">$5.62</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-right">
-                                                <strong>VAT (20%):</strong>
-                                            </td>
-                                            <td class="text-right">$34.68</td>
                                         </tr>
                                         <tr>
                                             <td class="text-right">
                                                 <strong>Total:</strong>
                                             </td>
-                                            <td class="text-right">$213.70</td>
+                                            <td class="text-right" data-total="0" id="cart-total-pay">IDR 0</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -232,17 +175,53 @@
                         </div>
 
                         <div class="buttons">
-                            <div class="pull-left"><a href="{{ route('main') }}" class="btn btn-primary">Continue Shopping</a>
+                            <div class="pull-left"><a href="{{ route('main') }}" class="btn btn-primary">Continue
+                                    Shopping</a>
                             </div>
-                            <div class="pull-right"><a href="{{ route('checkout') }}" class="btn btn-primary">Checkout</a></div>
+                            <div class="pull-right"><a href="{{ route('checkout') }}"
+                                    class="btn btn-primary">Checkout</a></div>
                         </div>
                     </div>
                     <!--Middle Part End -->
 
-                </div>
+                </form>
             </div>
             <!-- //Main Container -->
             @include('frontpage.frontpage-footer')
         </div>
     </div>
+@endsection
+
+@section('script')
+    <script src="{{ asset('dist/js/frontpage/cart.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                url: "/api/province",
+                type: "GET",
+                success: (result) => {
+                    result.forEach((item) => {
+                        $("#input-province").append(
+                            ` <option value="${item.province_id}"> ${item.province} </option>`
+                        );
+                    });
+                },
+            });
+
+            // summary cart sub total part
+            $("#summary-cart-subtotal").html(
+                new Intl.NumberFormat("id", {
+                    style: "currency",
+                    currency: "IDR",
+                }).format(calculate_subtotal())
+            );
+
+            $("#summary-cart-subtotal").attr("data-sub_total", calculate_subtotal());
+            // summary cart sub total part
+
+            // summary total part
+            total_to_html();
+            // summary total part
+        });
+    </script>
 @endsection

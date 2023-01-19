@@ -23,7 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::controller(ApiOngkirController::class)->group(function () {
     Route::get('/province', 'getProvince');
     Route::get('/city', 'getCity');
-    Route::post('/cost', 'getCost');
+    Route::get('/cost', 'getCost');
 });
 
 Route::controller(AjaxController::class)->group(function () {

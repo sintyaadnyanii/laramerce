@@ -33,7 +33,7 @@ class ApiOngkirController extends Controller
 
     public function getCity(Request $request)
     {
-        $validator = Validator::make($request->all(), $this->rules->get('province'));
+        $validator = Validator::make($request->all(), $this->rules->except('city', 'origin', 'destination')->all());
         if ($validator->fails()) {
             return response()->json([
                 "status" => 500,
@@ -67,6 +67,6 @@ class ApiOngkirController extends Controller
             'courier' => $request->courier
         ]);
 
-        return $response->json();
+        return $response->json()['rajaongkir']['results'][0];
     }
 }
