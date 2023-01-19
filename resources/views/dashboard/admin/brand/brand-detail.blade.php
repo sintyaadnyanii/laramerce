@@ -1,107 +1,38 @@
 @extends('layouts.dashboard-layout')
 @section('dashboard-content')
-    <h2 class="intro-y text-lg font-medium mt-10">
-        {{ $brand->name }}
-    </h2>
+<div class="content">
+    <!-- END: Top Bar -->
+    <div class="intro-y flex items-center mt-8">
+        <h2 class="text-lg font-medium mr-auto">
+            Detail Product
+        </h2>
+    </div>
+    <div class="grid grid-cols-12 gap-6 mt-5">
+        <div class="intro-y col-span-12 lg:col-span-12">
+            <div class="intro-y box p-8">
+                <div class="md:flex md:flex-row gap-5">
+                    <div class="md:flex-shrink-0 basis-1/3 justify-center">              
+                        <img class="featured-img" src="{{ asset($brand->logo->count() ? 'storage/' . $brand->logo->src : 'dist/images/default.jpg')}}" alt="">
+                    </div>
+                    <div class="md:flex-shrink-0 basis-2/3">
+                        <h2 class="text-xl font-bold">{{ $brand->name }}</h2>
+                        <p>Code: {{ $brand->brand_code }}</p>
+                        <p class="text-sm mt-6">{!! $brand->description !!}</p>
 
-    <p class="intro-y text-justify font-medium mt-5">
-        {!! $brand->description !!}
-    </p>
+                    </div>
 
-    <h2 class="intro-y text-lg font-medium mt-14">
-        Products
-    </h2>
-
-    <div class="grid grid-cols-12 gap-6">
-        <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
-            <div class="hidden md:block mx-auto text-slate-500">Showing 1 to 10 of 150 entries</div>
-            <div class="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
-                <div class="w-56 relative text-slate-500">
-                    <input type="text" class="form-control w-56 box pr-10" placeholder="Search...">
-                    <i class="w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0" data-lucide="search"></i>
+                </div>
+                <div class="flex justify-end mt-5">
+                    <a class="flex items-center btn btn-primary mr-3" href="{{ route('manage_brand.update', ['brand' => $brand]) }}"> 
+                        <i data-lucide="check-square" class="w-4 h-4 mr-1"></i> Edit </a>
+                    <a class="flex items-center btn btn-danger" href="javascript:;" data-tw-toggle="modal"
+                        data-tw-target="#delete-confirmation-modal" onclick="deleteModalHandler(0)"> <i data-lucide="trash-2" class="w-4 h-4 mr-1"></i> Delete </a>
+                   <input type="hidden" id="delete_route_0" value="{{ route('manage_brand.delete', ['brand' => $brand]) }}">
                 </div>
             </div>
         </div>
-        <!-- BEGIN: Data List -->
-        <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
-            <table class="table table-report -mt-2">
-                <thead>
-                    <tr>
-                        <th class="whitespace-nowrap">No.</th>
-                        <th class="whitespace-nowrap">PRODUCT NAME</th>
-                        <th class="text-center whitespace-nowrap">CODE</th>
-                        <th class="text-center whitespace-nowrap">CONDITION</th>
-                        <th class="text-center whitespace-nowrap">ACTIONS</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse ($products as $product)
-                        <tr class="intro-x">
-                            <td class="w-40">
-                                <div class="flex">
-                                    {{ $loop->iteration }}
-                                </div>
-                            </td>
-                            <td>
-                                <a href="{{ route('manage_product.detail', ['product' => $product]) }}"
-                                    class="font-medium whitespace-nowrap">{{ $product->product_code }}</a>
-                                <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">{{ $product->name }}
-                                </div>
-                            </td>
-                            <td class="text-center">{{ $product->product_code }}</td>
-                            <td class="text-center">{{ $product->condiiton }}</td>
-                            <td class="table-report__action w-56">
-                                <div class="flex justify-center items-center">
-                                    <a class="flex items-center mr-3"
-                                        href="{{ route('manage_brand.update', ['brand' => $brand]) }}"> <i
-                                            data-lucide="check-square" class="w-4 h-4 mr-1"></i> Edit </a>
-                                    <a class="flex items-center text-danger" href="javascript:;" data-tw-toggle="modal"
-                                        data-tw-target="#delete-confirmation-modal"> <i data-lucide="trash-2"
-                                            class="w-4 h-4 mr-1"></i> Delete </a>
-                                </div>
-                            </td>
-                        </tr>
-                    @empty
-                        <tr>
-                            <td colspan="5">No Product</td>
-                        </tr>
-                    @endforelse
-                </tbody>
-            </table>
-        </div>
-        <!-- END: Data List -->
-        <!-- BEGIN: Pagination -->
-        <div class="intro-y col-span-12 flex flex-wrap sm:flex-row sm:flex-nowrap items-center">
-            <nav class="w-full sm:w-auto sm:mr-auto">
-                <ul class="pagination">
-                    <li class="page-item">
-                        <a class="page-link" href="#"> <i class="w-4 h-4" data-lucide="chevrons-left"></i> </a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#"> <i class="w-4 h-4" data-lucide="chevron-left"></i> </a>
-                    </li>
-                    <li class="page-item"> <a class="page-link" href="#">...</a> </li>
-                    <li class="page-item"> <a class="page-link" href="#">1</a> </li>
-                    <li class="page-item active"> <a class="page-link" href="#">2</a> </li>
-                    <li class="page-item"> <a class="page-link" href="#">3</a> </li>
-                    <li class="page-item"> <a class="page-link" href="#">...</a> </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#"> <i class="w-4 h-4" data-lucide="chevron-right"></i> </a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#"> <i class="w-4 h-4" data-lucide="chevrons-right"></i> </a>
-                    </li>
-                </ul>
-            </nav>
-            <select class="w-20 form-select box mt-3 sm:mt-0">
-                <option>10</option>
-                <option>25</option>
-                <option>35</option>
-                <option>50</option>
-            </select>
-        </div>
-        <!-- END: Pagination -->
     </div>
+</div>
     <!-- BEGIN: Delete Confirmation Modal -->
     <div id="delete-confirmation-modal" class="modal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
@@ -116,10 +47,15 @@
                             This process cannot be undone.
                         </div>
                     </div>
-                    <div class="px-5 pb-8 text-center">
+                    <div class="px-5 pb-8 flex justify-center items-center">
                         <button type="button" data-tw-dismiss="modal"
                             class="btn btn-outline-secondary w-24 mr-1">Cancel</button>
-                        <button type="button" class="btn btn-danger w-24">Delete</button>
+                        <form id="deleteItem" method="post">
+                            @csrf
+                            @method('delete')
+                            <input type="hidden" value="" id="delete_route_input">
+                            <button type="submit" class="btn btn-danger w-24">Delete</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -127,5 +63,5 @@
     </div>
 @endsection
 @section('script')
-    <script src="{{ asset('dist/js/view/manage-product/product.js') }}"></script>
+    <script src="{{ asset('dist/js/view/manage-brand/brand.js') }}"></script>
 @endsection
