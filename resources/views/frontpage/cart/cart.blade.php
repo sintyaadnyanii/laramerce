@@ -152,8 +152,69 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-sm-4 col-sm-offset-8">
+                            <div class="col-md-4">
                                 <table class="table table-bordered">
+                                    <thead><b>Pembeli</b></thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-right">
+                                                <strong>Provinsi :</strong>
+                                            </td>
+                                            <td class="text-right" id="">...
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-right">
+                                                <strong>Kota :</strong>
+                                            </td>
+                                            <td class="text-right" id="">...
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-right">
+                                                <strong>Alamat :</strong>
+                                            </td>
+                                            <td class="text-right" id="">...</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-right">
+                                                <strong>No Telp :</strong>
+                                            </td>
+                                            <td class="text-right" id="">...</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-md-4">
+                                <table class="table table-bordered">
+                                    <thead><b>Pengirim</b></thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-right">
+                                                <strong>Provinsi :</strong>
+                                            </td>
+                                            <td class="text-right" id="">...
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-right">
+                                                <strong>Kota :</strong>
+                                            </td>
+                                            <td class="text-right" id="">...
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-right">
+                                                <strong>Alamat :</strong>
+                                            </td>
+                                            <td class="text-right" id="">...</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-md-4">
+                                <table class="table table-bordered">
+                                    <thead><b>Pesanan</b></thead>
                                     <tbody>
                                         <tr>
                                             <td class="text-right">
