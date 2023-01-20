@@ -32,7 +32,9 @@
                                 </thead>
                                 <tbody id="cart-item-list">
                                     @foreach ($cart as $product)
-                                        <tr data-sub_total="{{ $product->product->price * $product->amount }}">
+                                        <tr data-sub_total="{{ $product->product->price * $product->amount }}"
+                                            data-product="{{ $product->product_id }}"
+                                            data-price="{{ $product->product->price }}">
                                             <td class="text-center"><a
                                                     href="{{ route('product-detail', ['product' => $product->product]) }}"><img
                                                         width="70px" height="70px"
@@ -47,11 +49,15 @@
                                             <td class="text-left">{{ $product->product->brand->name }}</td>
                                             <td class="text-left" width="200px">
                                                 <div class="input-group btn-block quantity">
-                                                    <input type="text" name="quantity" value="1" size="1"
+                                                    <input type="text" name="quantity"
+                                                        id="{{ $product->product_id }}-quantity"
+                                                        value="{{ $product->amount }}" size="1"
                                                         max="{{ $product->product->stock }}" class="form-control" />
                                                     <span class="input-group-btn">
-                                                        <button type="submit" data-toggle="tooltip" title="Update"
-                                                            class="btn btn-primary"><i class="fa fa-clone"></i></button>
+                                                        <button type="button" data-toggle="tooltip"
+                                                            onclick="update_quantity('{{ $product->product_id }}', '{{ $isUser ? $isUser->id : 0 }}')"
+                                                            title="Update" class="btn btn-primary"><i
+                                                                class="fa fa-clone"></i></button>
                                                         <button type="button" data-toggle="tooltip" title="Remove"
                                                             class="btn btn-danger" onClick=""><i
                                                                 class="fa fa-times-circle"></i></button>
@@ -106,8 +112,9 @@
                                             <div class="form-group required">
                                                 <label class="col-sm-2 control-label" for="input-postcode">Post
                                                     Code</label>
-                                                <div class="col-sm-10"><input type="text" name="postcode" value=""
-                                                        placeholder="Post Code" id="input-postcode" class="form-control">
+                                                <div class="col-sm-10"><input type="text" name="postcode"
+                                                        value="" placeholder="Post Code" id="input-postcode"
+                                                        class="form-control">
                                                 </div>
                                             </div>
                                             <button type="button" id="button-quote" data-loading-text="Loading..."

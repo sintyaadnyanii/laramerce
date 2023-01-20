@@ -84,4 +84,21 @@ class AjaxController extends Controller
         }
         return response()->json(['product' => "no product found", 'wish' => "no wish deleted", 'code' => 500]);
     }
+
+    public function updateCartQuantity(Request $request)
+    {
+        $user_exists = User::where('id', $request->user)->exists();
+        $product_exists = Product::where('id', $request->product)->exists();
+        if ($user_exists && $product_exists) {
+            $cart_updated = Cart::where('user_id', $request->user)->where('product_id', $request->product)->update([
+                'amount' => $request->qty
+            ]);
+
+            if ($cart_updated) {
+                return response()->json(['code' => 200]);
+            }
+            return response()->json(['product' => "no product found", 'cart' => "no cart updated", 'code' => 201]);
+        }
+        return response()->json(['product' => "no product found", 'cart' => "no cart found", 'code' => 500]);
+    }
 }

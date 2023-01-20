@@ -32,4 +32,5 @@ Route::controller(AjaxController::class)->group(function () {
     Route::post('/remove-product-cart', 'removeProductCart');
     Route::post('/add-to-wishlist', 'addToWishlist');
     Route::post('/remove-product-wishlist', 'removeProductWishlist');
+    Route::get('/update-cart-quantity', 'updateCartQuantity');
 });

@@ -130,6 +130,7 @@ var wishlist = {
             },
         });
     },
+    update_qty: () => {},
     items: () => {
         return $("#wishlist-body-to-identify").children();
     },
