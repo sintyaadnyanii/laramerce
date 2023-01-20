@@ -25,7 +25,8 @@ class GeneralController extends Controller
             'isUser' => auth()->user(),
             'cart' => auth()->user()->cart ?? [],
             'weight' => 0,
-            'title' => 'Cart | Urban Adventure'
+            'title' => 'Cart | Urban Adventure',
+            'categories' => Category::first()->get(),
         ];
         foreach ($data['cart'] as $item) {
             $data['weight'] += ($item->product->weight * 1000);
@@ -45,21 +46,24 @@ class GeneralController extends Controller
     public function checkout()
     {
         $data = [
-            'title' => 'Check Out | Urban Adventure'
+            'title' => 'Check Out | Urban Adventure',
+            'categories' => Category::first()->get(),
         ];
         return view('frontpage.cart.checkout', $data);
     }
     public function blog_detail()
     {
         $data = [
-            'title' => 'Detail Blog | Urban Adventure'
+            'title' => 'Detail Blog | Urban Adventure',
+            'categories' => Category::first()->get(),
         ];
         return view('frontpage.blog.blog-detail', $data);
     }
     public function blog()
     {
         $data = [
-            'title' => 'Blog | Urban Adventure'
+            'title' => 'Blog | Urban Adventure',
+            'categories' => Category::first()->get(),
         ];
         return view('frontpage.blog.blog-page', $data);
     }
@@ -67,20 +71,23 @@ class GeneralController extends Controller
     {
         $data = [
             'title' => 'Detail Order | Urban Adventure',
+            'categories' => Category::first()->get(),
         ];
         return view('frontpage.order.order-detail', $data);
     }
     public function order_history()
     {
         $data = [
-            'title' => 'Detail Order | Urban Adventure'
+            'title' => 'Detail Order | Urban Adventure',
+            'categories' => Category::first()->get(),
         ];
         return view('frontpage.order.order-history', $data);
     }
     public function my_account()
     {
         $data = [
-            'title' => 'Profile | Urban Adventure'
+            'title' => 'Profile | Urban Adventure',
+            'categories' => Category::first()->get(),
         ];
         return view('frontpage.profile.my-account', $data);
     }
@@ -88,7 +95,8 @@ class GeneralController extends Controller
     {
         $data = [
             'title' => 'Whislist | Urban Adventure',
-            'wishlist' => auth()->user()->wishlists ?? []
+            'wishlist' => auth()->user()->wishlists ?? [],
+            'categories' => Category::first()->get(),
         ];
         return view('frontpage.wishlist.wishlist', $data);
     }
