@@ -11,7 +11,7 @@ function calculate_subtotal() {
 
 function calculate_total(shipping_fee = 0) {
     return (
-        parseInt($("#summary-cart-subtotal").data("sub_total")) +
+        parseInt(calculate_subtotal()) +
         parseInt(
             shipping_fee == 0
                 ? $("#cart-shipping-fee").data("cart_shipping_fee")
@@ -83,4 +83,51 @@ function getCost() {
             total_to_html(result.costs[0].cost[0].value);
         },
     });
+}
+
+function update_quantity(product_code, user_id) {
+    let quantity = parseInt($("#" + product_code + "-quantity").val());
+    if (quantity >= parseInt($("#" + product_code + "-quantity").attr("max"))) {
+        quantity = parseInt($("#" + product_code + "-quantity").attr("max"));
+        // reset qty to max value
+        $("#" + product_code + "-quantity").val(quantity);
+    }
+    $.ajax({
+        url: "/api/update-cart-quantity",
+        type: "GET",
+        data: {
+            qty: quantity,
+            product: product_code,
+            user: user_id,
+        },
+        success: (result) => {
+            console.log(result);
+        },
+    });
+
+    // search row by product code
+    const element = $(`[data-product="${product_code}"]`).first();
+
+    // count row sub_total
+    let sub_total = quantity * element.data("price");
+    element.attr("data-sub_total", sub_total);
+    $("#summary-cart-subtotal").attr("data-sub_total", calculate_subtotal());
+    $("#summary-cart-subtotal").html(
+        new Intl.NumberFormat("id", {
+            style: "currency",
+            currency: "IDR",
+        }).format(calculate_subtotal())
+    );
+    // update row subtotal
+    element
+        .children()
+        .last()
+        .html(
+            new Intl.NumberFormat("id", {
+                style: "currency",
+                currency: "IDR",
+            }).format(sub_total)
+        );
+    // update cart total
+    total_to_html($("#cart-shipping-fee").data("cart_shipping_fee"));
 }
