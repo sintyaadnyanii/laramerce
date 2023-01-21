@@ -135,16 +135,6 @@
                                                                                     class="price-new">{{ ch_currency($item->price) }}</span>
                                                                                 {{-- <span class="price-old">$122.00</span> --}}
                                                                             </p>
-                                                                            <!--countdown box-->
-                                                                            <div class="item-time-w">
-                                                                                <div class="item-time">
-                                                                                    <div class="item-timer">
-                                                                                        <div class="defaultCountdown-30">
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <!--end countdown box-->
                                                                         </div>
                                                                     </div>
                                                                 </div>
