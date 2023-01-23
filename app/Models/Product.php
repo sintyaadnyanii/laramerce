@@ -28,6 +28,31 @@ class Product extends Model
         return OrderDetail::where('product_id', $this->id)->count();
     }
 
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['search'] ?? false, function ($query, $search) {
+            return $query->where('name', 'like', '%' . $search . '%');
+        });
+
+        $query->when($filters['category'] ?? false, function ($query, $category) {
+            return $query->whereHas('category', function ($query) use ($category) {
+                $query->where('name', 'like', '%' . $category . '%');
+            });
+        });
+    }
+
+    public function scopeCategory($query, $category_id = null)
+    {
+        if (!is_null($category_id)) {
+            $this->cats($query, $category_id);
+        }
+    }
+
+    public function cats($query, $category_id)
+    {
+        return $query->where('category_id', $category_id);
+    }
+
 
     //relations
     public function category()

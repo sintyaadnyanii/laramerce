@@ -8,31 +8,34 @@
             <a href="{{ route('manage_product.create') }}" class="btn btn-primary shadow-md mr-2">Add New Product</a>
             <div class="dropdown">
                 <button class="dropdown-toggle btn px-2 box" aria-expanded="false" data-tw-toggle="dropdown">
-                    <span class="w-5 h-5 flex items-center justify-center"> <i class="w-4 h-4" data-lucide="plus"></i>
+                    <span class="w-5 h-5 flex items-center justify-center"><i class="w-4 h-4" data-lucide="filter"></i>
                     </span>
                 </button>
-                <div class="dropdown-menu w-40">
+                <div class="dropdown-menu w-52 h-64 overflow-scroll">
                     <ul class="dropdown-content">
                         <li>
-                            <a href="" class="dropdown-item"> <i data-lucide="printer" class="w-4 h-4 mr-2"></i>
-                                Print </a>
+                            <a href="/dashboard/products" class="dropdown-item">All</a>
                         </li>
+                        @foreach ($categories as $item)
                         <li>
-                            <a href="" class="dropdown-item"> <i data-lucide="file-text" class="w-4 h-4 mr-2"></i>
-                                Export to Excel </a>
+                            <a href="/dashboard/products?category={{$item->name}}" class="dropdown-item">{{ $item->name }} </a>
                         </li>
-                        <li>
-                            <a href="" class="dropdown-item"> <i data-lucide="file-text" class="w-4 h-4 mr-2"></i>
-                                Export to PDF </a>
-                        </li>
+                        @endforeach
+                       
                     </ul>
-                </div>
+                </div>               
             </div>
             <div class="hidden md:block mx-auto text-slate-500">Showing 1 to 10 of 150 entries</div>
             <div class="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
                 <div class="w-56 relative text-slate-500">
-                    <input type="text" class="form-control w-56 box pr-10" placeholder="Search...">
-                    <i class="w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0" data-lucide="search"></i>
+                    <form action="{{ route('manage_product.all') }}" method="get" id="form-search-product">
+                        @if (request('category'))
+                        <input type="hidden" name="category" value="{{ request('category') }}"> 
+                        @endif
+                    <input type="text" name="search" class="form-control w-56 box pr-10" placeholder="Search...">
+                    <button type="submit"><i class="w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0" data-lucide="search"></i>
+                    </button>
+                    </form>
                 </div>
             </div>
         </div>
