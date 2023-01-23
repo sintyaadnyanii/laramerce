@@ -155,7 +155,7 @@
                             <div class="col-md-4">
                                 <table class="table table-bordered">
                                     <thead><b>Pembeli</b></thead>
-                                    <tbody>
+                                    <tbody id="package-receiver">
                                         <tr>
                                             <td class="text-right">
                                                 <strong>Provinsi :</strong>
@@ -188,7 +188,7 @@
                             <div class="col-md-4">
                                 <table class="table table-bordered">
                                     <thead><b>Pengirim</b></thead>
-                                    <tbody>
+                                    <tbody id="package-sender">
                                         <tr>
                                             <td class="text-right">
                                                 <strong>Provinsi :</strong>
