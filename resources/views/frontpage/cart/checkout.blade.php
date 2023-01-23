@@ -4,7 +4,13 @@
         <div id="wrapper" class="wrapper-fluid banners-effect-5">
             @include('frontpage.frontpage-navbar')
             <!-- Main Container  -->
-            <div class="main-container container">
+            <form class="main-container container">
+                @csrf
+                {{-- hidden value --}}
+                <input type="hidden" id="cart-total-weight" name="weight" value="{{ $weight }}">
+                <input type="hidden" id="cart-total-weight" name="user[name]" value="{{ $isUser->name }}">
+                <input type="hidden" id="cart-total-weight" name="user[id]" value="{{ $isUser->id }}">
+                {{-- hidden value --}}
                 <ul class="breadcrumb">
                     <li><a href="#"><i class="fa fa-home"></i></a></li>
                     <li><a href="#">Checkout</a></li>
@@ -24,30 +30,20 @@
                                     <div class="panel-body">
                                         <fieldset id="account">
                                             <div class="form-group required">
-                                                <label for="input-payment-firstname" class="control-label">First
+                                                <label for="input-payment-fullname" class="control-label">Full
                                                     Name</label>
-                                                <input type="text" class="form-control" id="input-payment-firstname"
-                                                    placeholder="First Name" value="" name="firstname">
-                                            </div>
-                                            <div class="form-group required">
-                                                <label for="input-payment-lastname" class="control-label">Last Name</label>
-                                                <input type="text" class="form-control" id="input-payment-lastname"
-                                                    placeholder="Last Name" value="" name="lastname">
+                                                <input type="text" class="form-control" id="input-payment-fullname"
+                                                    placeholder="Your Name" value="{{ $isUser->name }}" name="fullname">
                                             </div>
                                             <div class="form-group required">
                                                 <label for="input-payment-email" class="control-label">E-Mail</label>
                                                 <input type="text" class="form-control" id="input-payment-email"
-                                                    placeholder="E-Mail" value="" name="email">
+                                                    placeholder="E-Mail" value="{{ $isUser->email }}" name="email">
                                             </div>
                                             <div class="form-group required">
                                                 <label for="input-payment-telephone" class="control-label">Telephone</label>
                                                 <input type="text" class="form-control" id="input-payment-telephone"
-                                                    placeholder="Telephone" value="" name="telephone">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="input-payment-fax" class="control-label">Fax</label>
-                                                <input type="text" class="form-control" id="input-payment-fax"
-                                                    placeholder="Fax" value="" name="fax">
+                                                    placeholder="Telephone" value="{{ $isUser->phone }}" name="telephone">
                                             </div>
                                         </fieldset>
                                     </div>
@@ -58,84 +54,28 @@
                                     </div>
                                     <div class="panel-body">
                                         <fieldset id="address" class="required">
-                                            <div class="form-group">
-                                                <label for="input-payment-company" class="control-label">Company</label>
-                                                <input type="text" class="form-control" id="input-payment-company"
-                                                    placeholder="Company" value="" name="company">
+                                            <div class="form-group required">
+                                                <label for="input-payment-country" class="control-label">Province</label>
+                                                <select name="province_id" id="input-province" class="form-control"
+                                                    name="province_id" onchange="getCity(this.value)">
+                                                    <option value=""> --- Please Select --- </option>
+
+                                                </select>
+                                            </div>
+                                            <div class="form-group required">
+                                                <label for="input-payment-zone" class="control-label">City</label>
+                                                <select onchange="getCost()" name="city_id" id="input-city"
+                                                    class="form-control" name="city_id">
+                                                    <option value=""> --- Please Select --- </option>
+
+                                                </select>
                                             </div>
                                             <div class="form-group required">
                                                 <label for="input-payment-address-1" class="control-label">Address
                                                     1</label>
-                                                <input type="text" class="form-control" id="input-payment-address-1"
-                                                    placeholder="Address 1" value="" name="address_1">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="input-payment-address-2" class="control-label">Address
-                                                    2</label>
-                                                <input type="text" class="form-control" id="input-payment-address-2"
-                                                    placeholder="Address 2" value="" name="address_2">
-                                            </div>
-                                            <div class="form-group required">
-                                                <label for="input-payment-city" class="control-label">City</label>
-                                                <input type="text" class="form-control" id="input-payment-city"
-                                                    placeholder="City" value="" name="city">
-                                            </div>
-                                            <div class="form-group required">
-                                                <label for="input-payment-postcode" class="control-label">Post
-                                                    Code</label>
-                                                <input type="text" class="form-control" id="input-payment-postcode"
-                                                    placeholder="Post Code" value="" name="postcode">
-                                            </div>
-                                            <div class="form-group required">
-                                                <label for="input-payment-country" class="control-label">Country</label>
-                                                <select class="form-control" id="input-payment-country"
-                                                    name="country_id">
-                                                    <option value=""> --- Please Select --- </option>
-                                                    <option value="244">Aaland Islands</option>
-                                                    <option value="1">Afghanistan</option>
-                                                    <option value="2">Albania</option>
-                                                    <option value="3">Algeria</option>
-                                                    <option value="4">American Samoa</option>
-                                                    <option value="5">Andorra</option>
-                                                    <option value="6">Angola</option>
-                                                    <option value="7">Anguilla</option>
-                                                    <option value="8">Antarctica</option>
-                                                    <option value="9">Antigua and Barbuda</option>
-                                                    <option value="10">Argentina</option>
-                                                    <option value="11">Armenia</option>
-                                                    <option value="12">Aruba</option>
-                                                    <option value="252">Ascension Island (British)</option>
-                                                    <option value="13">Australia</option>
-                                                    <option value="14">Austria</option>
-                                                    <option value="15">Azerbaijan</option>
-                                                    <option value="16">Bahamas</option>
-                                                    <option value="17">Bahrain</option>
-
-                                                </select>
-                                            </div>
-                                            <div class="form-group required">
-                                                <label for="input-payment-zone" class="control-label">Region /
-                                                    State</label>
-                                                <select class="form-control" id="input-payment-zone" name="zone_id">
-                                                    <option value=""> --- Please Select --- </option>
-                                                    <option value="3513">Aberdeen</option>
-                                                    <option value="3514">Aberdeenshire</option>
-                                                    <option value="3515">Anglesey</option>
-                                                    <option value="3516">Angus</option>
-                                                    <option value="3517">Argyll and Bute</option>
-                                                    <option value="3518">Bedfordshire</option>
-                                                    <option value="3519">Berkshire</option>
-                                                    <option value="3520">Blaenau Gwent</option>
-                                                    <option value="3521">Bridgend</option>
-                                                    <option value="3522">Bristol</option>
-
-                                                </select>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" checked="checked" value="1"
-                                                        name="shipping_address">
-                                                    My delivery and billing addresses are the same.</label>
+                                                <input onclick="getCost()" type="text" class="form-control"
+                                                    id="input-payment-address-1" placeholder="Address 1" value=""
+                                                    name="address_1">
                                             </div>
                                         </fieldset>
                                     </div>
@@ -161,64 +101,72 @@
                                                                 <td class="text-right">Total</td>
                                                             </tr>
                                                         </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td class="text-center"><a href="product.html"><img
-                                                                            width="60px"
-                                                                            src="image/catalog/demo/product/funiture/10.jpg"
-                                                                            alt="Xitefun Causal Wear Fancy Shoes"
-                                                                            title="Xitefun Causal Wear Fancy Shoes"
-                                                                            class="img-thumbnail"></a></td>
-                                                                <td class="text-left"><a href="product.html">Emasa rumas
-                                                                        gacem</a></td>
-                                                                <td class="text-left">
-                                                                    <div class="input-group btn-block"
-                                                                        style="min-width: 100px;">
-                                                                        <input type="text" name="quantity"
-                                                                            value="1" size="1"
-                                                                            class="form-control">
-                                                                        <span class="input-group-btn">
-                                                                            <button type="submit" data-toggle="tooltip"
-                                                                                title="Update" class="btn btn-primary"><i
-                                                                                    class="fa fa-refresh"></i></button>
-                                                                            <button type="button" data-toggle="tooltip"
-                                                                                title="Remove" class="btn btn-danger"
-                                                                                onClick=""><i
-                                                                                    class="fa fa-times-circle"></i></button>
-                                                                        </span>
-                                                                    </div>
-                                                                </td>
-                                                                <td class="text-right">$114.35</td>
-                                                                <td class="text-right">$114.35</td>
-                                                            </tr>
+                                                        <tbody id="cart-item-list">
+                                                            @foreach ($cart as $item)
+                                                                <tr data-sub_total="{{ $item->price * $item->amount }}"
+                                                                    data-product="{{ $item->product_code }}"
+                                                                    data-price="{{ $item->price }}">
+                                                                    <td class="text-center"><a href="product.html"><img
+                                                                                width="60px"
+                                                                                src="{{ asset($item->images->count() ? 'storage/' . $item->images->first()->src : '/image/catalog/demo/product/funiture/10.jpg') }}"
+                                                                                alt="Xitefun Causal Wear Fancy Shoes"
+                                                                                title="Xitefun Causal Wear Fancy Shoes"
+                                                                                class="img-thumbnail"></a></td>
+                                                                    <td class="text-left"><a
+                                                                            href="product.html">{{ $item->name }}</a>
+                                                                    </td>
+                                                                    <td class="text-left">
+                                                                        <div class="input-group btn-block"
+                                                                            style="min-width: 100px;">
+                                                                            <input type="text"
+                                                                                name="cart[{{ $loop->index }}][quantity]"
+                                                                                id="{{ $item->product_code }}-quantity"
+                                                                                value="{{ $item->amount }}"
+                                                                                max="{{ $item->stock }}"
+                                                                                class="form-control">
+                                                                            <span class="input-group-btn">
+                                                                                <button type="submit"
+                                                                                    data-toggle="tooltip" title="Update"
+                                                                                    onclick="update_quantity('{{ $item->product_code }}', '{{ $isUser ? $isUser->id : 0 }}')"
+                                                                                    class="btn btn-primary"><i
+                                                                                        class="fa fa-refresh"></i></button>
+                                                                                <button type="button"
+                                                                                    data-toggle="tooltip" title="Remove"
+                                                                                    class="btn btn-danger"
+                                                                                    onClick=""><i
+                                                                                        class="fa fa-times-circle"></i></button>
+                                                                            </span>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td class="text-right">{{ ch_currency($item->price) }}
+                                                                    </td>
+                                                                    <td class="text-right">
+                                                                        {{ ch_currency($item->price * $item->amount) }}
+                                                                    </td>
+                                                                </tr>
+                                                            @endforeach
                                                         </tbody>
                                                         <tfoot>
                                                             <tr>
                                                                 <td class="text-right" colspan="4">
                                                                     <strong>Sub-Total:</strong>
                                                                 </td>
-                                                                <td class="text-right">$93.73</td>
+                                                                <td data-sub_total="0" id="summary-cart-subtotal"
+                                                                    class="text-right">IDR 0</td>
                                                             </tr>
                                                             <tr>
-                                                                <td class="text-right" colspan="4"><strong>Flat
-                                                                        Shipping Rate:</strong></td>
-                                                                <td class="text-right">$4.69.00</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-right" colspan="4"><strong>Eco Tax
-                                                                        (-2.00):</strong></td>
-                                                                <td class="text-right">$3.75.00</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-right" colspan="4"><strong>VAT
-                                                                        (20%):</strong></td>
-                                                                <td class="text-right">$19.68</td>
+                                                                <td class="text-right" colspan="4">
+                                                                    <strong>Shipping Fee:</strong>
+                                                                </td>
+                                                                <td class="text-right" data-cart_shipping_fee="0"
+                                                                    id="cart-shipping-fee">IDR 0</td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-right" colspan="4">
                                                                     <strong>Total:</strong>
                                                                 </td>
-                                                                <td class="text-right">$121.85</td>
+                                                                <td data-total="0" id="cart-total-pay"
+                                                                    class="text-right">IDR 0</td>
                                                             </tr>
                                                         </tfoot>
                                                     </table>
@@ -258,9 +206,49 @@
                     <!--Middle Part End -->
 
                 </div>
-            </div>
+            </form>
             <!-- //Main Container -->
             @include('frontpage.frontpage-footer')
         </div>
     </div>
+@endsection
+
+@section('script')
+    <script src="{{ asset('dist/js/frontpage/cart.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                url: "/api/province",
+                type: "GET",
+                beforeSend: () => {
+                    $("#input-province").append(
+                        ` <option value=""> Getting Data, Please Wait... </option>`
+                    );
+                },
+                success: (result) => {
+                    $("#input-province").children()[1].remove();
+                    result.forEach((item) => {
+                        $("#input-province").append(
+                            ` <option value="${item.province_id}"> ${item.province} </option>`
+                        );
+                    });
+                },
+            });
+
+            // summary cart sub total part
+            $("#summary-cart-subtotal").html(
+                new Intl.NumberFormat("id", {
+                    style: "currency",
+                    currency: "IDR",
+                }).format(calculate_subtotal())
+            );
+
+            $("#summary-cart-subtotal").attr("data-sub_total", calculate_subtotal());
+            // summary cart sub total part
+
+            // summary total part
+            total_to_html();
+            // summary total part
+        });
+    </script>
 @endsection

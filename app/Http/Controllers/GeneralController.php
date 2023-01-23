@@ -45,10 +45,23 @@ class GeneralController extends Controller
     }
     public function checkout()
     {
+
+        // dd(request()->all());
         $data = [
             'title' => 'Check Out | Urban Adventure',
+            'isUser' => auth()->user(),
+            'weight' => 0,
             'categories' => Category::first()->get(),
+            'cart' => Product::whereIn('product_code', request()->product_code)->get()->each(function ($item, $index) {
+                $item->amount = request()->cart[$index]["quantity"];
+            })
         ];
+
+        foreach ($data['cart'] as $item) {
+            $data['weight'] += ($item->weight * 1000);
+        }
+
+        // dd($data['cart']);
         return view('frontpage.cart.checkout', $data);
     }
     public function blog_detail()
