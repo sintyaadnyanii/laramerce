@@ -39,13 +39,17 @@ function getCity(province_id) {
             province: province_id,
         },
         beforeSend: () => {
+            $("#input-city").append(
+                ` <option value=""> Getting Data, Please Wait </option>`
+            );
+        },
+        success: (result) => {
             $("#input-city")
                 .children()
                 .each((index, element) => {
                     if (index > 0) element.remove();
                 });
-        },
-        success: (result) => {
+
             result.forEach((item) => {
                 $("#input-city").append(
                     ` <option value="${item.city_id}"> ${
@@ -73,14 +77,37 @@ function getCost() {
                 new Intl.NumberFormat("id", {
                     style: "currency",
                     currency: "IDR",
-                }).format(result.costs[0].cost[0].value)
+                }).format(result["results"][0].costs[0].cost[0].value)
             );
 
             $("#cart-shipping-fee").attr(
                 "data-cart_shipping_fee",
-                result.costs[0].cost[0].value
+                result["results"][0].costs[0].cost[0].value
             );
-            total_to_html(result.costs[0].cost[0].value);
+            total_to_html(result["results"][0].costs[0].cost[0].value);
+
+            if ($("#package-receiver").length == 1) {
+                const child = $("#package-receiver").children();
+                child[0].children[1].innerHTML =
+                    result["destination_details"].province;
+                child[1].children[1].innerHTML =
+                    result["destination_details"].type +
+                    " " +
+                    result["destination_details"].city_name;
+                child[2].children[1].innerHTML = "alamat";
+                child[3].children[1].innerHTML = "no telp";
+            }
+
+            if ($("#package-sender").length == 1) {
+                const child = $("#package-sender").children();
+                child[0].children[1].innerHTML =
+                    result["origin_details"].province;
+                child[1].children[1].innerHTML =
+                    result["origin_details"].type +
+                    " " +
+                    result["origin_details"].city_name;
+                child[2].children[1].innerHTML = "alamat";
+            }
         },
     });
 }

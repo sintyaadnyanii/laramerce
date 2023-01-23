@@ -10,9 +10,12 @@
                     <li><a href="#">Shopping Cart</a></li>
                 </ul>
 
-                <form class="row">
+                <form class="row" action="{{ route('checkout') }}" method="POST">
+                    @csrf
                     {{-- hidden value --}}
-                    <input type="hidden" id="cart-total-weight" value="{{ $weight }}">
+                    <input type="hidden" id="cart-total-weight" name="weight" value="{{ $weight }}">
+                    <input type="hidden" id="cart-total-weight" name="user[name]" value="{{ $isUser->name }}">
+                    <input type="hidden" id="cart-total-weight" name="user[id]" value="{{ $isUser->id }}">
                     {{-- hidden value --}}
                     {{-- hidden value --}}
                     <!--Middle Part Start-->
@@ -49,10 +52,16 @@
                                             <td class="text-left">{{ $product->product->brand->name }}</td>
                                             <td class="text-left" width="200px">
                                                 <div class="input-group btn-block quantity">
-                                                    <input type="text" name="quantity"
+                                                    <input type="text" name="cart[{{ $loop->index }}][quantity]"
                                                         id="{{ $product->product_id }}-quantity"
                                                         value="{{ $product->amount }}" size="1"
                                                         max="{{ $product->product->stock }}" class="form-control" />
+                                                    <input type="hidden" name="cart[{{ $loop->index }}][product][code]"
+                                                        value="{{ $product->product_id }}">
+                                                    <input type="hidden" name="cart[{{ $loop->index }}][product][name]"
+                                                        value="{{ $product->product->name }}">
+                                                    <input type="hidden" name="product_code[{{ $loop->index }}]"
+                                                        value="{{ $product->product_id }}">
                                                     <span class="input-group-btn">
                                                         <button type="button" data-toggle="tooltip"
                                                             onclick="update_quantity('{{ $product->product_id }}', '{{ $isUser ? $isUser->id : 0 }}')"
@@ -93,7 +102,8 @@
                                         <p>Enter your destination to get a shipping estimate.</p>
                                         <div class="form-horizontal">
                                             <div class="form-group required">
-                                                <label class="col-sm-2 control-label" for="input-province">Province</label>
+                                                <label class="col-sm-2 control-label"
+                                                    for="input-province">Province</label>
                                                 <div class="col-sm-10">
                                                     <select name="province_id" id="input-province" class="form-control"
                                                         onchange="getCity(this.value)">
@@ -123,39 +133,13 @@
                                     </div>
                                 </div>
                             </div>
-                            {{-- <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a href="#collapse-voucher" data-toggle="collapse" data-parent="#accordion"
-                                            class="accordion-toggle collapsed" aria-expanded="false">Use Gift Certificate
-
-                                            <i class="fa fa-caret-down"></i>
-                                        </a>
-                                    </h4>
-                                </div>
-                                <div id="collapse-voucher" class="panel-collapse collapse" aria-expanded="false"
-                                    style="height: 0px;">
-                                    <div class="panel-body">
-                                        <label class="col-sm-2 control-label" for="input-voucher">Enter your gift
-                                            certificate code here</label>
-                                        <div class="input-group">
-                                            <input type="text" name="voucher" value=""
-                                                placeholder="Enter your gift certificate code here" id="input-voucher"
-                                                class="form-control">
-                                            <span class="input-group-btn"><input type="submit"
-                                                    value="Apply Gift Certificate" id="button-voucher"
-                                                    data-loading-text="Loading..." class="btn btn-primary"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> --}}
                         </div>
 
                         <div class="row">
                             <div class="col-md-4">
                                 <table class="table table-bordered">
                                     <thead><b>Pembeli</b></thead>
-                                    <tbody>
+                                    <tbody id="package-receiver">
                                         <tr>
                                             <td class="text-right">
                                                 <strong>Provinsi :</strong>
@@ -188,7 +172,7 @@
                             <div class="col-md-4">
                                 <table class="table table-bordered">
                                     <thead><b>Pengirim</b></thead>
-                                    <tbody>
+                                    <tbody id="package-sender">
                                         <tr>
                                             <td class="text-right">
                                                 <strong>Provinsi :</strong>
@@ -246,8 +230,8 @@
                             <div class="pull-left"><a href="{{ route('main') }}" class="btn btn-primary">Continue
                                     Shopping</a>
                             </div>
-                            <div class="pull-right"><a href="{{ route('checkout') }}"
-                                    class="btn btn-primary">Checkout</a></div>
+                            <div class="pull-right"><button type="submit" class="btn btn-primary">Checkout</button>
+                            </div>
                         </div>
                     </div>
                     <!--Middle Part End -->
@@ -267,7 +251,13 @@
             $.ajax({
                 url: "/api/province",
                 type: "GET",
+                beforeSend: () => {
+                    $("#input-province").append(
+                        ` <option value=""> Getting Data, Please Wait... </option>`
+                    );
+                },
                 success: (result) => {
+                    $("#input-province").children()[1].remove();
                     result.forEach((item) => {
                         $("#input-province").append(
                             ` <option value="${item.province_id}"> ${item.province} </option>`

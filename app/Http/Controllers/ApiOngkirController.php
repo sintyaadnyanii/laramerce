@@ -67,6 +67,6 @@ class ApiOngkirController extends Controller
             'courier' => $request->courier
         ]);
 
-        return $response->json()['rajaongkir']['results'][0];
+        return $response->json()['rajaongkir'];
     }
 }
