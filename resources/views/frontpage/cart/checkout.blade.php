@@ -226,7 +226,6 @@
                             </div>
                         </div>
                     </div>
-                    @dump($errors)
                     <!--Middle Part End -->
 
                 </div>
