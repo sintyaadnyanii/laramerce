@@ -7,6 +7,8 @@ use App\Models\Brand;
 use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\SnapToken;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 
 class GeneralController extends Controller
@@ -88,26 +90,87 @@ class GeneralController extends Controller
 
     public function execute_order(Request $request)
     {
+        // local function
+        function countGrossAmount($array = [], $shipping_cost, $starting_value = 0)
+        {
+            $starting_value = 0;
+            foreach ($array as $index => $item) {
+                $starting_value += $item['price'] * $item['quantity'];
+            }
+            return $starting_value + $shipping_cost;
+        }
+        // local function
         $validator = Validator::make($request->all(), [
             'weight' => 'required|numeric|min:1',
-            'user.name' => 'required|string',
-            'user.id' => 'required|numeric',
-            'user.fullname' => 'required|string',
-            'user.email' => 'required|email:dns',
-            'user.telephone' => 'required|numeric',
-            'user.address' => 'required|string',
+            'customer.name' => 'required|string',
+            'customer.id' => 'required|numeric',
+            'customer.fullname' => 'required|string',
+            'customer.email' => 'required|email:dns',
+            'customer.phone' => 'required|numeric',
+            'customer.address' => 'required|string',
             'destination.province_id' => 'required|numeric',
             'destination.city_id' => 'required|numeric',
             'cart.*.name' => 'required|string',
-            'cart.*.product_code' => 'required|string',
+            'cart.*.id' => 'required|string',
             'cart.*.quantity' => 'required|numeric|min:1',
+            'cart.*.price' => 'required|numeric',
+            'shipping.cost' => 'required|numeric',
+            'shipping.province' => 'required|string',
+            'shipping.city' => 'required|string',
+            'comments' => 'nullable|string'
         ]);
 
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput()->with('error', "Order Can't Execute, Try Again!");
         }
+        $validated = $validator->validated();
 
-        return $validator->validated();
+        // preparing data for snaptoken
+        $transaction_details = [
+            'order_id' => Str::random(12),
+            'gross_amount' => countGrossAmount($validated['cart'], $validated['shipping']['cost'])
+        ];
+
+        $item_details = $validated['cart'];
+        array_push($item_details, [
+            'name' => 'Delivery Service JNE',
+            'quantity' => 1,
+            'id' => 'JNE',
+            'price' => $validated['shipping']['cost']
+        ]);
+
+        $customer_details = $validated['customer'];
+        $shipping_address = [
+            "name" => $validated['customer']['name'],
+            "email" =>  $validated['customer']['email'],
+            "phone" =>  $validated['customer']['phone'],
+            "address" =>  $validated['customer']['address'],
+            "province" => $validated['shipping']['province'],
+            "city" => $validated['shipping']['city'],
+            "cost" => $validated['shipping']['cost']
+        ];
+        // preparing data for snaptoken
+
+        // sending to view
+        $cart = Cart::where('user_id', auth()->user()->id)->get();
+        $data = [
+            'title' => "Prepare To Order",
+            'isUser' => auth()->user(),
+            'weight' => 0,
+            'snap' => SnapToken::claim($transaction_details, $customer_details, $item_details, $shipping_address),
+            'categories' => Category::first()->get(),
+            'shipping' => $shipping_address,
+            'transaction' => $transaction_details,
+            'comments' => $validated['comments'],
+            'cart' => Product::whereIn('product_code', $cart->map(function ($item) {
+                return $item->product_id;
+            }))->get()->each(function ($item, $index) use ($cart) {
+                $item->amount = $cart->where('product_id', $item->product_code)->where('user_id', auth()->user()->id)->first()->amount;
+            })
+        ];
+        // sending to view
+
+        return view('frontpage.cart.execute-order', $data);
     }
     public function blog_detail()
     {
