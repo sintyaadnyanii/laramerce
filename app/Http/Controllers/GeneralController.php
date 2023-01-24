@@ -21,6 +21,17 @@ class GeneralController extends Controller
         ];
         return view('frontpage.main.main', $data);
     }
+    public function category(Category $category)
+    {
+        $data = [
+            'title' => 'Category | Urban Adventure',
+            'products' => Product::get(),
+            'category' => $category,
+            'categories' => Category::first()->get(),
+            'brands' => Brand::with(['products'])->latest()->get()
+        ];
+        return view('frontpage.category.category', $data);
+    }
     public function cart()
     {
         $data = [

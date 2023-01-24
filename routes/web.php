@@ -33,6 +33,8 @@ Route::get('/', function () {
 Route::controller(GeneralController::class)->group(function () {
     Route::get('/', 'main')->name('main');
     Route::get('/cart', 'cart')->name('cart');
+    // Route::get('/category', 'category')->name('category');
+    Route::get('/category/{category:name}', 'category')->name('category');
     Route::get('/product/{product:product_code}', 'product_detail')->name('product-detail');
     Route::match(['GET', 'POST'], '/checkout', 'checkout')->name('checkout');
     Route::post('/execute-order', 'execute_order')->name('execute_order');
