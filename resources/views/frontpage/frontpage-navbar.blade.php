@@ -53,7 +53,7 @@
                 <!-- Logo -->
                 <div class="navbar-logo col-md-2 col-sm-3 col-xs-10">
                     <div class="logo"><a href="{{ route('main') }}"><img
-                                src="http://127.0.0.1:8000/image/catalog/elab-logo.png" title="Your Store"
+                                src="{{ asset('image/catalog/elab-logo.png') }}" title="Your Store"
                                 alt="Your Store" /></a></div>
                 </div>
                 <!-- //end Logo -->
