@@ -637,8 +637,7 @@
                                                                                                     target="_self"
                                                                                                     title="Cupim should">
                                                                                                     <img src="{{ asset($brand->products[$ip]->images->count() ? 'storage/' . $brand->products[$ip]->images->first()->src : 'dist/images/default.jpg') }}"
-                                                                                                        class="img-responsive"
-                                                                                                        id="img-mobile"
+                                                                                                        class="img-responsive img-mobile"
                                                                                                         style="width: 194.8px; height: 194.8px; object-fit: cover; object-position: center;"
                                                                                                         alt="image">
                                                                                                 </a>
