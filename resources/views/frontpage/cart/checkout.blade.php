@@ -4,7 +4,7 @@
         <div id="wrapper" class="wrapper-fluid banners-effect-5">
             @include('frontpage.frontpage-navbar')
             <!-- Main Container  -->
-            <form class="main-container container">
+            <form class="main-container container" action="{{ route('execute_order') }}" method="POST">
                 @csrf
                 {{-- hidden value --}}
                 <input type="hidden" id="cart-total-weight" name="weight" value="{{ $weight }}">
@@ -33,17 +33,19 @@
                                                 <label for="input-payment-fullname" class="control-label">Full
                                                     Name</label>
                                                 <input type="text" class="form-control" id="input-payment-fullname"
-                                                    placeholder="Your Name" value="{{ $isUser->name }}" name="fullname">
+                                                    placeholder="Your Name" value="{{ $isUser->name }}"
+                                                    name="user[fullname]">
                                             </div>
                                             <div class="form-group required">
                                                 <label for="input-payment-email" class="control-label">E-Mail</label>
                                                 <input type="text" class="form-control" id="input-payment-email"
-                                                    placeholder="E-Mail" value="{{ $isUser->email }}" name="email">
+                                                    placeholder="E-Mail" value="{{ $isUser->email }}" name="user[email]">
                                             </div>
                                             <div class="form-group required">
                                                 <label for="input-payment-telephone" class="control-label">Telephone</label>
                                                 <input type="text" class="form-control" id="input-payment-telephone"
-                                                    placeholder="Telephone" value="{{ $isUser->phone }}" name="telephone">
+                                                    placeholder="Telephone" value="{{ $isUser->phone }}"
+                                                    name="user[telephone]">
                                             </div>
                                         </fieldset>
                                     </div>
@@ -56,15 +58,15 @@
                                         <fieldset id="address" class="required">
                                             <div class="form-group required">
                                                 <label for="input-payment-country" class="control-label">Province</label>
-                                                <select name="province_id" id="input-province" class="form-control"
-                                                    name="province_id" onchange="getCity(this.value)">
+                                                <select id="input-province" class="form-control"
+                                                    name="destination[province_id]" onchange="getCity(this.value)">
                                                     <option value=""> --- Please Select --- </option>
 
                                                 </select>
                                             </div>
                                             <div class="form-group required">
                                                 <label for="input-payment-zone" class="control-label">City</label>
-                                                <select onchange="getCost()" name="city_id" id="input-city"
+                                                <select onchange="getCost()" name="destination[city_id]" id="input-city"
                                                     class="form-control" name="city_id">
                                                     <option value=""> --- Please Select --- </option>
 
@@ -74,8 +76,8 @@
                                                 <label for="input-payment-address-1" class="control-label">Address
                                                     1</label>
                                                 <input onclick="getCost()" type="text" class="form-control"
-                                                    id="input-payment-address-1" placeholder="Address 1" value=""
-                                                    name="address_1">
+                                                    id="input-payment-address-1" placeholder="Address.."
+                                                    name="user[address]">
                                             </div>
                                         </fieldset>
                                     </div>
@@ -118,6 +120,16 @@
                                                                     <td class="text-left">
                                                                         <div class="input-group btn-block"
                                                                             style="min-width: 100px;">
+                                                                            <input type="hidden"
+                                                                                name="cart[{{ $loop->index }}][name]"
+                                                                                id="{{ $item->product_code }}-name"
+                                                                                value="{{ $item->name }}"
+                                                                                class="form-control">
+                                                                            <input type="hidden"
+                                                                                name="cart[{{ $loop->index }}][product_code]"
+                                                                                id="{{ $item->product_code }}-product_code"
+                                                                                value="{{ $item->product_code }}"
+                                                                                class="form-control">
                                                                             <input type="text"
                                                                                 name="cart[{{ $loop->index }}][quantity]"
                                                                                 id="{{ $item->product_code }}-quantity"
@@ -125,7 +137,7 @@
                                                                                 max="{{ $item->stock }}"
                                                                                 class="form-control">
                                                                             <span class="input-group-btn">
-                                                                                <button type="submit"
+                                                                                <button type="button"
                                                                                     data-toggle="tooltip" title="Update"
                                                                                     onclick="update_quantity('{{ $item->product_code }}', '{{ $isUser ? $isUser->id : 0 }}')"
                                                                                     class="btn btn-primary"><i
@@ -143,6 +155,7 @@
                                                                     <td class="text-right">
                                                                         {{ ch_currency($item->price * $item->amount) }}
                                                                     </td>
+
                                                                 </tr>
                                                             @endforeach
                                                         </tbody>
@@ -192,8 +205,9 @@
                                                 </label>
                                                 <div class="buttons">
                                                     <div class="pull-right">
-                                                        <input type="button" class="btn btn-primary" id="button-confirm"
-                                                            value="Confirm Order">
+                                                        <button type="submit" class="btn btn-primary"
+                                                            id="button-confirm">
+                                                            Confirm Order</button>
                                                     </div>
                                                 </div>
                                             </div>

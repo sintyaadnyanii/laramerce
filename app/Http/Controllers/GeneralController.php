@@ -7,6 +7,7 @@ use App\Models\Brand;
 use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Product;
+use Illuminate\Support\Facades\Validator;
 
 class GeneralController extends Controller
 {
@@ -83,6 +84,30 @@ class GeneralController extends Controller
             }
             return view('frontpage.cart.checkout', $data);
         }
+    }
+
+    public function execute_order(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'weight' => 'required|numeric|min:1',
+            'user.name' => 'required|string',
+            'user.id' => 'required|numeric',
+            'user.fullname' => 'required|string',
+            'user.email' => 'required|email:dns',
+            'user.telephone' => 'required|numeric',
+            'user.address' => 'required|string',
+            'destination.province_id' => 'required|numeric',
+            'destination.city_id' => 'required|numeric',
+            'cart.*.name' => 'required|string',
+            'cart.*.product_code' => 'required|string',
+            'cart.*.quantity' => 'required|numeric|min:1',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput()->with('error', "Order Can't Execute, Try Again!");
+        }
+
+        return $validator->validated();
     }
     public function blog_detail()
     {
