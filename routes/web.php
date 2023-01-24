@@ -10,6 +10,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ViewTemplateController;
 use App\Models\Brand;
 use App\Models\Product;
+use App\Models\SnapToken;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,7 +25,41 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/token', function () {
-    // return auth()->user()->wishl
+    $transaction_details =
+        [
+            "order_id" => "CustOrder-102",
+            "gross_amount" => 13000
+        ];
+
+    $item_details = [
+        [
+            "id" => "a01",
+            "price" => 7000,
+            "quantity" => 1,
+            "name" => "Apple"
+        ],
+        [
+            "id" => "b02",
+            "price" => 3000,
+            "quantity" => 2,
+            "name" => "Orange"
+        ]
+    ];
+    $customer_details = [
+        "name" => "Budi Sasono",
+        "email" => "budisusanto@example.com",
+        "phone" => "+628123456789",
+    ];
+
+    $shipping_address = [
+        "name" => "Budi Sasono",
+        "email" => "budisusanto@example.com",
+        "phone" => "0812345678910",
+        "address" => "Sudirman",
+        "city" => "Jakarta",
+    ];
+
+    return SnapToken::claim($transaction_details, $customer_details, $item_details, $shipping_address);
 });
 Route::get('/', function () {
     return view('frontpage.main.main', ['title' => 'Homepage | Urban Adventure']);
