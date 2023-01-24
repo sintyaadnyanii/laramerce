@@ -592,9 +592,9 @@
     .layout-1 .module.custom_bestseler .extraslider-inner {
         width: 100%;
     }
-    .layout-1 > #img-mobile {
-        width: 100%;
-        height: 100%;
+    .img-mobile {
+        width: 100% !important;
+        height: 100% !important;
     }
     .layout-1 .yt-content-slider.arrow-default .owl2-nav {
         display: none;
