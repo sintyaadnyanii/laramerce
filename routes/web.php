@@ -73,9 +73,9 @@ Route::controller(GeneralController::class)->group(function () {
     Route::get('/product/{product:product_code}', 'product_detail')->name('product-detail');
     Route::match(['GET', 'POST'], '/checkout', 'checkout')->name('checkout');
     Route::post('/execute-order', 'execute_order')->name('execute_order');
+    Route::get('/order/{order}', 'order_detail')->name('order_detail');
     Route::get('/blog-detail', 'blog_detail')->name('blog-detail');
     Route::get('/blog-page', 'blog')->name('blog');
-    Route::get('/order-detail', 'order_detail')->name('order-detail');
     Route::get('/order-history', 'order_history')->name('order-history');
     Route::get('/my-account', 'my_account')->name('my-account');
     Route::get('/wishlist', 'wishlist')->name('wishlist');
