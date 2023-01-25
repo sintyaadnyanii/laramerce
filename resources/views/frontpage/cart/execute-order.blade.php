@@ -11,8 +11,8 @@
             <div class="main-container container">
                 {{-- hidden value --}}
                 <input type="hidden" id="cart-total-weight" name="weight" value="{{ $weight }}">
-                <input type="hidden" id="cart-total-weight" name="user[name]" value="{{ $isUser->name }}">
-                <input type="hidden" id="cart-total-weight" name="user[id]" value="{{ $isUser->id }}">
+                <input type="hidden" id="cart-total-weight" name="user[name]" value="{{ $order->name }}">
+                <input type="hidden" id="cart-total-weight" name="user[id]" value="{{ $order->user_id }}">
                 {{-- hidden value --}}
                 <ul class="breadcrumb">
                     <li><a href="#"><i class="fa fa-home"></i></a></li>
@@ -36,19 +36,19 @@
                                                 <label for="input-payment-fullname" class="control-label">Full
                                                     Name</label>
                                                 <input type="text" class="form-control" id="input-payment-fullname"
-                                                    placeholder="Your Name" value="{{ $isUser->name }}"
+                                                    placeholder="Your Name" value="{{ $order->name }}"
                                                     name="user[fullname]" readonly>
                                             </div>
                                             <div class="form-group required">
                                                 <label for="input-payment-email" class="control-label">E-Mail</label>
                                                 <input type="text" class="form-control" id="input-payment-email"
-                                                    placeholder="E-Mail" value="{{ $isUser->email }}" name="user[email]"
+                                                    placeholder="E-Mail" value="{{ $order->email }}" name="user[email]"
                                                     readonly>
                                             </div>
                                             <div class="form-group required">
                                                 <label for="input-payment-telephone" class="control-label">Telephone</label>
                                                 <input type="text" class="form-control" id="input-payment-telephone"
-                                                    placeholder="Telephone" value="{{ $isUser->phone }}"
+                                                    placeholder="Telephone" value="{{ $order->phone }}"
                                                     name="user[telephone]" readonly>
                                             </div>
                                         </fieldset>

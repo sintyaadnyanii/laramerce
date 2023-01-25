@@ -67,18 +67,18 @@ Route::get('/', function () {
 
 Route::controller(GeneralController::class)->group(function () {
     Route::get('/', 'main')->name('main');
-    Route::get('/cart', 'cart')->name('cart');
+    Route::get('/cart', 'cart')->name('cart')->middleware('auth');
     // Route::get('/category', 'category')->name('category');
     Route::get('/category/{category:name}', 'category')->name('category');
     Route::get('/product/{product:product_code}', 'product_detail')->name('product-detail');
-    Route::match(['GET', 'POST'], '/checkout', 'checkout')->name('checkout');
-    Route::post('/execute-order', 'execute_order')->name('execute_order');
-    Route::get('/order/{order}', 'order_detail')->name('order_detail');
+    Route::match(['GET', 'POST'], '/checkout', 'checkout')->name('checkout')->middleware('auth');
+    Route::post('/execute-order', 'execute_order')->name('execute_order')->middleware('auth');
+    Route::get('/order/{order}', 'order_detail')->name('order_detail')->middleware('auth');
     Route::get('/blog-detail', 'blog_detail')->name('blog-detail');
     Route::get('/blog-page', 'blog')->name('blog');
     Route::get('/order-history', 'order_history')->name('order-history');
     Route::get('/my-account', 'my_account')->name('my-account');
-    Route::get('/wishlist', 'wishlist')->name('wishlist');
+    Route::get('/wishlist', 'wishlist')->name('wishlist')->middleware('auth');
 });
 
 Route::get('/test', function () {
