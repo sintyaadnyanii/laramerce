@@ -15,14 +15,22 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->string('id')->primary();
+            // customer
             $table->integer('user_id');
             $table->string('name');
             $table->string('phone');
             $table->string('email');
+            $table->text('comments');
+            // transaction
             $table->integer('gross_amount');
-            $table->integer('transaction_id');
+            $table->string('transaction_id');
             $table->string('payment_token');
-            $table->string('payment_type');
+            $table->string('payment_type')->nullable();
+            // shipping
+            $table->string('province');
+            $table->string('city');
+            $table->string('cost');
+            $table->text('address');
             $table->timestamps();
         });
     }
