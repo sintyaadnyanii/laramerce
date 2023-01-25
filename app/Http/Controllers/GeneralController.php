@@ -212,6 +212,9 @@ class GeneralController extends Controller
     }
     public function order_detail(Order $order)
     {
+        if ($order->email != auth()->user()->email) {
+            return redirect()->route('main')->with('error', 'Thats Not Your Order!');
+        }
         $data = [
             'title' => "Prepare To Order",
             'isUser' => auth()->user(),

@@ -175,3 +175,5 @@ function update_quantity(product_code, user_id) {
     // update cart total
     total_to_html($("#cart-shipping-fee").data("cart_shipping_fee"));
 }
+
+function commitOrder() {}
