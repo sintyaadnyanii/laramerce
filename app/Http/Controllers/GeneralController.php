@@ -230,8 +230,10 @@ class GeneralController extends Controller
     public function order_history()
     {
         $data = [
+            'brands' => Brand::with(['products'])->latest()->get(),
             'title' => 'Detail Order | Urban Adventure',
             'categories' => Category::first()->get(),
+            'orders' => auth()->user()->orders
         ];
         return view('frontpage.order.order-history', $data);
     }
