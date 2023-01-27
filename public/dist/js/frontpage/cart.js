@@ -72,7 +72,6 @@ function getCost() {
             courier: "jne",
         },
         success: (result) => {
-            console.log(result);
             $("#cart-shipping-fee").html(
                 new Intl.NumberFormat("id", {
                     style: "currency",
@@ -107,6 +106,24 @@ function getCost() {
                     " " +
                     result["origin_details"].city_name;
                 child[2].children[1].innerHTML = "alamat";
+            }
+
+            if ($("#input-shipping-cost").length == 1) {
+                $("#input-shipping-cost").val(
+                    result["results"][0].costs[0].cost[0].value
+                );
+            }
+
+            if ($("#input-shipping-destination-province").length == 1) {
+                $("#input-shipping-destination-province").val(
+                    result["destination_details"].province
+                );
+            }
+
+            if ($("#input-shipping-destination-city").length == 1) {
+                $("#input-shipping-destination-city").val(
+                    result["destination_details"].city_name
+                );
             }
         },
     });
@@ -158,3 +175,5 @@ function update_quantity(product_code, user_id) {
     // update cart total
     total_to_html($("#cart-shipping-fee").data("cart_shipping_fee"));
 }
+
+function commitOrder() {}

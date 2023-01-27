@@ -46,6 +46,9 @@ class UserController extends Controller
         }
         $validated = $validator->validate();
         if (Auth::attempt(['email' => $validated['email'], 'password' => $validated['password']])) {
+            if (User::where('email', $validated['email'])->first()->level == 'user') {
+                return redirect()->route('main');
+            }
             return redirect()->route('dashboard')->with('success', 'Login Success1! <br> Welcome' . auth()->user()->name);
         }
         return redirect()->back()->with('error', 'Login Failed! <br> Try Again');

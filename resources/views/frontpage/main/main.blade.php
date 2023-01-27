@@ -20,11 +20,11 @@
                                                     data-pagination="yes" data-lazyload="yes" data-loop="no"
                                                     data-hoverpause="yes">
                                                     @foreach ($products->shuffle()->take(3) as $item)
-                                                        <div class="yt-content-slide">
+                                                        <div class="yt-content-slide" style="width: 100%;">
                                                             <a title="{{ $item->name }}" href="#"><img
                                                                     src="{{ asset($item->images->count() ? 'storage/' . $item->images->first()->src : 'image/catalog/demo/product/80/8.jpg') }}"
-                                                                    alt="{{ $item->name }}" class="responsive"
-                                                                    width="650" height="510"></a>
+                                                                    alt="{{ $item->name }}" class="responsive img-mobile"
+                                                                    style="width: 650px; height: 510px; object-fit: cover; object-position: center;"></a>
                                                         </div>
                                                     @endforeach
                                                 </div>
@@ -33,13 +33,14 @@
                                         </div>
                                         <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12 block-right">
                                             <div class="module">
-                                                <div class="block-image-1">
+                                                <div class="block-image-1" style="width: 100%;">
                                                     <ul class="static-image">
                                                         @foreach ($products->shuffle()->take(3) as $item)
                                                             <li><a title="{{ $item->name }}" href="#"><img
                                                                         src="{{ asset($item->images->count() ? 'storage/' . $item->images->first()->src : 'image/catalog/demo/product/80/8.jpg') }}"
-                                                                        alt="{{ $item->name }}" width="250"
-                                                                        height="170"></a></li>
+                                                                        alt="{{ $item->name }}" class="img-mobile"
+                                                                        style="width: 250px; height: 170px; object-fit: cover; object-position: center;"></a>
+                                                            </li>
                                                         @endforeach
                                                     </ul>
                                                 </div>
@@ -62,10 +63,11 @@
                                         data-lazyload="yes" data-loop="no" data-hoverpause="yes">
                                         @forelse ($brands as $item)
                                             <div class="cate cate1">
-                                                <div class="inner"><a href="#"><img
-                                                            src="{{ asset('/image/brand/brand.jpg') }}"
-                                                            alt="Static Image"></a><a class="title-cate"
-                                                        href="#">{{ $item->name }}</a>
+                                                <div class="inner" style="width: 100%;"><a href="#"><img
+                                                            class="img-mobile" src="{{ asset('/image/brand/brand.jpg') }}"
+                                                            alt="Static Image"
+                                                            style="width:210px; height: 270px; cover; object-position: center;"></a><a
+                                                        class="title-cate" href="#">{{ $item->name }}</a>
                                                 </div>
                                             </div>
                                         @empty
@@ -91,13 +93,13 @@
                                                             <div class="product-item">
                                                                 <div class="product-item-container">
                                                                     <div class="left-block">
-                                                                        <div class="product-image-container second_img">
+                                                                        <div class="product-image-container second_img"
+                                                                            style="width: 100%;">
                                                                             <a href="#" target="_self"
                                                                                 title="{{ $item->name }}">
                                                                                 <img src="{{ asset($item->images->count() ? 'storage/' . $item->images->first()->src : 'image/catalog/demo/product/80/8.jpg') }}"
-                                                                                    class="img-1 img-responsive"
-                                                                                    width="400" height="400"
-                                                                                    style="width: 300px; height: 300px; object-fit: cover; object-position: center;"
+                                                                                    class="img-1 img-responsive img-mobile"
+                                                                                    style="width: 400px; height: 400px; object-fit: cover; object-position: center;"
                                                                                     alt="{{ $item->name }}">
                                                                             </a>
                                                                         </div>
@@ -207,12 +209,11 @@
                                                     @foreach ($products as $item)
                                                         <div class="item-slick"
                                                             data-slick-index="{{ $loop->iteration }}">
-                                                            <div class="item-img">
+                                                            <div class="item-img" style="width: 100%;">
                                                                 <img src="{{ asset($item->images->count() ? 'storage/' . $item->images->first()->src : 'image/catalog/demo/product/80/8.jpg') }}"
-                                                                    class="img-1 img-responsive"
-                                                                    alt="{{ $item->name }}" width="100"
-                                                                    height="100"
-                                                                    style="width: 90px; height: 90px; object-fit: cover; object-position: center;">
+                                                                    class="img-1 img-responsive img-mobile"
+                                                                    alt="{{ $item->name }}"
+                                                                    style="width: 100px; height: 100px; object-fit: cover; object-position: center;">
                                                                 <div class="box-label">
                                                                     <span class="label-product label-sale">-20%</span>
                                                                 </div>
@@ -251,12 +252,12 @@
                                                                                         <div class="item-img-info">
                                                                                             <a href="#"
                                                                                                 target="_self"
-                                                                                                title="{{ $product->name }} ">
+                                                                                                title="{{ $product->name }} "
+                                                                                                style="width: 100%;">
                                                                                                 <img src="{{ asset($product->images->count() ? 'storage/' . $product->images->first()->src : 'image/catalog/demo/product/80/8.jpg') }}"
                                                                                                     alt="{{ $product->name }}"
-                                                                                                    width="200"
-                                                                                                    height="200"
-                                                                                                    style="width: 100px; height: 100px; object-fit: cover;">
+                                                                                                    class="img-mobile"
+                                                                                                    style="width: 90px; height: 90px; object-fit: cover; object-position: center;">
                                                                                             </a>
                                                                                         </div>
                                                                                     </div>
@@ -631,13 +632,13 @@
                                                                                     <div class="product-item-container">
                                                                                         <div class="left-block left-b">
                                                                                             <div class="product-image-container"
-                                                                                                style="width: 194.8px; height: 194.8px; object-fit: cover;">
+                                                                                                style="width: 100%">
                                                                                                 <a href="#"
                                                                                                     target="_self"
                                                                                                     title="Cupim should">
                                                                                                     <img src="{{ asset($brand->products[$ip]->images->count() ? 'storage/' . $brand->products[$ip]->images->first()->src : 'dist/images/default.jpg') }}"
-                                                                                                        class="img-responsive"
-                                                                                                        style="width: 194.8px; height: 194.8px; object-fit: cover;"
+                                                                                                        class="img-responsive img-mobile"
+                                                                                                        style="width: 194.8px; height: 194.8px; object-fit: cover; object-position: center;"
                                                                                                         alt="image">
                                                                                                 </a>
                                                                                             </div>
@@ -693,13 +694,13 @@
                                                                                         <div class="left-block left-b">
 
                                                                                             <div class="product-image-container"
-                                                                                                style="width: 194.8px; height: 194.8px; object-fit: cover;">
+                                                                                                style="width: 100%;">
                                                                                                 <a href="#"
                                                                                                     target="_self"
                                                                                                     title="Drutick lanaeger">
                                                                                                     <img src="{{ asset($brand->products[$ip + 1]->images->count() ? 'storage/' . $brand->products[$ip + 1]->images->first()->src : 'dist/images/default.jpg') }}"
-                                                                                                        class="img-responsive"
-                                                                                                        style="width: 194.8px; height: 194.8px; object-fit: cover;"
+                                                                                                        class="img-responsive img-mobile"
+                                                                                                        style="width: 194.8px; height: 194.8px; object-fit: cover; object-position: center;"
                                                                                                         alt="image">
                                                                                                 </a>
                                                                                             </div>

@@ -53,7 +53,7 @@
                 <!-- Logo -->
                 <div class="navbar-logo col-md-2 col-sm-3 col-xs-10">
                     <div class="logo"><a href="{{ route('main') }}"><img
-                                src="{{ asset('/image/catalog/elab-logo.png') }}" title="Your Store"
+                                src="{{ asset('image/catalog/elab-logo.png') }}" title="Your Store"
                                 alt="Your Store" /></a></div>
                 </div>
                 <!-- //end Logo -->
@@ -76,14 +76,16 @@
                                     <div class="megamenu-wrapper">
                                         <span id="remove-megamenu" class="fa fa-times"></span>
                                         <div class="megamenu-pattern">
-                                            <div class="container-mega">
+                                            <div class="container-mega"
+                                                style="display: flex;
+                                            flex-direction: row-reverse;">
                                                 <ul class="megamenu" data-transition="slide" data-animationtime="250">
                                                     <li class="menu-home with-sub-menu hover">
                                                         <a href="index.html">Home</a>
                                                     </li>
                                                     <li class="with-sub-menu hover">
                                                         <p class="close-menu"></p>
-                                                        <a href="#" class="clearfix">
+                                                        <a href="" class="clearfix">
                                                             <strong>Brands</strong>
                                                             <b class="caret"></b>
                                                         </a>
@@ -95,25 +97,11 @@
                                                                             <div class="col-md-12 hover-menu">
                                                                                 <div class="menu">
                                                                                     <ul>
-                                                                                        <li><a href="#"
-                                                                                                class="main-menu">Car
-                                                                                                Alarms and
-                                                                                                Security</a>
-                                                                                        </li>
-                                                                                        <li><a href="#"
-                                                                                                class="main-menu">Car
-                                                                                                Audio &amp;
-                                                                                                Speakers</a>
-                                                                                        </li>
-                                                                                        <li><a href="#"
-                                                                                                class="main-menu">Gadgets
-                                                                                                &amp; Auto
-                                                                                                Parts</a></li>
-                                                                                        <li><a href="#"
-                                                                                                class="main-menu">More
-                                                                                                Car
-                                                                                                Accessories</a>
-                                                                                        </li>
+                                                                                        @foreach ($brands as $item)
+                                                                                            <li><a href="#"
+                                                                                                    class="main-menu">{{ $item->name }}</a>
+                                                                                            </li>
+                                                                                        @endforeach
                                                                                     </ul>
                                                                                 </div>
                                                                             </div>
@@ -125,7 +113,7 @@
                                                     </li>
                                                     <li class="with-sub-menu hover">
                                                         <p class="close-menu"></p>
-                                                        <a href="#" class="clearfix">
+                                                        <a href="" class="clearfix">
                                                             <strong>Categories</strong>
 
 
@@ -139,25 +127,11 @@
                                                                             <div class="col-md-12 hover-menu">
                                                                                 <div class="menu">
                                                                                     <ul>
-                                                                                        <li><a href="#"
-                                                                                                class="main-menu">Car
-                                                                                                Alarms and
-                                                                                                Security</a>
-                                                                                        </li>
-                                                                                        <li><a href="#"
-                                                                                                class="main-menu">Car
-                                                                                                Audio &amp;
-                                                                                                Speakers</a>
-                                                                                        </li>
-                                                                                        <li><a href="#"
-                                                                                                class="main-menu">Gadgets
-                                                                                                &amp; Auto
-                                                                                                Parts</a></li>
-                                                                                        <li><a href="#"
-                                                                                                class="main-menu">More
-                                                                                                Car
-                                                                                                Accessories</a>
-                                                                                        </li>
+                                                                                        @foreach ($categories as $index => $item)
+                                                                                            <li><a href="{{ route('category', ['category' => $item]) }}"
+                                                                                                    class="main-menu">{{ $item->name }}</a>
+                                                                                            </li>
+                                                                                        @endforeach
                                                                                     </ul>
                                                                                 </div>
                                                                             </div>
@@ -167,108 +141,8 @@
                                                             </div>
                                                         </div>
                                                     </li>
-                                                    <li class="">
-                                                        <p class="close-menu"></p>
-                                                        <a href="https://www.tokopedia.com/elab" target="_blank"
-                                                            class="clearfix">
-                                                            <strong>Shop With Us</strong>
-                                                        </a>
-                                                    </li>
-                                                    <li class="with-sub-menu hover">
-                                                        <p class="close-menu"></p>
-                                                        <a href="#" class="clearfix">
-                                                            <strong>Elab Performance</strong>
-                                                            <b class="caret"></b>
-                                                        </a>
-                                                        <div class="sub-menu">
-                                                            <div class="content">
-                                                                <div class="row">
-                                                                    <div class="col">
-                                                                        <div class="row">
-                                                                            <div class="col-md-12 hover-menu">
-                                                                                <div class="menu">
-                                                                                    <ul>
-                                                                                        <li><a href="#"
-                                                                                                class="main-menu">Car
-                                                                                                Alarms and
-                                                                                                Security</a>
-                                                                                        </li>
-                                                                                        <li><a href="#"
-                                                                                                class="main-menu">Car
-                                                                                                Audio &amp;
-                                                                                                Speakers</a>
-                                                                                        </li>
-                                                                                        <li><a href="#"
-                                                                                                class="main-menu">Gadgets
-                                                                                                &amp; Auto
-                                                                                                Parts</a></li>
-                                                                                        <li><a href="#"
-                                                                                                class="main-menu">More
-                                                                                                Car
-                                                                                                Accessories</a>
-                                                                                        </li>
-                                                                                    </ul>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    <li class="with-sub-menu hover">
-                                                        <p class="close-menu"></p>
-                                                        <a href="#" class="clearfix">
-                                                            <strong>Services</strong>
-                                                            <b class="caret"></b>
-                                                        </a>
-                                                        <div class="sub-menu">
-                                                            <div class="content">
-                                                                <div class="row">
-                                                                    <div class="col">
-                                                                        <div class="row">
-                                                                            <div class="col-md-12 hover-menu">
-                                                                                <div class="menu">
-                                                                                    <ul>
-                                                                                        <li><a href="#"
-                                                                                                class="main-menu">Car
-                                                                                                Alarms and
-                                                                                                Security</a>
-                                                                                        </li>
-                                                                                        <li><a href="#"
-                                                                                                class="main-menu">Car
-                                                                                                Audio &amp;
-                                                                                                Speakers</a>
-                                                                                        </li>
-                                                                                        <li><a href="#"
-                                                                                                class="main-menu">Gadgets
-                                                                                                &amp; Auto
-                                                                                                Parts</a></li>
-                                                                                        <li><a href="#"
-                                                                                                class="main-menu">More
-                                                                                                Car
-                                                                                                Accessories</a>
-                                                                                        </li>
-                                                                                    </ul>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    <li class="">
-                                                        <p class="close-menu"></p>
-                                                        <a href="blog-page.html" class="clearfix">
-                                                            <strong>Find a Local Dealer</strong>
-                                                            <span class="label"></span>
-                                                        </a>
-                                                    </li>
-
 
                                                 </ul>
-
                                             </div>
                                         </div>
                                     </div>
@@ -360,20 +234,10 @@
                                             <div class="select_category filter_type  icon-select hidden-xs">
                                                 <select class="no-border" name="category_id">
                                                     <option value="0">All Categories</option>
-                                                    <option value="78">Apparel</option>
-                                                    <option value="77">Cables &amp; Connectors</option>
-                                                    <option value="82">Cameras &amp; Photo</option>
-                                                    <option value="80">Flashlights &amp; Lamps</option>
-                                                    <option value="81">Mobile Accessories</option>
-                                                    <option value="79">Video Games</option>
-                                                    <option value="20">Jewelry &amp; Watches</option>
-                                                    <option value="76">
-                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Earings</option>
-                                                    <option value="26">
-                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Wedding Rings
-                                                    </option>
-                                                    <option value="27">
-                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Men Watches</option>
+                                                    @foreach ($categories as $item)
+                                                        <option value="{{ $loop->iteration }}">{{ $item->name }}
+                                                        </option>
+                                                    @endforeach
                                                 </select>
                                             </div>
 

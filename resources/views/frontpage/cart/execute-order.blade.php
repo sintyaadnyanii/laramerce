@@ -1,18 +1,18 @@
 @extends('layouts.front-layout')
+@section('head')
+    <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js"
+        data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script>
+@endsection
 @section('body')
     <div class="res layout-1">
         <div id="wrapper" class="wrapper-fluid banners-effect-5">
             @include('frontpage.frontpage-navbar')
             <!-- Main Container  -->
-            <form class="main-container container" action="{{ route('execute_order') }}" method="POST">
-                @csrf
+            <div class="main-container container">
                 {{-- hidden value --}}
                 <input type="hidden" id="cart-total-weight" name="weight" value="{{ $weight }}">
-                <input type="hidden" id="cart-customer-name" name="customer[name]" value="{{ $isUser->name }}">
-                <input type="hidden" id="cart-customer-id" name="customer[id]" value="{{ $isUser->id }}">
-                <input type="hidden" id="input-shipping-cost" name="shipping[cost]" value="0">
-                <input type="hidden" id="input-shipping-destination-province" name="shipping[province]" value="">
-                <input type="hidden" id="input-shipping-destination-city" name="shipping[city]" value="">
+                <input type="hidden" id="cart-total-weight" name="user[name]" value="{{ $order->name }}">
+                <input type="hidden" id="cart-total-weight" name="user[id]" value="{{ $order->user_id }}">
                 {{-- hidden value --}}
                 <ul class="breadcrumb">
                     <li><a href="#"><i class="fa fa-home"></i></a></li>
@@ -36,20 +36,20 @@
                                                 <label for="input-payment-fullname" class="control-label">Full
                                                     Name</label>
                                                 <input type="text" class="form-control" id="input-payment-fullname"
-                                                    placeholder="Your Name" value="{{ $isUser->name }}"
-                                                    name="customer[fullname]">
+                                                    placeholder="Your Name" value="{{ $order->name }}"
+                                                    name="user[fullname]" readonly>
                                             </div>
                                             <div class="form-group required">
                                                 <label for="input-payment-email" class="control-label">E-Mail</label>
                                                 <input type="text" class="form-control" id="input-payment-email"
-                                                    placeholder="E-Mail" value="{{ $isUser->email }}"
-                                                    name="customer[email]">
+                                                    placeholder="E-Mail" value="{{ $order->email }}" name="user[email]"
+                                                    readonly>
                                             </div>
                                             <div class="form-group required">
                                                 <label for="input-payment-telephone" class="control-label">Telephone</label>
                                                 <input type="text" class="form-control" id="input-payment-telephone"
-                                                    placeholder="Telephone" value="{{ $isUser->phone }}"
-                                                    name="customer[phone]">
+                                                    placeholder="Telephone" value="{{ $order->phone }}"
+                                                    name="user[telephone]" readonly>
                                             </div>
                                         </fieldset>
                                     </div>
@@ -62,26 +62,26 @@
                                         <fieldset id="address" class="required">
                                             <div class="form-group required">
                                                 <label for="input-payment-country" class="control-label">Province</label>
-                                                <select id="input-province" class="form-control"
-                                                    name="destination[province_id]" onchange="getCity(this.value)">
-                                                    <option value=""> --- Please Select --- </option>
+                                                <select id="input-province" class="form-control" disabled
+                                                    name="destination[province_id]">
+                                                    <option value="">{{ $order->province }} </option>
 
                                                 </select>
                                             </div>
                                             <div class="form-group required">
                                                 <label for="input-payment-zone" class="control-label">City</label>
-                                                <select onchange="getCost()" name="destination[city_id]" id="input-city"
+                                                <select name="destination[city_id]" id="input-city" disabled
                                                     class="form-control" name="city_id">
-                                                    <option value=""> --- Please Select --- </option>
+                                                    <option value=""> {{ $order->city }} </option>
 
                                                 </select>
                                             </div>
                                             <div class="form-group required">
                                                 <label for="input-payment-address-1" class="control-label">Address
                                                     1</label>
-                                                <input onclick="getCost()" type="text" class="form-control"
-                                                    id="input-payment-address-1" placeholder="Address.."
-                                                    name="customer[address]">
+                                                <input type="text" class="form-control" readonly
+                                                    id="input-payment-address-1" value="{{ $order->address }}"
+                                                    name="user[address]">
                                             </div>
                                         </fieldset>
                                     </div>
@@ -108,13 +108,14 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody id="cart-item-list">
+                                                            {{-- @dump($cart) --}}
                                                             @foreach ($cart as $item)
-                                                                <tr data-sub_total="{{ $item->price * $item->amount }}"
+                                                                <tr data-sub_total="{{ $item->price * $item->quantity }}"
                                                                     data-product="{{ $item->product_code }}"
                                                                     data-price="{{ $item->price }}">
                                                                     <td class="text-center"><a href="product.html"><img
                                                                                 width="60px"
-                                                                                src="{{ asset($item->images->count() ? 'storage/' . $item->images->first()->src : '/image/catalog/demo/product/funiture/10.jpg') }}"
+                                                                                src="{{ asset($item->product->images->count() ? 'storage/' . $item->product->images->first()->src : '/image/catalog/demo/product/funiture/10.jpg') }}"
                                                                                 alt="Xitefun Causal Wear Fancy Shoes"
                                                                                 title="Xitefun Causal Wear Fancy Shoes"
                                                                                 class="img-thumbnail"></a></td>
@@ -130,41 +131,23 @@
                                                                                 value="{{ $item->name }}"
                                                                                 class="form-control">
                                                                             <input type="hidden"
-                                                                                name="cart[{{ $loop->index }}][id]"
+                                                                                name="cart[{{ $loop->index }}][product_code]"
                                                                                 id="{{ $item->product_code }}-product_code"
                                                                                 value="{{ $item->product_code }}"
                                                                                 class="form-control">
-                                                                            <input type="text"
+                                                                            <input type="text" readonly
                                                                                 name="cart[{{ $loop->index }}][quantity]"
                                                                                 id="{{ $item->product_code }}-quantity"
-                                                                                value="{{ $item->amount }}"
+                                                                                value="{{ $item->quantity }}"
                                                                                 max="{{ $item->stock }}"
                                                                                 class="form-control">
-                                                                            <input type="hidden"
-                                                                                name="cart[{{ $loop->index }}][price]"
-                                                                                id="{{ $item->product_code }}-price"
-                                                                                value="{{ $item->price }}"
-                                                                                class="form-control">
-                                                                            <span class="input-group-btn">
-                                                                                <button type="button"
-                                                                                    data-toggle="tooltip" title="Update"
-                                                                                    onclick="update_quantity('{{ $item->product_code }}', '{{ $isUser ? $isUser->id : 0 }}')"
-                                                                                    class="btn btn-primary"><i
-                                                                                        class="fa fa-refresh"></i></button>
-                                                                                <button type="button"
-                                                                                    data-toggle="tooltip" title="Remove"
-                                                                                    class="btn btn-danger"
-                                                                                    onClick=""><i
-                                                                                        class="fa fa-times-circle"></i></button>
-                                                                            </span>
                                                                         </div>
                                                                     </td>
                                                                     <td class="text-right">{{ ch_currency($item->price) }}
                                                                     </td>
                                                                     <td class="text-right">
-                                                                        {{ ch_currency($item->price * $item->amount) }}
+                                                                        {{ ch_currency($item->price * $item->quantity) }}
                                                                     </td>
-
                                                                 </tr>
                                                             @endforeach
                                                         </tbody>
@@ -181,14 +164,16 @@
                                                                     <strong>Shipping Fee:</strong>
                                                                 </td>
                                                                 <td class="text-right" data-cart_shipping_fee="0"
-                                                                    id="cart-shipping-fee">IDR 0</td>
+                                                                    id="cart-shipping-fee">
+                                                                    {{ ch_currency($order->cost) }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-right" colspan="4">
                                                                     <strong>Total:</strong>
                                                                 </td>
-                                                                <td data-total="0" id="cart-total-pay"
-                                                                    class="text-right">IDR 0</td>
+                                                                <td data-total="0" class="text-right">
+                                                                    {{ ch_currency($order->gross_amount) }}
+                                                                </td>
                                                             </tr>
                                                         </tfoot>
                                                     </table>
@@ -199,24 +184,16 @@
                                     <div class="col-sm-12">
                                         <div class="panel panel-default">
                                             <div class="panel-heading">
-                                                <h4 class="panel-title"><i class="fa fa-pencil"></i> Add Comments About
-                                                    Your Order</h4>
+                                                <h4 class="panel-title"><i class="fa fa-pencil"></i> Your Message </h4>
                                             </div>
                                             <div class="panel-body">
-                                                <textarea rows="4" class="form-control" id="confirm_comment" name="comments"></textarea>
+                                                <textarea readonly rows="4" class="form-control" id="confirm_comment" name="comments">{{ strip_tags($order->comments) }}</textarea>
                                                 <br>
-                                                <label class="control-label" for="confirm_agree">
-                                                    <input type="checkbox" checked="checked" value="1"
-                                                        required="" class="validate required" id="confirm_agree"
-                                                        name="confirm agree">
-                                                    <span>I have read and agree to the <a class="agree"
-                                                            href="#"><b>Terms &amp; Conditions</b></a></span>
-                                                </label>
+
                                                 <div class="buttons">
                                                     <div class="pull-right">
-                                                        <button type="submit" class="btn btn-primary"
-                                                            id="button-confirm">
-                                                            Confirm Order</button>
+                                                        <button type="button" class="btn btn-primary" id="pay-button">
+                                                            Proceed Order</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -229,7 +206,7 @@
                     <!--Middle Part End -->
 
                 </div>
-            </form>
+            </div>
             <!-- //Main Container -->
             @include('frontpage.frontpage-footer')
         </div>
@@ -238,6 +215,7 @@
 
 @section('script')
     <script src="{{ asset('dist/js/frontpage/cart.js') }}"></script>
+    {{-- page script --}}
     <script>
         $(document).ready(function() {
             $.ajax({
@@ -274,4 +252,34 @@
             // summary total part
         });
     </script>
+    {{-- page script --}}
+    {{-- midtrans script --}}
+    <script type="text/javascript">
+        // For example trigger on button clicked, or any time you need
+        var payButton = document.getElementById('pay-button');
+        payButton.addEventListener('click', function() {
+            // Trigger snap popup. @TODO: Replace TRANSACTION_TOKEN_HERE with your transaction token
+            window.snap.pay('{{ $snap }}', {
+                onSuccess: function(result) {
+                    /* You may add your own implementation here */
+
+                    console.log(result);
+                },
+                onPending: function(result) {
+                    /* You may add your own implementation here */
+
+                    console.log(result);
+                },
+                onError: function(result) {
+                    /* You may add your own implementation here */
+
+                    console.log(result);
+                },
+                onClose: function() {
+                    /* You may add your own implementation here */
+                }
+            })
+        });
+    </script>
+    {{-- midtrans script --}}
 @endsection

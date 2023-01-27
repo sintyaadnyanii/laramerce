@@ -10,6 +10,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ViewTemplateController;
 use App\Models\Brand;
 use App\Models\Product;
+use App\Models\SnapToken;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,7 +25,41 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/token', function () {
-    // return auth()->user()->wishl
+    $transaction_details =
+        [
+            "order_id" => "CustOrder-102",
+            "gross_amount" => 13000
+        ];
+
+    $item_details = [
+        [
+            "id" => "a01",
+            "price" => 7000,
+            "quantity" => 1,
+            "name" => "Apple"
+        ],
+        [
+            "id" => "b02",
+            "price" => 3000,
+            "quantity" => 2,
+            "name" => "Orange"
+        ]
+    ];
+    $customer_details = [
+        "name" => "Budi Sasono",
+        "email" => "budisusanto@example.com",
+        "phone" => "+628123456789",
+    ];
+
+    $shipping_address = [
+        "name" => "Budi Sasono",
+        "email" => "budisusanto@example.com",
+        "phone" => "0812345678910",
+        "address" => "Sudirman",
+        "city" => "Jakarta",
+    ];
+
+    return SnapToken::claim($transaction_details, $customer_details, $item_details, $shipping_address);
 });
 Route::get('/', function () {
     return view('frontpage.main.main', ['title' => 'Homepage | Urban Adventure']);
@@ -32,15 +67,18 @@ Route::get('/', function () {
 
 Route::controller(GeneralController::class)->group(function () {
     Route::get('/', 'main')->name('main');
-    Route::get('/cart', 'cart')->name('cart');
+    Route::get('/cart', 'cart')->name('cart')->middleware('auth');
+    // Route::get('/category', 'category')->name('category');
+    Route::get('/category/{category:name}', 'category')->name('category');
     Route::get('/product/{product:product_code}', 'product_detail')->name('product-detail');
-    Route::post('/checkout', 'checkout')->name('checkout');
+    Route::match(['GET', 'POST'], '/checkout', 'checkout')->name('checkout')->middleware('auth');
+    Route::post('/execute-order', 'execute_order')->name('execute_order')->middleware('auth');
+    Route::get('/order/{order}', 'order_detail')->name('order_detail')->middleware('auth');
     Route::get('/blog-detail', 'blog_detail')->name('blog-detail');
     Route::get('/blog-page', 'blog')->name('blog');
-    Route::get('/order-detail', 'order_detail')->name('order-detail');
     Route::get('/order-history', 'order_history')->name('order-history');
     Route::get('/my-account', 'my_account')->name('my-account');
-    Route::get('/wishlist', 'wishlist')->name('wishlist');
+    Route::get('/wishlist', 'wishlist')->name('wishlist')->middleware('auth');
 });
 
 Route::get('/test', function () {
