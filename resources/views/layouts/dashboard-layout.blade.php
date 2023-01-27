@@ -6,6 +6,15 @@
 @endsection
 @section('base_body')
     <div>
+        @if (session()->has('alert'))
+            @include('fragments.alert')
+        @endif
+        @if (session()->has('error'))
+            @include('fragments.error')
+        @endif
+        @if (session()->has('success'))
+            @include('fragments.success')
+        @endif
         @yield('body')
         <div class="py-5 md:py-0 bg-black/[0.15] dark:bg-transparent">
             <div class="flex  overflow-hidden">
