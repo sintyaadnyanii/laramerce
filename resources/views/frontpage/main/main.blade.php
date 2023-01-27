@@ -645,7 +645,7 @@
 
                                                                                             <!--quickview-->
                                                                                             <a class="iframe-link btn-button quickview quickview_handler visible-lg"
-                                                                                                href="quickview.html"
+                                                                                                href="{{ route('quickview', ['product' => $product]) }}"
                                                                                                 title="Quick view"
                                                                                                 data-fancybox-type="iframe"><i
                                                                                                     class="fa fa-eye"></i><span></span></a>
@@ -707,7 +707,7 @@
 
                                                                                             <!--quickview-->
                                                                                             <a class="iframe-link btn-button quickview quickview_handler visible-lg"
-                                                                                                href="quickview.html"
+                                                                                                href="{{ route('quickview', ['product' => $product]) }}"
                                                                                                 title="Quick view"
                                                                                                 data-fancybox-type="iframe"><i
                                                                                                     class="fa fa-eye"></i><span></span></a>
