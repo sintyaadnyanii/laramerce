@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\ApiOngkirController;
+use App\Http\Controllers\MidtransApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -33,4 +34,8 @@ Route::controller(AjaxController::class)->group(function () {
     Route::post('/add-to-wishlist', 'addToWishlist');
     Route::post('/remove-product-wishlist', 'removeProductWishlist');
     Route::get('/update-cart-quantity', 'updateCartQuantity');
+});
+
+Route::controller(MidtransApiController::class)->group(function () {
+    Route::post('/payment-notification', 'paymentNotif')->name('payment_notif');
 });

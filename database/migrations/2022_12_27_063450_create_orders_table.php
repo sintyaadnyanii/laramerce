@@ -25,6 +25,7 @@ return new class extends Migration
             $table->integer('gross_amount');
             $table->string('transaction_id');
             $table->string('payment_token');
+            $table->string('transaction_status')->default('pending');
             $table->string('payment_type')->nullable();
             // shipping
             $table->string('province');
