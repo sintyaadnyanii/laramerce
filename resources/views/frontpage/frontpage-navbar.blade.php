@@ -1,6 +1,6 @@
 <header id="header" class=" typeheader-1">
     <!-- Header Top -->
-    <div class="header-top hidden-compact">
+    <div class="header-top hidden-compact" style="background-color: white!important;">
         <div class="container">
             <div class="row">
                 <div class="header-top-left  col-lg-6 col-sm-5 col-md-6 hidden-xs">
@@ -14,7 +14,8 @@
                         </li>
                     </ul>
                 </div>
-                <div class="header-top-right collapsed-block col-lg-6 col-md-6 col-sm-7 col-xs-12">
+                <div class="header-top-right collapsed-block col-lg-6 col-md-6 col-sm-7 col-xs-12"
+                    style="background-color: white!important;">
                     <ul class="top-link list-inline">
                         @if (auth()->user())
                             <li class="log login"><a class="link-lg" href="{{ route('logout') }}">Logout </a></li>
@@ -47,15 +48,14 @@
     <!-- //Header Top -->
 
     <!-- Header center -->
-    <div class="header-center">
+    <div class="header-center" style="background-color: #2d2d2d!important">
         <div class="container">
             <div class="row">
                 <!-- Logo -->
                 <div class="navbar-logo col-md-2 col-sm-3 col-xs-10"
                     style="display: flex; justify-content: center; align-items: center;">
-                    <div class="logo"><a href="{{ route('main') }}"><img
-                                src="{{ asset('image/catalog/elab-logo.png') }}" title="Your Store"
-                                alt="Your Store" /></a></div>
+                    <div class="logo"><a href="{{ route('main') }}"><img src="{{ asset('image/catalog/urban.png') }}"
+                                title="Your Store" alt="Your Store" /></a></div>
                 </div>
                 <!-- //end Logo -->
 
@@ -79,14 +79,16 @@
                                         <div class="megamenu-pattern">
                                             <div class="container-mega"
                                                 style="display: flex;
-                                            flex-direction: row-reverse;">
+                                            flex-direction: row-reverse; background-color: #2d2d2d!important;">
                                                 <ul class="megamenu" data-transition="slide" data-animationtime="250">
                                                     <li class="menu-home with-sub-menu hover">
-                                                        <a href="{{ route('main') }}">Home</a>
+                                                        <a href="{{ route('main') }}"
+                                                            style="color: white!important;">Home</a>
                                                     </li>
                                                     <li class="with-sub-menu hover">
                                                         <p class="close-menu"></p>
-                                                        <a href="" class="clearfix">
+                                                        <a href="" class="clearfix"
+                                                            style="color: white!important;">
                                                             <strong>Brands</strong>
                                                             <b class="caret"></b>
                                                         </a>
@@ -114,7 +116,8 @@
                                                     </li>
                                                     <li class="with-sub-menu hover">
                                                         <p class="close-menu"></p>
-                                                        <a href="" class="clearfix">
+                                                        <a href="" class="clearfix"
+                                                            style="color: white!important;">
                                                             <strong>Categories</strong>
 
 
@@ -171,12 +174,10 @@
                                         <div id="menuHeading">
                                             <div class="megamenuToogle-wrapper">
                                                 <div class="megamenuToogle-pattern">
-                                                    <div class="container">
-                                                        <div>
-                                                            <span></span>
-                                                            <span></span>
-                                                            <span></span>
-                                                        </div>
+                                                    <div class="container"
+                                                        style="background-color: white!important; color:#2d2d2d!important;">
+                                                        <b class="caret"
+                                                            style="margin-right: 10px; margin-left: 0;"></b>
                                                         <span class="title-mega">All Categories</span>
                                                     </div>
                                                 </div>
@@ -202,8 +203,6 @@
                                                                 <a href="{{ route('category', ['category' => $item]) }}"
                                                                     class="clearfix">
                                                                     <span>
-                                                                        <img src="{{ asset('image/catalog/menu/icons/icon-1.png') }}"
-                                                                            alt="icon">
                                                                         <strong>{{ $item->name }}</strong>
                                                                     </span>
                                                                 </a>

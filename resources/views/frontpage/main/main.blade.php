@@ -6,7 +6,7 @@
             <!-- Main Container  -->
             <div class="main-container">
                 <div id="content">
-                    <div class="slider-full">
+                    <div class="slider-full" style="background-color:white!important; ">
                         <div class="container">
                             <div class="row">
                                 <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 col-md-offset-3 block-slide">
