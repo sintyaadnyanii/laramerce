@@ -1,6 +1,6 @@
 <nav class="side-nav">
     <a href="" class="intro-x flex items-center pl-5 pt-4 mt-3">
-        <img alt="E-lab Urban Adventure" class="w-36" src="{{ asset('/image/catalog/elab-logo-white.png') }}" />
+        <img alt="E-lab Urban Adventure" class="w-36" src="{{ asset('/image/catalog/urban.png') }}" />
     </a>
     <div class="side-nav__devider my-6"></div>
     <ul>
