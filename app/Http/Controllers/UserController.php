@@ -49,9 +49,9 @@ class UserController extends Controller
             if (User::where('email', $validated['email'])->first()->level == 'user') {
                 return redirect()->route('main');
             }
-            return redirect()->route('dashboard')->with('success', 'Login Success1! <br> Welcome' . auth()->user()->name);
+            return redirect()->route('dashboard')->with('success', 'Login Success! <br> Welcome ' . auth()->user()->name);
         }
-        return redirect()->back()->with('error', 'Login Failed! <br> Try Again');
+        return redirect()->back()->with('error', 'Login Failed! <br> Please Try Again');
     }
     public function attemptRegister(Request $request)
     {
@@ -64,7 +64,7 @@ class UserController extends Controller
             'password_confirm' => 'required|same:password'
         ]);
         if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput()->with('error', 'OPPS! <br> An Error Occurred During Registration!');
+            return redirect()->back()->withErrors($validator)->withInput()->with('error', 'OOPS! <br> An Error Occurred During Registration!');
         }
         $validated = $validator->validate();
         $user_is_created = User::create([
