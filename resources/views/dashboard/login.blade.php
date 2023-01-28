@@ -1,6 +1,7 @@
 @extends('layouts.base-layout')
 @section('base_head')
     <link rel="stylesheet" href="{{ asset('dist/css/_app.css') }}">
+    <link rel="shortcut icon" type="image/png" href="{{ asset('image/catalog/urban.png') }}" />
     <link rel="stylesheet" href="{{ asset('dist/css/app.css') }}">
 @endsection
 @section('base_body')

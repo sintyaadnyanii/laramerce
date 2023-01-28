@@ -3,6 +3,7 @@
 @section('base_head')
     <link rel="stylesheet" href="{{ asset('dist/css/_app.css') }}">
     <link rel="stylesheet" href="{{ asset('dist/css/app.css') }}">
+    <link rel="shortcut icon" type="image/png" href="{{ asset('image/catalog/urban.png') }}" />
 @endsection
 @section('base_body')
     <div>
