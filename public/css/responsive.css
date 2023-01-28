@@ -14,7 +14,7 @@
  [6] Minxin Dev Custom
  ==============================================*/
 .actives {
-    color: #ff5e00 !important;
+    color: #00a2e9 !important;
     font-weight: bold !important;
 }
 .no-margin {
@@ -155,7 +155,7 @@
     padding: 0;
 }
 .lib-list-item-product2 .image-dev .list-button-dev li:hover {
-    background: #ff5e00;
+    background: #00a2e9;
 }
 .lib-list-item-product2 .image-dev .list-button-dev li:hover a,
 .lib-list-item-product2 .image-dev .list-button-dev li:hover button {
@@ -720,7 +720,7 @@
         span.ltabs-tab-selected {
         border-radius: 0;
         font-size: 14px;
-        color: #ff5e00;
+        color: #00a2e9;
         text-align: center;
         text-transform: uppercase;
     }
@@ -816,7 +816,7 @@
         span.ltabs-tab-selected {
         border-radius: 0;
         font-size: 14px;
-        color: #ff5e00;
+        color: #00a2e9;
         text-transform: uppercase;
     }
     .layout-4
@@ -903,7 +903,7 @@
         span.ltabs-tab-selected {
         border-radius: 0;
         font-size: 14px;
-        color: #ff5e00;
+        color: #00a2e9;
         text-transform: uppercase;
     }
     .layout-5
@@ -1528,7 +1528,7 @@
         .horizontal
         .navbar-toggle {
         margin-top: 0;
-        background: #ff5e00;
+        background: #00a2e9;
         border: none;
         border-radius: 0;
         box-shadow: none;
@@ -1586,7 +1586,7 @@
         height: 36px;
         width: 38px;
         line-height: 36px;
-        background: #ff5e00;
+        background: #00a2e9;
     }
     header.typeheader-6 .total-shopping-cart,
     header.typeheader-6 .title-cart-h6 {
@@ -1633,7 +1633,7 @@
         .navbar-default
         .horizontal
         .navbar-toggle {
-        background: #ff5e00;
+        background: #00a2e9;
         border: none;
         border-radius: 0;
         box-shadow: none;
@@ -2418,7 +2418,7 @@
     .footer-toggle a:hover,
     .footer-toggle a:focus,
     .footer-toggle a:active {
-        color: #ff5e00;
+        color: #00a2e9;
         background-color: transparent;
         box-shadow: none;
     }
@@ -2980,7 +2980,7 @@
         ul.megamenu
         > li
         > a:hover {
-        color: #ff5e00 !important;
+        color: #00a2e9 !important;
     }
     .megamenu-style-dev
         .navbar-default
@@ -3236,7 +3236,7 @@
         > ul
         li
         a:hover {
-        color: #ff5e00;
+        color: #00a2e9;
     }
     .megamenu-style-dev
         .navbar-default
@@ -3251,7 +3251,7 @@
         > ul
         li:hover
         > a {
-        color: #ff5e00;
+        color: #00a2e9;
     }
     .megamenu-style-dev
         .navbar-default
@@ -3689,7 +3689,7 @@
         .navbar-default
         .horizontal
         .navbar-toggle {
-        background: #ff5e00;
+        background: #00a2e9;
         border: none;
         border-radius: 0;
         box-shadow: none;
@@ -3739,7 +3739,7 @@
         height: 36px;
         width: 38px;
         line-height: 36px;
-        background: #ff5e00;
+        background: #00a2e9;
     }
     header.typeheader-6 .total-shopping-cart,
     header.typeheader-6 .title-cart-h6 {
@@ -4060,7 +4060,7 @@
     .footer-toggle a:hover,
     .footer-toggle a:focus,
     .footer-toggle a:active {
-        color: #ff5e00;
+        color: #00a2e9;
         background-color: transparent;
         box-shadow: none;
     }
@@ -4512,7 +4512,7 @@
         ul.megamenu
         > li
         > a:hover {
-        color: #ff5e00 !important;
+        color: #00a2e9 !important;
     }
     .megamenu-style-dev
         .navbar-default
@@ -4768,7 +4768,7 @@
         > ul
         li
         a:hover {
-        color: #ff5e00;
+        color: #00a2e9;
     }
     .megamenu-style-dev
         .navbar-default
@@ -4783,7 +4783,7 @@
         > ul
         li:hover
         > a {
-        color: #ff5e00;
+        color: #00a2e9;
     }
     .megamenu-style-dev
         .navbar-default
