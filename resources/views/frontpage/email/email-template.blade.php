@@ -8,8 +8,8 @@
     <body style="margin: 0; padding: 0;">
         <table align="center" border="1" cellpadding="0" cellspacing="0" width="600" style="border-collapse: collapse;">
             <tr>
-                <td align="center" bgcolor="#2d2d2d" style="padding: 20px 0 20px 0;">
-                    <img src="{{ asset('image/catalog/urban.png') }}" alt="Logo Perusahaan" width="200" height="100" style="display: block;" />
+                <td align="center" bgcolor="#2d2d2d" style="padding: 15px 0 15px 0;">
+                    <img src="{{ asset('image/catalog/urban.png') }}" alt="Logo Perusahaan" width="175" height="65" style="display: block;" />
                 </td>
             </tr>
             <tr>
