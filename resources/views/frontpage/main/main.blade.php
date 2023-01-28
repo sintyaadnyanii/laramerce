@@ -773,7 +773,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="block block_8">
+                            {{-- <div class="block block_8">
                                 <div class="module so-latest-blog custom-ourblog clearfix default-nav">
                                     <h3 class="modtitle"><span>from our blog</span></h3>
                                     <div class="modcontent clearfix">
@@ -940,7 +940,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>

@@ -28,8 +28,19 @@ class GeneralController extends Controller
     {
         $data = [
             'title' => 'Category | Urban Adventure',
-            'products' => Product::get(),
-            'category' => $category,
+            'products' => $category->products,
+            'name' => $category,
+            'categories' => Category::first()->get(),
+            'brands' => Brand::with(['products'])->latest()->get()
+        ];
+        return view('frontpage.category.category', $data);
+    }
+    public function brand(Brand $brand)
+    {
+        $data = [
+            'title' => 'Category | Urban Adventure',
+            'products' => $brand->products,
+            'name' => $brand,
             'categories' => Category::first()->get(),
             'brands' => Brand::with(['products'])->latest()->get()
         ];
