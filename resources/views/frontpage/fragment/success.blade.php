@@ -4,10 +4,10 @@
   <button class="close" onclick="btn_close()" data-dismiss="alert" aria-label="close">
         <i class="fa fa-times"></i></button>
         <div class="alert-icon">
-        <i class="fa fa-exclamation-circle icon"></i>
+        <i class="fa fa-check-circle-o icon"></i>
         </div>
         <div class="alert-msg">
-        <strong>Oops!</strong> {!! session()->get('success') !!}
+        <strong>Congrats!</strong> {!! session()->get('success') !!}
         </div>
   </div>
 </div>

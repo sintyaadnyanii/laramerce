@@ -7,7 +7,7 @@
         <i class="fa fa-exclamation-circle icon"></i>
         </div>
         <div class="alert-msg">
-        <strong>Oops!</strong> {!! session()->get('alert') !!}
+        <strong>Warning!</strong> {!! session()->get('alert') !!}
         </div>
   </div>
 </div>

@@ -1,5 +1,5 @@
 <div class="fixed bg-slate-900 w-screen h-screen bg-opacity-50 z-[999999]" id="alert">
-    <div class="absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] bg-white border-4 border-yellow-700 rounded-lg text-yellow-700 px-10 py-10 shadow-md"
+    <div class="absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] bg-white border-4 border-amber-600 rounded-lg text-amber-600 px-10 py-10 shadow-md"
         role="alert">
         <div class="flex">
             <div class="py-1"><svg class="fill-current h-6 w-6 text-yellow-900 mr-4" xmlns="http://www.w3.org/2000/svg"
@@ -16,7 +16,7 @@
             </div>
         </div>
         <div class="flex justify-end pt-5">
-            <button onclick="btn_close()" class="bg-yellow-700 rounded-sm p-3 py-1 font-medium text-white">Close</button>
+            <button onclick="btn_close()" class="bg-amber-600 rounded-sm p-3 py-1 font-medium text-white">Close</button>
         </div>
     </div>
 </div>
