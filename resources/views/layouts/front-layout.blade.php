@@ -27,6 +27,7 @@
     <link href="{{ asset('/css/themecss/lib.css') }}" rel="stylesheet">
     <link href="{{ asset('/js/jquery-ui/jquery-ui.min.css') }}" rel="stylesheet">
     <link href="{{ asset('/js/minicolors/miniColors.css') }}" rel="stylesheet">
+     <link href="{{ asset('/dist/css/custom.css') }}" rel="stylesheet">
 
     <!-- Theme CSS
                                                                                                                                         ============================================ -->
@@ -81,6 +82,15 @@
     @yield('head')
 @endsection
 @section('base_body')
+    @if (session()->has('alert'))
+        @include('frontpage.fragment.alert')
+    @endif
+    @if (session()->has('error'))
+        @include('frontpage.fragment.error')
+    @endif
+    @if (session()->has('success'))
+        @include('frontpage.fragment.success')
+    @endif
     @yield('body')
 @endsection
 @section('base_script')
