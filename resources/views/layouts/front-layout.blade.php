@@ -82,6 +82,15 @@
     @yield('head')
 @endsection
 @section('base_body')
+    @if (session()->has('alert'))
+        @include('frontpage.fragment.alert')
+    @endif
+    @if (session()->has('error'))
+        @include('frontpage.fragment.error')
+    @endif
+    @if (session()->has('success'))
+        @include('frontpage.fragment.success')
+    @endif
     @yield('body')
 @endsection
 @section('base_script')

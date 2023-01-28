@@ -21,8 +21,7 @@
                                                     data-hoverpause="yes">
                                                     @foreach ($products->shuffle()->take(3) as $item)
                                                         <div class="yt-content-slide" style="width: 100%;">
-                                                            <a title="{{ $item->name }}"
-                                                                href="{{ route('product-detail', ['product' => $item]) }}"><img
+                                                            <a title="{{ $item->name }}" href="#"><img
                                                                     src="{{ asset($item->images->count() ? 'storage/' . $item->images->first()->src : 'image/catalog/demo/product/80/8.jpg') }}"
                                                                     alt="{{ $item->name }}" class="responsive img-mobile"
                                                                     style="width: 650px; height: 510px; object-fit: cover; object-position: center;"></a>
@@ -37,8 +36,7 @@
                                                 <div class="block-image-1" style="width: 100%;">
                                                     <ul class="static-image">
                                                         @foreach ($products->shuffle()->take(3) as $item)
-                                                            <li><a title="{{ $item->name }}"
-                                                                    href="{{ route('product-detail', ['product' => $item]) }}"><img
+                                                            <li><a title="{{ $item->name }}" href="#"><img
                                                                         src="{{ asset($item->images->count() ? 'storage/' . $item->images->first()->src : 'image/catalog/demo/product/80/8.jpg') }}"
                                                                         alt="{{ $item->name }}" class="img-mobile"
                                                                         style="width: 250px; height: 170px; object-fit: cover; object-position: center;"></a>
@@ -65,8 +63,7 @@
                                         data-lazyload="yes" data-loop="no" data-hoverpause="yes">
                                         @forelse ($brands as $item)
                                             <div class="cate cate1">
-                                                <div class="inner" style="width: 100%;"><a
-                                                        href="{{ route('category', ['category' => $item]) }}"><img
+                                                <div class="inner" style="width: 100%;"><a href="#"><img
                                                             class="img-mobile" src="{{ asset('/image/brand/brand.jpg') }}"
                                                             alt="Static Image"
                                                             style="width:210px; height: 270px; cover; object-position: center;"></a><a
@@ -98,8 +95,7 @@
                                                                     <div class="left-block">
                                                                         <div class="product-image-container second_img"
                                                                             style="width: 100%;">
-                                                                            <a href="{{ route('product-detail', ['product' => $item]) }}"
-                                                                                target="_self"
+                                                                            <a href="#" target="_self"
                                                                                 title="{{ $item->name }}">
                                                                                 <img src="{{ asset($item->images->count() ? 'storage/' . $item->images->first()->src : 'image/catalog/demo/product/80/8.jpg') }}"
                                                                                     class="img-1 img-responsive img-mobile"
@@ -107,11 +103,14 @@
                                                                                     alt="{{ $item->name }}">
                                                                             </a>
                                                                         </div>
+                                                                        <div class="box-label">
+                                                                            <span
+                                                                                class="label-product label-sale">-20%</span>
+                                                                        </div>
                                                                     </div>
                                                                     <div class="right-block">
                                                                         <div class="caption">
-                                                                            <h4><a href="{{ route('product-detail', ['product' => $item]) }}"
-                                                                                    target="_self"
+                                                                            <h4><a href="#" target="_self"
                                                                                     title="Deserunt mollitia"
                                                                                     tabindex="0">{{ $item->name }}</a>
                                                                             </h4>
@@ -155,6 +154,10 @@
                                                                                     class="img-1 img-responsive"
                                                                                     alt="Pastrami bacon">
                                                                             </a>
+                                                                        </div>
+                                                                        <div class="box-label">
+                                                                            <span
+                                                                                class="label-product label-sale">-20%</span>
                                                                         </div>
                                                                     </div>
                                                                     <div class="right-block">
@@ -211,6 +214,9 @@
                                                                     class="img-1 img-responsive img-mobile"
                                                                     alt="{{ $item->name }}"
                                                                     style="width: 100px; height: 100px; object-fit: cover; object-position: center;">
+                                                                <div class="box-label">
+                                                                    <span class="label-product label-sale">-20%</span>
+                                                                </div>
                                                             </div>
                                                             <span
                                                                 class="title">{{ Str::words($item->name, 2, '...') }}</span>
@@ -244,7 +250,7 @@
                                                                                 <div class="media-left">
                                                                                     <div class="item-image">
                                                                                         <div class="item-img-info">
-                                                                                            <a href="{{ route('product-detail', ['product' => $product]) }}"
+                                                                                            <a href="#"
                                                                                                 target="_self"
                                                                                                 title="{{ $product->name }} "
                                                                                                 style="width: 100%;">
@@ -259,7 +265,7 @@
                                                                                 <div class="media-body">
                                                                                     <div class="item-info">
                                                                                         <div class="item-title">
-                                                                                            <a href="{{ route('product-detail', ['product' => $product]) }}"
+                                                                                            <a href="#"
                                                                                                 target="_self"
                                                                                                 title="Mandouille short">{{ Str::words($product->name, 3, '...') }}</a>
                                                                                         </div>
@@ -627,7 +633,7 @@
                                                                                         <div class="left-block left-b">
                                                                                             <div class="product-image-container"
                                                                                                 style="width: 100%">
-                                                                                                <a href="{{ route('product-detail', ['product' => $product]) }}"
+                                                                                                <a href="#"
                                                                                                     target="_self"
                                                                                                     title="Cupim should">
                                                                                                     <img src="{{ asset($brand->products[$ip]->images->count() ? 'storage/' . $brand->products[$ip]->images->first()->src : 'dist/images/default.jpg') }}"
@@ -639,7 +645,7 @@
 
                                                                                             <!--quickview-->
                                                                                             <a class="iframe-link btn-button quickview quickview_handler visible-lg"
-                                                                                                href="{{ route('quickview', ['product' => $product]) }}"
+                                                                                                href="quickview.html"
                                                                                                 title="Quick view"
                                                                                                 data-fancybox-type="iframe"><i
                                                                                                     class="fa fa-eye"></i><span></span></a>
@@ -648,7 +654,7 @@
                                                                                         <div class="right-block right-b">
 
                                                                                             <div class="caption">
-                                                                                                <h4><a href="{{ route('product-detail', ['product' => $product]) }}"
+                                                                                                <h4><a href="#"
                                                                                                         title="Cupim should "
                                                                                                         {{-- target="_self">{{ $brand->products[$ip+1]->name }} --}}
                                                                                                         target="_self">{{ Str::words($brand->products[$ip]->name, 3, '...') }}
@@ -689,7 +695,7 @@
 
                                                                                             <div class="product-image-container"
                                                                                                 style="width: 100%;">
-                                                                                                <a href="{{ route('product-detail', ['product' => $brand->products[$ip + 1]]) }}"
+                                                                                                <a href="#"
                                                                                                     target="_self"
                                                                                                     title="Drutick lanaeger">
                                                                                                     <img src="{{ asset($brand->products[$ip + 1]->images->count() ? 'storage/' . $brand->products[$ip + 1]->images->first()->src : 'dist/images/default.jpg') }}"
@@ -701,7 +707,7 @@
 
                                                                                             <!--quickview-->
                                                                                             <a class="iframe-link btn-button quickview quickview_handler visible-lg"
-                                                                                                href="{{ route('quickview', ['product' => $brand->products[$ip + 1]]) }}"
+                                                                                                href="quickview.html"
                                                                                                 title="Quick view"
                                                                                                 data-fancybox-type="iframe"><i
                                                                                                     class="fa fa-eye"></i><span></span></a>
@@ -709,7 +715,7 @@
                                                                                         </div>
                                                                                         <div class="right-block right-b">
                                                                                             <div class="caption">
-                                                                                                <h4><a href="{{ route('product-detail', ['product' => $brand->products[$ip + 1]]) }}"
+                                                                                                <h4><a href="#"
                                                                                                         title="Drutick lanaeger"
                                                                                                         target="_self">{{ Str::words($brand->products[$ip + 1]->name, 3, '...') }}</a>
                                                                                                 </h4>
@@ -984,13 +990,4 @@
             @include('frontpage.frontpage-footer')
         </div>
     </div>
-@if (session()->has('alert'))
-    @include('fragments.alert')
-@endif
-@if (session()->has('error'))
-     @include('fragments.error')
-@endif
-@if (session()->has('success'))
-    @include('fragments.success')
-@endif
 @endsection
