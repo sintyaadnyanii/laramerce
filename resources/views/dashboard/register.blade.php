@@ -10,12 +10,10 @@
                 <!-- BEGIN: Register Info -->
                 <div class="hidden xl:flex flex-col min-h-screen">
                     <a href="" class="-intro-x flex items-center pt-5">
-                        <img alt="Midone - HTML Admin Template" class="w-6" src="dist/images/logo.svg">
-                        <span class="text-white text-lg ml-3"> Tinker </span>
+                        <img alt="" class="w-40" src="{{ asset('/image/catalog/urban.png') }}">
                     </a>
                     <div class="my-auto">
-                        <img alt="Midone - HTML Admin Template" class="-intro-x w-1/2 -mt-16"
-                            src="dist/images/illustration.svg">
+                        <img alt="" class="-intro-x w-1/2 -mt-16" src="dist/images/illustration.svg">
                         <div class="-intro-x text-white font-medium text-4xl leading-tight mt-10">
                             A few more clicks to
                             <br>
