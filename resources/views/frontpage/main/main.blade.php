@@ -984,4 +984,13 @@
             @include('frontpage.frontpage-footer')
         </div>
     </div>
+@if (session()->has('alert'))
+    @include('fragments.alert')
+@endif
+@if (session()->has('error'))
+     @include('fragments.error')
+@endif
+@if (session()->has('success'))
+    @include('fragments.success')
+@endif
 @endsection
