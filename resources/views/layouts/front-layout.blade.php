@@ -27,6 +27,7 @@
     <link href="{{ asset('/css/themecss/lib.css') }}" rel="stylesheet">
     <link href="{{ asset('/js/jquery-ui/jquery-ui.min.css') }}" rel="stylesheet">
     <link href="{{ asset('/js/minicolors/miniColors.css') }}" rel="stylesheet">
+     <link href="{{ asset('/dist/css/custom.css') }}" rel="stylesheet">
 
     <!-- Theme CSS
                                                                                                                                         ============================================ -->

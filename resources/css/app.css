@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .btn-primary {
-    @apply bg-emerald-900 text-white;
+    @apply bg-[#FF5E00] text-white;
 }
 .btn-danger {
     @apply bg-red-700 text-white;

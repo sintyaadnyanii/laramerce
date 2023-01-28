@@ -7,8 +7,8 @@
             <div class="main-container container product-detail  desktop-offcanvas">
                 <ul class="breadcrumb">
                     <li><a href="{{ route('main') }}"><i class="fa fa-home"></i></a></li>
-                    <li><a href="#">Products</a></li>
-                    <li><a href="">{{ $product->name }}</a></li>
+                    <li><p>Products</p></li>
+                    <li><p>{{ $product->name }}</p></li>
 
                 </ul>
 

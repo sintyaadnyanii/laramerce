@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Brand;
 use App\Models\Cart;
 use App\Models\Category;
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\SnapToken;
 use Illuminate\Support\Str;
@@ -27,12 +28,34 @@ class GeneralController extends Controller
     {
         $data = [
             'title' => 'Category | Urban Adventure',
-            'products' => Product::get(),
-            'category' => $category,
+            'products' => $category->products,
+            'name' => $category,
             'categories' => Category::first()->get(),
             'brands' => Brand::with(['products'])->latest()->get()
         ];
         return view('frontpage.category.category', $data);
+    }
+    public function brand(Brand $brand)
+    {
+        $data = [
+            'title' => 'Category | Urban Adventure',
+            'products' => $brand->products,
+            'name' => $brand,
+            'categories' => Category::first()->get(),
+            'brands' => Brand::with(['products'])->latest()->get()
+        ];
+        return view('frontpage.category.category', $data);
+    }
+    public function quickview(Product $product)
+    {
+        $data = [
+            'title' => 'Quickview | Urban Adventure',
+            'product' => $product,
+            'brands' => Brand::with(['products'])->latest()->get(),
+            // 'products' => Product::latest()->get()->random(Product::all()->count() > 6 ? 6 : Product::all()->count()),
+            'categories' => Category::first()->get(),
+        ];
+        return view('frontpage.quickview.quickview', $data);
     }
     public function cart()
     {
@@ -53,6 +76,7 @@ class GeneralController extends Controller
         $data = [
             'title' => 'Detail Product | Urban Adventure',
             'product' => $product,
+            'brands' => Brand::with(['products'])->latest()->get(),
             'products' => Product::latest()->get()->random(Product::all()->count() > 6 ? 6 : Product::all()->count()),
             'categories' => Category::first()->get(),
         ];
@@ -67,6 +91,7 @@ class GeneralController extends Controller
                 'title' => 'Check Out | Urban Adventure',
                 'isUser' => auth()->user(),
                 'weight' => 0,
+                'brands' => Brand::with(['products'])->latest()->get(),
                 'categories' => Category::first()->get(),
                 'cart' => Product::whereIn('product_code', $cart->map(function ($item) {
                     return $item->product_id;
@@ -86,6 +111,7 @@ class GeneralController extends Controller
                 'title' => 'Check Out | Urban Adventure',
                 'isUser' => auth()->user(),
                 'weight' => 0,
+                'brands' => Brand::with(['products'])->latest()->get(),
                 'categories' => Category::first()->get(),
                 'cart' => Product::whereIn('product_code', request()->product_code)->get()->each(function ($item, $index) {
                     $item->amount = request()->cart[$index]["quantity"];
@@ -168,6 +194,7 @@ class GeneralController extends Controller
             'title' => "Prepare To Order",
             'isUser' => auth()->user(),
             'weight' => 0,
+            'brands' => Brand::with(['products'])->latest()->get(),
             'snap' => SnapToken::claim($transaction_details, $customer_details, $item_details, $shipping_address),
             'categories' => Category::first()->get(),
             'shipping' => $shipping_address,
@@ -181,7 +208,13 @@ class GeneralController extends Controller
         ];
         // sending to view
 
-        return view('frontpage.cart.execute-order', $data);
+        // create order before show the page
+        $order = Order::generate($customer_details, $shipping_address, $item_details, $transaction_details);
+        // create order before show the page
+
+        // return $order;
+
+        return redirect()->route('order_detail', ['order' => $order]);
     }
     public function blog_detail()
     {
@@ -199,19 +232,30 @@ class GeneralController extends Controller
         ];
         return view('frontpage.blog.blog-page', $data);
     }
-    public function order_detail()
+    public function order_detail(Order $order)
     {
+        if ($order->email != auth()->user()->email) {
+            return redirect()->route('main')->with('error', 'Thats Not Your Order!');
+        }
         $data = [
-            'title' => 'Detail Order | Urban Adventure',
+            'title' => "Prepare To Order",
+            'isUser' => auth()->user(),
+            'weight' => 0,
+            'order' => $order,
+            'brands' => Brand::with(['products'])->latest()->get(),
+            'snap' => $order->payment_token,
             'categories' => Category::first()->get(),
+            'cart' => $order->details->slice(0, -1)
         ];
-        return view('frontpage.order.order-detail', $data);
+        return view('frontpage.cart.execute-order', $data);
     }
     public function order_history()
     {
         $data = [
+            'brands' => Brand::with(['products'])->latest()->get(),
             'title' => 'Detail Order | Urban Adventure',
             'categories' => Category::first()->get(),
+            'orders' => auth()->user()->orders
         ];
         return view('frontpage.order.order-history', $data);
     }

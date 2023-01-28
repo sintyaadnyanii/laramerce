@@ -13,6 +13,10 @@
  [5] Minxin Scrollbars
  [6] Minxin Dev Custom
  ==============================================*/
+.actives {
+    color: #ff5e00 !important;
+    font-weight: bold !important;
+}
 .no-margin {
     margin: 0 !important;
 }

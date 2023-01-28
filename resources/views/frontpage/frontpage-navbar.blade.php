@@ -51,7 +51,8 @@
         <div class="container">
             <div class="row">
                 <!-- Logo -->
-                <div class="navbar-logo col-md-2 col-sm-3 col-xs-10">
+                <div class="navbar-logo col-md-2 col-sm-3 col-xs-10"
+                    style="display: flex; justify-content: center; align-items: center;">
                     <div class="logo"><a href="{{ route('main') }}"><img
                                 src="{{ asset('image/catalog/elab-logo.png') }}" title="Your Store"
                                 alt="Your Store" /></a></div>
@@ -81,7 +82,7 @@
                                             flex-direction: row-reverse;">
                                                 <ul class="megamenu" data-transition="slide" data-animationtime="250">
                                                     <li class="menu-home with-sub-menu hover">
-                                                        <a href="index.html">Home</a>
+                                                        <a href="{{ route('main') }}">Home</a>
                                                     </li>
                                                     <li class="with-sub-menu hover">
                                                         <p class="close-menu"></p>
@@ -98,7 +99,7 @@
                                                                                 <div class="menu">
                                                                                     <ul>
                                                                                         @foreach ($brands as $item)
-                                                                                            <li><a href="#"
+                                                                                            <li><a href="{{ route('category', ['category' => $item]) }}"
                                                                                                     class="main-menu">{{ $item->name }}</a>
                                                                                             </li>
                                                                                         @endforeach
@@ -198,7 +199,8 @@
                                                         @foreach ($categories->take(9) as $item)
                                                             <li class="item-vertical">
                                                                 <p class="close-menu"></p>
-                                                                <a href="#" class="clearfix">
+                                                                <a href="{{ route('category', ['category' => $item]) }}"
+                                                                    class="clearfix">
                                                                     <span>
                                                                         <img src="{{ asset('image/catalog/menu/icons/icon-1.png') }}"
                                                                             alt="icon">

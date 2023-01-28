@@ -10,7 +10,8 @@ class Order extends Model
 {
     use HasFactory;
     protected $keyType = 'string';
-    protected $fillable = ['transaction_id', 'payment_token', 'payment_type'];
+    public $incrementing = false;
+    protected $fillable = ['transaction_id', 'payment_token', 'payment_type', 'transaction_status'];
 
     // instant value
 
@@ -20,9 +21,44 @@ class Order extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function detail()
+    public function details()
     {
         return $this->hasMany(OrderDetail::class, 'order_id');
+    }
+
+    // method
+    public static function generate($customer, $shipping, $item, $transaction)
+    {
+        $order = new Order();
+        $order->id = $transaction['order_id'];
+        // customer
+        $order->user_id = auth()->user()->id;
+        $order->name = $customer['name'];
+        $order->phone = $customer['phone'];
+        $order->email = $customer['email'];
+        // shipping
+        $order->address = $shipping['address'];
+        $order->province = $shipping['province'];
+        $order->city = $shipping['city'];
+        $order->cost = $shipping['cost'];
+        // transaction
+        $order->gross_amount = $transaction['gross_amount'];
+        $order->transaction_id = $transaction['order_id'];
+        $order->payment_token = SnapToken::claim($transaction, $customer, $item, $shipping);
+        // etc
+        $order->comments = request()->has('comments') ? request()->comments : null;
+        $order->save();
+
+        foreach ($item as $key => $product) {
+            $order->details()->create([
+                'product_id' => $product['id'],
+                'name' => $product['name'],
+                'price' => $product['price'],
+                'quantity' => $product['quantity'],
+            ]);
+        }
+
+        return $order;
     }
     // bootable
     public static function boot()
@@ -30,26 +66,9 @@ class Order extends Model
         parent::boot();
 
         self::creating(function ($model) {
-            $model->id = Str::random(6);
-            $model->gross_amount = 0;
-            $model->user_id = auth()->user()->id;
-            $model->name = auth()->user()->name;
-            $model->email = auth()->user()->email;
-            $model->phone = auth()->user()->phone;
-            foreach (request()->orders as $key => $value) {
-                $model->gross_amount += ($value['amount'] * $value['price']);
-            }
         });
 
         self::created(function ($model) {
-            foreach (request()->orders as $key => $value) {
-                $model->detail()->create([
-                    'product' => $value['product'],
-                    'price' => $value['price'],
-                    'amount' => $value['amount'],
-                    'subtotal' => $value['price'] * $value['price']
-                ]);
-            }
         });
 
         self::updating(function ($model) {

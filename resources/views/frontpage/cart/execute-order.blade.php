@@ -11,12 +11,14 @@
             <div class="main-container container">
                 {{-- hidden value --}}
                 <input type="hidden" id="cart-total-weight" name="weight" value="{{ $weight }}">
-                <input type="hidden" id="cart-total-weight" name="user[name]" value="{{ $isUser->name }}">
-                <input type="hidden" id="cart-total-weight" name="user[id]" value="{{ $isUser->id }}">
+                <input type="hidden" id="cart-total-weight" name="user[name]" value="{{ $order->name }}">
+                <input type="hidden" id="cart-total-weight" name="user[id]" value="{{ $order->user_id }}">
                 {{-- hidden value --}}
                 <ul class="breadcrumb">
-                    <li><a href="#"><i class="fa fa-home"></i></a></li>
-                    <li><a href="#">Checkout</a></li>
+                    <li><a href="{{ route('main') }}"><i class="fa fa-home"></i></a></li>
+                    <li>
+                        <p>Checkout</p>
+                    </li>
 
                 </ul>
 
@@ -36,19 +38,19 @@
                                                 <label for="input-payment-fullname" class="control-label">Full
                                                     Name</label>
                                                 <input type="text" class="form-control" id="input-payment-fullname"
-                                                    placeholder="Your Name" value="{{ $isUser->name }}"
+                                                    placeholder="Your Name" value="{{ $order->name }}"
                                                     name="user[fullname]" readonly>
                                             </div>
                                             <div class="form-group required">
                                                 <label for="input-payment-email" class="control-label">E-Mail</label>
                                                 <input type="text" class="form-control" id="input-payment-email"
-                                                    placeholder="E-Mail" value="{{ $isUser->email }}" name="user[email]"
+                                                    placeholder="E-Mail" value="{{ $order->email }}" name="user[email]"
                                                     readonly>
                                             </div>
                                             <div class="form-group required">
                                                 <label for="input-payment-telephone" class="control-label">Telephone</label>
                                                 <input type="text" class="form-control" id="input-payment-telephone"
-                                                    placeholder="Telephone" value="{{ $isUser->phone }}"
+                                                    placeholder="Telephone" value="{{ $order->phone }}"
                                                     name="user[telephone]" readonly>
                                             </div>
                                         </fieldset>
@@ -64,7 +66,7 @@
                                                 <label for="input-payment-country" class="control-label">Province</label>
                                                 <select id="input-province" class="form-control" disabled
                                                     name="destination[province_id]">
-                                                    <option value="">{{ $shipping['province'] }} </option>
+                                                    <option value="">{{ $order->province }} </option>
 
                                                 </select>
                                             </div>
@@ -72,7 +74,7 @@
                                                 <label for="input-payment-zone" class="control-label">City</label>
                                                 <select name="destination[city_id]" id="input-city" disabled
                                                     class="form-control" name="city_id">
-                                                    <option value=""> {{ $shipping['city'] }} </option>
+                                                    <option value=""> {{ $order->city }} </option>
 
                                                 </select>
                                             </div>
@@ -80,7 +82,7 @@
                                                 <label for="input-payment-address-1" class="control-label">Address
                                                     1</label>
                                                 <input type="text" class="form-control" readonly
-                                                    id="input-payment-address-1" value="{{ $shipping['address'] }}"
+                                                    id="input-payment-address-1" value="{{ $order->address }}"
                                                     name="user[address]">
                                             </div>
                                         </fieldset>
@@ -108,13 +110,14 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody id="cart-item-list">
+                                                            {{-- @dump($cart) --}}
                                                             @foreach ($cart as $item)
-                                                                <tr data-sub_total="{{ $item->price * $item->amount }}"
+                                                                <tr data-sub_total="{{ $item->price * $item->quantity }}"
                                                                     data-product="{{ $item->product_code }}"
                                                                     data-price="{{ $item->price }}">
                                                                     <td class="text-center"><a href="product.html"><img
                                                                                 width="60px"
-                                                                                src="{{ asset($item->images->count() ? 'storage/' . $item->images->first()->src : '/image/catalog/demo/product/funiture/10.jpg') }}"
+                                                                                src="{{ asset($item->product->images->count() ? 'storage/' . $item->product->images->first()->src : '/image/catalog/demo/product/funiture/10.jpg') }}"
                                                                                 alt="Xitefun Causal Wear Fancy Shoes"
                                                                                 title="Xitefun Causal Wear Fancy Shoes"
                                                                                 class="img-thumbnail"></a></td>
@@ -137,7 +140,7 @@
                                                                             <input type="text" readonly
                                                                                 name="cart[{{ $loop->index }}][quantity]"
                                                                                 id="{{ $item->product_code }}-quantity"
-                                                                                value="{{ $item->amount }}"
+                                                                                value="{{ $item->quantity }}"
                                                                                 max="{{ $item->stock }}"
                                                                                 class="form-control">
                                                                         </div>
@@ -145,9 +148,8 @@
                                                                     <td class="text-right">{{ ch_currency($item->price) }}
                                                                     </td>
                                                                     <td class="text-right">
-                                                                        {{ ch_currency($item->price * $item->amount) }}
+                                                                        {{ ch_currency($item->price * $item->quantity) }}
                                                                     </td>
-
                                                                 </tr>
                                                             @endforeach
                                                         </tbody>
@@ -165,14 +167,14 @@
                                                                 </td>
                                                                 <td class="text-right" data-cart_shipping_fee="0"
                                                                     id="cart-shipping-fee">
-                                                                    {{ ch_currency($shipping['cost']) }}</td>
+                                                                    {{ ch_currency($order->cost) }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-right" colspan="4">
                                                                     <strong>Total:</strong>
                                                                 </td>
                                                                 <td data-total="0" class="text-right">
-                                                                    {{ ch_currency($transaction['gross_amount']) }}
+                                                                    {{ ch_currency($order->gross_amount) }}
                                                                 </td>
                                                             </tr>
                                                         </tfoot>
@@ -187,15 +189,32 @@
                                                 <h4 class="panel-title"><i class="fa fa-pencil"></i> Your Message </h4>
                                             </div>
                                             <div class="panel-body">
-                                                <textarea readonly rows="4" class="form-control" id="confirm_comment" name="comments">{{ strip_tags($comments) }}</textarea>
+                                                <textarea readonly rows="4" class="form-control" id="confirm_comment" name="comments">{{ strip_tags($order->comments) }}</textarea>
                                                 <br>
 
-                                                <div class="buttons">
-                                                    <div class="pull-right">
-                                                        <button type="button" class="btn btn-primary" id="pay-button">
-                                                            Proceed Order</button>
+                                                @if ($order->transaction_status == 'pending')
+                                                    <div class="buttons">
+                                                        <div class="pull-right">
+                                                            <button type="button" class="btn btn-primary"
+                                                                id="pay-button">
+                                                                Pay Now</button>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                @elseif ($order->transaction_status == 'settlement')
+                                                    <div class="buttons">
+                                                        <div class="pull-right">
+                                                            <button type="button" class="btn btn-primary">
+                                                                Order Complete</button>
+                                                        </div>
+                                                    </div>
+                                                @else
+                                                    <div class="buttons">
+                                                        <div class="pull-right">
+                                                            <button type="button" class="btn btn-primary">
+                                                                Order Cancel</button>
+                                                        </div>
+                                                    </div>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -262,22 +281,21 @@
             window.snap.pay('{{ $snap }}', {
                 onSuccess: function(result) {
                     /* You may add your own implementation here */
-                    alert("payment success!");
+
                     console.log(result);
                 },
                 onPending: function(result) {
                     /* You may add your own implementation here */
-                    alert("wating your payment!");
+
                     console.log(result);
                 },
                 onError: function(result) {
                     /* You may add your own implementation here */
-                    alert("payment failed!");
+
                     console.log(result);
                 },
                 onClose: function() {
                     /* You may add your own implementation here */
-                    alert('you closed the popup without finishing the payment');
                 }
             })
         });
