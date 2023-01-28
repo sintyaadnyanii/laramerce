@@ -70,6 +70,7 @@ Route::controller(GeneralController::class)->group(function () {
     Route::get('/cart', 'cart')->name('cart')->middleware('auth');
     // Route::get('/category', 'category')->name('category');
     Route::get('/category/{category:name}', 'category')->name('category');
+    Route::get('/quickview/{product:product_code}', 'quickview')->name('quickview');
     Route::get('/product/{product:product_code}', 'product_detail')->name('product-detail');
     Route::match(['GET', 'POST'], '/checkout', 'checkout')->name('checkout')->middleware('auth');
     Route::post('/execute-order', 'execute_order')->name('execute_order')->middleware('auth');

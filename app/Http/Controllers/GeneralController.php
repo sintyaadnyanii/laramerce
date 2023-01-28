@@ -35,6 +35,17 @@ class GeneralController extends Controller
         ];
         return view('frontpage.category.category', $data);
     }
+    public function quickview(Product $product)
+    {
+        $data = [
+            'title' => 'Quickview | Urban Adventure',
+            'product' => $product,
+            'brands' => Brand::with(['products'])->latest()->get(),
+            // 'products' => Product::latest()->get()->random(Product::all()->count() > 6 ? 6 : Product::all()->count()),
+            'categories' => Category::first()->get(),
+        ];
+        return view('frontpage.quickview.quickview', $data);
+    }
     public function cart()
     {
         $data = [
