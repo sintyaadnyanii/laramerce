@@ -7,7 +7,7 @@
             <div class="main-container product-listing container">
                 <ul class="breadcrumb">
                     <li><a href="{{ route('main') }}"><i class="fa fa-home"></i></a></li>
-                    <li><a href="">{{ $category->name }}</a></li>
+                    <li><a href="">{{ $name->name }}</a></li>
                 </ul>
 
                 <div class="row">
@@ -36,10 +36,11 @@
                                                     <ul class="checkboxes_list">
                                                         @foreach ($categories as $item)
                                                             <li>
-                                                                <input type="checkbox" name="category"
-                                                                    id="category_{{ $loop->iteration }}">
-                                                                <label
-                                                                    for="category_{{ $loop->iteration }}">{{ $item->name }}</label>
+                                                                <a href="{{ route('category', ['category' => $item]) }}"
+                                                                    class="{{ Request::is('category/' . $item->name) ? 'actives' : '' }}"
+                                                                    name="category" id="category_{{ $loop->iteration }}">
+                                                                    {{ $item->name }}
+                                                                </a>
                                                             </li>
                                                         @endforeach
 
@@ -57,10 +58,11 @@
                                                     <ul class="checkboxes_list">
                                                         @foreach ($brands as $item)
                                                             <li>
-                                                                <input type="checkbox" name="manufacturer"
-                                                                    id="manufacturer_{{ $loop->iteration }}">
-                                                                <label
-                                                                    for="manufacturer_{{ $loop->iteration }}">{{ $item->name }}</label>
+                                                                <a href="{{ route('brand', ['brand' => $item]) }}"
+                                                                    name="brand"
+                                                                    class="{{ Request::is('category/' . $item->name) ? 'actives' : '' }}"
+                                                                    id="brand_{{ $loop->iteration }}">{{ $item->name }}
+                                                                </a>
                                                             </li>
                                                         @endforeach
 
@@ -93,7 +95,7 @@
                             style="margin-bottom: 15px;"><i class="fa fa-bars"></i>Sidebar</a>
                         <div class="sidebar-overlay "></div>
                         <div class="products-category">
-                            <h3 class="title-category ">{{ $category->name }}</h3>
+                            <h3 class="title-category ">{{ $name->name }}</h3>
                             <div class="category-derc">
                                 <div class="row">
                                     <div class="col-sm-12">
@@ -152,7 +154,7 @@
                             <!-- //end Filters -->
                             <!--changed listings-->
                             <div class="products-list row nopadding-xs so-filter-gird">
-                                @foreach ($category->products as $item)
+                                @foreach ($products as $item)
                                     <div class="product-layout col-lg-3 col-md-4 col-sm-4 col-xxs-6 col-xs-12">
                                         <div class="product-item-container">
                                             <div class="left-block left-b">
@@ -174,7 +176,8 @@
                                                     </div>
                                                 </div> --}}
                                                 <div class="product-image-container">
-                                                    <a href="product.html" target="_self" title="Drutick lanaeger">
+                                                    <a href="{{ route('product-detail', ['product' => $item]) }}"
+                                                        target="_self" title="Drutick lanaeger">
                                                         <img src="{{ asset($item->images->count() ? 'storage/' . $item->images->first()->src : 'dist/images/default.jpg') }}"
                                                             class="img-1 img-responsive" alt="image">
                                                     </a>
@@ -182,14 +185,16 @@
 
                                                 <!--quickview-->
                                                 <a class="iframe-link btn-button quickview quickview_handler visible-lg"
-                                                    href="quickview.html" title="Quick view"
-                                                    data-fancybox-type="iframe"><i class="fa fa-eye"></i><span></span></a>
+                                                    href="{{ route('quickview', ['product' => $item]) }}"
+                                                    title="Quick view" data-fancybox-type="iframe"><i
+                                                        class="fa fa-eye"></i><span></span></a>
                                                 <!--end quickview-->
                                             </div>
                                             <div class="right-block right-b">
 
                                                 <div class="caption">
-                                                    <h4><a href="product.html" title="Drutick lanaeger"
+                                                    <h4><a href="{{ route('product-detail', ['product' => $item]) }}"
+                                                            title="Drutick lanaeger"
                                                             target="_self">{{ $item->name }}</a></h4>
                                                     <div class="rate-history">
                                                         <div class="ratings">
@@ -226,32 +231,6 @@
                                                             title="Add to Wish List" onclick="wishlist.add('60');"><i
                                                                 class="fa fa-heart"></i><span></span>
                                                         </button>
-                                                        <button type="button" class="compare btn-button"
-                                                            title="Compare this Product " onclick="compare.add('60');"><i
-                                                                class="fa fa-refresh"></i><span></span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="description item-desc">
-                                                        <p> {!! strip_tags(html_entity_decode(Str::words($item->description, 20, '...'))) !!}</p>
-                                                    </div>
-                                                    <div class="list-block">
-                                                        <button class="addToCart btn-button" type="button"
-                                                            title="Add to Cart" onclick="cart.add('101', '1');"><i
-                                                                class="fa fa-shopping-basket"></i>
-                                                        </button>
-                                                        <button class="wishlist btn-button" type="button"
-                                                            title="Add to Wish List" onclick="wishlist.add('101');"><i
-                                                                class="fa fa-heart"></i>
-                                                        </button>
-                                                        <button class="compare btn-button" type="button"
-                                                            title="Compare this Product" onclick="compare.add('101');"><i
-                                                                class="fa fa-refresh"></i>
-                                                        </button>
-                                                        <!--quickview-->
-                                                        <a class="iframe-link btn-button quickview quickview_handler visible-lg"
-                                                            href="quickview.html" title="Quick view"
-                                                            data-fancybox-type="iframe"><i class="fa fa-eye"></i></a>
-                                                        <!--end quickview-->
                                                     </div>
                                                 </div>
                                             </div>
