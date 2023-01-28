@@ -190,12 +190,29 @@
                                                 <textarea readonly rows="4" class="form-control" id="confirm_comment" name="comments">{{ strip_tags($order->comments) }}</textarea>
                                                 <br>
 
-                                                <div class="buttons">
-                                                    <div class="pull-right">
-                                                        <button type="button" class="btn btn-primary" id="pay-button">
-                                                            Proceed Order</button>
+                                                @if ($order->transaction_status == 'pending')
+                                                    <div class="buttons">
+                                                        <div class="pull-right">
+                                                            <button type="button" class="btn btn-primary"
+                                                                id="pay-button">
+                                                                Pay Now</button>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                @elseif ($order->transaction_status == 'settlement')
+                                                    <div class="buttons">
+                                                        <div class="pull-right">
+                                                            <button type="button" class="btn btn-primary">
+                                                                Order Complete</button>
+                                                        </div>
+                                                    </div>
+                                                @else
+                                                    <div class="buttons">
+                                                        <div class="pull-right">
+                                                            <button type="button" class="btn btn-primary">
+                                                                Order Cancel</button>
+                                                        </div>
+                                                    </div>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
