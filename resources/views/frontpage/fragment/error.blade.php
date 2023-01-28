@@ -1,13 +1,18 @@
-<div class="container popup-container">
+<div class="popup-container" id="alert">
   
-  <div class="success-alert alert alert-danger alert-dismissible">
-  <button class="close" data-dismiss="alert" aria-label="close">
+  <div class="error-alert alert alert-dismissible">
+  <button class="close" onclick="btn_close()" data-dismiss="alert" aria-label="close">
         <i class="fa fa-times"></i></button>
         <div class="alert-icon">
-        <i class="fa fa-exclamation-circle"></i>
+        <i class="fa fa-exclamation-circle icon"></i>
         </div>
         <div class="alert-msg">
-        <strong>Oops!</strong> This alert box could indicate a dangerous or potentially negative action.
+        <strong>Oops!</strong> {!! session()->get('error') !!}
         </div>
   </div>
 </div>
+<script>
+    function btn_close() {
+        document.getElementById("alert").style.display = "none";
+    }
+</script>

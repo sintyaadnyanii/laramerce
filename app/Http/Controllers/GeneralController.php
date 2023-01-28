@@ -54,6 +54,7 @@ class GeneralController extends Controller
             'weight' => 0,
             'title' => 'Cart | Urban Adventure',
             'categories' => Category::first()->get(),
+            'brands' => Brand::with(['products'])->latest()->get(),
         ];
         foreach ($data['cart'] as $item) {
             $data['weight'] += ($item->product->weight * 1000);
