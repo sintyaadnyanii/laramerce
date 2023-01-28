@@ -6,9 +6,13 @@
             <!-- Main Container  -->
             <div class="main-container container">
                 <ul class="breadcrumb">
-                    <li><a href="#"><i class="fa fa-home"></i></a></li>
-                    <li><a href="#">Account</a></li>
-                    <li><a href="#">My Wish List</a></li>
+                    <li><a href="{{ route('main') }}"><i class="fa fa-home"></i></a></li>
+                    <li>
+                        <p>Account</p>
+                    </li>
+                    <li>
+                        <p>My Wish List</p>
+                    </li>
                 </ul>
 
                 <div class="row">
