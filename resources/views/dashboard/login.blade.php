@@ -1,6 +1,7 @@
 @extends('layouts.base-layout')
 @section('base_head')
     <link rel="stylesheet" href="{{ asset('dist/css/_app.css') }}">
+    <link rel="shortcut icon" type="image/png" href="{{ asset('image/catalog/urban.png') }}" />
     <link rel="stylesheet" href="{{ asset('dist/css/app.css') }}">
 @endsection
 @section('base_body')
@@ -10,11 +11,10 @@
                 <!-- BEGIN: Login Info -->
                 <div class="hidden xl:flex flex-col min-h-screen">
                     <a href="" class="-intro-x flex items-center pt-5">
-                        <img alt="E-lab Urban Adventure" class="w-36" src="{{ asset('/image/catalog/elab-logo-white.png') }}" />
+                        <img alt="" class="w-40" src="{{ asset('/image/catalog/urban.png') }}">
                     </a>
                     <div class="my-auto">
-                        <img alt="Midone - HTML Admin Template" class="-intro-x w-1/2 -mt-16"
-                            src="dist/images/illustration.svg">
+                        <img alt="" class="-intro-x w-1/2 -mt-16" src="dist/images/illustration.svg">
                         <div class="-intro-x text-white font-medium text-4xl leading-tight mt-10">
                             A few more clicks to
                             <br>

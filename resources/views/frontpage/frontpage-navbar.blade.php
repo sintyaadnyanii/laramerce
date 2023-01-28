@@ -53,7 +53,7 @@
             <div class="row">
                 <!-- Logo -->
                 <div class="navbar-logo col-md-2 col-sm-3 col-xs-10"
-                    style="display: flex; justify-content: center; align-items: center;">
+                    style="display: flex; justify-content: start; align-items: center;">
                     <div class="logo"><a href="{{ route('main') }}"><img src="{{ asset('image/catalog/urban.png') }}"
                                 title="Your Store" alt="Your Store" /></a></div>
                 </div>
