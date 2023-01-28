@@ -61,6 +61,10 @@ Route::get('/token', function () {
 
     return SnapToken::claim($transaction_details, $customer_details, $item_details, $shipping_address);
 });
+
+Route::get('/email', function(){
+    return view('frontpage.email.email-template');
+});
 Route::get('/', function () {
     return view('frontpage.main.main', ['title' => 'Homepage | Urban Adventure']);
 });
