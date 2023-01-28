@@ -69,43 +69,6 @@
                                                 </fieldset>
 
                                             </div>
-                                            <!--/ .table_cell -->
-                                            <!-- - - - - - - - - - - - - - End manufacturer - - - - - - - - - - - - - - - - -->
-
-                                            <!-- - - - - - - - - - - - - - Price - - - - - - - - - - - - - - - - -->
-                                            <div class="table_cell">
-                                                <fieldset>
-                                                    <legend>Price</legend>
-                                                    <div class="range">
-                                                        Range :
-                                                        <span class="min_val">$188.73</span> -
-                                                        <span class="max_val">$335.15</span>
-                                                        <input type="hidden" name="" class="min_value"
-                                                            value="188.73">
-                                                        <input type="hidden" name="" class="max_value"
-                                                            value="335.15">
-                                                    </div>
-                                                    <div id="slider"
-                                                        class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
-                                                        <div class="ui-slider-range ui-widget-header ui-corner-all"></div>
-                                                        <span
-                                                            class="ui-slider-handle ui-state-default ui-corner-all"></span>
-                                                        <span
-                                                            class="ui-slider-handle ui-state-default ui-corner-all"></span>
-                                                    </div>
-                                                </fieldset>
-                                            </div>
-                                            <!--/ .table_cell -->
-
-                                            <!-- - - - - - - - - - - - - - End price - - - - - - - - - - - - - - - - -->
-
-                                            <!-- - - - - - - - - - - - - - Price - - - - - - - - - - - - - - - - -->
-
-
-                                            <!--/ .table_cell -->
-
-                                            <!-- - - - - - - - - - - - - - End price - - - - - - - - - - - - - - - - -->
-
                                         </div>
                                         <!--/ .table_row -->
                                         <div class="bottom_box">
@@ -175,8 +138,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label" for="input-limit">Show:</label>
-                                            <select id="input-limit" class="form-control"
-                                                onchange="location = this.value;">
+                                            <select id="input-limit" class="form-control" onchange="location = this.value;">
                                                 <option value="" selected="selected">15</option>
                                                 <option value="">25</option>
                                                 <option value="">50</option>
