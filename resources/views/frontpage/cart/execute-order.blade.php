@@ -15,8 +15,10 @@
                 <input type="hidden" id="cart-total-weight" name="user[id]" value="{{ $order->user_id }}">
                 {{-- hidden value --}}
                 <ul class="breadcrumb">
-                    <li><a href="#"><i class="fa fa-home"></i></a></li>
-                    <li><a href="#">Checkout</a></li>
+                    <li><a href="{{ route('main') }}"><i class="fa fa-home"></i></a></li>
+                    <li>
+                        <p>Checkout</p>
+                    </li>
 
                 </ul>
 

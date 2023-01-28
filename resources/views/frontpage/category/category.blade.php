@@ -7,7 +7,9 @@
             <div class="main-container product-listing container">
                 <ul class="breadcrumb">
                     <li><a href="{{ route('main') }}"><i class="fa fa-home"></i></a></li>
-                    <li><a href="">{{ $name->name }}</a></li>
+                    <li>
+                        <p>{{ $name->name }}</p>
+                    </li>
                 </ul>
 
                 <div class="row">
