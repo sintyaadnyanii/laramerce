@@ -106,16 +106,16 @@ class GeneralController extends Controller
             }
             return view('frontpage.cart.checkout', $data);
         }
-
         if ($request->isMethod('POST')) {
+            $product = Product::whereIn('product_code', request()->product_code)->get();
             $data = [
                 'title' => 'Check Out | Urban Adventure',
                 'isUser' => auth()->user(),
                 'weight' => 0,
                 'brands' => Brand::with(['products'])->latest()->get(),
                 'categories' => Category::first()->get(),
-                'cart' => Product::whereIn('product_code', request()->product_code)->get()->each(function ($item, $index) {
-                    $item->amount = request()->cart[$index]["quantity"];
+                'cart' => $product->each(function ($item, $index) {
+                    $item->amount = (request()->cart[$index]["quantity"] > $item->stock ? $item->stock : request()->cart[$index]["quantity"]);
                 })
             ];
 
@@ -170,6 +170,16 @@ class GeneralController extends Controller
         ];
 
         $item_details = $validated['cart'];
+        // check avaiavility stock
+        foreach ($item_details as $key => $item) {
+            $product = Product::find($item['id']);
+            if ($product->stock < request()->cart[$key]['quantity']) {
+                if ($product->stock < 1) {
+                    return redirect()->route('checkout')->with('error', 'Product ' . $product->name . "Out Of Stock!");
+                }
+                return redirect()->route('checkout')->with('error', "You Order " . $product->name . " Too Much!");
+            }
+        }
         array_push($item_details, [
             'name' => 'Delivery Service JNE',
             'quantity' => 1,
