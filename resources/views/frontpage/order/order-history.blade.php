@@ -28,17 +28,20 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="text-center">1
-                                        </td>
-                                        <td class="text-center">#214521</td>
-                                        <td class="text-center">Shipped</td>
-                                        <td class="text-right">$228.00</td>
-                                        <td class="text-center"><a class="btn btn-info" title="" data-toggle="tooltip"
-                                                href="order-information.html" data-original-title="View"><i
-                                                    class="fa fa-eye"></i></a>
-                                        </td>
-                                    </tr>
+                                    @foreach ($orders as $item)
+                                        <tr>
+                                            <td class="text-center">{{ $loop->iteration }}
+                                            </td>
+                                            <td class="text-center">{{ $item->transaction_id }}</td>
+                                            <td class="text-center">{{ $item->transaction_status }}</td>
+                                            <td class="text-right">{{ ch_currency($item->gross_amount) }}</td>
+                                            <td class="text-center"><a class="btn btn-info" title=""
+                                                    data-toggle="tooltip"
+                                                    href="{{ route('order_detail', ['order' => $item]) }}"
+                                                    data-original-title="View"><i class="fa fa-eye"></i></a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
 
                                 </tbody>
                             </table>

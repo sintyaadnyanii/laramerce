@@ -63,11 +63,14 @@
                                         data-lazyload="yes" data-loop="no" data-hoverpause="yes">
                                         @forelse ($brands as $item)
                                             <div class="cate cate1">
-                                                <div class="inner" style="width: 100%;"><a href="#"><img
-                                                            class="img-mobile" src="{{ asset('/image/brand/brand.jpg') }}"
+                                                <div class="inner" style="width: 100%;"><a
+                                                        href="{{ route('brand', ['brand' => $item]) }}"><img
+                                                            class="img-mobile"
+                                                            src="{{ asset('storage/' . $item->logo->src) }}"
                                                             alt="Static Image"
                                                             style="width:210px; height: 270px; cover; object-position: center;"></a><a
-                                                        class="title-cate" href="#">{{ $item->name }}</a>
+                                                        class="title-cate"
+                                                        href="{{ route('brand', ['brand' => $item]) }}">{{ $item->name }}</a>
                                                 </div>
                                             </div>
                                         @empty
@@ -95,7 +98,8 @@
                                                                     <div class="left-block">
                                                                         <div class="product-image-container second_img"
                                                                             style="width: 100%;">
-                                                                            <a href="#" target="_self"
+                                                                            <a href="{{ route('product-detail', ['product' => $item]) }}"
+                                                                                target="_self"
                                                                                 title="{{ $item->name }}">
                                                                                 <img src="{{ asset($item->images->count() ? 'storage/' . $item->images->first()->src : 'image/catalog/demo/product/80/8.jpg') }}"
                                                                                     class="img-1 img-responsive img-mobile"
@@ -110,9 +114,10 @@
                                                                     </div>
                                                                     <div class="right-block">
                                                                         <div class="caption">
-                                                                            <h4><a href="#" target="_self"
-                                                                                    title="Deserunt mollitia"
-                                                                                    tabindex="0">{{ $item->name }}</a>
+                                                                            <h4><a href="{{ route('product-detail', ['product' => $item]) }}"
+                                                                                    target="_self"
+                                                                                    title="{{ $item->name }}"
+                                                                                    tabindex="{{ $loop->iteration }}">{{ $item->name }}</a>
                                                                             </h4>
                                                                             <div class="rating">
                                                                                 <span class="fa fa-stack"><i
@@ -250,7 +255,7 @@
                                                                                 <div class="media-left">
                                                                                     <div class="item-image">
                                                                                         <div class="item-img-info">
-                                                                                            <a href="#"
+                                                                                            <a href="{{ route('product-detail', ['product' => $item]) }}"
                                                                                                 target="_self"
                                                                                                 title="{{ $product->name }} "
                                                                                                 style="width: 100%;">
@@ -265,7 +270,7 @@
                                                                                 <div class="media-body">
                                                                                     <div class="item-info">
                                                                                         <div class="item-title">
-                                                                                            <a href="#"
+                                                                                            <a href="{{ route('product-detail', ['product' => $product]) }}"
                                                                                                 target="_self"
                                                                                                 title="Mandouille short">{{ Str::words($product->name, 3, '...') }}</a>
                                                                                         </div>
@@ -595,7 +600,7 @@
                                                 <div class="ltabs-wrap">
                                                     <div class="ltabs-tabs-container" data-delay="300"
                                                         data-duration="600" data-effect="starwars" data-ajaxurl=""
-                                                        data-type_source="0" data-lg="5" data-md="4"
+                                                        data-type_source="0" data-lg="4" data-md="4"
                                                         data-sm="3" data-xxs="3" data-xs="1" data-margin="0">
                                                         <!--Begin Tabs-->
                                                         <div class="ltabs-tabs-wrap">
