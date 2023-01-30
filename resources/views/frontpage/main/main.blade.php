@@ -66,7 +66,7 @@
                                                 <div class="inner" style="width: 100%;"><a
                                                         href="{{ route('brand', ['brand' => $item]) }}"><img
                                                             class="img-mobile"
-                                                            src="{{ asset('storage/' . $item->logo->src) }}"
+                                                            src="{{ asset($brand->logo != null ? 'storage/' . $brand->logo->src : 'dist/images/default.jpg') }}"
                                                             alt="Static Image"
                                                             style="width:210px; height: 270px; cover; object-position: center;"></a><a
                                                         class="title-cate"
