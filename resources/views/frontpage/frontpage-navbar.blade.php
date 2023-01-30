@@ -101,7 +101,7 @@
                                                                                 <div class="menu">
                                                                                     <ul>
                                                                                         @foreach ($brands as $item)
-                                                                                            <li><a href="{{ route('category', ['category' => $item]) }}"
+                                                                                            <li><a href="{{ route('brand', ['brand' => $item]) }}"
                                                                                                     class="main-menu">{{ $item->name }}</a>
                                                                                             </li>
                                                                                         @endforeach

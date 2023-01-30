@@ -63,11 +63,14 @@
                                         data-lazyload="yes" data-loop="no" data-hoverpause="yes">
                                         @forelse ($brands as $item)
                                             <div class="cate cate1">
-                                                <div class="inner" style="width: 100%;"><a href="#"><img
-                                                            class="img-mobile" src="{{ asset('/image/brand/brand.jpg') }}"
+                                                <div class="inner" style="width: 100%;"><a
+                                                        href="{{ route('brand', ['brand' => $item]) }}"><img
+                                                            class="img-mobile"
+                                                            src="{{ asset('storage/' . $item->logo->src) }}"
                                                             alt="Static Image"
                                                             style="width:210px; height: 270px; cover; object-position: center;"></a><a
-                                                        class="title-cate" href="#">{{ $item->name }}</a>
+                                                        class="title-cate"
+                                                        href="{{ route('brand', ['brand' => $item]) }}">{{ $item->name }}</a>
                                                 </div>
                                             </div>
                                         @empty
