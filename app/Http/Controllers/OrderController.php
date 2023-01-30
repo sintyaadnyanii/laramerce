@@ -12,7 +12,7 @@ class OrderController extends Controller
     {
         $data = [
             'title' => 'Orders | Urban Adventure',
-            'order' => Order::latest()->get()
+            'order' => Order::latest()->filter(request(['search']))->paginate(10),
         ];
         return view('dashboard.admin.orders.order-all', $data);
     }

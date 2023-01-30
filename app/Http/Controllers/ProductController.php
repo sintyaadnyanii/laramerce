@@ -15,7 +15,7 @@ class ProductController extends Controller
     {
         $data = [
             'title' => 'Products | Urban Adventure',
-            'products' => Product::latest()->filter(request(['search', 'category']))->get(),
+            'products' => Product::latest()->filter(request(['search', 'category']))->paginate(10),
             'categories' => Category::latest()->get(),
         ];
         return view('dashboard.admin.products.product-all', $data);

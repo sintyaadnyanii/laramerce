@@ -9,11 +9,11 @@
     <!-- END: Breadcrumb -->
     <!-- BEGIN: Search -->
     <div class="intro-x relative mr-3 sm:mr-6">
-        <div class="search hidden sm:block">
+        <div class="search hidden">
             <input type="text" class="search__input form-control border-transparent" placeholder="Search...">
             <i data-lucide="search" class="search__icon dark:text-slate-500"></i>
         </div>
-        <a class="notification sm:hidden" href=""> <i data-lucide="search"
+        <a class="notification hidden" href=""> <i data-lucide="search"
                 class="notification__icon dark:text-slate-500"></i> </a>
         <div class="search-result">
             <div class="search-result__content">

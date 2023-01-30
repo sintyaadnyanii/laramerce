@@ -23,6 +23,14 @@ class Brand extends Model
         return $this->morphOne(Image::class, 'imageable');
     }
 
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['search'] ?? false, function ($query, $search) {
+            return $query->where('name', 'like', '%' . $search . '%')->orWhereHas('products', function ($query) use ($search) {
+                $query->where('name', 'like', '%' . $search . '%')->orWhere('product_code', '=', $search);
+            });
+        });
+    }
     // boot
     public static function boot()
     {

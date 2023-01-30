@@ -14,4 +14,13 @@ class Category extends Model
     {
         return $this->hasMany(Product::class, 'category_id');
     }
+
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['search'] ?? false, function ($query, $search) {
+            return $query->where('name', 'like', '%' . $search . '%')->orWhereHas('products', function ($query) use ($search) {
+                $query->where('name', 'like', '%' . $search . '%')->orWhere('product_code', '=', $search);
+            });
+        });
+    }
 }

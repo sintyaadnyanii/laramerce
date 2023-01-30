@@ -26,6 +26,17 @@ class Order extends Model
         return $this->hasMany(OrderDetail::class, 'order_id');
     }
 
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['search'] ?? false, function ($query, $search) {
+            return $query->where('name', 'like', '%' . $search . '%')->orWhereHas('details', function ($query) use ($search) {
+                $query->where('name', 'like', '%' . $search . '%')->orWhere('product_id', '=', $search);
+            })->orWhereHas('user', function ($query) use ($search) {
+                $query->where('name', 'like', '%' . $search . '%')->orWhere('phone', 'like', '%' . $search . '%');
+            });
+        });
+    }
+
     // method
     public static function generate($customer, $shipping, $item, $transaction)
     {
