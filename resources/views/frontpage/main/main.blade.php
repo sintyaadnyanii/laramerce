@@ -21,7 +21,8 @@
                                                     data-hoverpause="yes">
                                                     @foreach ($products->shuffle()->take(3) as $item)
                                                         <div class="yt-content-slide" style="width: 100%;">
-                                                            <a title="{{ $item->name }}" href="#"><img
+                                                            <a title="{{ $item->name }}"
+                                                                href="{{ route('product-detail', ['product' => $item]) }}"><img
                                                                     src="{{ asset($item->images->count() ? 'storage/' . $item->images->first()->src : 'image/catalog/demo/product/80/8.jpg') }}"
                                                                     alt="{{ $item->name }}" class="responsive img-mobile"
                                                                     style="width: 650px; height: 510px; object-fit: cover; object-position: center;"></a>
@@ -36,7 +37,8 @@
                                                 <div class="block-image-1" style="width: 100%;">
                                                     <ul class="static-image">
                                                         @foreach ($products->shuffle()->take(3) as $item)
-                                                            <li><a title="{{ $item->name }}" href="#"><img
+                                                            <li><a title="{{ $item->name }}"
+                                                                    href="{{ route('product-detail', ['product' => $item]) }}"><img
                                                                         src="{{ asset($item->images->count() ? 'storage/' . $item->images->first()->src : 'image/catalog/demo/product/80/8.jpg') }}"
                                                                         alt="{{ $item->name }}" class="img-mobile"
                                                                         style="width: 250px; height: 170px; object-fit: cover; object-position: center;"></a>
@@ -255,7 +257,7 @@
                                                                                 <div class="media-left">
                                                                                     <div class="item-image">
                                                                                         <div class="item-img-info">
-                                                                                            <a href="{{ route('product-detail', ['product' => $item]) }}"
+                                                                                            <a href="{{ route('product-detail', ['product' => $product]) }}"
                                                                                                 target="_self"
                                                                                                 title="{{ $product->name }} "
                                                                                                 style="width: 100%;">
@@ -638,7 +640,7 @@
                                                                                         <div class="left-block left-b">
                                                                                             <div class="product-image-container"
                                                                                                 style="width: 100%">
-                                                                                                <a href="#"
+                                                                                                <a href="{{ route('product-detail', ['product' => $product]) }}"
                                                                                                     target="_self"
                                                                                                     title="Cupim should">
                                                                                                     <img src="{{ asset($brand->products[$ip]->images->count() ? 'storage/' . $brand->products[$ip]->images->first()->src : 'dist/images/default.jpg') }}"
@@ -650,7 +652,7 @@
 
                                                                                             <!--quickview-->
                                                                                             <a class="iframe-link btn-button quickview quickview_handler visible-lg"
-                                                                                                href="quickview.html"
+                                                                                                href="{{ route('quickview', ['product' => $product]) }}"
                                                                                                 title="Quick view"
                                                                                                 data-fancybox-type="iframe"><i
                                                                                                     class="fa fa-eye"></i><span></span></a>
@@ -659,7 +661,7 @@
                                                                                         <div class="right-block right-b">
 
                                                                                             <div class="caption">
-                                                                                                <h4><a href="#"
+                                                                                                <h4><a href="{{ route('product-detail', ['product' => $product]) }}"
                                                                                                         title="Cupim should "
                                                                                                         {{-- target="_self">{{ $brand->products[$ip+1]->name }} --}}
                                                                                                         target="_self">{{ Str::words($brand->products[$ip]->name, 3, '...') }}
@@ -700,7 +702,7 @@
 
                                                                                             <div class="product-image-container"
                                                                                                 style="width: 100%;">
-                                                                                                <a href="#"
+                                                                                                <a href="{{ route('product-detail', ['product' => $brand->products[$ip + 1]]) }}"
                                                                                                     target="_self"
                                                                                                     title="Drutick lanaeger">
                                                                                                     <img src="{{ asset($brand->products[$ip + 1]->images->count() ? 'storage/' . $brand->products[$ip + 1]->images->first()->src : 'dist/images/default.jpg') }}"
@@ -712,7 +714,7 @@
 
                                                                                             <!--quickview-->
                                                                                             <a class="iframe-link btn-button quickview quickview_handler visible-lg"
-                                                                                                href="quickview.html"
+                                                                                                href="{{ route('quickview', ['product' => $brand->products[$ip + 1]]) }}"
                                                                                                 title="Quick view"
                                                                                                 data-fancybox-type="iframe"><i
                                                                                                     class="fa fa-eye"></i><span></span></a>
@@ -720,7 +722,7 @@
                                                                                         </div>
                                                                                         <div class="right-block right-b">
                                                                                             <div class="caption">
-                                                                                                <h4><a href="#"
+                                                                                                <h4><a href="{{ route('product-detail', ['product' => $brand->products[$ip + 1]]) }}"
                                                                                                         title="Drutick lanaeger"
                                                                                                         target="_self">{{ Str::words($brand->products[$ip + 1]->name, 3, '...') }}</a>
                                                                                                 </h4>
